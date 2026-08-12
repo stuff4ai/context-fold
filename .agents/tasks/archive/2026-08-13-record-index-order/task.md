@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -39,6 +39,20 @@ cannot carry its own rationale — hence a decision record here.
 3. The index row is added and the record is linked.
 4. `INDEX.md` already satisfies the rule; no reordering is needed.
 
+## Outcome
+
+The ordering is recorded in `decisions/0009-order-task-index-newest-first.md`, and the rule
+plus its regeneration sort are stated in `.agents/tasks/AGENTS.md`. `decisions/README.md`
+carries the index row.
+
+All four acceptance criteria satisfied, with a caveat on the fourth: the index was already
+ordered correctly, but the regeneration sort that verifies it has only been run against two
+tasks sharing one date, so it is confirmed deterministic and not confirmed meaningful.
+
+This task changed a portable rule file, so it applies to every project using context-fold.
+
+Nothing was left to fold.
+
 ## Problems
 
 ### The regeneration rule appears to work but is untested
@@ -52,3 +66,17 @@ alphabetically. It matched completion order by accident. The rule has not actual
 exercised on tasks from different days, and a same-day pair whose slugs sort the other way
 would produce a wrong-looking index that is still "correct" by the rule.
 The check that passed here proves the sort is deterministic, not that it is meaningful.
+
+### The limitation materialized on the rule's first application
+
+Archiving this task gave three same-day directories. Sorting by name descending yields
+`record-merge-strategy`, `record-index-order`, `bootstrap-tasks-layer` — placing the newest
+task second, below one completed before it.
+Assumed: the day-granularity limit was a theoretical edge case worth noting in consequences.
+Actually: it appeared on the very next task, because a project working in a single session
+completes several tasks a day. The index now shows an order that is correct by the rule and
+wrong by the rule's stated purpose of putting the most recent work at the top.
+Followed the rule as recorded rather than deviating from it silently — `0009` explicitly says
+within-day order is not meaningful, so this is the documented behavior, not a violation. But
+the purpose and the mechanism disagree after one use, which is a sound reason to revisit
+granularity rather than wait for more evidence.
