@@ -5,10 +5,10 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [bootstrap-tasks-layer](bootstrap-tasks-layer/task.md) | active | Establish context-fold v0: the `.agents/` tasks layer, project-layer entry points, and decision records for what is settled |
+None.
 
 ## Archive
 
-None yet. See [`archive/`](archive/AGENTS.md).
+| Task | Status | Objective |
+| --- | --- | --- |
+| [2026-08-13-bootstrap-tasks-layer](archive/2026-08-13-bootstrap-tasks-layer/task.md) | completed | Establish context-fold v0: the `.agents/` tasks layer, project-layer entry points, and decision records for what is settled |

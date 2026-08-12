@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -47,6 +47,34 @@ Open questions belong in `context.md`, recorded rather than answered.
    postponed one is listed in `context.md`. Nothing load-bearing remains only in chat.
 5. **Friction captured.** `## Problems` below is non-empty. An empty log means the capture
    mechanism failed, not that the work went well.
+
+## Outcome
+
+context-fold v0 exists and was built using itself.
+
+Durable artifacts produced, all in the project layer:
+
+- `README.md` — the two-layer principle and the deletion test.
+- `AGENTS.md` — project rules, decisions, agent layer pointer, change workflow.
+- `decisions/0000`–`0007` — decision records, GitHub Flow, Conventional Commits, sign-off,
+  agent co-authorship, the layer boundary, the task package model, archive-before-merge.
+
+The agent layer produced: `.agents/AGENTS.md`, `tasks/AGENTS.md`, `archive/AGENTS.md`,
+`INDEX.md`, and this package. The three rule files are portable and carry no project-specific
+paths; that property was verified when `docs/adr/` moved to `decisions/` without touching a
+line of them.
+
+Nothing was left to fold. Every decision reached during this task is recorded as a decision
+record; the findings below are candidate lessons, not accepted rules, and remain history.
+
+**Acceptance: four of five satisfied.** Criterion 2 is refuted and closes unmet.
+
+The cold-start agent reached the objective, scope, and acceptance correctly, so the layer is
+usable by an agent with no prior context. But it got there by searching the tree, reading the
+root entry point fourth and `INDEX.md` last. The criterion asserted a specific navigation
+chain, and that chain is not what agents do. The property worth having — reachability without
+prior context — held; the mechanism asserted for it did not. Recorded rather than reworded,
+because a criterion edited after the fact to match the result proves nothing.
 
 ## Problems
 
