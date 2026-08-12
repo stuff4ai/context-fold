@@ -37,8 +37,11 @@ Use GitHub Flow:
 1. Create a short-lived branch from `main`, named `<type>/<kebab-case-topic>` —
    `feat/task-index`, `docs/decision-threshold`, `fix/index-drift`.
 2. Make a focused change.
-3. Open a pull request.
+3. Open a pull request. Its description becomes the commit message on `main`, so write it as
+   a record of the change — not as a note to the reviewer, and with nothing that stops being
+   true once merged.
 4. Wait for human review before merging.
+5. Squash merge.
 
 Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit
 messages. A branch's `<type>` comes from the same set of types as its commits.

@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-merge-strategy](record-merge-strategy/task.md) | active | Record how pull requests are merged, and the pull request description convention that follows from it |
 
 ## Archive
 
