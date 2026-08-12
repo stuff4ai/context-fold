@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -36,6 +36,21 @@ merged.
 2. Root `AGENTS.md` states the convention operationally, without restating the reasoning.
 3. The index row is added and the record is linked.
 4. Nothing in the record contradicts `0001`, `0002`, `0003`, `0004`, or `0007`.
+
+## Outcome
+
+The merge strategy is recorded in `decisions/0008-squash-merge-pull-requests.md`: squash
+merging, the pull request description as commit body, and the convention that descriptions are
+written as the permanent record rather than as notes to the reviewer. Root `AGENTS.md` states
+the convention operationally; `decisions/README.md` carries the index row.
+
+All four acceptance criteria satisfied.
+
+The `0003` ambiguity that squashing exposes — whether "every commit" means every commit or
+every commit that lands on `main` — is left open in `context.md`. Resolving it requires a
+record superseding `0003`, which is out of this task's scope.
+
+Nothing was left to fold.
 
 ## Problems
 
