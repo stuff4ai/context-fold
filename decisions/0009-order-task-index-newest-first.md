@@ -25,14 +25,19 @@ remembered.
 
 ## Decision
 
-The task index lists tasks newest first, in both its active and archive sections.
+The archive section of the task index lists tasks newest first.
+
+The active section is sorted by directory name ascending. That order carries no meaning — it
+exists so the index can be rebuilt whole. Newest-first is not applied there: the reasoning
+above depends on a list that grows without bound, and active tasks leave the list when they
+are archived.
 
 Archived task directories are named `{YYYY-MM-DD-HHMM}-{slug}`, timed to the minute the task
 left active state. This supersedes the day-only prefix in
 [0007](0007-archive-before-merge.md); nothing else in that record changes.
 
-Regeneration sorts archived tasks by directory name descending, which orders them by recency
-without consulting the task files.
+Regeneration sorts archived tasks by directory name descending, which orders them by recency,
+and active tasks by directory name ascending. Neither consults the task files.
 
 The index states no rule about its own ordering. The rule lives in
 `.agents/tasks/AGENTS.md`, alongside the other instructions for working with tasks.
@@ -41,7 +46,12 @@ The index states no rule about its own ordering. The rule lives in
 
 The most recently completed work is at the top, where it is read.
 
-The order remains derivable, so the conflict-repair rule holds unchanged.
+Both sections remain derivable, so the conflict-repair rule holds unchanged.
+
+The two sections are ordered differently, which is a small inconsistency. Active tasks carry
+no timestamp — slugs are deliberately free of ordering metadata ([0006](0006-task-package-model.md))
+— so ordering them by recency would mean adding a creation prefix that exists only to satisfy
+symmetry.
 
 Reading the archive as a narrative of how the project developed now runs bottom to top, which
 is the less natural direction for that purpose. Commit history serves that reading better

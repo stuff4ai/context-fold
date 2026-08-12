@@ -87,6 +87,23 @@ Resolved before merge by moving the prefix to `{YYYY-MM-DD-HHMM}`, which orders 
 makes a same-name collision between concurrent branches remote rather than likely. Existing
 directories were renamed using the timestamps of their own archival commits.
 
+### A rule was generalized past its own justification
+
+The ordering rule was written as "newest first, in both sections". The argument for it was
+that the archive grows without bound, so recent work sinks out of view.
+Assumed: a rule that is right for one section is right for the sibling section.
+Actually: active tasks leave the list when archived, so the list does not grow and the
+justification never covered them. Worse, the rule was not followable — active directories are
+slug-only by design, so with two active tasks there is no derivable newest-first order at all.
+Scoped to the archive; active tasks sort by slug, explicitly meaninglessly, so the index stays
+rebuildable whole.
+
+Third instance of the same reflex in this project — stating a rule where it is relevant rather
+than owned, importing a borrowed frame along with its sentence shape, and now extending a rule
+past its reason. Each time the pull was toward symmetry: "both sections", "both files", "the
+same shape". Consistency is worth something but is not a reason on its own, and it keeps
+getting spent as though it were.
+
 ### Superseding a record turned out to be partial, and the model has no word for it
 
 The archive path format was set by `0007`, which is merged and accepted. Changing it meant
