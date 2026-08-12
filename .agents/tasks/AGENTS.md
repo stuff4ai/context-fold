@@ -97,8 +97,8 @@ Whatever is left behind is lost.
 
 1. Set the final Status and add an Outcome to `task.md`: what happened, and which durable
    artifacts it produced.
-2. Move the directory to `.agents/tasks/archive/{YYYY-MM-DD}-{slug}/`, dated the day it left
-   active state.
+2. Move the directory to `.agents/tasks/archive/{YYYY-MM-DD-HHMM}-{slug}/`, timed to the
+   minute it left active state.
 3. Update `INDEX.md`.
 4. Run the final exact-head check.
 5. Submit the change for acceptance. Archival happens *before* the change is accepted, so

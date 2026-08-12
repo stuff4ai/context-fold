@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. Archive directory naming superseded by
+[0009](0009-order-task-index-newest-first.md); the rest stands.
 
 ## Context
 

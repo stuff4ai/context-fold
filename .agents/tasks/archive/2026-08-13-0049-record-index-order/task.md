@@ -45,9 +45,11 @@ The ordering is recorded in `decisions/0009-order-task-index-newest-first.md`, a
 plus its regeneration sort are stated in `.agents/tasks/AGENTS.md`. `decisions/README.md`
 carries the index row.
 
-All four acceptance criteria satisfied, with a caveat on the fourth: the index was already
-ordered correctly, but the regeneration sort that verifies it has only been run against two
-tasks sharing one date, so it is confirmed deterministic and not confirmed meaningful.
+All four acceptance criteria satisfied. The fourth needed a correction first: with three
+same-day tasks the day-only prefix placed the newest second, so `0009` was amended before merge
+to use a `{YYYY-MM-DD-HHMM}` prefix. That supersedes the archive naming in `0007`, whose
+`Status` now points at `0009`; the rest of `0007` stands. Existing archive directories were
+renamed from the timestamps of their archival commits.
 
 This task changed a portable rule file, so it applies to every project using context-fold.
 
@@ -76,7 +78,23 @@ Assumed: the day-granularity limit was a theoretical edge case worth noting in c
 Actually: it appeared on the very next task, because a project working in a single session
 completes several tasks a day. The index now shows an order that is correct by the rule and
 wrong by the rule's stated purpose of putting the most recent work at the top.
-Followed the rule as recorded rather than deviating from it silently — `0009` explicitly says
-within-day order is not meaningful, so this is the documented behavior, not a violation. But
-the purpose and the mechanism disagree after one use, which is a sound reason to revisit
-granularity rather than wait for more evidence.
+Followed the rule as recorded rather than deviating from it silently — `0009` explicitly said
+within-day order is not meaningful, so this was the documented behavior, not a violation. But
+the purpose and the mechanism disagreed after one use, which was reason enough to fix the rule
+rather than wait for more evidence.
+
+Resolved before merge by moving the prefix to `{YYYY-MM-DD-HHMM}`, which orders by recency and
+makes a same-name collision between concurrent branches remote rather than likely. Existing
+directories were renamed using the timestamps of their own archival commits.
+
+### Superseding a record turned out to be partial, and the model has no word for it
+
+The archive path format was set by `0007`, which is merged and accepted. Changing it meant
+superseding a record that also carries the archive-before-merge decision, which is untouched.
+Assumed: supersession replaces a whole record, as `0000` describes.
+Actually: records bundle several decisions, and a later one usually contradicts only part of
+an earlier one. Replacing `0007` wholesale would have meant restating a decision nobody
+disputes, purely to satisfy the form. Handled by pointing `0007`'s `Status` at `0009` and
+saying what was superseded — `Status` is the one field an accepted record may change, so this
+stays inside the rules — but `0000` describes no such thing, and the wording had to be
+invented here.

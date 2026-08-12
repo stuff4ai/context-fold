@@ -14,7 +14,7 @@ ever-longer file. That is the worst position for it, because recent tasks are th
 likely to carry relevant context, and the bottom of a long file is what gets skimmed past or
 truncated when the file is read into a limited context.
 
-Chronology does not depend on the index. Archived directories carry a date prefix
+Chronology does not depend on the index. Archived directories carry a timestamp prefix
 ([0007](0007-archive-before-merge.md)), and the commit history is a better record of order
 than a table. The index is therefore free to be ordered for reading rather than for
 record-keeping.
@@ -27,8 +27,12 @@ remembered.
 
 The task index lists tasks newest first, in both its active and archive sections.
 
-Regeneration sorts archived tasks by directory name descending, which orders them by date
-prefix without consulting the task files.
+Archived task directories are named `{YYYY-MM-DD-HHMM}-{slug}`, timed to the minute the task
+left active state. This supersedes the day-only prefix in
+[0007](0007-archive-before-merge.md); nothing else in that record changes.
+
+Regeneration sorts archived tasks by directory name descending, which orders them by recency
+without consulting the task files.
 
 The index states no rule about its own ordering. The rule lives in
 `.agents/tasks/AGENTS.md`, alongside the other instructions for working with tasks.
@@ -43,9 +47,14 @@ Reading the archive as a narrative of how the project developed now runs bottom 
 is the less natural direction for that purpose. Commit history serves that reading better
 anyway.
 
-Date prefixes have day granularity, so tasks completed on the same day are not ordered by the
-prefix alone. Their relative order within a day is whatever regeneration produces and is not
-meaningful.
+Directory names are longer and carry a time that is rarely interesting on its own. That cost
+buys an order that is correct rather than incidental: a day-only prefix was tried first and
+placed the newest of three same-day tasks second, because the sort fell through to comparing
+slugs alphabetically.
+
+Minute granularity leaves two tasks archived in the same minute unordered relative to each
+other. Concurrent branches also cannot collide on a directory name unless they archive within
+the same minute, which a day-only prefix made likely and this makes remote.
 
 This changes a portable instruction file, so it applies to every project using context-fold,
 not only this one.
