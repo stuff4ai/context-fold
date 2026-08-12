@@ -39,6 +39,10 @@ conflicts, Base state, Not relevant.
 Open questions are recorded, not resolved. A question that must be answered to proceed is
 work, not context.
 
+Only task-local questions belong here — things unresolved while this task runs, and settled or
+irrelevant once it ends. A question that will outlive the task belongs in the project layer,
+where it stays visible after this package is archived.
+
 **`plan.md`** — execution strategy. Optional.
 
 Create it when the task is multi-step, complex, long-running, or likely to be resumed by

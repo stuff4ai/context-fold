@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-open-questions](record-open-questions/task.md) | active | Give the project's unresolved questions and deferred scope a home in the project layer |
 
 ## Archive
 
