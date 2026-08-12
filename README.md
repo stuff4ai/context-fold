@@ -1,0 +1,75 @@
+# context-fold
+
+> 🗂️ Fold your repo context for humans and agents.
+
+A repository should contain more than code and documentation. It should carry an explicit
+operating context that says how to understand the project, how work moves through it, and
+where durable knowledge belongs — so that humans and agents can work on the same project
+coherently over time.
+
+## The problem
+
+Agents rarely fail because a repository contains too little information. They fail because
+project knowledge is unstructured, work history is disconnected from durable knowledge,
+mistakes disappear into transcripts instead of becoming lessons, and every new agent
+rediscovers how the project works from scratch.
+
+## The principle
+
+Two layers, with a hard boundary between them.
+
+**The project layer** holds what the project knows: the code, its tests, its documentation,
+and its decision records. This is durable, human-owned truth.
+
+**The agent layer** (`.agents/`) holds how agents operate: navigation, task coordination,
+lifecycle state, working context. It is scaffolding, not knowledge.
+
+The boundary is enforced by a test anyone can apply:
+
+> If humans need this information too, it does not belong only in `.agents/`.
+
+Remove `.agents/` and read what remains. The test fails if knowledge was lost, not if a
+pointer to the layer dangles — removing the layer is an ordinary change, and what pointed at
+it is updated alongside. A layer that fails has quietly become a second, drifting source of
+truth.
+
+## Tasks
+
+Work is organized into task packages under `.agents/tasks/{slug}/`:
+
+| File | Purpose |
+| --- | --- |
+| `task.md` | The contract — objective, scope, acceptance, and the problems hit along the way |
+| `context.md` | A curated map of what matters for this task, by reference |
+| `plan.md` | Execution strategy, when the task is large enough to need one |
+
+Tasks are named by descriptive slug rather than ticket number, so paths stay meaningful and
+no separate numbering system is required.
+
+A task is not complete when the coding is done. It is complete when acceptance is satisfied,
+durable outcomes have been folded into the project layer, review has happened, and the
+repository is in a coherent accepted state. Only then is it archived — inside the pull
+request, so the merge commit carries both the work and the record of the work.
+
+## Decisions
+
+Durable project decisions are recorded as decision records. They cover any significant
+decision, not only architectural ones: workflow, conventions, tooling, and structure.
+Accepted records are immutable apart from their `Status` field — a decision is replaced by a
+new record that supersedes it, never by rewriting the old one.
+
+This repository keeps them in [`decisions/`](decisions/). That location is a choice, not a
+requirement.
+
+## Status
+
+v0. Methodology and repository conventions, applied to this repository first.
+
+There is no CLI and no tooling. The conventions are plain Markdown and Git, and the immediate
+goal is to find out — by using them — which parts earn their keep. Deliberately deferred:
+skills, workflows, a learning layer, adapters for specific agent tools, retrieval, and
+distribution.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
