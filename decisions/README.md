@@ -18,3 +18,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0005 | [Separate the agent operating layer from project knowledge](0005-agents-layer-boundary.md) | Accepted |
 | 0006 | [Organize work as task packages](0006-task-package-model.md) | Accepted |
 | 0007 | [Archive tasks before merge](0007-archive-before-merge.md) | Accepted |
+| 0008 | [Squash merge pull requests](0008-squash-merge-pull-requests.md) | Accepted |
