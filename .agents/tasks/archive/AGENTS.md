@@ -1,7 +1,7 @@
 # AGENTS.md — archive
 
 Completed and cancelled tasks, flat, one directory each:
-`{YYYY-MM-DD}-{slug}/`. The date is when the task left active state.
+`{YYYY-MM-DD-HHMM}-{slug}/`, timed to the minute the task left active state.
 
 Both outcomes live here together. The final state is recorded in each task's own `task.md` as
 `completed` or `cancelled` — the directory does not encode it.

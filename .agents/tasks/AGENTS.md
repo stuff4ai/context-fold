@@ -10,6 +10,9 @@ paths, names, or decisions — the reasoning behind them lives in context-fold, 
 Start at [`INDEX.md`](INDEX.md). It is a derived view — each task's `task.md` owns its
 canonical status. If they disagree, `task.md` is right and the index needs repair.
 
+The archive is listed newest first: it only grows, so the most recent work belongs at the top
+where it is read. Active tasks are listed by slug, in no meaningful order.
+
 ## Starting a task
 
 Create `.agents/tasks/{slug}/` with a descriptive slug: `add-retry-to-uploads`, not
@@ -94,8 +97,8 @@ Whatever is left behind is lost.
 
 1. Set the final Status and add an Outcome to `task.md`: what happened, and which durable
    artifacts it produced.
-2. Move the directory to `.agents/tasks/archive/{YYYY-MM-DD}-{slug}/`, dated the day it left
-   active state.
+2. Move the directory to `.agents/tasks/archive/{YYYY-MM-DD-HHMM}-{slug}/`, timed to the
+   minute it left active state.
 3. Update `INDEX.md`.
 4. Run the final exact-head check.
 5. Submit the change for acceptance. Archival happens *before* the change is accepted, so
@@ -114,4 +117,5 @@ At the branch head, confirm all four:
 ## Index conflicts
 
 `INDEX.md` is one file that every concurrent task touches, so conflicts are normal. Do not
-resolve them by hand — rebuild the affected rows from the task directories.
+resolve them by hand — rebuild the affected rows from the task directories, sorting archived
+tasks by directory name descending and active tasks ascending.
