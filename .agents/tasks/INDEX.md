@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-index-order](record-index-order/task.md) | active | Record that the task index is ordered newest first, and state the rule in the portable tasks instructions |
 
 ## Archive
 

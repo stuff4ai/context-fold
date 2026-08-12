@@ -10,6 +10,9 @@ paths, names, or decisions — the reasoning behind them lives in context-fold, 
 Start at [`INDEX.md`](INDEX.md). It is a derived view — each task's `task.md` owns its
 canonical status. If they disagree, `task.md` is right and the index needs repair.
 
+Tasks are listed newest first, in both sections. The archive only grows, so the most recent
+work belongs at the top where it is read.
+
 ## Starting a task
 
 Create `.agents/tasks/{slug}/` with a descriptive slug: `add-retry-to-uploads`, not
@@ -114,4 +117,5 @@ At the branch head, confirm all four:
 ## Index conflicts
 
 `INDEX.md` is one file that every concurrent task touches, so conflicts are normal. Do not
-resolve them by hand — rebuild the affected rows from the task directories.
+resolve them by hand — rebuild the affected rows from the task directories, sorting archived
+tasks by directory name descending.
