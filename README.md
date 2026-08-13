@@ -66,9 +66,10 @@ requirement.
 v0. Methodology and repository conventions, applied to this repository first.
 
 There is no CLI and no tooling. The conventions are plain Markdown and Git, and the immediate
-goal is to find out — by using them — which parts earn their keep. Deliberately deferred:
-skills, workflows, a learning layer, adapters for specific agent tools, retrieval, and
-distribution.
+goal is to find out — by using them — which parts earn their keep.
+
+What is deliberately unbuilt, and what using it has shown to be unresolved, is in
+[OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).
 
 ## License
 

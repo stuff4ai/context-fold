@@ -20,3 +20,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0007 | [Archive tasks before merge](0007-archive-before-merge.md) | Accepted |
 | 0008 | [Squash merge pull requests](0008-squash-merge-pull-requests.md) | Accepted |
 | 0009 | [Order the task index newest first](0009-order-task-index-newest-first.md) | Accepted |
+| 0010 | [Record open questions in the project layer](0010-record-open-questions-in-project-layer.md) | Accepted |
