@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. Merging as a human-only action is narrowed by
+[0019](0019-agents-may-merge-after-approval.md); the rest stands.
 
 ## Context
 

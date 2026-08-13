@@ -11,6 +11,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-13-2054-let-agents-merge-after-approval](archive/2026-08-13-2054-let-agents-merge-after-approval/task.md) | completed | Allow an agent to merge a pull request once a human has approved it, and record what that changes about the gate |
 | [2026-08-13-2000-separate-distribution-from-installation](archive/2026-08-13-2000-separate-distribution-from-installation/task.md) | completed | Ship a distribution, install this repository from it, and make the fact that they match a check rather than a claim |
 | [2026-08-13-1838-write-the-adoption-procedure](archive/2026-08-13-1838-write-the-adoption-procedure/task.md) | completed | Describe how another repository adopts context-fold, well enough that following the description is the test |
 | [2026-08-13-1619-add-convention-checks](archive/2026-08-13-1619-add-convention-checks/task.md) | completed | Enforce the repository invariants that encode decisions, on every change, instead of checking them by hand |

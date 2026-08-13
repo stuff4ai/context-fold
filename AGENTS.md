@@ -12,7 +12,7 @@ are recommended anywhere else.
 - Prefer plain files and Git-friendly workflows.
 - Do not introduce unrelated changes.
 - Do not push directly to `main`.
-- Do not merge pull requests.
+- Do not merge a pull request until a human has approved it. After that, merging is yours to do.
 - Update documentation when behavior or conventions change.
 - After changing `templates/`, reinstall `.agents/` from it before finishing — copy the
   `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
@@ -42,7 +42,7 @@ Use GitHub Flow:
 3. Open a pull request. Its description becomes the commit message on `main`, so write it as
    a record of the change — not as a note to the reviewer, and with nothing that stops being
    true once merged.
-4. Wait for human review before merging.
+4. Wait for a human to approve it.
 5. Squash merge.
 
 Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit

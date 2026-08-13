@@ -104,10 +104,11 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **Supersession is described as whole-record, but is usually partial.** `0009` superseded only
   the archive naming in `0007`, whose other decision stands. The wording for that was invented
   rather than derived from `0000`.
-- **Approval and merge-readiness are different states, and nothing bridges them.** A task is
-  approved, then archived, then merged — so approval does not mean a branch is ready. Nothing
-  says who notices the difference, and a reviewer who merges on approving would ship an
-  unarchived task.
+- **The archival commit merges without review.** `0007` puts approval before archival and `0019`
+  lets the agent merge after it, so the commit that reaches `main` is not the one that was
+  approved. CI covers the mechanical part; the Outcome is the one written thing in that commit
+  and nothing verifies it. Moving approval to after archival would close this and would
+  contradict `0007`.
 - **Findings that arrive after archival have nowhere to go.** Merging is the last stage, so
   anything learned from a merge arrives after its task is closed and immutable. It has twice
   reached the next task only because a person carried it there.
