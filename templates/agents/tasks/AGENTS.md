@@ -13,6 +13,23 @@ canonical status. If they disagree, `task.md` is right and the index needs repai
 The archive is listed newest first: it only grows, so the most recent work belongs at the top
 where it is read. Active tasks are listed by slug, in no meaningful order.
 
+Each section is a table of task, status, and a one-line objective. A section with nothing in it
+says `None.` instead:
+
+```markdown
+## Active
+
+| Task | Status | Objective |
+| --- | --- | --- |
+| [{slug}]({slug}/task.md) | active | What the task is for |
+
+## Archive
+
+| Task | Status | Objective |
+| --- | --- | --- |
+| [{YYYY-MM-DD-HHMM}-{slug}](archive/{YYYY-MM-DD-HHMM}-{slug}/task.md) | completed | ... |
+```
+
 ## Starting a task
 
 Create `.agents/tasks/{slug}/` with a descriptive slug: `add-retry-to-uploads`, not

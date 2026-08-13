@@ -42,6 +42,9 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 # [text](target) — not images, not autolinks.
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
 
+# Fenced blocks hold examples. A link inside one is a shape to copy, not a link to follow.
+FENCE = re.compile(r"^```.*?^```", re.M | re.S)
+
 
 IGNORED_DIRS = {".git", ".venv", ".idea", ".vscode"}
 
@@ -286,9 +289,13 @@ def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
 
 @pytest.mark.parametrize("doc", markdown_files(), ids=lambda p: str(p.relative_to(ROOT)))
 def test_relative_links_resolve(doc: Path) -> None:
-    """External URLs are not checked: they are few, stable, and flaky in CI."""
+    """External URLs are not checked: they are few, stable, and flaky in CI.
+
+    Fenced blocks are stripped first. Documents that show the shape of a file contain
+    links to placeholder paths, and those are examples rather than references.
+    """
     broken = []
-    for target in LINK.findall(doc.read_text(encoding="utf-8")):
+    for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
         if target.startswith(("http://", "https://", "mailto:", "#")):
             continue
         path = (doc.parent / target.split("#", 1)[0]).resolve()

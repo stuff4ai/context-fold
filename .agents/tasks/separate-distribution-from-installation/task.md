@@ -67,6 +67,29 @@ deliberate reset.
 replacing rules later. The deeper issue — that upgrading has no defined procedure — is
 unresolved and deferred.
 
+### The index format was shipped nowhere
+
+`INDEX.md` ships showing `None.` under both headings, and the rules describe rows, ordering, and
+how to repair them without ever saying what a row contains. An adopter adding their first task
+has to invent the columns.
+Assumed: the empty index shows the shape, since it is the file being described.
+Actually: it shows the empty case, which is the one case where the shape is absent. Every rule
+about the index assumed a format that exists only in this repository's populated copy — the same
+mistake as the whole task, one level down: a fact true here and shipped nowhere.
+The row shape is now in the rules, where maintenance already lives.
+
+### The link checker never understood code blocks
+
+Adding that example broke two checks: the placeholder links inside the fenced block were read as
+real references.
+Assumed: `.adr-template.md` was excluded from link checking because templates are special.
+Actually: it was excluded because it contained an example link, and excluding the file hid that
+the checker could not tell an example from a reference. The exclusion looked like a decision
+about templates and was a workaround for a defect. It held until a non-hidden file needed an
+example.
+Fixed properly: fenced blocks are stripped before links are extracted. Verified that a broken
+link outside a fence still fails and one inside is ignored.
+
 ### The shipped rules named the project that ships them
 
 Five places in the distribution said "context-fold" — installed by it, replaced when it updates,
