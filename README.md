@@ -7,12 +7,30 @@ operating context that says how to understand the project, how work moves throug
 where durable knowledge belongs — so that humans and agents can work on the same project
 coherently over time.
 
+The name is the metaphor: repository context is too large to hold at once, so it is folded into
+structures that can be opened where needed and left closed everywhere else. Short form
+`ctxfold`.
+
 ## The problem
 
 Agents rarely fail because a repository contains too little information. They fail because
 project knowledge is unstructured, work history is disconnected from durable knowledge,
 mistakes disappear into transcripts instead of becoming lessons, and every new agent
 rediscovers how the project works from scratch.
+
+## The loop
+
+Work produces problems. Problems become lessons. Lessons change the context the next agent
+reads.
+
+Friction is written down while it happens — what was assumed, what was actually true — because
+recalling it afterwards produces a tidy account of a process that felt smooth in retrospect. A
+single instance is bad luck; the same problem across several tasks is evidence, and evidence is
+what justifies changing a rule.
+
+Nothing promotes itself. A pattern becomes a rule only through a reviewed change, and a person
+decides which patterns matter. This is the part that makes a repository get better at being
+worked on rather than merely bigger.
 
 ## The principle
 
