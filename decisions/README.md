@@ -28,3 +28,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0015 | [Stages are not one-way](0015-stages-are-not-one-way.md) | Accepted |
 | 0016 | [Check the conventions in CI](0016-check-conventions-in-ci.md) | Accepted |
 | 0017 | [Adoption procedure](0017-adoption-procedure.md) | Accepted |
+| 0018 | [Ship a distribution](0018-ship-a-distribution.md) | Accepted |

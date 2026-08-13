@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. The identification of the layer with the `.agents/` directory is narrowed by
+[0018](0018-ship-a-distribution.md); the boundary itself stands.
 
 ## Context
 

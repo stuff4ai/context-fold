@@ -19,6 +19,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 
+TEMPLATES = ROOT / "templates"
+AGENT_TEMPLATES = TEMPLATES / "agents"
+
 TASKS = ROOT / ".agents" / "tasks"
 ARCHIVE = TASKS / "archive"
 INDEX = TASKS / "INDEX.md"
@@ -83,6 +86,49 @@ def section(text: str, heading: str) -> str | None:
 
 def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
+
+
+# --- Dogfooding -----------------------------------------------------------------------
+
+
+def installed_rule_files() -> list[tuple[Path, Path]]:
+    """Every rule file in `templates/agents/`, paired with where it installs to.
+
+    `INDEX.md` is excluded: it is instance data, and its divergence from the empty
+    template is the point of it.
+    """
+    return [
+        (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))
+        for t in sorted(AGENT_TEMPLATES.rglob("AGENTS.md"))
+    ]
+
+
+@pytest.mark.parametrize(
+    "template,installed",
+    installed_rule_files(),
+    ids=lambda p: str(p.relative_to(ROOT)) if isinstance(p, Path) else str(p),
+)
+def test_installation_matches_the_distribution(template: Path, installed: Path) -> None:
+    """This repository runs what it ships.
+
+    `templates/agents/` is the distribution; `.agents/` is one installation of it. If they
+    differ, either the shipped rules were edited in place — which is what the layer tells
+    adopters never to do — or a change was made to the distribution and not installed.
+    """
+    assert installed.is_file(), f"{installed.relative_to(ROOT)} is not installed"
+    assert installed.read_bytes() == template.read_bytes(), (
+        f"{installed.relative_to(ROOT)} differs from {template.relative_to(ROOT)}"
+    )
+
+
+def test_distribution_is_complete() -> None:
+    """A rule file installed but not shipped would reach no other repository."""
+    shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
+    installed = {p.relative_to(ROOT / ".agents") for p in (ROOT / ".agents").rglob("AGENTS.md")}
+    assert installed == shipped, (
+        f"installed but not shipped: {sorted(installed - shipped)}; "
+        f"shipped but not installed: {sorted(shipped - installed)}"
+    )
 
 
 # --- Discovery ------------------------------------------------------------------------

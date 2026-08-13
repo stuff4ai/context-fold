@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [separate-distribution-from-installation](separate-distribution-from-installation/task.md) | active | Ship a distribution, install this repository from it, and make the fact that they match a check rather than a claim |
 
 ## Archive
 
