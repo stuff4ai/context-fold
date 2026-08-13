@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -44,6 +44,21 @@ observation forward.
    mid-task.
 4. That file remains free of project-specific paths, names, and record numbers.
 5. Consequences state that nothing distinguishes healthy iteration from a task that is stuck.
+
+## Outcome
+
+`decisions/0015-stages-are-not-one-way.md` records that stages describe order rather than a
+path, that returning needs no justification, and that it changes no `Status`. The
+several-loops observation the cut lifecycle encoded is preserved without restoring the stages.
+`.agents/tasks/AGENTS.md` carries the rule in its Stages section, phrased for an agent mid-task.
+
+All five acceptance criteria satisfied. Exactly one portable rule file changed, and it remains
+free of project-specific detail.
+
+This closes the three gaps the fold audit found. Nothing load-bearing from the design
+conversation or this session's work remains outside the repository.
+
+Nothing was left to fold.
 
 ## Problems
 
