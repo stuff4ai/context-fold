@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -44,6 +44,21 @@ where that belongs.
    plan.
 4. No portable rule file changes. If one needs to, the material was misplaced.
 5. Nothing added exists in more than one owned location.
+
+## Outcome
+
+`decisions/0011-keep-the-model-vendor-neutral.md` records that the model depends on no agent
+product, with the surveyed conventions and OpenSpec-as-foundation preserved in its Context as
+the alternatives that lost. `OPEN-QUESTIONS.md` gains the question of how capabilities reach
+hosts that configure them differently, and its adapters entry now references the decision
+rather than restating it.
+
+All five acceptance criteria satisfied. No portable rule file changed, which was the signal
+that the material belonged where it was put.
+
+Both rejected alternatives existed only in the conversation that produced the design.
+
+Nothing was left to fold.
 
 ## Problems
 
