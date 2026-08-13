@@ -62,3 +62,17 @@ Trimmed to the fact plus a pointer.
 Seventh instance of this pattern, and the first found by a check rather than by review. The
 duplication check in the plan was written for exactly this and would have been easy to treat
 as ceremony.
+
+### A scoped item was absorbed into a neighbouring question and counted as done
+
+Scope named four additions to `OPEN-QUESTIONS.md`, one of them `init` behavior. Three were
+written, and `init` was folded into a broader question about adopting the layer into an
+existing repository — which covers empty-versus-existing, but silently dropped the specific
+idea that initialization should open a first task whose work is discovering the project's
+context.
+Assumed: covering the subject matter satisfies the scope item.
+Actually: the scope item existed because a concrete proposal was at risk of being lost, and a
+question covering the same territory in general terms does not preserve a specific mechanism.
+The absorbing question read as complete, which is why nothing flagged it.
+Found in review, not by the acceptance criteria — criterion 4 asked for four items, and three
+new items plus an edit to an existing one was close enough to pass a quick count.
