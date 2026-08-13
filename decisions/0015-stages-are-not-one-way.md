@@ -38,8 +38,9 @@ archived, regardless of how many times it moves between stages, so iteration cos
 bookkeeping. This is the second half of the existing distinction between status and stage: status
 is what a task *is*, stages are what it is *doing*, and only the former is written down.
 
-The stage sequence is still meaningful — it says what must have happened before what. Archival
-follows acceptance; verification precedes review. Order is constrained; repetition is not.
+The stage sequence is still meaningful — it says what must have happened before what.
+Verification precedes review; archival follows approval and precedes acceptance
+([0007](0007-archive-before-merge.md)). Order is constrained; repetition is not.
 
 ## Consequences
 

@@ -90,7 +90,7 @@ deviation, and it needs no explanation. Returning changes no `Status`: the task 
 until it is archived, however many times it moves.
 
 What the order does constrain is what must happen before what. Verification precedes review;
-archival follows acceptance.
+archival follows approval and precedes acceptance.
 
 *Review*, *approved*, and *merge* mean whatever this project's own workflow defines them to
 mean. The rule is only that a change is archived before it is accepted, not that acceptance

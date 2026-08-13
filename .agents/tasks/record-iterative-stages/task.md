@@ -58,3 +58,17 @@ from the practice for eight tasks without a single entry.
 The problem log catches friction, not absence of instruction. A rule that is merely incomplete
 generates no evidence at all — which is the opposite of how this project assumed defects surface,
 and means the audit that found this had no cheaper substitute.
+
+### A sentence added to clarify the order stated it backwards
+
+The new rule ended with "archival follows acceptance". `0007` puts archival *before* acceptance
+— approval authorizes archival, and acceptance takes the archived state — and the same file says
+so nine lines further down.
+Assumed: a short clause restating settled ordering is safe to write from memory.
+Actually: "acceptance" and "approval" are adjacent words for adjacent stages, and the sentence
+was written to illustrate a different point, so it was never checked against the record that owns
+the ordering. It inverted a decision while appearing to summarize it.
+Fixed to "archival follows approval and precedes acceptance", with the record cited in `0015`.
+Caught by review. Neither the duplication check nor the deletion test looks for a statement that
+contradicts an existing record — nothing in the verification would have found it, and it would
+have shipped into a portable file that reaches every installation.
