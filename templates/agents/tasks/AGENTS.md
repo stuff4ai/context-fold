@@ -2,7 +2,7 @@
 
 How to run work in this repository.
 
-These rules are the same in every project using context-fold. They carry no project-specific
+These rules are the same in every installation of the layer. They carry no project-specific
 paths, names, or decisions.
 
 ## Finding work

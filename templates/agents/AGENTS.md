@@ -7,19 +7,20 @@ information.
 
 ## What the layer is
 
-It is installed here by context-fold, and consists of exactly two things: these `AGENTS.md`
-files, and what working here produces — the task index, task packages, and the archive.
+It is installed rather than authored here, and consists of exactly two things: these
+`AGENTS.md` files, and what working here produces — the task index, task packages, and the
+archive.
 
 `.agents/` is where it lives, not what it is. Other tools write there too, and their files are
 not part of the layer and not its concern. Nothing here claims the directory.
 
 The `AGENTS.md` files are identical in every installation. They carry no project-specific
-paths, names, or decisions. Treat them as installed rather than authored: do not edit them to
-fit this project, and expect them to be replaced when context-fold is updated.
+paths, names, or decisions. Do not edit them to fit this project, and expect them to be
+replaced wholesale when the rules are updated.
 
-If a rule here does not fit this project, that is a context-fold problem, not a local one.
-Record it as a problem in the task rather than editing the rule, or the layer stops being
-upgradable.
+If a rule here does not fit this project, record it as a problem in the task rather than
+editing the rule. An edited rule stops being replaceable and becomes this project's to
+maintain.
 
 ## Project truth lives outside the layer
 
@@ -31,8 +32,7 @@ The deletion test:
 
 > If humans need this information too, it does not belong only in the layer.
 
-Remove what context-fold installed — these `AGENTS.md` files, the index, and the tasks — and
-read what remains. The test fails if knowledge was lost, if something a human needs to
+Remove the layer — these `AGENTS.md` files, the index, and the tasks — and read what remains. The test fails if knowledge was lost, if something a human needs to
 understand or maintain the project is now gone. Anything lost that way was in the wrong layer.
 
 It does not fail on references to the layer. Removing it is an ordinary change, and whatever

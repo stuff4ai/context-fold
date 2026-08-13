@@ -67,6 +67,19 @@ deliberate reset.
 replacing rules later. The deeper issue — that upgrading has no defined procedure — is
 unresolved and deferred.
 
+### The shipped rules named the project that ships them
+
+Five places in the distribution said "context-fold" — installed by it, replaced when it updates,
+a problem with it, what it installed, projects using it.
+Assumed: naming the installer is useful, because it tells the reader what put the file there.
+Actually: the rules describe the layer, and the layer is the thing being installed. Naming its
+vendor is wrong for anyone who forks and maintains the rules themselves, and it is the same
+assumption as naming an agent product — which `0011` already rejects. Provenance is metadata,
+which is deferred, and the earlier attempt to record it as a file was removed for the same
+reason.
+Removed all five and added the project name to the portability check, so the exclusion is
+enforced rather than remembered. I had defended keeping four of the five one message earlier.
+
 ### A shipped rule pointed somewhere the reader may not have
 
 `tasks/AGENTS.md` opened with "the reasoning behind them lives in context-fold, not here." In an

@@ -37,9 +37,15 @@ distribution without reinstalling. `INDEX.md` is excluded: it ships empty and be
 data immediately.
 
 Ownership follows from this rather than being asserted. The templates define exactly what an
-installation contains, so the layer is what context-fold installed plus what working there
-produced. `.agents/` is where it lives, not what it is; other tools write there, their files are
-not part of the layer, and the deletion test is scoped to what context-fold put there.
+installation contains, so the layer is what was installed plus what working there produced.
+`.agents/` is where it lives, not what it is; other tools write there, their files are not part
+of the layer, and the deletion test is scoped to the layer.
+
+The shipped files name nothing that ships them. They describe the layer, and a set of rules that
+names its vendor is wrong for anyone who forks and maintains them — and was already false in one
+place here, where a rule said its reasoning lived elsewhere while sitting in the repository that
+holds it. Where an installation came from, and which version it is, is metadata; that is not
+built yet and does not belong in the rules. The portability check enforces the exclusion.
 
 This narrows [0005](0005-agents-layer-boundary.md), which treats the directory and the layer as
 the same thing and claims everything under it. The boundary that record draws is unchanged — only

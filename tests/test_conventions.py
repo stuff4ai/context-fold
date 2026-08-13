@@ -254,11 +254,15 @@ def test_decision_index_lists_every_record() -> None:
 
 @pytest.mark.parametrize("rules", PORTABLE, ids=lambda p: str(p.relative_to(ROOT)))
 def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
-    """0005, 0011: these files are identical in every project using context-fold.
+    """0005, 0011, 0018: these files are identical in every installation.
 
     A record number, a path to this repository's documents, or one of its task slugs
     would be wrong in any other repository — and would read correctly here, which is
     why this is checked rather than reviewed.
+
+    The project name is excluded too. The rules describe the layer, and a set of rules
+    naming its vendor is wrong for anyone who forks and maintains them. Where the layer
+    came from is metadata, and metadata is not built yet.
     """
     text = rules.read_text(encoding="utf-8")
     slugs = {p.name.split("-", 4)[-1] for p in archived_tasks()} | {
@@ -269,6 +273,8 @@ def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
         offenders.append("a decision record filename")
     if "decisions/" in text:
         offenders.append("a path into this repository's decisions")
+    if "context-fold" in text:
+        offenders.append("the name of the project that ships it")
     for slug in slugs:
         if slug in text:
             offenders.append(f"the task slug {slug!r}")
