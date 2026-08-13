@@ -3,7 +3,7 @@
 How to run work in this repository.
 
 These rules are the same in every project using context-fold. They carry no project-specific
-paths, names, or decisions — the reasoning behind them lives in context-fold, not here.
+paths, names, or decisions.
 
 ## Finding work
 

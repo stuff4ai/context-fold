@@ -44,8 +44,8 @@ verifiable: "we use what we ship" becomes a test instead of a sentence.
    directory, and a deletion test scoped to what context-fold installed.
 3. `.agents/` is byte-identical to the templates for every rule file, and a check enforces it.
    That check has been made to fail and then reverted.
-4. Reinstalling changes nothing — copying the templates over `.agents/` twice leaves the tree
-   clean.
+4. Reinstalling the rule files changes nothing, and `ADOPTING.md` says which files a reinstall
+   may copy. Copying the whole distribution twice is destructive and is documented as such.
 5. The adoption dry run against a scratch copy of a real repository succeeds using the rewritten
    `ADOPTING.md`, and both fixed statements are true there.
 
@@ -66,6 +66,32 @@ deliberate reset.
 `ADOPTING.md` now says to copy `INDEX.md` once and to copy only the `AGENTS.md` files when
 replacing rules later. The deeper issue — that upgrading has no defined procedure — is
 unresolved and deferred.
+
+### A shipped rule pointed somewhere the reader may not have
+
+`tasks/AGENTS.md` opened with "the reasoning behind them lives in context-fold, not here." In an
+adopter's repository that is a pointer to somewhere they may not have; in context-fold's own
+installation it is false, since the reasoning lives exactly here.
+Assumed: a shipped file can refer to the project that ships it.
+Actually: it can name it — "installed by context-fold", "replaced when context-fold is updated"
+— because those are true everywhere and tell the reader what put the file there. Directing them
+to reasoning they cannot reach is different, and the sentence was self-contradictory in the one
+installation that could reach it. Removed; the clause told nobody anything actionable.
+The mirror of what the dry run found. Those defects were visible only from outside this
+repository; this one was visible only from inside it, and neither review pass saw the other's.
+
+### Acceptance claimed reinstalling was a no-op after that was known false
+
+Criterion 4 said copying the templates over `.agents/` twice leaves the tree clean. The problem
+log two entries above records that doing so destroys `INDEX.md`. `ADOPTING.md` was corrected;
+the criterion measuring it was not.
+Assumed: recording a finding and fixing the affected document closes it.
+Actually: the acceptance criteria are a third place the same claim lived, and they were the one
+place still asserting the disproved version — in the same task that disproved it.
+Twelfth instance of a change stranding an older statement, and the second consecutive task where
+the stranded statement was in the acceptance criteria specifically. That is no longer a
+coincidence: criteria are written early, consulted at the end, and never reread in between,
+which is exactly the profile of prose that goes stale.
 
 ### The distribution mixes two kinds of file under one instruction
 
