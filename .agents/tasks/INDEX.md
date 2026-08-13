@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-decisions-carry-history](record-decisions-carry-history/task.md) | active | Record that source material is not stored raw, and locate where a task-local problem becomes project-scoped |
 
 ## Archive
 
