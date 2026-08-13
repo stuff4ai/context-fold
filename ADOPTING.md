@@ -1,15 +1,16 @@
 # Adopting context-fold
 
-How a repository takes on the agent layer. Four steps, by hand — there is no installer.
+How a repository takes on the agent layer. Five steps, by hand — there is no installer.
 
 This works the same for an empty repository and one with years of history. What changes is
-step 3, where an existing `AGENTS.md` is added to rather than created.
+step 4, where an existing `AGENTS.md` is added to rather than created.
 
 ## What you are adding
 
 ```text
 .agents/
 ├── AGENTS.md              copied
+├── SOURCE.md              created — where this came from
 └── tasks/
     ├── AGENTS.md          copied
     ├── INDEX.md           created empty
@@ -37,13 +38,43 @@ Copy them unchanged. They are identical in every project using context-fold and 
 project-specific paths, names, or decisions — that is what makes them replaceable when
 context-fold changes.
 
-There are no version tags yet, so **record the commit you copied from**. Without it, an
-installation has no way to say which context-fold it is running.
-
 If a rule in them does not fit your project, do not edit it. Record it as a problem in task zero.
 An edited rule file stops being upgradable and starts being yours.
 
-## 2. Create the task index
+## 2. Record where they came from
+
+There are no version tags, so the commit is the only provenance an installation has. Without it
+there is no way to answer which context-fold you are running, or what changed since.
+
+Get it from your clone of context-fold:
+
+```sh
+git -C /path/to/context-fold rev-parse HEAD
+```
+
+Or take the commit from the page you copied the files from.
+
+Write `.agents/SOURCE.md`:
+
+```markdown
+# Source
+
+The rule files under `.agents/` were copied from context-fold, unchanged.
+
+- Origin: https://github.com/stuff4ai/context-fold
+- Commit: 0000000000000000000000000000000000000000
+- Copied: YYYY-MM-DD
+
+Update this whenever the rule files are replaced. Nothing verifies it.
+```
+
+This is a fact about the installation, not about any task, so it does not live inside a task
+package — task zero is archived when it finishes, and archived tasks are history rather than
+current state.
+
+context-fold itself has no `SOURCE.md`. It is the origin, not an installation.
+
+## 3. Create the task index
 
 `.agents/tasks/INDEX.md`, empty:
 
@@ -62,7 +93,7 @@ None.
 None.
 ```
 
-## 3. Point at the layer
+## 4. Point at the layer
 
 The root `AGENTS.md` is your project's file. context-fold adds a pointer to it and nothing else.
 
@@ -81,7 +112,7 @@ If the repository has no `AGENTS.md`, create one. It belongs to the project, so 
 what the project is and how to work on it; the section above is the only part context-fold
 contributes.
 
-## 4. Open task zero
+## 5. Open task zero
 
 The adoption is itself a task, and it is the first one. This mirrors how decision records begin —
 the first record is the decision to use records.
@@ -118,7 +149,7 @@ sessions and agents, and so that what is learned while working outlasts the work
 
 1. The structure exists and the pointer resolves.
 2. The layer satisfies the deletion test described in `.agents/AGENTS.md`.
-3. The rule files are unmodified from the commit they were copied from.
+3. The rule files are unmodified from the commit recorded in `.agents/SOURCE.md`.
 
 ## Problems
 ```
@@ -147,8 +178,9 @@ that are in `.agents/tasks/AGENTS.md`, which you now have.
 **No customization.** The rules are what they are. If they do not fit, that is worth knowing —
 record it as a problem rather than working around it quietly.
 
-**No upgrade path.** Copying is the whole distribution story. An installation cannot learn that
-its rule files are stale, and nothing will tell you when they change.
+**No upgrade path.** Copying is the whole distribution story. `.agents/SOURCE.md` records what
+you took, which is enough to work out what has changed since — but nothing tells you when that
+happens, and nothing checks that the recorded commit is the one you actually copied.
 
 **Nothing runs.** There is no command, no check, and no automation. The layer is Markdown and a
 directory structure, maintained by hand.

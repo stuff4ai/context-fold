@@ -72,6 +72,19 @@ they need their own task and record rather than riding along in this one. `ADOPT
 changed to reference the test rather than restate it, so this document does not contradict the
 file it tells people to copy.
 
+### An instruction named a requirement with no place to satisfy it
+
+The procedure said to record the commit the rule files came from, without saying where to write
+it or how to obtain it, and task zero's template had no field for it.
+Assumed: naming the requirement is enough, because the adopter will find somewhere sensible.
+Actually: "somewhere sensible" is the part that needed deciding, and the obvious candidate is
+wrong. Task zero looks like the natural home and is archived when it finishes, which would file a
+fact about the current installation into records the rules describe as history rather than
+current state.
+Resolved with `.agents/SOURCE.md` — instance data, alongside the rule files it describes rather
+than inside a task. The dry run did not catch this: I recorded the commit in a shell variable and
+the procedure looked complete, because the missing step was one I performed without noticing.
+
 ### The lint step enumerated the repository by hand and immediately went stale
 
 `ADOPTING.md` was added and CI did not lint it, because the workflow listed paths explicitly.

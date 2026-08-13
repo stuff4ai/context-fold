@@ -27,12 +27,15 @@ it into the project layer the adopting repository already has.
 
 ## Decision
 
-Adoption is four steps, described in `ADOPTING.md` in the project layer: copy the three portable
-rule files unchanged, create an empty task index, add a pointer to the repository's root
-`AGENTS.md`, and open task zero.
+Adoption is five steps, described in `ADOPTING.md` in the project layer: copy the three portable
+rule files unchanged, record where they came from, create an empty task index, add a pointer to
+the repository's root `AGENTS.md`, and open task zero.
 
-The copied commit is recorded by the adopter. There are no version tags, so the SHA is the only
-provenance an installation has.
+Provenance is recorded in `.agents/SOURCE.md` — origin, commit, and date. There are no version
+tags, so the commit is the only answer an installation has to which context-fold it is running.
+It is a fact about the installation rather than about any task, so it does not live in task
+zero: that package is archived when it finishes, and archived tasks are history rather than
+current state.
 
 The root `AGENTS.md` is added to when it exists and created when it does not. Either way
 context-fold contributes only the pointer, per [0005](0005-agents-layer-boundary.md).
@@ -56,8 +59,9 @@ There is no customization. An adopter who wants different rules is told to recor
 problem rather than edit, which keeps the layer replaceable at the cost of asking people to live
 with rules that may not fit.
 
-Provenance depends on the adopter writing down a SHA that nothing verifies. An installation whose
-recorded commit is wrong is indistinguishable from one whose commit is right.
+Provenance depends on the adopter writing down a commit that nothing verifies, and on updating
+`.agents/SOURCE.md` whenever the rule files are replaced. An installation whose recorded commit is
+wrong is indistinguishable from one whose commit is right.
 
 The procedure describes copying files that this project cannot guarantee are correct elsewhere.
 The first dry run found two defects in them — a claim to own a shared directory, and a deletion
