@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -48,6 +48,24 @@ nothing.
 4. `OPEN-QUESTIONS.md` gains four items, each worded as a question rather than a plan, and the
    existing CLI entry no longer implies the absence is merely unreached.
 5. No portable rule file changes.
+
+## Outcome
+
+`decisions/0012-build-the-methodology-before-the-tooling.md` records that v0 is conventions in
+plain files by choice, with the CLI product path preserved as the alternative that lost, and
+dogfooding and self-adoption recorded as the constraints that follow. Its consequences state
+that all evidence comes from this repository applying the methodology to itself, and that this
+is the weakest possible validation.
+
+`OPEN-QUESTIONS.md` gains five questions — what the tooling should be, adoption into an
+existing repository, initialization producing a task rather than a structure, the
+workflow-versus-skill distinction, and skill naming — and the distribution entry now carries
+the untried direction. `README.md` keeps the fact and points at the record for the reasoning.
+
+All five acceptance criteria satisfied. Criterion 4 was satisfied by adding the missing item,
+not by adjusting the count.
+
+Nothing was left to fold.
 
 ## Problems
 
