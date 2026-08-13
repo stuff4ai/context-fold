@@ -13,8 +13,10 @@ historical records. This document is the live list.
 Chosen not to build yet, so that the methodology can be judged on its own before tooling
 hides its weaknesses.
 
-- **A CLI.** Everything is plain files and Git. Whether a tool is needed, and for what, should
-  come from friction rather than from the assumption that a product needs a binary.
+- **Tooling of any kind.** Everything is plain files and Git by decision, not by omission.
+  What the eventual tooling should be — a command, agent skills, or neither — is undecided.
+  Skills were the original intent, reached before any of the current structure existed and
+  never tested against it.
 - **Skills and workflows.** `.agents/skills/` and `.agents/workflows/` are unbuilt. Reusable
   procedures should appear only when a pattern has actually repeated.
 - **A learning layer.** `.agents/learning/` is unbuilt. Problem logs accumulate the evidence
@@ -39,7 +41,9 @@ hides its weaknesses.
   that no program implements.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Distribution and versioning.** How the portable rule files reach another repository, and
-  how an installation is upgraded.
+  how an installation is upgraded. The direction favoured so far is a single repository plus
+  Git tags, installed by whatever ecosystem tooling already exists, rather than a registry of
+  this project's own — but nothing has been built or tried.
 - **Metadata schemas.** No frontmatter, no structured fields. Everything is prose under known
   headings.
 
@@ -66,6 +70,23 @@ hides its weaknesses.
 - **Should the workflow be enforced rather than written down?** Branch protection could require
   what `0001` and `0008` describe, instead of relying on repository settings any administrator
   can change. Enforcement makes rules real but moves them out of the repository.
+- **What does adopting this into an existing repository look like?** Establishing the structure
+  in an empty repository is solved — this one did it. An existing repository already has
+  documentation, conventions, and history, and nothing describes how the layer arrives without
+  either ignoring them or rewriting them. Whoever adopts it also needs somewhere to disagree
+  with the defaults, and no customization mechanism exists.
+- **Should initialization produce a task rather than a structure?** Creating directories is the
+  easy half and assumes whoever runs it already knows the repository. The alternative is that
+  initialization establishes the minimum and then opens a first task whose work is to discover
+  the project's context — the repository documenting itself through the process rather than
+  being described by whoever installed the layer. This project did that by accident, having no
+  context to import; whether it is the right shape when there is context to import is untested.
+- **What distinguishes a workflow from a skill?** Both are deferred, and the difference matters
+  before either is built: roughly, how work moves through stages versus a reusable capability
+  applied within a stage. Whether that distinction survives contact with real use is untested.
+- **What convention governs skill names?** If skills ever become the vehicle, their names are a
+  public interface. There is an established convention to follow rather than invent, and it has
+  not been established which.
 - **How do agent capabilities reach heterogeneous hosts?** A neutral model puts the burden of
   configuration on whoever installs it, and agent hosts each configure capabilities their own
   way, with no common installer. Whether context-fold should address that at all, or leave it
