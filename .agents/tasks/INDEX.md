@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-methodology-before-tooling](record-methodology-before-tooling/task.md) | active | Record that v0 is conventions in plain files rather than software, and preserve the reasoning that produced it |
 
 ## Archive
 

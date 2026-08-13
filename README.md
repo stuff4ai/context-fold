@@ -65,8 +65,9 @@ requirement.
 
 v0. Methodology and repository conventions, applied to this repository first.
 
-There is no CLI and no tooling. The conventions are plain Markdown and Git, and the immediate
-goal is to find out — by using them — which parts earn their keep.
+There is no CLI and no tooling. The conventions are plain Markdown and Git, by decision rather
+than by omission — see
+[0012](decisions/0012-build-the-methodology-before-the-tooling.md).
 
 What is deliberately unbuilt, and what using it has shown to be unresolved, is in
 [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).
