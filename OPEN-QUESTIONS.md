@@ -19,11 +19,10 @@ hides its weaknesses.
   never tested against it.
 - **Skills and workflows.** `.agents/skills/` and `.agents/workflows/` are unbuilt. Reusable
   procedures should appear only when a pattern has actually repeated.
-- **A learning layer.** `.agents/learning/` is unbuilt. Problem logs accumulate the evidence
-  it would need. Three constraints are already agreed for whenever it arrives: an observation
-  is not automatically a rule, a lesson is a candidate rather than a decision, and a permanent
-  behavior change requires a reviewed change to the rules. It must not become a second source
-  of truth.
+- **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
+  problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
+  perform that step is undecided — it would have to hold candidate lessons without becoming a
+  second place where rules live.
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
   second documentation tree.
 - **Adapters for specific agent tools.** Integrations for particular products come later, if
@@ -102,6 +101,10 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **Supersession is described as whole-record, but is usually partial.** `0009` superseded only
   the archive naming in `0007`, whose other decision stands. The wording for that was invented
   rather than derived from `0000`.
+- **Approval and merge-readiness are different states, and nothing bridges them.** A task is
+  approved, then archived, then merged — so approval does not mean a branch is ready. Nothing
+  says who notices the difference, and a reviewer who merges on approving would ship an
+  unarchived task.
 - **Findings that arrive after archival have nowhere to go.** Merging is the last stage, so
   anything learned from a merge arrives after its task is closed and immutable. It has twice
   reached the next task only because a person carried it there.
@@ -110,6 +113,25 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **Commit signing is undecided.** `0003` records sign-off as an assertion of responsibility
   and explicitly leaves cryptographic verification open. `0004` attributes agent contributions
   but cannot prove them.
+
+## Recurring patterns
+
+Observations with evidence across several tasks, not yet acted on. Candidates, not rules — a
+pattern becomes a rule only through a reviewed change. Counts are given so the evidence can be
+judged rather than the framing.
+
+- **Symmetry is spent as though it were a reason.** Three instances: a rule stated for "both
+  sections" of the task index whose justification covered only one; a section of `AGENTS.md`
+  built on a borrowed frame imported along with its sentence shape; a rule extended past the
+  argument that produced it. Each time the pull was toward matching shapes. Consistency is
+  worth something, but it is not a reason on its own.
+- **Rules get stated where they are relevant rather than where they are owned.** Seven
+  instances across four tasks, one of which hid a contradiction: the immutability rule was
+  paraphrased in four places, and one paraphrase silently made `Status` an exception nobody had
+  decided on. Every file finds every rule relevant, so "reference, do not duplicate" does not
+  prevent this on its own — it forbids copying without saying who owns the original. Recording
+  a decision is the most common trigger, because a record formalizes something already stated
+  loosely somewhere else.
 
 ## Questions this project will not answer
 

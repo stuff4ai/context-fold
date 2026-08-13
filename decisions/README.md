@@ -23,3 +23,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0010 | [Record open questions in the project layer](0010-record-open-questions-in-project-layer.md) | Accepted |
 | 0011 | [Keep the model vendor-neutral](0011-keep-the-model-vendor-neutral.md) | Accepted |
 | 0012 | [Build the methodology before the tooling](0012-build-the-methodology-before-the-tooling.md) | Accepted |
+| 0013 | [Improve context from the work](0013-improve-context-from-the-work.md) | Accepted |

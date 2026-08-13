@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-learning-loop](record-learning-loop/task.md) | active | Record the loop the project exists to create, and preserve the designs cut to keep it cheap enough to follow |
 
 ## Archive
 
