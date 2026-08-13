@@ -25,6 +25,4 @@ jobs:
         run: pytest
 
       - name: Lint Markdown
-        run: >
-          pymarkdown --config .pymarkdown.json scan -r
-          README.md AGENTS.md OPEN-QUESTIONS.md decisions .agents tests
+        run: pymarkdown --config .pymarkdown.json scan -r --respect-gitignore .

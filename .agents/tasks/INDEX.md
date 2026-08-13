@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [write-the-adoption-procedure](write-the-adoption-procedure/task.md) | active | Describe how another repository adopts context-fold, well enough that following the description is the test |
 
 ## Archive
 

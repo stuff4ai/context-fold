@@ -75,12 +75,11 @@ hides its weaknesses.
   documentation, conventions, and history, and nothing describes how the layer arrives without
   either ignoring them or rewriting them. Whoever adopts it also needs somewhere to disagree
   with the defaults, and no customization mechanism exists.
-- **Should initialization produce a task rather than a structure?** Creating directories is the
-  easy half and assumes whoever runs it already knows the repository. The alternative is that
-  initialization establishes the minimum and then opens a first task whose work is to discover
-  the project's context — the repository documenting itself through the process rather than
-  being described by whoever installed the layer. This project did that by accident, having no
-  context to import; whether it is the right shape when there is context to import is untested.
+- **Does context-fold own `.agents/`?** The layer's rules say everything under it other than the
+  rule files is the project's own, and state the deletion test as removing the directory. A dry
+  run against a repository whose `.agents/skills/` is managed by a skill installer showed both to
+  be wrong: the directory is shared, and removing it destroys another tool's data. The layer and
+  the directory are not the same thing, and the rules do not distinguish them.
 - **What distinguishes a workflow from a skill?** Both are deferred, and the difference matters
   before either is built: roughly, how work moves through stages versus a reusable capability
   applied within a stage. Whether that distinction survives contact with real use is untested.
