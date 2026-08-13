@@ -41,6 +41,22 @@ approval that was already given.
 
 ## Problems
 
+### The conflict was written down and then not acted on
+
+`OPEN-QUESTIONS.md` recorded that approval and merge-readiness are different states with nothing
+bridging them. `0019` makes the agent that bridge, so the entry became false the moment the
+record was written. It was left in place.
+Assumed: nothing — this one was seen. The task's own `context.md` names the conflict under
+Context conflicts, in the sentence "this makes the agent responsible for that bridge rather than
+the reviewer".
+Actually: noticing a conflict and recording it in a task-local file is not resolving it. The
+observation went where it would be archived, and the live document it described stayed wrong.
+Thirteenth instance of a decision stranding an older statement, and the first where the
+staleness was identified in writing before it shipped. That is a worse failure than the previous
+twelve, not a better one: the others were blind spots, this was a note to nobody.
+Replaced with what is now true — the archival commit merges unreviewed — which is the cost
+`0019` accepts, and belongs in the live list rather than only in the record's consequences.
+
 ### The instructions had told agents both to merge and not to merge
 
 Project rule: "Do not merge pull requests." Change workflow, step 5: "Squash merge." Both in
