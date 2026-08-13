@@ -19,6 +19,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 
+TEMPLATES = ROOT / "templates"
+AGENT_TEMPLATES = TEMPLATES / "agents"
+
 TASKS = ROOT / ".agents" / "tasks"
 ARCHIVE = TASKS / "archive"
 INDEX = TASKS / "INDEX.md"
@@ -38,6 +41,9 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 # [text](target) — not images, not autolinks.
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+
+# Fenced blocks hold examples. A link inside one is a shape to copy, not a link to follow.
+FENCE = re.compile(r"^```.*?^```", re.M | re.S)
 
 
 IGNORED_DIRS = {".git", ".venv", ".idea", ".vscode"}
@@ -83,6 +89,49 @@ def section(text: str, heading: str) -> str | None:
 
 def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
+
+
+# --- Dogfooding -----------------------------------------------------------------------
+
+
+def installed_rule_files() -> list[tuple[Path, Path]]:
+    """Every rule file in `templates/agents/`, paired with where it installs to.
+
+    `INDEX.md` is excluded: it is instance data, and its divergence from the empty
+    template is the point of it.
+    """
+    return [
+        (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))
+        for t in sorted(AGENT_TEMPLATES.rglob("AGENTS.md"))
+    ]
+
+
+@pytest.mark.parametrize(
+    "template,installed",
+    installed_rule_files(),
+    ids=lambda p: str(p.relative_to(ROOT)) if isinstance(p, Path) else str(p),
+)
+def test_installation_matches_the_distribution(template: Path, installed: Path) -> None:
+    """This repository runs what it ships.
+
+    `templates/agents/` is the distribution; `.agents/` is one installation of it. If they
+    differ, either the shipped rules were edited in place — which is what the layer tells
+    adopters never to do — or a change was made to the distribution and not installed.
+    """
+    assert installed.is_file(), f"{installed.relative_to(ROOT)} is not installed"
+    assert installed.read_bytes() == template.read_bytes(), (
+        f"{installed.relative_to(ROOT)} differs from {template.relative_to(ROOT)}"
+    )
+
+
+def test_distribution_is_complete() -> None:
+    """A rule file installed but not shipped would reach no other repository."""
+    shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
+    installed = {p.relative_to(ROOT / ".agents") for p in (ROOT / ".agents").rglob("AGENTS.md")}
+    assert installed == shipped, (
+        f"installed but not shipped: {sorted(installed - shipped)}; "
+        f"shipped but not installed: {sorted(shipped - installed)}"
+    )
 
 
 # --- Discovery ------------------------------------------------------------------------
@@ -208,11 +257,15 @@ def test_decision_index_lists_every_record() -> None:
 
 @pytest.mark.parametrize("rules", PORTABLE, ids=lambda p: str(p.relative_to(ROOT)))
 def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
-    """0005, 0011: these files are identical in every project using context-fold.
+    """0005, 0011, 0018: these files are identical in every installation.
 
     A record number, a path to this repository's documents, or one of its task slugs
     would be wrong in any other repository — and would read correctly here, which is
     why this is checked rather than reviewed.
+
+    The project name is excluded too. The rules describe the layer, and a set of rules
+    naming its vendor is wrong for anyone who forks and maintains them. Where the layer
+    came from is metadata, and metadata is not built yet.
     """
     text = rules.read_text(encoding="utf-8")
     slugs = {p.name.split("-", 4)[-1] for p in archived_tasks()} | {
@@ -223,6 +276,8 @@ def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
         offenders.append("a decision record filename")
     if "decisions/" in text:
         offenders.append("a path into this repository's decisions")
+    if "context-fold" in text:
+        offenders.append("the name of the project that ships it")
     for slug in slugs:
         if slug in text:
             offenders.append(f"the task slug {slug!r}")
@@ -234,9 +289,13 @@ def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
 
 @pytest.mark.parametrize("doc", markdown_files(), ids=lambda p: str(p.relative_to(ROOT)))
 def test_relative_links_resolve(doc: Path) -> None:
-    """External URLs are not checked: they are few, stable, and flaky in CI."""
+    """External URLs are not checked: they are few, stable, and flaky in CI.
+
+    Fenced blocks are stripped first. Documents that show the shape of a file contain
+    links to placeholder paths, and those are examples rather than references.
+    """
     broken = []
-    for target in LINK.findall(doc.read_text(encoding="utf-8")):
+    for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
         if target.startswith(("http://", "https://", "mailto:", "#")):
             continue
         path = (doc.parent / target.split("#", 1)[0]).resolve()

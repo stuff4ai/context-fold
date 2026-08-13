@@ -75,11 +75,10 @@ hides its weaknesses.
   documentation, conventions, and history, and nothing describes how the layer arrives without
   either ignoring them or rewriting them. Whoever adopts it also needs somewhere to disagree
   with the defaults, and no customization mechanism exists.
-- **Does context-fold own `.agents/`?** The layer's rules say everything under it other than the
-  rule files is the project's own, and state the deletion test as removing the directory. A dry
-  run against a repository whose `.agents/skills/` is managed by a skill installer showed both to
-  be wrong: the directory is shared, and removing it destroys another tool's data. The layer and
-  the directory are not the same thing, and the rules do not distinguish them.
+- **Should an adopter's installation be checkable?** This repository verifies that its installed
+  rule files match the distribution, so editing them fails CI. An adopter gets no such check —
+  the instruction not to edit is a request, and a copy that drifts is indistinguishable from one
+  that did not.
 - **What distinguishes a workflow from a skill?** Both are deferred, and the difference matters
   before either is built: roughly, how work moves through stages versus a reusable capability
   applied within a stage. Whether that distinction survives contact with real use is untested.

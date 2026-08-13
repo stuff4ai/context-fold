@@ -14,6 +14,8 @@ are recommended anywhere else.
 - Do not push directly to `main`.
 - Do not merge pull requests.
 - Update documentation when behavior or conventions change.
+- After changing `templates/`, reinstall `.agents/` from it before finishing — copy the
+  `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
 
 ## Decisions
 
