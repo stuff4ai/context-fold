@@ -83,9 +83,10 @@ requirement.
 
 v0. Methodology and repository conventions, applied to this repository first.
 
-There is no CLI and no tooling. The conventions are plain Markdown and Git, by decision rather
-than by omission — see
-[0012](decisions/0012-build-the-methodology-before-the-tooling.md).
+Nothing produces anything. Task packages, the index, and the archive are maintained by hand, by
+decision rather than by omission — see
+[0012](decisions/0012-build-the-methodology-before-the-tooling.md). Checks that verify those
+conventions run in CI ([0016](decisions/0016-check-conventions-in-ci.md)).
 
 What is deliberately unbuilt, and what using it has shown to be unresolved, is in
 [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).

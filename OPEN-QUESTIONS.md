@@ -13,10 +13,11 @@ historical records. This document is the live list.
 Chosen not to build yet, so that the methodology can be judged on its own before tooling
 hides its weaknesses.
 
-- **Tooling of any kind.** Everything is plain files and Git by decision, not by omission.
-  What the eventual tooling should be — a command, agent skills, or neither — is undecided.
-  Skills were the original intent, reached before any of the current structure existed and
-  never tested against it.
+- **Tooling that produces artifacts.** Creating a task package, moving it to the archive, and
+  maintaining the index are done by hand, by decision rather than omission. What the eventual
+  tooling should be — a command, agent skills, or neither — is undecided. Skills were the
+  original intent, reached before any of the current structure existed and never tested
+  against it.
 - **Skills and workflows.** `.agents/skills/` and `.agents/workflows/` are unbuilt. Reusable
   procedures should appear only when a pattern has actually repeated.
 - **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated

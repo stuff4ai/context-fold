@@ -83,6 +83,32 @@ Actually: for a repository whose accepted records cannot be edited, the adoptabl
 bounded by what history already contains, permanently. Every accepted record narrows it. Nothing
 about immutability suggested it would constrain tooling chosen years later.
 
+### A new decision made older prose false, and no check looks for that
+
+`README.md` and `OPEN-QUESTIONS.md` both said there is no tooling. `0016` adds a test suite and
+CI, making both statements false at the moment it was written.
+Assumed: the duplication check covers this — it is the same pattern that has fired on every task
+that wrote a record.
+Actually: it is a different failure. The duplication check looks for one statement in two places.
+This is one statement in one place, correct when written and falsified by a later decision. Nothing
+looks for that, including the new suite, which verifies structure and never reads prose against a
+record.
+Caught by review. Ninth instance of a record stranding an older statement, and the first where the
+stranded statement was not a duplicate but a contradiction.
+
+### The record claimed to be outside a decision it actually narrowed
+
+`0016` argued that verification tooling falls outside `0012` rather than conflicting with it,
+because `0012`'s *argument* is about tooling that makes ceremony effortless.
+Assumed: matching the argument is enough, so no supersession is involved.
+Actually: `0012`'s wording is "no command, no program, no runtime", and a test suite is a program
+requiring a runtime. The argument accommodates the suite; the words do not. Claiming to be outside
+scope was a comfortable reading that left a merged record literally false.
+`0016` now states that it narrows the prohibition to tooling that produces artifacts, and `0012`'s
+`Status` records it — the same partial supersession used for `0007` and `0009`.
+Found only because review asked about stale prose. A record whose argument fits while its wording
+does not is a failure mode nothing here detects.
+
 ### The suite's first real catch was the record introducing it
 
 `0016` was written without a `## Status` section. Sixteen records had been written by hand and

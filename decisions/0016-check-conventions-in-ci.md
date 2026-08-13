@@ -17,16 +17,24 @@ Each of those checks encodes a decision. An unenforced rule drifts, and the drif
 task found a rule contradicted by all eight tasks that followed it, with no entry in any problem
 log, because nothing forbade the contradiction loudly enough to notice.
 
-This appears to contradict [0012](0012-build-the-methodology-before-the-tooling.md), which says
-v0 is plain files and Git with no tooling. It does not. That record argues against tooling that
-makes the methodology *cheaper to follow*, because a command that produces an artifact makes
-producing it effortless, and effortless ceremony is invisible ceremony. Verification tooling
-produces nothing. It makes violations detectable, which surfaces friction rather than hiding it —
-the opposite of what `0012` guards against.
+[0012](0012-build-the-methodology-before-the-tooling.md) says v0 is plain files and Git, with
+"no command, no program, no runtime". Its *argument* is narrower than its wording: it objects to
+tooling that makes the methodology cheaper to follow, because a command that produces an artifact
+makes producing it effortless, and effortless ceremony is invisible ceremony. Verification tooling
+produces nothing and makes violations detectable, which surfaces friction rather than hiding it —
+the opposite of what that argument guards against.
+
+The wording still has to give way, because a test suite is a program and requires a runtime. This
+record narrows the prohibition rather than claiming an exemption from it.
 
 ## Decision
 
 The repository's structural invariants are checked automatically, on every push and pull request.
+
+This narrows `0012`, which said "no command, no program, no runtime". That prohibition now
+applies to tooling that produces artifacts — a task package, an index row, an archived directory
+— and not to tooling that only reads and reports. The rest of `0012` stands, and its `Status`
+records the narrowing.
 
 The checks encode decisions and are derived from them. The record is the specification; the
 suite is one expression of it. When a decision changes, the check that encodes it changes with
