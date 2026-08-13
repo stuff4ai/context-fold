@@ -34,8 +34,7 @@ it is vague, wrong, or silent is evidence.
 
 ## Acceptance
 
-1. `ADOPTING.md` is followable by a human or an agent with no access to this conversation, and
-   names the commit as provenance.
+1. `ADOPTING.md` is followable by a human or an agent with no access to this conversation.
 2. It handles both a repository with an existing root `AGENTS.md` and one without.
 3. Task zero is the adoption itself, and the record says why discovery-as-task-zero is rejected.
 4. A dry run against a scratch copy of a real repository — one with code, CI, an existing root
@@ -87,6 +86,28 @@ Removed. Git already answers the question when it needs answering, and v0 declin
 provenance and upgrading rather than half-answering both.
 This project has nine logged instances of hand-maintained restatements drifting from their
 source. The tenth was designed in deliberately, in the same session that recorded the pattern.
+
+### The acceptance criteria went stale, and they are what catches staleness
+
+Dropping provenance left criterion 1 requiring `ADOPTING.md` to "name the commit as provenance"
+— a requirement the document now deliberately refuses. The scope section was updated; the
+criteria were not.
+Assumed: acceptance criteria are the fixed thing a task is measured against, so a design change
+edits the work rather than the measure.
+Actually: they are also prose, and they strand exactly like every other statement when a decision
+changes underneath them. This is the eleventh instance of that pattern and the worst-placed one:
+every other stranded statement was somewhere a reader might notice, and this one was in the
+mechanism whose whole job is noticing.
+
+Worth separating two cases, because they look identical and only one is legitimate. Editing a
+criterion because the work failed it destroys the check — that is why the cold-start criterion was
+left refuted rather than reworded. Editing a criterion because the scope changed by decision is
+maintenance: it describes work that is no longer being done. This was the second, and the tell is
+that the change came from a design decision made before the criterion was reread, not from the
+result.
+
+Nothing checks this. The suite verifies that a task has an Acceptance section, never that its
+contents still describe the task.
 
 ### The dry run performed a step the procedure had not written down
 
