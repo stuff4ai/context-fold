@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -45,6 +45,22 @@ produced the design. They survive only as long as that conversation does.
 4. `.agents/tasks/AGENTS.md` reflects the distinction and stays free of project-specific
    detail.
 5. Nothing in `OPEN-QUESTIONS.md` restates an answer already recorded in `decisions/`.
+
+## Outcome
+
+`OPEN-QUESTIONS.md` holds the deferred capability, the open questions about the model, and the
+five rule gaps found by the three completed tasks. `decisions/0010-record-open-questions-in-project-layer.md`
+records that live questions belong in the project layer and that a task's `context.md` keeps
+only task-local ones. `.agents/tasks/AGENTS.md` carries the distinction; `README.md` points at
+the document rather than listing deferred items itself.
+
+All five acceptance criteria satisfied. The second required comparing the new document against
+every archived `context.md`, which found five questions with no counterpart.
+
+Much of what this document holds existed only in the conversation that produced the design.
+It is now in the repository.
+
+Nothing was left to fold.
 
 ## Problems
 
