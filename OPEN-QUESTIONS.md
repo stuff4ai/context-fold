@@ -13,10 +13,11 @@ historical records. This document is the live list.
 Chosen not to build yet, so that the methodology can be judged on its own before tooling
 hides its weaknesses.
 
-- **Tooling of any kind.** Everything is plain files and Git by decision, not by omission.
-  What the eventual tooling should be — a command, agent skills, or neither — is undecided.
-  Skills were the original intent, reached before any of the current structure existed and
-  never tested against it.
+- **Tooling that produces artifacts.** Creating a task package, moving it to the archive, and
+  maintaining the index are done by hand, by decision rather than omission. What the eventual
+  tooling should be — a command, agent skills, or neither — is undecided. Skills were the
+  original intent, reached before any of the current structure existed and never tested
+  against it.
 - **Skills and workflows.** `.agents/skills/` and `.agents/workflows/` are unbuilt. Reusable
   procedures should appear only when a pattern has actually repeated.
 - **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
@@ -86,6 +87,10 @@ hides its weaknesses.
 - **What convention governs skill names?** If skills ever become the vehicle, their names are a
   public interface. There is an established convention to follow rather than invent, and it has
   not been established which.
+- **Should the convention checks ship with the portable layer?** They encode portable rules, so
+  every installation would want them, and a rule enforced in one repository and unenforced in the
+  next is only half a convention. But shipping executable content is a larger question than
+  shipping Markdown — it imposes a toolchain, and `0011` argues against imposing anything.
 - **How do agent capabilities reach heterogeneous hosts?** A neutral model puts the burden of
   configuration on whoever installs it, and agent hosts each configure capabilities their own
   way, with no common installer. Whether context-fold should address that at all, or leave it

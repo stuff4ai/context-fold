@@ -1,0 +1,163 @@
+# Add convention checks
+
+## Status
+
+completed
+
+## Objective
+
+Enforce the repository invariants that encode decisions, on every change, instead of checking
+them by hand.
+
+## Why
+
+Nine tasks have ended with the same manual checks: does `INDEX.md` match the directories, do
+links resolve, is the archive named correctly, did the portable files stay free of project
+detail. Each was ad-hoc `grep`, and they have already missed things — the index has been wrong
+once, and a portability leak reached human review rather than being caught before it.
+
+Every one of these invariants encodes a decision. An unenforced rule drifts, and the drift is
+silent: the last task found a rule contradicted by all eight tasks that followed it, with no
+entry in any problem log.
+
+There is no CI. Nothing runs on any change.
+
+## Scope
+
+- `tests/test_conventions.py` — the invariant suite.
+- `.pymarkdown.json` — style rules.
+- `requirements-dev.txt` — pinned `pytest` and `pymarkdownlnt`.
+- `.github/workflows/ci.yml`.
+- `decisions/0016-check-conventions-in-ci.md` and the index row.
+- `OPEN-QUESTIONS.md` — whether the checks should ship with the portable layer.
+
+## Out of scope
+
+- Semantic checks. Nothing here reads a statement against what is already decided.
+- External link checking.
+- Reformatting existing prose to satisfy a linter.
+- Any tooling that creates artifacts rather than checking them.
+
+## Acceptance
+
+1. The suite covers all nine checks in the plan, each naming the decision it encodes.
+2. Every check has been made to fail deliberately and then reverted. A check that has never
+   failed is unverified.
+3. The suite passes on the current tree with no edits to existing content. A check that requires
+   editing prose is wrong for this repository.
+4. The same command runs locally and in CI with the same result.
+5. The record states why verification tooling is consistent with `0012` rather than an exception,
+   and that a passing suite proves structure and not correctness.
+
+## Outcome
+
+`tests/test_conventions.py` checks 118 cases covering all nine invariants, each naming the
+decision it encodes. `.pymarkdown.json` configures style, `requirements-dev.txt` pins the
+tooling, and `.github/workflows/ci.yml` runs both on every push and pull request — the
+repository's first CI. `decisions/0016-check-conventions-in-ci.md` records the decision and the
+narrowing of `0012` it requires; `0012`'s `Status` records the narrowing from its side.
+`README.md` and `OPEN-QUESTIONS.md` now distinguish tooling that produces artifacts from checks
+that verify them.
+
+All five acceptance criteria satisfied. Every invariant was broken deliberately and confirmed
+caught. The suite passes on unmodified content, and CI passed on its first run.
+
+The suite's first real catch was `0016`, written without a `Status` section.
+
+Nothing was left to fold.
+
+## Problems
+
+### The linter was scanning a third of the repository
+
+`pymarkdown scan decisions .agents` was reporting four violations and looked close to clean.
+`pymarkdown` does not recurse without `-r`, so only the top level of each directory was scanned —
+every task package and every archived problem log was skipped.
+Assumed: passing a directory to a scanner scans the directory.
+Actually: the tool requires `-r`, and the failure mode is a *quieter* report rather than an error.
+A config tuned against that report would have been tuned against a third of the content, and the
+suite would have passed for the wrong reason. Found only because a 247-character line in
+`INDEX.md` should obviously have tripped a line-length rule and did not.
+A check that silently examines less than it appears to is worse than one that fails.
+
+### Four of the first five failures were the checks, not the repository
+
+The first run failed on `.adr-template.md`: treated as a decision record with no number, with its
+`XXXX-slug.md` placeholder read as a broken link.
+Assumed: `Path.glob("*.md")` behaves like the shell and skips dotfiles.
+Actually: `pathlib` matches hidden files. The template is correct prose, and the acceptance
+criterion said a check requiring edits to existing content is wrong for this repository — so the
+checks were fixed rather than the template.
+Worth noting the criterion did the work. Without it the tempting fix was renaming the template.
+
+### Two style rules can never be adopted
+
+Line length is unsatisfiable: Markdown table rows cannot be wrapped, and this repository's tables
+reach 250 characters. Fenced code language is unsatisfiable for a stranger reason — `0004`
+violates it, and accepted records are immutable apart from `Status`.
+Assumed: a linter is configured by choosing which rules to enforce.
+Actually: for a repository whose accepted records cannot be edited, the adoptable rule set is
+bounded by what history already contains, permanently. Every accepted record narrows it. Nothing
+about immutability suggested it would constrain tooling chosen years later.
+
+### A new decision made older prose false, and no check looks for that
+
+`README.md` and `OPEN-QUESTIONS.md` both said there is no tooling. `0016` adds a test suite and
+CI, making both statements false at the moment it was written.
+Assumed: the duplication check covers this — it is the same pattern that has fired on every task
+that wrote a record.
+Actually: it is a different failure. The duplication check looks for one statement in two places.
+This is one statement in one place, correct when written and falsified by a later decision. Nothing
+looks for that, including the new suite, which verifies structure and never reads prose against a
+record.
+Caught by review. Ninth instance of a record stranding an older statement, and the first where the
+stranded statement was not a duplicate but a contradiction.
+
+### The record claimed to be outside a decision it actually narrowed
+
+`0016` argued that verification tooling falls outside `0012` rather than conflicting with it,
+because `0012`'s *argument* is about tooling that makes ceremony effortless.
+Assumed: matching the argument is enough, so no supersession is involved.
+Actually: `0012`'s wording is "no command, no program, no runtime", and a test suite is a program
+requiring a runtime. The argument accommodates the suite; the words do not. Claiming to be outside
+scope was a comfortable reading that left a merged record literally false.
+`0016` now states that it narrows the prohibition to tooling that produces artifacts, and `0012`'s
+`Status` records it — the same partial supersession used for `0007` and `0009`.
+Found only because review asked about stale prose. A record whose argument fits while its wording
+does not is a failure mode nothing here detects.
+
+### The suite's first real catch was the record introducing it
+
+`0016` was written without a `## Status` section. Sixteen records had been written by hand and
+every one had all four sections; the seventeenth, written while building the thing that checks
+for them, did not.
+Assumed: the sections are habitual enough not to need checking.
+Actually: they were habitual until attention went elsewhere. The omission survived writing the
+record, re-reading it, and linking it from the index — three passes by someone thinking about
+verification at the time.
+The strongest evidence in this task for the checks being worth having, and it arrived before
+they were committed.
+
+### Checks disappear silently when their input list is empty
+
+Archiving this task emptied the active-task list, and two checks changed from passing to
+skipped. Correct behaviour — nothing to check — but it showed that a discovery helper returning
+nothing removes its checks from the run without failing anything.
+Assumed: a green run means the checks ran.
+Actually: parametrizing over an empty list skips, and a skip reads as green at a glance. A bug in
+`records()` or `archived_tasks()` would delete most of the suite and report success. This is the
+same shape as the linter silently scanning a third of the repository: the failure mode of a
+finder is quiet, not loud.
+Added a check that the finders find something. Active tasks are legitimately empty between tasks
+and are excluded from it.
+
+### The mutation testing found a check that had never been challenged
+
+Nine invariants were broken deliberately to confirm the suite caught them. Nine were caught; the
+index check reported a miss.
+The mutation was broken, not the check — a `sed` substitution with an empty pattern is a no-op, so
+the file was never modified and the check correctly stayed green. Retried properly, it caught it.
+Assumed: a mutation that produces no failure means the check is inadequate.
+Actually: it can equally mean the mutation did nothing. A negative result from a test of a test
+needs its own verification, and the obvious reading — blame the check — would have led to
+rewriting a check that was already correct.

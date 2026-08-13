@@ -11,6 +11,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-13-1619-add-convention-checks](archive/2026-08-13-1619-add-convention-checks/task.md) | completed | Enforce the repository invariants that encode decisions, on every change, instead of checking them by hand |
 | [2026-08-13-1527-record-iterative-stages](archive/2026-08-13-1527-record-iterative-stages/task.md) | completed | Record that work returns to earlier stages, and state the rule where agents read it |
 | [2026-08-13-1510-record-decisions-carry-history](archive/2026-08-13-1510-record-decisions-carry-history/task.md) | completed | Record that source material is not stored raw, and locate where a task-local problem becomes project-scoped |
 | [2026-08-13-1447-record-learning-loop](archive/2026-08-13-1447-record-learning-loop/task.md) | completed | Record the loop the project exists to create, and preserve the designs cut to keep it cheap enough to follow |

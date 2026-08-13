@@ -1,0 +1,21 @@
+{
+  "comment": [
+    "md013 (line length) is off: table rows cannot be wrapped, and this repository",
+    "uses tables whose rows reach 250 characters. The ~100 column prose convention",
+    "stays a convention. A rule that cannot be satisfied is worse than no rule.",
+    "md040 (fenced code language) is off: an accepted decision record violates it,",
+    "and accepted records are immutable apart from Status, so it can never pass.",
+    "Everything else is enabled and currently passes."
+  ],
+  "plugins": {
+    "md013": {
+      "enabled": false
+    },
+    "md040": {
+      "enabled": false
+    },
+    "md024": {
+      "siblings_only": true
+    }
+  }
+}

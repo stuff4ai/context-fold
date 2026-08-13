@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. The prohibition on programs is narrowed by
+[0016](0016-check-conventions-in-ci.md) to tooling that produces artifacts; the rest stands.
 
 ## Context
 
