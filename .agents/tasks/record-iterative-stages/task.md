@@ -69,6 +69,18 @@ Actually: "acceptance" and "approval" are adjacent words for adjacent stages, an
 was written to illustrate a different point, so it was never checked against the record that owns
 the ordering. It inverted a decision while appearing to summarize it.
 Fixed to "archival follows approval and precedes acceptance", with the record cited in `0015`.
-Caught by review. Neither the duplication check nor the deletion test looks for a statement that
-contradicts an existing record — nothing in the verification would have found it, and it would
-have shipped into a portable file that reaches every installation.
+Caught by review.
+
+### Nothing in the verification tests consistency with existing decisions
+
+The inverted ordering clause would have shipped. The duplication check looks for the same thing
+stated twice; the deletion test looks for knowledge lost; the portability check looks for
+project-specific detail; the index and link checks look for structural drift.
+Assumed: between them, those cover a change to a rule file.
+Actually: none of them reads a new statement against the records that already decided the same
+subject. They verify structure and survival, not agreement. A confident sentence contradicting a
+merged decision passes every check this project runs, and this one would have entered a portable
+file that reaches every installation.
+Not proposing a check. One instance is not a pattern, and inventing verification from a single
+failure is the speculation `0012` argues against. Recorded so a second instance is recognizable
+as a second rather than a first.
