@@ -72,18 +72,30 @@ they need their own task and record rather than riding along in this one. `ADOPT
 changed to reference the test rather than restate it, so this document does not contradict the
 file it tells people to copy.
 
-### An instruction named a requirement with no place to satisfy it
+### An incomplete instruction was completed instead of questioned
 
 The procedure said to record the commit the rule files came from, without saying where to write
-it or how to obtain it, and task zero's template had no field for it.
-Assumed: naming the requirement is enough, because the adopter will find somewhere sensible.
-Actually: "somewhere sensible" is the part that needed deciding, and the obvious candidate is
-wrong. Task zero looks like the natural home and is archived when it finishes, which would file a
-fact about the current installation into records the rules describe as history rather than
-current state.
-Resolved with `.agents/SOURCE.md` — instance data, alongside the rule files it describes rather
-than inside a task. The dry run did not catch this: I recorded the commit in a shell variable and
-the procedure looked complete, because the missing step was one I performed without noticing.
+it or how to obtain it. Review found the gap, and the first response was to fill it: a
+`.agents/SOURCE.md` holding origin, commit, and date.
+Assumed: an instruction with a gap needs the gap filled.
+Actually: it needed asking what the instruction was for. Provenance answers "which version am I
+running", which only has a consumer once upgrading exists — and upgrading is deferred. The fix
+added a hand-maintained file that nothing reads and nothing verifies, to serve a capability that
+does not exist. The file said "nothing verifies it" in its own body, which should have been the
+tell.
+Removed. Git already answers the question when it needs answering, and v0 declines both
+provenance and upgrading rather than half-answering both.
+This project has nine logged instances of hand-maintained restatements drifting from their
+source. The tenth was designed in deliberately, in the same session that recorded the pattern.
+
+### The dry run performed a step the procedure had not written down
+
+Step two was missing from the document but not from the run: the commit went into a shell
+variable, so the procedure looked followable while being incomplete.
+Assumed: following your own procedure tests it.
+Actually: the author supplies gaps without noticing, because the knowledge that fills them is not
+in the document. A dry run by whoever wrote the procedure is much weaker evidence than it feels
+like — the real test is someone following it cold.
 
 ### The lint step enumerated the repository by hand and immediately went stale
 
