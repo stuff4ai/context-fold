@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -48,6 +48,23 @@ There is no CI. Nothing runs on any change.
 4. The same command runs locally and in CI with the same result.
 5. The record states why verification tooling is consistent with `0012` rather than an exception,
    and that a passing suite proves structure and not correctness.
+
+## Outcome
+
+`tests/test_conventions.py` checks 118 cases covering all nine invariants, each naming the
+decision it encodes. `.pymarkdown.json` configures style, `requirements-dev.txt` pins the
+tooling, and `.github/workflows/ci.yml` runs both on every push and pull request — the
+repository's first CI. `decisions/0016-check-conventions-in-ci.md` records the decision and the
+narrowing of `0012` it requires; `0012`'s `Status` records the narrowing from its side.
+`README.md` and `OPEN-QUESTIONS.md` now distinguish tooling that produces artifacts from checks
+that verify them.
+
+All five acceptance criteria satisfied. Every invariant was broken deliberately and confirmed
+caught. The suite passes on unmodified content, and CI passed on its first run.
+
+The suite's first real catch was `0016`, written without a `Status` section.
+
+Nothing was left to fold.
 
 ## Problems
 
@@ -120,6 +137,19 @@ record, re-reading it, and linking it from the index — three passes by someone
 verification at the time.
 The strongest evidence in this task for the checks being worth having, and it arrived before
 they were committed.
+
+### Checks disappear silently when their input list is empty
+
+Archiving this task emptied the active-task list, and two checks changed from passing to
+skipped. Correct behaviour — nothing to check — but it showed that a discovery helper returning
+nothing removes its checks from the run without failing anything.
+Assumed: a green run means the checks ran.
+Actually: parametrizing over an empty list skips, and a skip reads as green at a glance. A bug in
+`records()` or `archived_tasks()` would delete most of the suite and report success. This is the
+same shape as the linter silently scanning a third of the repository: the failure mode of a
+finder is quiet, not loud.
+Added a check that the finders find something. Active tasks are legitimately empty between tasks
+and are excluded from it.
 
 ### The mutation testing found a check that had never been challenged
 

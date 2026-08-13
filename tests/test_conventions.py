@@ -85,6 +85,21 @@ def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
 
 
+# --- Discovery ------------------------------------------------------------------------
+
+
+def test_discovery_finds_content() -> None:
+    """A helper returning nothing makes its checks vanish rather than fail.
+
+    Parametrizing over an empty list skips silently, so a broken finder reads as green.
+    Active tasks are legitimately empty between tasks and are not asserted here.
+    """
+    assert records(), "no decision records found"
+    assert archived_tasks(), "no archived tasks found"
+    assert len(markdown_files()) > 20, "markdown discovery found suspiciously little"
+    assert all(p.is_file() for p in PORTABLE), "a portable rule file is missing"
+
+
 # --- Task packages (0006) -------------------------------------------------------------
 
 
