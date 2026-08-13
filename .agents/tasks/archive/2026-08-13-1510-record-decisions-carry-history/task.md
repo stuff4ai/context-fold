@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -43,6 +43,18 @@ was created in the same change and never connected to the record describing it.
    the section already does rather than deciding something new.
 4. No portable rule file changes.
 5. Nothing added exists in more than one owned location.
+
+## Outcome
+
+`decisions/0014-do-not-store-source-material.md` records that source material is not stored
+raw, with the rejected approach argued for rather than dismissed, and the cost of folding
+stated without softening. `OPEN-QUESTIONS.md` locates the promotion from task-local problem to
+project-scoped pattern in its recurring-patterns preamble; `0013` is unchanged.
+
+All five acceptance criteria satisfied. No portable rule file changed, and the duplication check
+found nothing.
+
+Nothing was left to fold.
 
 ## Problems
 
