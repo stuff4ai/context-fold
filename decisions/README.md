@@ -21,3 +21,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0008 | [Squash merge pull requests](0008-squash-merge-pull-requests.md) | Accepted |
 | 0009 | [Order the task index newest first](0009-order-task-index-newest-first.md) | Accepted |
 | 0010 | [Record open questions in the project layer](0010-record-open-questions-in-project-layer.md) | Accepted |
+| 0011 | [Keep the model vendor-neutral](0011-keep-the-model-vendor-neutral.md) | Accepted |

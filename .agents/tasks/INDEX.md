@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-vendor-neutrality](record-vendor-neutrality/task.md) | active | Record that the model does not depend on any agent product, and preserve the alternatives that were rejected |
 
 ## Archive
 
