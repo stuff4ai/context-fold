@@ -10,8 +10,13 @@ Adoption was a document. Following it required having this repository beside the
 adopted, which is exactly the situation a repository adopting context-fold is not in.
 
 Skill installers solve the delivery problem: they copy a skill directory whole, subdirectories
-included. An installed third-party skill was found carrying seven scripts in a subdirectory, so
-a skill that bundles what adoption needs is installable by tooling that already exists.
+included.
+
+Seven installed third-party skills were examined in another repository. Every one carries a
+`README.md` beside its `SKILL.md`. One also ships a `SECURITY.md` and a `scripts/` directory of
+seven Python files, and its `SKILL.md` points at them as "adjacent to this SKILL.md". So
+`SKILL.md` is what a runtime loads, and the rest of the directory is material its instructions
+refer to — bundling what adoption needs is how skills already work, not a stretch of the format.
 
 That decides the shape rather than merely permitting it. If the skill directory is what travels,
 everything adoption needs must be inside it — including the procedure. A skill whose
@@ -27,6 +32,11 @@ procedure would make one vendor's format the definition of adoption.
 `skills/ctxfold-init/` is the unit of distribution. It contains `SKILL.md`, the procedure
 `ADOPTING.md`, and `templates/`. The latter two moved there from the repository root; they are
 not duplicated.
+
+`ADOPTING.md` sits at the package root rather than under a `references/` subdirectory. That
+matches what the examined skills do — their `README.md` and `SECURITY.md` are at the root, and
+only executable code was nested. It also keeps the procedure at the same level as the file that
+points at it, which is what a reader arriving at the directory needs.
 
 `ADOPTING.md` remains what adoption is, and is readable by anyone. `SKILL.md` covers only what
 the procedure leaves to the agent following it:
@@ -58,6 +68,6 @@ them or shipping a skill that cannot install itself.
 A project not using skills gains nothing here. It still reads `ADOPTING.md`, now at a longer
 path.
 
-The frontmatter convention was taken from installed skills rather than a specification, and one
-installer was examined. If either differs elsewhere, the package is wrong in a way nothing here
-detects.
+The format was taken from seven installed skills rather than from a specification, and all seven
+came through one installer. What is conventional there may not be conventional elsewhere, and
+the package would be wrong in a way nothing here detects.

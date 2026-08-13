@@ -53,6 +53,21 @@ conduct itself while following it.
 
 ## Problems
 
+### The package layout was justified from principle when evidence existed
+
+`0020` argued for bundling `ADOPTING.md` and `templates/` beside `SKILL.md` from first
+principles — the directory is what travels, so everything must be inside it. Correct, and
+unnecessary: seven installed skills were sitting in another repository, every one carrying a
+`README.md` at its root, one shipping `SECURITY.md` and a `scripts/` directory its `SKILL.md`
+refers to as adjacent.
+Assumed: the reasoning was the justification, so the observation was background.
+Actually: the observation is the stronger argument and the one a reader can check. Reasoning
+about what a format probably allows is guesswork next to seven examples of it being done.
+Prompted by being asked whether a skill may contain anything but `SKILL.md` — a question the
+evidence answered immediately and the record had not.
+Also settled the layout: `ADOPTING.md` at the package root rather than under `references/`,
+because that is where the examined skills put their prose and only code was nested.
+
 ### The guard written for silent skips did not cover the finder added after it
 
 `skills()` returns an empty list when `skills/` is missing, so both skill checks would skip and
