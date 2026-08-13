@@ -24,8 +24,9 @@ hides its weaknesses.
   of truth.
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
   second documentation tree.
-- **Adapters for specific agent tools.** The canonical model is vendor-neutral. Integrations
-  for particular products come later, if at all.
+- **Adapters for specific agent tools.** Integrations for particular products come later, if
+  at all — the model is neutral by decision, so nothing works out of the box until someone
+  writes one.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
   rather than by reading files.
 - **Automatic context selection.** Whether the layer should decide which context a task needs
@@ -65,6 +66,10 @@ hides its weaknesses.
 - **Should the workflow be enforced rather than written down?** Branch protection could require
   what `0001` and `0008` describe, instead of relying on repository settings any administrator
   can change. Enforcement makes rules real but moves them out of the repository.
+- **How do agent capabilities reach heterogeneous hosts?** A neutral model puts the burden of
+  configuration on whoever installs it, and agent hosts each configure capabilities their own
+  way, with no common installer. Whether context-fold should address that at all, or leave it
+  entirely to adapters, is undecided.
 
 ## Gaps in the current rules
 
