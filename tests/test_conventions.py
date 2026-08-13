@@ -119,6 +119,26 @@ def test_skill_has_usable_frontmatter(skill: Path) -> None:
 
 
 @pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_ships_no_stray_files(skill: Path) -> None:
+    """Everything in the directory ships, including whatever was left there by accident.
+
+    A backup or editor artifact reaches every installation and nothing else notices — the
+    other checks only read the files they expect to find.
+    """
+    junk = [
+        p.relative_to(skill)
+        for p in skill.rglob("*")
+        if p.is_file()
+        and (
+            p.suffix in {".bak", ".orig", ".rej", ".tmp", ".swp"}
+            or p.name.endswith("~")
+            or "__pycache__" in p.parts
+        )
+    ]
+    assert not junk, f"{skill.name} would ship: {junk}"
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
 def test_skill_is_self_contained(skill: Path) -> None:
     """A skill directory is what an installer copies. Anything it points outside is lost.
 
@@ -194,6 +214,8 @@ def test_discovery_finds_content() -> None:
     assert archived_tasks(), "no archived tasks found"
     assert len(markdown_files()) > 20, "markdown discovery found suspiciously little"
     assert all(p.is_file() for p in PORTABLE), "a portable rule file is missing"
+    assert skills(), "no shipped skills found"
+    assert installed_rule_files(), "the distribution shipped no rule files"
 
 
 # --- Task packages (0006) -------------------------------------------------------------

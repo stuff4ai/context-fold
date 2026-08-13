@@ -53,6 +53,32 @@ conduct itself while following it.
 
 ## Problems
 
+### The guard written for silent skips did not cover the finder added after it
+
+`skills()` returns an empty list when `skills/` is missing, so both skill checks would skip and
+CI would pass with the whole package deleted.
+Assumed: this class was handled — `test_discovery_finds_content` exists precisely because a
+finder returning nothing removes its checks without failing anything.
+Actually: the guard names the finders that existed when it was written. Adding `skills()` and
+`installed_rule_files()` created two more silent-skip holes, and nothing connected the new
+finders to the check protecting against exactly that.
+Found in review. A fix for a class of bug does not cover later instances of the class, and
+nothing reminds you — the guard cannot know what it does not enumerate.
+
+### A stray file sat in the distribution and every check passed
+
+Testing the guard above, a botched shell mutation left `tmpl.bak` inside
+`templates/`. The full suite ran green with it there.
+Assumed: the checks cover the distribution, since several of them read it.
+Actually: they read the files they expect — `AGENTS.md` by name, Markdown by extension. Nothing
+looked at what else was present. Everything in a skill directory ships, so that file would have
+reached every installation, and the only reason it did not is that it was untracked.
+Added a check for backup and editor artifacts. It is narrow on purpose: skills may legitimately
+ship scripts and other non-Markdown, so the rule targets things that are obviously nobody's
+deliverable rather than constraining what a package may contain.
+Found by an accident during verification, which is the second time this task that the mistake
+was more informative than the test.
+
 ### The plan had the skill following a file it would not ship with
 
 The first plan said the skill "follows `ADOPTING.md` rather than restating it", with `ADOPTING.md`
