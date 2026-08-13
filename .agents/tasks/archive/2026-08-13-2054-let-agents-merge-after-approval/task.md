@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -38,6 +38,24 @@ approval that was already given.
    Outcome prose is unverified by anything.
 3. Root `AGENTS.md` permits merging after approval and still forbids pushing to `main`.
 4. `0001` is unedited apart from its `Status`.
+
+## Outcome
+
+`decisions/0019-agents-may-merge-after-approval.md` narrows `0001`: approval authorizes folding,
+archival, the exact-head check, and the merge. Pushing to `main` directly stays forbidden, and
+`0007` and `0008` are unchanged. `0001`'s `Status` records the narrowing; nothing else in it was
+touched.
+
+Root `AGENTS.md` permits merging after approval, which also resolved a contradiction between its
+project rules and its change workflow. `OPEN-QUESTIONS.md` carries the cost this accepts —
+the archival commit merges unreviewed — in place of the gap `0019` closes.
+
+All four acceptance criteria satisfied.
+
+This pull request could not merge itself: a record becomes truth on reaching `main`, so the old
+rule governed it. From the next task onward, approval is sufficient.
+
+Nothing was left to fold.
 
 ## Problems
 
