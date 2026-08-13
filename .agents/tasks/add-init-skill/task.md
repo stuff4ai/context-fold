@@ -82,6 +82,20 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### A check still treated the whole of `.agents/` as the layer
+
+Installing the skill to `.agents/skills/ctxfold-init/` broke
+`test_distribution_is_complete` immediately. It globbed every `AGENTS.md` under `.agents/` and
+swept up the skill's own bundled templates, which are not part of any installation.
+Assumed: `0018` fixed the layer-is-not-the-directory confusion.
+Actually: it fixed the prose. The check was written before that record and kept the old
+assumption, and nothing connected the two — a record narrows what a document claims, not what
+code does. The check had been correct only because nothing else had ever been under `.agents/`
+in this repository, which is the same reason the original defect was invisible.
+Narrowed to the layer's own subtrees, and verified it still catches both directions.
+Found by changing where the skill installs. The first thing that ever shared `.agents/` here
+exposed it in seconds.
+
 ### The installed skill was stale, and the run used the old copy
 
 Invoking the skill loaded `.claude/skills/ctxfold-init/`, a copy made before the fixes above.

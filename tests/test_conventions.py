@@ -191,10 +191,28 @@ def test_installation_matches_the_distribution(template: Path, installed: Path) 
     )
 
 
+def installed_layer_files() -> set[Path]:
+    """Rule files belonging to the layer, which is not the whole of `.agents/`.
+
+    `0018`: the layer is what was installed, and `.agents/` is only where it lives. Other
+    tools write there — including a skill installer placing this project's own skill, whose
+    bundled templates contain `AGENTS.md` files that are not part of any installation.
+    """
+    agents = ROOT / ".agents"
+    found: set[Path] = set()
+    for name in ("AGENTS.md", "tasks"):
+        path = agents / name
+        if path.is_file():
+            found.add(path.relative_to(agents))
+        elif path.is_dir():
+            found |= {p.relative_to(agents) for p in path.rglob("AGENTS.md")}
+    return found
+
+
 def test_distribution_is_complete() -> None:
     """A rule file installed but not shipped would reach no other repository."""
     shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
-    installed = {p.relative_to(ROOT / ".agents") for p in (ROOT / ".agents").rglob("AGENTS.md")}
+    installed = installed_layer_files()
     assert installed == shipped, (
         f"installed but not shipped: {sorted(installed - shipped)}; "
         f"shipped but not installed: {sorted(shipped - installed)}"
