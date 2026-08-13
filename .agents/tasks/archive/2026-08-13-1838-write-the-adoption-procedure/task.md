@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -42,6 +42,23 @@ it is vague, wrong, or silent is evidence.
    copied rule files, with no reference back to this repository.
 5. That dry run produces at least one problem entry. A run with no findings means the procedure
    was tested against the assumptions that wrote it.
+
+## Outcome
+
+`ADOPTING.md` describes adoption in four steps, handling a repository with or without an existing
+root `AGENTS.md`, and stating what adoption does not provide: no customization, no provenance, no
+upgrade path, nothing that runs. `decisions/0017-adoption-procedure.md` records it, including why
+the procedure must stand alone rather than living inside a skill, and why discovery-as-task-zero
+was rejected. `OPEN-QUESTIONS.md` carries the question of whether context-fold owns `.agents/`.
+
+All five acceptance criteria satisfied. Criterion 1 was narrowed when provenance was dropped from
+scope — a scope change, not a result that failed a check.
+
+The dry run against a real repository produced the two findings below that could not have come
+from inside this one. Neither is fixed here: both are in portable rule files, and a change
+reaching every installation needs its own task and record.
+
+Nothing was left to fold.
 
 ## Problems
 

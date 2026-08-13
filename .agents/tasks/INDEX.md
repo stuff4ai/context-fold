@@ -5,14 +5,13 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [write-the-adoption-procedure](write-the-adoption-procedure/task.md) | active | Describe how another repository adopts context-fold, well enough that following the description is the test |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-13-1838-write-the-adoption-procedure](archive/2026-08-13-1838-write-the-adoption-procedure/task.md) | completed | Describe how another repository adopts context-fold, well enough that following the description is the test |
 | [2026-08-13-1619-add-convention-checks](archive/2026-08-13-1619-add-convention-checks/task.md) | completed | Enforce the repository invariants that encode decisions, on every change, instead of checking them by hand |
 | [2026-08-13-1527-record-iterative-stages](archive/2026-08-13-1527-record-iterative-stages/task.md) | completed | Record that work returns to earlier stages, and state the rule where agents read it |
 | [2026-08-13-1510-record-decisions-carry-history](archive/2026-08-13-1510-record-decisions-carry-history/task.md) | completed | Record that source material is not stored raw, and locate where a task-local problem becomes project-scoped |
