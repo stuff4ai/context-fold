@@ -84,6 +84,14 @@ planned → active → work → verification → review → approved
 
 Cancelled work skips to archive.
 
+The sequence is the order stages come in, not a path travelled once. Go back whenever review,
+verification, or something you find requires it — that is the normal shape of the work, not a
+deviation, and it needs no explanation. Returning changes no `Status`: the task stays `active`
+until it is archived, however many times it moves.
+
+What the order does constrain is what must happen before what. Verification precedes review;
+archival follows approval and precedes acceptance.
+
 *Review*, *approved*, and *merge* mean whatever this project's own workflow defines them to
 mean. The rule is only that a change is archived before it is accepted, not that acceptance
 happens through any particular mechanism.
