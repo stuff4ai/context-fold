@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [record-iterative-stages](record-iterative-stages/task.md) | active | Record that work returns to earlier stages, and state the rule where agents read it |
 
 ## Archive
 
