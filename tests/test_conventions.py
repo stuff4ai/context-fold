@@ -19,7 +19,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 
-TEMPLATES = ROOT / "templates"
+SKILLS = ROOT / "skills"
+INIT_SKILL = SKILLS / "ctxfold-init"
+TEMPLATES = INIT_SKILL / "templates"
 AGENT_TEMPLATES = TEMPLATES / "agents"
 
 TASKS = ROOT / ".agents" / "tasks"
@@ -89,6 +91,51 @@ def section(text: str, heading: str) -> str | None:
 
 def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
+
+
+# --- Shipped skills -------------------------------------------------------------------
+
+
+def skills() -> list[Path]:
+    return sorted(p for p in SKILLS.iterdir() if p.is_dir()) if SKILLS.is_dir() else []
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_has_usable_frontmatter(skill: Path) -> None:
+    """A skill without loadable frontmatter is not a skill, it is a document."""
+    text = (skill / "SKILL.md").read_text(encoding="utf-8")
+    front = re.match(r"^---\n(.*?)\n---\n", text, re.S)
+    assert front, f"{skill.name}/SKILL.md has no frontmatter block"
+
+    name = re.search(r"^name:\s*(\S+)\s*$", front.group(1), re.M)
+    assert name, f"{skill.name}/SKILL.md declares no name"
+    assert name.group(1) == skill.name, (
+        f"{skill.name}/SKILL.md is named {name.group(1)!r}; it would install under one name "
+        "and answer to another"
+    )
+    assert re.search(r"^description:", front.group(1), re.M), (
+        f"{skill.name}/SKILL.md has no description, so nothing can tell when to invoke it"
+    )
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_is_self_contained(skill: Path) -> None:
+    """A skill directory is what an installer copies. Anything it points outside is lost.
+
+    This is the portability check for shipped skills: a reference that resolves here and
+    nowhere else reads correctly until the moment it matters.
+    """
+    escaping = []
+    for doc in sorted(skill.rglob("*.md")):
+        for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            resolved = (doc.parent / target.split("#", 1)[0]).resolve()
+            if not resolved.is_relative_to(skill.resolve()):
+                escaping.append(f"{doc.relative_to(skill)} → {target}")
+            elif not resolved.exists():
+                escaping.append(f"{doc.relative_to(skill)} → {target} (missing)")
+    assert not escaping, f"{skill.name} references outside its own directory: {escaping}"
 
 
 # --- Dogfooding -----------------------------------------------------------------------

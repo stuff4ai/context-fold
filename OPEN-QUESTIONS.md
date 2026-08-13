@@ -82,9 +82,13 @@ hides its weaknesses.
 - **What distinguishes a workflow from a skill?** Both are deferred, and the difference matters
   before either is built: roughly, how work moves through stages versus a reusable capability
   applied within a stage. Whether that distinction survives contact with real use is untested.
-- **What convention governs skill names?** If skills ever become the vehicle, their names are a
-  public interface. There is an established convention to follow rather than invent, and it has
-  not been established which.
+- **What convention governs skill names?** `ctxfold-init` follows the pattern observed in
+  installed skills — a lowercase hyphenated name matching its directory — and a check enforces
+  the match. Whether the `ctxfold-` prefix is right, and what a second skill would be called,
+  is answered for one case and not settled.
+- **Should the skill be checked against the procedure it wraps?** A check binds the templates to
+  their installation, so they cannot drift. Nothing binds `SKILL.md` to `ADOPTING.md`; the skill
+  can contradict the procedure it exists to follow and only a reader would notice.
 - **Should the convention checks ship with the portable layer?** They encode portable rules, so
   every installation would want them, and a rule enforced in one repository and unenforced in the
   next is only half a convention. But shipping executable content is a larger question than

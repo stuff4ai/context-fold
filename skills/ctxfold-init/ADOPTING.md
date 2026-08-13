@@ -7,7 +7,8 @@ step 2, where an existing `AGENTS.md` is added to rather than created.
 
 ## What you are adding
 
-context-fold ships `templates/`. Adoption is installing it.
+`templates/`, beside this file, is what gets installed. Adoption is installing it. Everything you
+need is in this directory — nothing has to be fetched.
 
 ```text
 templates/agents/   →   .agents/
@@ -22,7 +23,7 @@ change.
 
 ## 1. Install the layer
 
-Copy `templates/agents/` from context-fold to `.agents/` in your repository, preserving the
+Copy `templates/agents/` from this directory to `.agents/` in your repository, preserving the
 structure inside it.
 
 ```text

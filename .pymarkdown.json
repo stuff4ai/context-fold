@@ -1,5 +1,8 @@
 {
   "comment": [
+    "front-matter is enabled because shipped skills carry YAML frontmatter. Without it the",
+    "linter reads the opening --- as a setext heading and reports six style violations that",
+    "describe a file it has misparsed rather than anything wrong with it.",
     "md013 (line length) is off: table rows cannot be wrapped, and this repository",
     "uses tables whose rows reach 250 characters. The ~100 column prose convention",
     "stays a convention. A rule that cannot be satisfied is worse than no rule.",
@@ -7,6 +10,11 @@
     "and accepted records are immutable apart from Status, so it can never pass.",
     "Everything else is enabled and currently passes."
   ],
+  "extensions": {
+    "front-matter": {
+      "enabled": true
+    }
+  },
   "plugins": {
     "md013": {
       "enabled": false

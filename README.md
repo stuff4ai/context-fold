@@ -79,6 +79,13 @@ new record that supersedes it, never by rewriting the old one.
 This repository keeps them in [`decisions/`](decisions/). That location is a choice, not a
 requirement.
 
+## Adopting it
+
+Everything a repository needs is in
+[`skills/ctxfold-init/`](skills/ctxfold-init/): the procedure in
+[`ADOPTING.md`](skills/ctxfold-init/ADOPTING.md), the files it installs, and a skill that carries
+out the adoption for an agent that supports one.
+
 ## Status
 
 v0. Methodology and repository conventions, applied to this repository first.

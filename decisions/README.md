@@ -30,3 +30,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0017 | [Adoption procedure](0017-adoption-procedure.md) | Accepted |
 | 0018 | [Ship a distribution](0018-ship-a-distribution.md) | Accepted |
 | 0019 | [Agents may merge after approval](0019-agents-may-merge-after-approval.md) | Accepted |
+| 0020 | [Ship an init skill](0020-ship-an-init-skill.md) | Accepted |

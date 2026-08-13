@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [add-init-skill](add-init-skill/task.md) | active | Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what adoption is |
 
 ## Archive
 

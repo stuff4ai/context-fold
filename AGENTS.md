@@ -14,8 +14,8 @@ are recommended anywhere else.
 - Do not push directly to `main`.
 - Do not merge a pull request until a human has approved it. After that, merging is yours to do.
 - Update documentation when behavior or conventions change.
-- After changing `templates/`, reinstall `.agents/` from it before finishing — copy the
-  `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
+- After changing `skills/ctxfold-init/templates/`, reinstall `.agents/` from it before finishing
+  — copy the `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
 
 ## Decisions
 
