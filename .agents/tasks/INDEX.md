@@ -5,14 +5,13 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [separate-distribution-from-installation](separate-distribution-from-installation/task.md) | active | Ship a distribution, install this repository from it, and make the fact that they match a check rather than a claim |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-13-2000-separate-distribution-from-installation](archive/2026-08-13-2000-separate-distribution-from-installation/task.md) | completed | Ship a distribution, install this repository from it, and make the fact that they match a check rather than a claim |
 | [2026-08-13-1838-write-the-adoption-procedure](archive/2026-08-13-1838-write-the-adoption-procedure/task.md) | completed | Describe how another repository adopts context-fold, well enough that following the description is the test |
 | [2026-08-13-1619-add-convention-checks](archive/2026-08-13-1619-add-convention-checks/task.md) | completed | Enforce the repository invariants that encode decisions, on every change, instead of checking them by hand |
 | [2026-08-13-1527-record-iterative-stages](archive/2026-08-13-1527-record-iterative-stages/task.md) | completed | Record that work returns to earlier stages, and state the rule where agents read it |

@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -48,6 +48,27 @@ verifiable: "we use what we ship" becomes a test instead of a sentence.
    may copy. Copying the whole distribution twice is destructive and is documented as such.
 5. The adoption dry run against a scratch copy of a real repository succeeds using the rewritten
    `ADOPTING.md`, and both fixed statements are true there.
+
+## Outcome
+
+`templates/` is what context-fold ships: `templates/agents/` installs to `.agents/`, and
+`templates/task/` is the shape of a task package. This repository installs itself from it, and
+four checks enforce that — byte-identity per rule file, set completeness in both directions, and
+portability including the exclusion of the project's own name.
+
+The two defects the dry run found are fixed structurally rather than by wording: the templates
+define what an installation contains, so nothing claims the directory, and the deletion test is
+scoped to the layer. Verified against the repository that exposed them — all seven vendored
+skills and their lock file survive it.
+
+`decisions/0018-ship-a-distribution.md` records the separation and narrows `0005`, whose
+identification of the layer with the directory it replaces. `ADOPTING.md` installs the
+distribution instead of copying this repository's `.agents/`.
+
+All five acceptance criteria satisfied. Criterion 4 was corrected during the task, after the
+verification it describes disproved it.
+
+Nothing was left to fold.
 
 ## Problems
 
