@@ -24,3 +24,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0011 | [Keep the model vendor-neutral](0011-keep-the-model-vendor-neutral.md) | Accepted |
 | 0012 | [Build the methodology before the tooling](0012-build-the-methodology-before-the-tooling.md) | Accepted |
 | 0013 | [Improve context from the work](0013-improve-context-from-the-work.md) | Accepted |
+| 0014 | [Do not store source material](0014-do-not-store-source-material.md) | Accepted |

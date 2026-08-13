@@ -120,6 +120,10 @@ Observations with evidence across several tasks, not yet acted on. Candidates, n
 pattern becomes a rule only through a reviewed change. Counts are given so the evidence can be
 judged rather than the framing.
 
+This is where a problem stops being task-local. A single entry in one task's problem log is an
+incident; the same thing recurring is a property of the project, and moving it here is the
+promotion `0013` describes between a problem and a candidate lesson.
+
 - **Symmetry is spent as though it were a reason.** Three instances: a rule stated for "both
   sections" of the task index whose justification covered only one; a section of `AGENTS.md`
   built on a borrowed frame imported along with its sentence shape; a rule extended past the
