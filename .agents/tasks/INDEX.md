@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [add-convention-checks](add-convention-checks/task.md) | active | Enforce the repository invariants that encode decisions, on every change, instead of checking them by hand |
 
 ## Archive
 

@@ -86,6 +86,10 @@ hides its weaknesses.
 - **What convention governs skill names?** If skills ever become the vehicle, their names are a
   public interface. There is an established convention to follow rather than invent, and it has
   not been established which.
+- **Should the convention checks ship with the portable layer?** They encode portable rules, so
+  every installation would want them, and a rule enforced in one repository and unenforced in the
+  next is only half a convention. But shipping executable content is a larger question than
+  shipping Markdown — it imposes a toolchain, and `0011` argues against imposing anything.
 - **How do agent capabilities reach heterogeneous hosts?** A neutral model puts the burden of
   configuration on whoever installs it, and agent hosts each configure capabilities their own
   way, with no common installer. Whether context-fold should address that at all, or leave it
