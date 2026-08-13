@@ -21,6 +21,22 @@ Nothing else in the repository moves. `.agents/` may already hold other tools' f
 sits alongside them and does not claim the directory. Removing the layer later is a normal
 change.
 
+## If the layer is already there
+
+`.agents/AGENTS.md` existing means this repository has adopted before. The steps below assume
+nothing is installed, and following them as written destroys work: they overwrite the index,
+add the pointer a second time, and open an adoption task for an adoption that already happened.
+
+Do this instead:
+
+- Copy only the `AGENTS.md` files from `templates/agents/`. Leave `INDEX.md` and everything under
+  `tasks/` alone — those are this repository's, not the distribution's.
+- Leave the root `AGENTS.md` alone if it already points at the layer.
+- Do not open task zero.
+
+If nothing changed, say so. A repository already holding the current rules is the expected
+result, not a failure.
+
 ## 1. Install the layer
 
 Copy `templates/agents/` from this directory to `.agents/` in your repository, preserving the
@@ -85,9 +101,10 @@ Acceptance:
 **`context.md`** — Base state: the repository as it is. What it contains, what conventions it
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
 
-Then work the task: finish the structure, satisfy the acceptance, log every friction under
-`## Problems` while it happens, and archive it before the change is merged. The rules for all of
-that are in `.agents/tasks/AGENTS.md`, which you now have.
+Then work the task: finish the structure, satisfy the acceptance, and log every friction under
+`## Problems` while it happens. Stop there and ask for approval — approval is what authorizes
+archival, and archival comes before the change is merged. The rules for all of that are in
+`.agents/tasks/AGENTS.md`, which you now have.
 
 ## What this does not give you
 

@@ -50,10 +50,48 @@ conduct itself while following it.
    task zero, and stops before archival.
 5. What the skill produced matches what `ADOPTING.md` specifies, or a divergence is recorded as a
    defect in one of them.
+6. The skill runs against this repository — already adopted — and changes nothing: the index and
+   task packages survive, the pointer is not duplicated, and no adoption task is opened.
 
 ## Problems
 
-### The package layout was justified from principle when evidence existed
+### The procedure assumed nothing was installed, and never said so
+
+Running the skill against this repository — the first real user, and already adopted — broke
+every step. Step 1 copies `templates/agents/` wholesale, taking `INDEX.md` with it: fourteen rows
+became zero while thirteen task packages sat on disk. Step 2 appended a second `## Agent layer`
+section. Step 3 would have opened an adoption task beside a live one.
+Assumed: adoption happens once, so the procedure only needs the unadopted case.
+Actually: every run after the first is the adopted case, on any repository — including a run
+started by accident. It is the main path, not an edge, and the procedure had no branch for it.
+All three failures are silent. `cp` reports nothing, the resulting index is valid Markdown that
+simply lies, and a duplicated section reads fine. Our own suite catches the index damage; an
+adopter has no suite, which is what makes silence the problem rather than untidiness.
+Added an already-there path ahead of the steps: replace only the `AGENTS.md` files, leave the
+index and tasks, leave an existing pointer, open no task zero, and say when nothing changed.
+
+### The skill contradicted the procedure it ships
+
+`ADOPTING.md` step 3 ended "archive it before the change is merged". `SKILL.md` says "Do not
+archive the task, and do not merge anything."
+Assumed: `SKILL.md` covers what the procedure leaves out, as it claims.
+Actually: it overrode the procedure rather than supplementing it, and an agent reading both in
+the order the skill directs would be told to archive and then told not to.
+`ADOPTING.md` now stops at asking for approval, which is what `0007` actually requires — approval
+authorizes archival. The procedure had compressed a three-stage sequence into one clause.
+Fourth contradiction found in this repository that nothing checks for, and the first between two
+files that ship together as one unit.
+
+### The installed skill was stale, and the run used the old copy
+
+Invoking the skill loaded `.claude/skills/ctxfold-init/`, a copy made before the fixes above.
+The run followed the pre-fix procedure.
+Assumed: editing `skills/ctxfold-init/` changes the skill.
+Actually: installing copies it. The installed skill is an installation of the distribution, with
+exactly the drift problem `0018` solved for `.agents/` — and nothing detects this one. `.agents/`
+has an identity check because it is tracked; `.claude/` is untracked and vendor-specific, so the
+same check would require deciding whether an adapter directory belongs in the repository at all.
+Noticed only because a section I had just written was missing from the loaded instructions.
 
 `0020` argued for bundling `ADOPTING.md` and `templates/` beside `SKILL.md` from first
 principles — the directory is what travels, so everything must be inside it. Correct, and

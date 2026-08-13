@@ -3,8 +3,8 @@ name: ctxfold-init
 description: >
   Install the context-fold agent layer into a repository: a task package structure under
   .agents/, a pointer in the root AGENTS.md, and a first task recording the adoption.
-  Works on an empty repository or one with years of history, and leaves anything else
-  already under .agents/ untouched.
+  Works on an empty repository, one with years of history, or one that has already adopted
+  it, and leaves anything else already under .agents/ untouched.
   Trigger: /ctxfold-init, "adopt context-fold", "set up the agent layer".
 ---
 
