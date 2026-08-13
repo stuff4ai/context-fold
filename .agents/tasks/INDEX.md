@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [let-agents-merge-after-approval](let-agents-merge-after-approval/task.md) | active | Allow an agent to merge a pull request once a human has approved it, and record what that changes about the gate |
 
 ## Archive
 
