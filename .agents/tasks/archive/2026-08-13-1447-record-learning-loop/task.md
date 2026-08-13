@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -54,6 +54,23 @@ repository meant to demonstrate it.
 4. `OPEN-QUESTIONS.md` lists the two recurring patterns as candidates with their instance
    counts, not as rules.
 5. No portable rule file changes, and nothing added exists in more than one owned location.
+
+## Outcome
+
+`decisions/0013-improve-context-from-the-work.md` records the loop, with the eleven-step
+lifecycle and eight-artifact task package preserved in its Context as the designs cut to keep
+capture cheaper than the friction it records. `README.md` states the loop after the problem it
+answers and carries the folding metaphor and `ctxfold`. `OPEN-QUESTIONS.md` gains a recurring
+patterns section with the two observations that now have evidence across several tasks, and the
+gap between approval and merge-readiness.
+
+All five acceptance criteria satisfied. One overlap was kept deliberately and recorded below
+rather than removed.
+
+This completes the folding of the design conversation. Nothing load-bearing from it now exists
+only outside the repository.
+
+Nothing was left to fold.
 
 ## Problems
 
