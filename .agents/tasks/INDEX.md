@@ -5,14 +5,13 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [add-init-skill](add-init-skill/task.md) | active | Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what adoption is |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-17-0116-add-init-skill](archive/2026-08-17-0116-add-init-skill/task.md) | completed | Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what adoption is |
 | [2026-08-13-2054-let-agents-merge-after-approval](archive/2026-08-13-2054-let-agents-merge-after-approval/task.md) | completed | Allow an agent to merge a pull request once a human has approved it, and record what that changes about the gate |
 | [2026-08-13-2000-separate-distribution-from-installation](archive/2026-08-13-2000-separate-distribution-from-installation/task.md) | completed | Ship a distribution, install this repository from it, and make the fact that they match a check rather than a claim |
 | [2026-08-13-1838-write-the-adoption-procedure](archive/2026-08-13-1838-write-the-adoption-procedure/task.md) | completed | Describe how another repository adopts context-fold, well enough that following the description is the test |

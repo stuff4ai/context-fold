@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -52,6 +52,28 @@ conduct itself while following it.
    defect in one of them.
 6. The skill runs against this repository — already adopted — and changes nothing: the index and
    task packages survive, the pointer is not duplicated, and no adoption task is opened.
+
+## Outcome
+
+`skills/ctxfold-init/` is the unit of distribution: `SKILL.md`, the procedure `ADOPTING.md`, and
+`templates/`, all self-contained. This repository installs it into `.agents/skills/`, and a check
+binds the two — as a second check binds `templates/agents/` to `.agents/`.
+
+`decisions/0020-ship-an-init-skill.md` records the package and why the procedure stays
+authoritative. `decisions/0021-separate-what-upgrades-from-what-diverges.md` records the layout
+keeping upgradeable files apart from ones that diverge on first use.
+
+All six acceptance criteria satisfied. Five foreign runs, on a different model through a
+different installer, across four repositories: a Rust CLI with vendored skills and OpenSpec, a
+TypeScript monorepo carrying its own task system, a Java and React monorepo with neither
+`.agents/` nor a root `AGENTS.md`, and this one. Fresh install, coexistence, a mandated workflow
+to discover, and re-running against an already-adopted repository are all covered.
+
+Two things close unproven and are recorded as such: the placeholder fix, because the run after it
+wrote its task package from scratch rather than copying the template; and where outliving
+questions go in a repository with no project-layer home for them, still at one instance.
+
+Nothing was left to fold.
 
 ## Problems
 
