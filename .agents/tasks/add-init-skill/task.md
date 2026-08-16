@@ -82,6 +82,19 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### A different agent could not write the directory the layer installs into
+
+A cold run by a second agent — Codex, no knowledge of this project — ended without installing
+anything: its sandbox permitted reading `.agents/` and not writing it. It probed with a `touch`,
+reported the constraint precisely, reverted the one partial edit it had made, and left the tree
+clean.
+Not a defect in the skill, and worth recording anyway: adoption writes to a hidden directory,
+and an agent under a default sandbox may be able to read the whole repository while being unable
+to create the one thing it was asked to create. Nothing in the procedure anticipates being
+unable to write, and the failure surfaced only because that agent checked rather than assuming.
+The behaviour under the constraint was better than the procedure asks for — it left nothing
+half-installed, which no instruction told it to do.
+
 ### A check still treated the whole of `.agents/` as the layer
 
 Installing the skill to `.agents/skills/ctxfold-init/` broke
