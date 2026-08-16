@@ -7,7 +7,8 @@ step 2, where an existing `AGENTS.md` is added to rather than created.
 
 ## What you are adding
 
-context-fold ships `templates/`. Adoption is installing it.
+`templates/`, beside this file, is what gets installed. Adoption is installing it. Everything you
+need is in this directory — nothing has to be fetched.
 
 ```text
 templates/agents/   →   .agents/
@@ -20,25 +21,51 @@ Nothing else in the repository moves. `.agents/` may already hold other tools' f
 sits alongside them and does not claim the directory. Removing the layer later is a normal
 change.
 
+## If the layer is already there
+
+`.agents/AGENTS.md` existing means this repository has adopted before. The steps below assume
+nothing is installed, and following them as written destroys work: they overwrite the index,
+add the pointer a second time, and open an adoption task for an adoption that already happened.
+
+Do this instead:
+
+- Copy only the `AGENTS.md` files from `templates/agents/`. Leave `INDEX.md` and everything under
+  `tasks/` alone — those are this repository's, not the distribution's.
+- Leave the root `AGENTS.md` alone if it already points at the layer.
+- Do not open task zero.
+
+If nothing changed, say so. A repository already holding the current rules is the expected
+result, not a failure.
+
 ## 1. Install the layer
 
-Copy `templates/agents/` from context-fold to `.agents/` in your repository, preserving the
+Copy `templates/agents/` from this directory to `.agents/` in your repository, preserving the
 structure inside it.
 
 ```text
 templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
-templates/agents/tasks/INDEX.md          →  .agents/tasks/INDEX.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
+templates/INDEX.md                       →  .agents/tasks/INDEX.md
 ```
 
-Copy them unchanged. The `AGENTS.md` files are identical in every installation and carry no
-project-specific paths, names, or decisions — that is what makes them replaceable when
-context-fold changes.
+`templates/agents/` and `templates/INDEX.md` are separate on purpose. Everything in
+`templates/agents/` must stay byte-identical to its template for as long as it is installed;
+`INDEX.md` stops matching the moment you record your first task.
 
-`INDEX.md` is different: it ships empty and becomes yours as you work. Copy it once, on adoption.
-If you ever replace the rule files with newer ones, copy only the `AGENTS.md` files — copying the
-whole directory again overwrites your index with an empty one.
+**Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
+and then confirm every installed file is byte-for-byte identical to its template. Reproducing
+the contents from what you have read produces files that look right and differ: a rewrapped
+line, a dropped paragraph, a missing file. Those differences are invisible on reading and break
+every future comparison against the distribution.
+
+The `AGENTS.md` files are identical in every installation and carry no project-specific paths,
+names, or decisions — that is what makes them replaceable when the rules change, and that
+property survives only if the copy is exact.
+
+`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never
+again — replacing the rule files later means copying `templates/agents/` over `.agents/`, which
+leaves your index alone.
 
 If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
 edited rule file stops being upgradable and starts being yours.
@@ -84,14 +111,21 @@ Acceptance:
 **`context.md`** — Base state: the repository as it is. What it contains, what conventions it
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
 
-Then work the task: finish the structure, satisfy the acceptance, log every friction under
-`## Problems` while it happens, and archive it before the change is merged. The rules for all of
-that are in `.agents/tasks/AGENTS.md`, which you now have.
+Then work the task: finish the structure, satisfy the acceptance, and log every friction under
+`## Problems` while it happens. Stop there and ask for approval — approval is what authorizes
+archival, and archival comes before the change is merged. The rules for all of that are in
+`.agents/tasks/AGENTS.md`, which you now have.
 
 ## What this does not give you
 
 **No customization.** The rules are what they are. If they do not fit, that is worth knowing —
 record it as a problem rather than working around it quietly.
+
+**No migration.** This installs a layer; it does not convert one. If `.agents/` already holds a
+task system of its own — packages, an archive, another index — leave it exactly where it is.
+Describe it in task zero's base state, note it under `## Problems`, and let the two coexist.
+Deciding what to do about it is a later decision for that project, and not something adoption
+should make on its behalf.
 
 **No provenance, and no upgrade path.** Copying is the whole distribution story. Nothing records
 which version you took, nothing tells you when the rule files change upstream, and there is no

@@ -19,7 +19,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 
-TEMPLATES = ROOT / "templates"
+SKILLS = ROOT / "skills"
+INIT_SKILL = SKILLS / "ctxfold-init"
+TEMPLATES = INIT_SKILL / "templates"
 AGENT_TEMPLATES = TEMPLATES / "agents"
 
 TASKS = ROOT / ".agents" / "tasks"
@@ -44,6 +46,9 @@ LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
 
 # Fenced blocks hold examples. A link inside one is a shape to copy, not a link to follow.
 FENCE = re.compile(r"^```.*?^```", re.M | re.S)
+
+# Inline code is quoted syntax, not a reference — writing *about* a link is not making one.
+CODE_SPAN = re.compile(r"`[^`\n]*`")
 
 
 IGNORED_DIRS = {".git", ".venv", ".idea", ".vscode"}
@@ -91,18 +96,110 @@ def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
 
 
+# --- Shipped skills -------------------------------------------------------------------
+
+
+def skills() -> list[Path]:
+    return sorted(p for p in SKILLS.iterdir() if p.is_dir()) if SKILLS.is_dir() else []
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_has_usable_frontmatter(skill: Path) -> None:
+    """A skill without loadable frontmatter is not a skill, it is a document."""
+    text = (skill / "SKILL.md").read_text(encoding="utf-8")
+    front = re.match(r"^---\n(.*?)\n---\n", text, re.S)
+    assert front, f"{skill.name}/SKILL.md has no frontmatter block"
+
+    name = re.search(r"^name:\s*(\S+)\s*$", front.group(1), re.M)
+    assert name, f"{skill.name}/SKILL.md declares no name"
+    assert name.group(1) == skill.name, (
+        f"{skill.name}/SKILL.md is named {name.group(1)!r}; it would install under one name "
+        "and answer to another"
+    )
+    assert re.search(r"^description:", front.group(1), re.M), (
+        f"{skill.name}/SKILL.md has no description, so nothing can tell when to invoke it"
+    )
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_ships_no_stray_files(skill: Path) -> None:
+    """Everything in the directory ships, including whatever was left there by accident.
+
+    A backup or editor artifact reaches every installation and nothing else notices — the
+    other checks only read the files they expect to find.
+    """
+    junk = [
+        p.relative_to(skill)
+        for p in skill.rglob("*")
+        if p.is_file()
+        and (
+            p.suffix in {".bak", ".orig", ".rej", ".tmp", ".swp"}
+            or p.name.endswith("~")
+            or "__pycache__" in p.parts
+        )
+    ]
+    assert not junk, f"{skill.name} would ship: {junk}"
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_skill_is_self_contained(skill: Path) -> None:
+    """A skill directory is what an installer copies. Anything it points outside is lost.
+
+    This is the portability check for shipped skills: a reference that resolves here and
+    nowhere else reads correctly until the moment it matters.
+    """
+    escaping = []
+    for doc in sorted(skill.rglob("*.md")):
+        for target in LINK.findall(CODE_SPAN.sub("", FENCE.sub("", doc.read_text(encoding="utf-8")))):
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            resolved = (doc.parent / target.split("#", 1)[0]).resolve()
+            if not resolved.is_relative_to(skill.resolve()):
+                escaping.append(f"{doc.relative_to(skill)} → {target}")
+            elif not resolved.exists():
+                escaping.append(f"{doc.relative_to(skill)} → {target} (missing)")
+    assert not escaping, f"{skill.name} references outside its own directory: {escaping}"
+
+
+def installed_skills() -> list[tuple[Path, Path]]:
+    """Shipped skills that this repository has also installed for its own use."""
+    return [
+        (s, ROOT / ".agents" / "skills" / s.name)
+        for s in skills()
+        if (ROOT / ".agents" / "skills" / s.name).is_dir()
+    ]
+
+
+@pytest.mark.parametrize("shipped,installed", installed_skills(), ids=lambda p: p.name)
+def test_installed_skill_matches_the_shipped_one(shipped: Path, installed: Path) -> None:
+    """A skill this repository uses is the skill it distributes.
+
+    The same rule as the layer, one directory over: an installation that drifts from its
+    distribution is a claim to dogfood that has quietly stopped being true.
+    """
+    ship = {p.relative_to(shipped) for p in shipped.rglob("*") if p.is_file()}
+    inst = {p.relative_to(installed) for p in installed.rglob("*") if p.is_file()}
+    assert ship == inst, (
+        f"{shipped.name}: installed but not shipped {sorted(inst - ship)}; "
+        f"shipped but not installed {sorted(ship - inst)}"
+    )
+    differing = [f for f in sorted(ship) if (shipped / f).read_bytes() != (installed / f).read_bytes()]
+    assert not differing, f"{shipped.name}: installed copy differs in {differing}"
+
+
 # --- Dogfooding -----------------------------------------------------------------------
 
 
 def installed_rule_files() -> list[tuple[Path, Path]]:
-    """Every rule file in `templates/agents/`, paired with where it installs to.
+    """Everything in `templates/agents/`, paired with where it installs to.
 
-    `INDEX.md` is excluded: it is instance data, and its divergence from the empty
-    template is the point of it.
+    The directory holds only files that must stay byte-identical forever, so there is
+    nothing to exclude. `INDEX.md` and the task skeleton live outside it precisely
+    because they are copied once and then diverge.
     """
     return [
         (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))
-        for t in sorted(AGENT_TEMPLATES.rglob("AGENTS.md"))
+        for t in sorted(p for p in AGENT_TEMPLATES.rglob("*") if p.is_file())
     ]
 
 
@@ -124,10 +221,32 @@ def test_installation_matches_the_distribution(template: Path, installed: Path) 
     )
 
 
+def installed_layer_files() -> set[Path]:
+    """Rule files belonging to the layer, which is not the whole of `.agents/`.
+
+    `0018`: the layer is what was installed, and `.agents/` is only where it lives. Other
+    tools write there — including a skill installer placing this project's own skill, whose
+    bundled templates contain `AGENTS.md` files that are not part of any installation.
+    """
+    agents = ROOT / ".agents"
+    found: set[Path] = set()
+    for name in ("AGENTS.md", "tasks"):
+        path = agents / name
+        if path.is_file():
+            found.add(path.relative_to(agents))
+        elif path.is_dir():
+            found |= {p.relative_to(agents) for p in path.rglob("AGENTS.md")}
+    return found
+
+
 def test_distribution_is_complete() -> None:
-    """A rule file installed but not shipped would reach no other repository."""
+    """A rule file installed but not shipped would reach no other repository.
+
+    Compares `AGENTS.md` files only. The installation also holds an index and task
+    packages, which it produced rather than received.
+    """
     shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
-    installed = {p.relative_to(ROOT / ".agents") for p in (ROOT / ".agents").rglob("AGENTS.md")}
+    installed = installed_layer_files()
     assert installed == shipped, (
         f"installed but not shipped: {sorted(installed - shipped)}; "
         f"shipped but not installed: {sorted(shipped - installed)}"
@@ -147,6 +266,8 @@ def test_discovery_finds_content() -> None:
     assert archived_tasks(), "no archived tasks found"
     assert len(markdown_files()) > 20, "markdown discovery found suspiciously little"
     assert all(p.is_file() for p in PORTABLE), "a portable rule file is missing"
+    assert skills(), "no shipped skills found"
+    assert installed_rule_files(), "the distribution shipped no rule files"
 
 
 # --- Task packages (0006) -------------------------------------------------------------
@@ -295,7 +416,7 @@ def test_relative_links_resolve(doc: Path) -> None:
     links to placeholder paths, and those are examples rather than references.
     """
     broken = []
-    for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
+    for target in LINK.findall(CODE_SPAN.sub("", FENCE.sub("", doc.read_text(encoding="utf-8")))):
         if target.startswith(("http://", "https://", "mailto:", "#")):
             continue
         path = (doc.parent / target.split("#", 1)[0]).resolve()

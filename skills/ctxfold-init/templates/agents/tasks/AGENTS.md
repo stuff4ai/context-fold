@@ -7,7 +7,7 @@ paths, names, or decisions.
 
 ## Finding work
 
-Start at [`INDEX.md`](INDEX.md). It is a derived view — each task's `task.md` owns its
+Start at `INDEX.md`, beside this file. It is a derived view — each task's `task.md` owns its
 canonical status. If they disagree, `task.md` is right and the index needs repair.
 
 The archive is listed newest first: it only grows, so the most recent work belongs at the top
@@ -38,6 +38,10 @@ improved — the title inside `task.md` can change instead.
 
 Write `task.md` and `context.md` before starting the work, not after.
 
+Add the task to `INDEX.md` under Active as soon as the directory exists. The index is a derived
+view of what is on disk, so a task missing from it makes the index wrong from the moment the
+task begins — not at the end, when it is updated again on archival.
+
 ## The files
 
 **`task.md`** — the contract.
@@ -52,6 +56,10 @@ by someone who was not present for the work.
 References to the project artifacts that matter and why, plus task-local facts. Prefer a
 reference over a copy; a copy drifts. Optional sections: Assumptions, Open questions, Context
 conflicts, Base state, Not relevant.
+
+Write references as paths from the repository root, in code spans, not as relative links. The
+package moves when it is archived — one directory deeper — so a relative link either breaks or,
+worse, keeps resolving and points at a different file.
 
 Open questions are recorded, not resolved. A question that must be answered to proceed is
 work, not context.
