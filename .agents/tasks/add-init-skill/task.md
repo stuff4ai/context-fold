@@ -82,6 +82,21 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### Template examples written in the voice of real content survived as content
+
+Two more foreign runs, in two unrelated repositories, both left
+`` `.agents/tasks/AGENTS.md` — why it matters here. `` in the finished package. The other example
+line was replaced in both, because it named a file that did not exist there.
+Assumed: an example in a template reads as a shape to copy.
+Actually: only if it is marked as one. The two example lines were written in the same voice and
+format as real entries, so the one naming a real file read as a valid entry with a lazy
+description — and a lazy description is not obviously wrong, so it stayed.
+Both examples were added when the relative-links defect was fixed. Fixing one problem introduced
+this one, and it took two runs in two repositories to see it because a single run looks like an
+agent being careless.
+Replaced with one line using a braced placeholder, matching how the index shape is already
+written. Two examples also invited keeping one; one cannot be kept.
+
 ### A hazard left as documented bit a second time, in the opposite direction
 
 `templates/agents/` held three files that must never change and one that must change
