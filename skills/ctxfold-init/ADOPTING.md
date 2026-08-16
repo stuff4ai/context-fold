@@ -111,6 +111,12 @@ archival, and archival comes before the change is merged. The rules for all of t
 **No customization.** The rules are what they are. If they do not fit, that is worth knowing —
 record it as a problem rather than working around it quietly.
 
+**No migration.** This installs a layer; it does not convert one. If `.agents/` already holds a
+task system of its own — packages, an archive, another index — leave it exactly where it is.
+Describe it in task zero's base state, note it under `## Problems`, and let the two coexist.
+Deciding what to do about it is a later decision for that project, and not something adoption
+should make on its behalf.
+
 **No provenance, and no upgrade path.** Copying is the whole distribution story. Nothing records
 which version you took, nothing tells you when the rule files change upstream, and there is no
 procedure for replacing them. Note the source commit in your adoption commit message if you

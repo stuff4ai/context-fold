@@ -82,7 +82,50 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
-### A different agent could not write the directory the layer installs into
+### A foreign agent installed it, and the parts that held were the ones never tested here
+
+A second agent, on a different model and a different installer, ran the skill against an
+unrelated production monorepo. Its installer had copied the whole package — templates included —
+to a global skills directory, which validates the bundling decision independently of the one
+installer examined when it was made.
+
+The run read the procedure first, checked base state before writing, left the existing
+`.agents/` artifacts alone, verified the rule files byte-for-byte against the templates unasked,
+ran the project's own format check, logged two real problems, and stopped before archiving to
+ask for approval.
+
+Recorded because every one of those was a behaviour this repository could not test. Self-
+application cannot show whether an instruction survives an agent that has never read the
+reasoning behind it.
+
+### Relative links in a task package break when the package is archived
+
+The foreign run's `context.md` pointed at `../../docs/prd.md`. The file exists; the link
+resolves to `.agents/docs/prd.md` and misses by one directory. Four of its seven references were
+dead that way, and two more resolved to the wrong file while looking correct —
+`../../AGENTS.md` labelled as the repository's conventions is the layer contract, not the root.
+Assumed: getting the depth right is the fix.
+Actually: depth is not stable. A package sits at `.agents/tasks/{slug}/` and archives to
+`.agents/tasks/archive/{ts}-{slug}/`, one level deeper, so a link that is correct today breaks on
+archival — or keeps resolving and silently points somewhere else, which is worse.
+This repository never hit it because its packages reference project artifacts as root-relative
+paths in code spans. Thirteen archived packages, zero relative links, entirely by instinct: the
+convention was being followed and had never been written down, so it shipped to nobody.
+Now in the template with an example, and in the rules with the reason.
+
+### Adoption met a repository that already had a task system
+
+The target's `.agents/` held roughly twenty-three archived task directories from an earlier
+workflow, plus an active package in `.agents/tasks/`. The layer installed a second task system
+beside the first: `.agents/tasks/archive/` next to `.agents/archive/`, and an index listing one
+task while another sat undeclared in the same directory.
+Assumed: "other tools write there too" covers coexistence. It covers `skills/`.
+Actually: it does not cover another tool doing the same job. The index ships as a derived view of
+task directories and was false in its first real installation.
+The foreign agent invented the right answer without being told — record the existing system as
+base state, leave it untouched, note it under `## Problems`. That is now in the procedure as an
+explicit limit: this installs a layer, it does not convert one. Migration stays out of scope, and
+saying so is what stops the next agent re-deriving it.
 
 A cold run by a second agent — Codex, no knowledge of this project — ended without installing
 anything: its sandbox permitted reading `.agents/` and not writing it. It probed with a `touch`,

@@ -53,6 +53,10 @@ References to the project artifacts that matter and why, plus task-local facts. 
 reference over a copy; a copy drifts. Optional sections: Assumptions, Open questions, Context
 conflicts, Base state, Not relevant.
 
+Write references as paths from the repository root, in code spans, not as relative links. The
+package moves when it is archived — one directory deeper — so a relative link either breaks or,
+worse, keeps resolving and points at a different file.
+
 Open questions are recorded, not resolved. A question that must be answered to proceed is
 work, not context.
 
