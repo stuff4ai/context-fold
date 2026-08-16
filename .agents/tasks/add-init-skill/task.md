@@ -82,6 +82,20 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### The task template is optional in practice
+
+Five runs produced five structurally correct task packages. Three wrote them from scratch; two
+copied `templates/task/` and edited it. Every one had all seven required sections.
+Assumed: shipping a skeleton is how the shape gets transmitted.
+Actually: the shape is transmitted by `tasks/AGENTS.md`, which lists the sections, and by
+`ADOPTING.md`, which describes task zero's content. The template restates it in a third place,
+and agents reach for it about half the time.
+Its only distinctive effect so far has been the placeholder leak, which is a failure mode the
+template introduces rather than one it prevents.
+Recorded, not acted on. Two of five used it and it worked, and the fix for the leak has not been
+tested — the run after it was written bypassed the template entirely, so the absence of residue
+proves nothing.
+
 ### Template examples written in the voice of real content survived as content
 
 Two more foreign runs, in two unrelated repositories, both left
