@@ -82,6 +82,23 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### The installed skill drifted, because the check built for drift covered only one thing
+
+This repository installs the skill into `.agents/skills/ctxfold-init/` to dogfood it. That copy
+was four changes behind the distribution: it predated the `templates/INDEX.md` move, the
+"Copy, then verify" section, the reference guidance, and the placeholder fix.
+Assumed: dogfooding is enforced here — the identity check exists precisely so "we run what we
+ship" cannot quietly stop being true.
+Actually: that check covers `templates/agents/` and nothing else. A second thing was installed
+and the check was not extended, so the claim it protects became false in the one place it was
+supposed to be guaranteed.
+Second instance of a meta-pattern already recorded in this task: a fix for a class of bug does
+not cover later instances of the class, and nothing reminds you. The first was the discovery
+guard, which named the finders present when it was written.
+Added a check binding every installed skill to its shipped original. It caught the real drift
+before any synthetic mutation, which is the strongest form of evidence a check can offer — it
+failed on a defect that already existed rather than one invented to test it.
+
 ### The task template is optional in practice
 
 Five runs produced five structurally correct task packages. Three wrote them from scratch; two

@@ -161,6 +161,32 @@ def test_skill_is_self_contained(skill: Path) -> None:
     assert not escaping, f"{skill.name} references outside its own directory: {escaping}"
 
 
+def installed_skills() -> list[tuple[Path, Path]]:
+    """Shipped skills that this repository has also installed for its own use."""
+    return [
+        (s, ROOT / ".agents" / "skills" / s.name)
+        for s in skills()
+        if (ROOT / ".agents" / "skills" / s.name).is_dir()
+    ]
+
+
+@pytest.mark.parametrize("shipped,installed", installed_skills(), ids=lambda p: p.name)
+def test_installed_skill_matches_the_shipped_one(shipped: Path, installed: Path) -> None:
+    """A skill this repository uses is the skill it distributes.
+
+    The same rule as the layer, one directory over: an installation that drifts from its
+    distribution is a claim to dogfood that has quietly stopped being true.
+    """
+    ship = {p.relative_to(shipped) for p in shipped.rglob("*") if p.is_file()}
+    inst = {p.relative_to(installed) for p in installed.rglob("*") if p.is_file()}
+    assert ship == inst, (
+        f"{shipped.name}: installed but not shipped {sorted(inst - ship)}; "
+        f"shipped but not installed {sorted(ship - inst)}"
+    )
+    differing = [f for f in sorted(ship) if (shipped / f).read_bytes() != (installed / f).read_bytes()]
+    assert not differing, f"{shipped.name}: installed copy differs in {differing}"
+
+
 # --- Dogfooding -----------------------------------------------------------------------
 
 
