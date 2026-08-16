@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -31,6 +31,14 @@ The rule change removed the habit that had been quietly enforcing the decision.
 
 1. The workflow step says the branch is deleted when the pull request is merged.
 2. No stale branch remains on the remote.
+
+## Outcome
+
+`AGENTS.md` step 5 now says the branch is deleted when the pull request is merged, and the stale
+`feat/add-init-skill` branch is gone from the remote. No record was added: `0001` already decides
+short-lived branches, and this states how that is carried out.
+
+Both acceptance criteria satisfied.
 
 ## Problems
 
