@@ -82,6 +82,23 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### A hazard left as documented bit a second time, in the opposite direction
+
+`templates/agents/` held three files that must never change and one that must change
+immediately. When reinstalling destroyed a populated index earlier in this task, that was
+recorded and the layout left alone: "one instance of the hazard is not enough to choose."
+A third foreign run then compared every installed file against its template — including the
+index it had just correctly filled in — and got a failure describing nothing wrong. It
+recognised its own mistake and fixed the check.
+Assumed: documenting a trap is enough when it has been seen once.
+Actually: the same ambiguity produced data loss in one direction and a false alarm in the other,
+from two different agents. What made both reasonable is that the directory looks uniform and
+is not.
+`INDEX.md` moved out of `templates/agents/`, so the rule now follows from the layout: everything
+in that directory is safe to copy over an installation, always. The identity check lost its
+exclusion, and the shipped rule files lost their relative link to `INDEX.md` for the same reason
+task packages lost theirs — written in one directory, read from another.
+
 ### Two runs of the same instructions diverged on the index
 
 A second foreign run, same repository, fresh session, left `INDEX.md` saying `None.` under

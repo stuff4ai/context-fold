@@ -7,7 +7,7 @@ paths, names, or decisions.
 
 ## Finding work
 
-Start at [`INDEX.md`](INDEX.md). It is a derived view — each task's `task.md` owns its
+Start at `INDEX.md`, beside this file. It is a derived view — each task's `task.md` owns its
 canonical status. If they disagree, `task.md` is right and the index needs repair.
 
 The archive is listed newest first: it only grows, so the most recent work belongs at the top

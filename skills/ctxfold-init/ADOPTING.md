@@ -45,9 +45,13 @@ structure inside it.
 ```text
 templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
-templates/agents/tasks/INDEX.md          →  .agents/tasks/INDEX.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
+templates/INDEX.md                       →  .agents/tasks/INDEX.md
 ```
+
+`templates/agents/` and `templates/INDEX.md` are separate on purpose. Everything in
+`templates/agents/` must stay byte-identical to its template for as long as it is installed;
+`INDEX.md` stops matching the moment you record your first task.
 
 **Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
 and then confirm every installed file is byte-for-byte identical to its template. Reproducing
@@ -59,9 +63,9 @@ The `AGENTS.md` files are identical in every installation and carry no project-s
 names, or decisions — that is what makes them replaceable when the rules change, and that
 property survives only if the copy is exact.
 
-`INDEX.md` is different: it ships empty and becomes yours as you work. Copy it once, on adoption.
-If you ever replace the rule files with newer ones, copy only the `AGENTS.md` files — copying the
-whole directory again overwrites your index with an empty one.
+`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never
+again — replacing the rule files later means copying `templates/agents/` over `.agents/`, which
+leaves your index alone.
 
 If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
 edited rule file stops being upgradable and starts being yours.

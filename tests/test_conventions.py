@@ -47,6 +47,9 @@ LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
 # Fenced blocks hold examples. A link inside one is a shape to copy, not a link to follow.
 FENCE = re.compile(r"^```.*?^```", re.M | re.S)
 
+# Inline code is quoted syntax, not a reference — writing *about* a link is not making one.
+CODE_SPAN = re.compile(r"`[^`\n]*`")
+
 
 IGNORED_DIRS = {".git", ".venv", ".idea", ".vscode"}
 
@@ -147,7 +150,7 @@ def test_skill_is_self_contained(skill: Path) -> None:
     """
     escaping = []
     for doc in sorted(skill.rglob("*.md")):
-        for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
+        for target in LINK.findall(CODE_SPAN.sub("", FENCE.sub("", doc.read_text(encoding="utf-8")))):
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
             resolved = (doc.parent / target.split("#", 1)[0]).resolve()
@@ -162,14 +165,15 @@ def test_skill_is_self_contained(skill: Path) -> None:
 
 
 def installed_rule_files() -> list[tuple[Path, Path]]:
-    """Every rule file in `templates/agents/`, paired with where it installs to.
+    """Everything in `templates/agents/`, paired with where it installs to.
 
-    `INDEX.md` is excluded: it is instance data, and its divergence from the empty
-    template is the point of it.
+    The directory holds only files that must stay byte-identical forever, so there is
+    nothing to exclude. `INDEX.md` and the task skeleton live outside it precisely
+    because they are copied once and then diverge.
     """
     return [
         (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))
-        for t in sorted(AGENT_TEMPLATES.rglob("AGENTS.md"))
+        for t in sorted(p for p in AGENT_TEMPLATES.rglob("*") if p.is_file())
     ]
 
 
@@ -210,7 +214,11 @@ def installed_layer_files() -> set[Path]:
 
 
 def test_distribution_is_complete() -> None:
-    """A rule file installed but not shipped would reach no other repository."""
+    """A rule file installed but not shipped would reach no other repository.
+
+    Compares `AGENTS.md` files only. The installation also holds an index and task
+    packages, which it produced rather than received.
+    """
     shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
     installed = installed_layer_files()
     assert installed == shipped, (
@@ -382,7 +390,7 @@ def test_relative_links_resolve(doc: Path) -> None:
     links to placeholder paths, and those are examples rather than references.
     """
     broken = []
-    for target in LINK.findall(FENCE.sub("", doc.read_text(encoding="utf-8"))):
+    for target in LINK.findall(CODE_SPAN.sub("", FENCE.sub("", doc.read_text(encoding="utf-8")))):
         if target.startswith(("http://", "https://", "mailto:", "#")):
             continue
         path = (doc.parent / target.split("#", 1)[0]).resolve()
