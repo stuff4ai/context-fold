@@ -43,7 +43,7 @@ Use GitHub Flow:
    a record of the change — not as a note to the reviewer, and with nothing that stops being
    true once merged.
 4. Wait for a human to approve it.
-5. Squash merge.
+5. Squash merge, and delete the branch. Branches are short-lived; merging is when one ends.
 
 Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit
 messages. A branch's `<type>` comes from the same set of types as its commits.
