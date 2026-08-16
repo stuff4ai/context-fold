@@ -49,9 +49,15 @@ templates/agents/tasks/INDEX.md          →  .agents/tasks/INDEX.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
 ```
 
-Copy them unchanged. The `AGENTS.md` files are identical in every installation and carry no
-project-specific paths, names, or decisions — that is what makes them replaceable when
-context-fold changes.
+**Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
+and then confirm every installed file is byte-for-byte identical to its template. Reproducing
+the contents from what you have read produces files that look right and differ: a rewrapped
+line, a dropped paragraph, a missing file. Those differences are invisible on reading and break
+every future comparison against the distribution.
+
+The `AGENTS.md` files are identical in every installation and carry no project-specific paths,
+names, or decisions — that is what makes them replaceable when the rules change, and that
+property survives only if the copy is exact.
 
 `INDEX.md` is different: it ships empty and becomes yours as you work. Copy it once, on adoption.
 If you ever replace the rule files with newer ones, copy only the `AGENTS.md` files — copying the

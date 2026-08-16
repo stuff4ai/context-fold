@@ -82,6 +82,35 @@ authorizes archival. The procedure had compressed a three-stage sequence into on
 Fourth contradiction found in this repository that nothing checks for, and the first between two
 files that ship together as one unit.
 
+### Two runs of the same instructions diverged on the index
+
+A second foreign run, same repository, fresh session, left `INDEX.md` saying `None.` under
+Active while the task directory it had just created sat beside it. Its own acceptance pass
+reported success. The first run had added the row.
+Assumed: one of the runs was wrong.
+Actually: both followed what is written. `ADOPTING.md` never says to add the task to the index,
+and the tasks rules mention updating `INDEX.md` only under Finishing, at archival. Starting a
+task says to write `task.md` and `context.md` and stops there.
+This repository always adds the row because a check fails otherwise — the convention is enforced
+here and stated nowhere, so it never shipped. Same shape as the relative-links finding, found
+the same way: two agents doing different reasonable things with the same instructions.
+Now stated where a task starts, with the reason: the index is derived from disk, so a missing
+task makes it wrong from the moment the task begins.
+
+### The agent retyped the rule files instead of copying them
+
+The install produced rule files that differed from their templates on three of four
+comparisons — pure line-rewrapping, semantically identical, byte-different — and omitted
+`tasks/archive/AGENTS.md` entirely on the first pass. The agent had reproduced the contents from
+what it had read rather than copying files.
+Assumed: "copy them unchanged" describes a copy.
+Actually: for an agent that edits by patch, writing a file is the default way to create one, and
+"copy" reads as a description of intent rather than of mechanism. A copy cannot drop a file or
+rewrap a line; a transcription does both silently.
+It ended correct only because it byte-compared unprompted and iterated until `cmp` passed —
+behaviour the procedure never asked for. `ADOPTING.md` and `SKILL.md` now say to copy rather than
+retype, and to verify byte-identity before continuing.
+
 ### A foreign agent installed it, and the parts that held were the ones never tested here
 
 A second agent, on a different model and a different installer, ran the skill against an

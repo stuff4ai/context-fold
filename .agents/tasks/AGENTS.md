@@ -38,6 +38,10 @@ improved — the title inside `task.md` can change instead.
 
 Write `task.md` and `context.md` before starting the work, not after.
 
+Add the task to `INDEX.md` under Active as soon as the directory exists. The index is a derived
+view of what is on disk, so a task missing from it makes the index wrong from the moment the
+task begins — not at the end, when it is updated again on archival.
+
 ## The files
 
 **`task.md`** — the contract.

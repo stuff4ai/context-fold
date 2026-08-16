@@ -32,6 +32,17 @@ If it says nothing — or does not exist — make the changes in the working tre
 and say so when you report. Do not invent a branch name, a commit convention, or a review
 process for a project that has not chosen one.
 
+## Copy, then verify
+
+The install step is a file copy, not a transcription. Agents that edit by patch tend to
+reproduce file contents from what they have read, which yields files that differ from the
+originals in ways nobody notices — a rewrapped line, a paragraph dropped, a file forgotten
+entirely.
+
+Copy the files, then compare each installed file byte-for-byte against its template before
+going further. If they differ, the copy failed; do it again rather than editing the
+installation until it matches.
+
 ## Supply the judgment the procedure asks for
 
 Two steps need something only a reader of this repository can provide.
