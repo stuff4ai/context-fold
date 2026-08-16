@@ -5,7 +5,9 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [delete-branches-on-merge](delete-branches-on-merge/task.md) | active | State that merging deletes the branch, so "short-lived" holds now that agents merge |
 
 ## Archive
 
