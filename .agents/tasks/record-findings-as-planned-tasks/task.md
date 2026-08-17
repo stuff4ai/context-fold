@@ -40,6 +40,7 @@ support X?" is.
 - `templates/agents/tasks/AGENTS.md` — which findings still have an owning task, how the rest are
   triaged, and what a planned task looks like when it holds one.
 - `decisions/0022-route-findings-without-an-owning-task.md` and the index row.
+- `decisions/0006-task-package-model.md` — Status only, to record what `0022` narrows.
 - `OPEN-QUESTIONS.md` — remove the entry this closes.
 - One real finding, parked as a planned task, to demonstrate it.
 
@@ -53,16 +54,18 @@ support X?" is.
 
 1. The rules say a finding belongs to its task until the change is accepted, matching `0007` on
    when a package stops being writable, so archival alone does not orphan it.
-2. The rules triage a finding with no owning task by two independent questions — whether removing
-   the layer would lose durable project knowledge, and whether there is work to do — and both
-   answers may be yes.
+2. The rules triage a finding with no *writable* owning task by two independent questions —
+   whether removing the layer would lose durable project knowledge, and whether there is work to
+   do — and both answers may be yes.
 3. Durable knowledge with no project artifact to hold it gets the gap named and a planned task to
    establish one, which cannot be completed or cancelled until the knowledge is folded out.
 4. A real finding that names work is parked as a planned task, and the checks accept it —
    `planned` status, no Outcome, listed in the index. Its self-contained account is in `Why` and
    its provenance in `context.md`, with no `## Problems` until the work starts.
-5. Cancelling a task no longer skips folding durable outcomes out of it.
-6. The `OPEN-QUESTIONS.md` entry this closes is removed.
+5. `0006` records that `0022` narrows its requirement that every `task.md` carry `## Problems`,
+   in its Status and nowhere else.
+6. Cancelling a task no longer skips folding durable outcomes out of it.
+7. The `OPEN-QUESTIONS.md` entry this closes is removed.
 
 ## Problems
 
@@ -197,3 +200,18 @@ Actually: the title is what the index shows and what anyone scanning the records
 advertised the version that had been argued out of the record two rounds earlier.
 Renamed to describe the rule. Renaming a record is normally forbidden; this one has not merged,
 and `0007` puts immutability at merge, which is the same boundary this task just got wrong.
+
+### Narrowing a rule left the record that states it untouched
+
+Dropping `## Problems` from a planned task contradicted `0006`, which requires the section of
+every `task.md`.
+Assumed: changing the portable rules and writing a new record covers the change.
+Actually: the old record still said the old thing, and nothing reconciled them. A reader
+following `0006` would have restored the section the new rule removes.
+Found in review. This is the same failure as the immutability premise from the round before —
+a new rule written without checking the record it overrides — and the second time in this task
+that the fix contradicted an existing decision. Both were caught by a reviewer; the checks read
+structure and links, not claims.
+Recorded in `0006`'s Status as a partial supersession, which is the pattern four other records
+already use and which `OPEN-QUESTIONS.md` still lists as invented rather than derived from
+`0000`.

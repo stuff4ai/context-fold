@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. The requirement that `task.md` carry `## Problems` is narrowed by
+[0022](0022-route-findings-without-an-owning-task.md) to tasks that have started; the rest
+stands.
 
 ## Context
 

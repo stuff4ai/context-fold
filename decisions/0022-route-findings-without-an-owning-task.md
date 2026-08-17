@@ -42,12 +42,14 @@ failure from losing findings, not an absence of one.
 A finding belongs to the task whose work produced it, for as long as that task is writable —
 which is until the change is accepted, not until the package moves under `archive/`.
 
-A finding with no such task is routed by two questions, asked independently. Both can be yes.
+A finding with no writable owning task is routed by two questions, asked independently. Both can
+be yes.
 
 Would removing the layer lose durable project knowledge — something that must stay true or
-visible even if no follow-up work is ever done? Then it goes in the project's own artifacts. The
-layer is removable by design, and a task later archived or cancelled buries its contents as
-thoroughly as the package the finding was rescued from.
+visible even if no follow-up work is ever done? Then it goes in the project's own artifacts as a
+documented uncertainty, a constraint, or a fact about how the project works. The layer is
+removable by design, and a task later archived or cancelled buries its contents as thoroughly as
+the package the finding was rescued from.
 
 Where a project has no artifact for it, the missing destination is named rather than worked
 around. A `planned` task is opened to establish one and record the knowledge there. That task is
@@ -59,7 +61,8 @@ for that work. `Why` carries the self-contained account — what happened, what 
 was actually true — rather than a quotation of wherever it was first written, which may depend on
 context the new task does not carry. `context.md` carries the provenance. `## Problems` opens
 when the work does, because it records friction met while working, not the reason the work
-exists.
+exists. This narrows [0006](0006-task-package-model.md), which requires the section of every
+`task.md`.
 
 The tests are not exclusive because the cases are not. "Should the project support X?" is
 knowledge a reader needs and a decision someone must make.

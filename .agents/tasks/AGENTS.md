@@ -102,13 +102,14 @@ merging goes in `## Problems` of the task being merged, even though its director
 under `archive/`.
 
 Past acceptance the task is history, and editing it would rewrite the record of an accepted
-change. A finding arriving then, or one belonging to no task at all, is triaged by two questions.
-They are independent, and both can be yes. Do not carry it to whatever comes next in your head.
+change. A finding with no writable owning task — because its task was accepted, or because it
+belongs to no task at all — is triaged by two questions. They are independent, and both can be
+yes. Do not carry it to whatever comes next in your head.
 
 **Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
-an open question, a constraint, a fact about how the project works. The layer is removable by
-design, so nothing kept only inside it survives, and a task later archived or cancelled buries
+a documented uncertainty, a constraint, a fact about how the project works. The layer is removable
+by design, so nothing kept only inside it survives, and a task later archived or cancelled buries
 its contents just as thoroughly.
 
 If the project has no artifact for it, say so rather than settling for somewhere convenient. Open
