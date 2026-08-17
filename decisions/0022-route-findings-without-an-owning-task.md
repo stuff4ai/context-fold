@@ -31,8 +31,8 @@ Naming a project-layer file would prescribe another project's layout, which
 
 Routing *everything* into a planned task looked simpler and fails twice over. It puts durable
 project knowledge inside the layer, which the deletion test forbids — a fact the project needs
-would vanish with the layer, and a task later archived or cancelled buries it just as thoroughly
-as the package it was rescued from. And it makes every observation pretend to be work, which
+would vanish with the layer, and a task later archived or cancelled is no more reliable a place
+to keep it than the package it was rescued from. And it makes every observation pretend to be work, which
 [0013](0013-improve-context-from-the-work.md) explicitly declines: a problem is an observation
 until a person judges it into a change. A backlog of tasks nobody intends to start is a different
 failure from losing findings, not an absence of one.
@@ -48,8 +48,8 @@ be yes.
 Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done? Then it goes in the project's own artifacts as a
 documented uncertainty, a constraint, or a fact about how the project works. The layer is
-removable by design, and a task later archived or cancelled buries its contents as thoroughly as
-the package the finding was rescued from.
+removable by design, and a task later archived or cancelled is not a reliable place to preserve
+durable knowledge.
 
 Where a project has no artifact for it, the missing destination is named rather than worked
 around. A `planned` task is opened to establish one and record the knowledge there. That task is

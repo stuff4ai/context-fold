@@ -109,8 +109,8 @@ yes. Do not carry it to whatever comes next in your head.
 **Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
 a documented uncertainty, a constraint, a fact about how the project works. The layer is removable
-by design, so nothing kept only inside it survives, and a task later archived or cancelled buries
-its contents just as thoroughly.
+by design, so nothing kept only inside it survives, and a task later archived or cancelled is not
+a reliable place to preserve durable knowledge.
 
 If the project has no artifact for it, say so rather than settling for somewhere convenient. Open
 a `planned` task to establish a destination and record the knowledge there. That task holds the
