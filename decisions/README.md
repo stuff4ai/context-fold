@@ -32,3 +32,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0019 | [Agents may merge after approval](0019-agents-may-merge-after-approval.md) | Accepted |
 | 0020 | [Ship an init skill](0020-ship-an-init-skill.md) | Accepted |
 | 0021 | [Separate what upgrades from what diverges](0021-separate-what-upgrades-from-what-diverges.md) | Accepted |
+| 0022 | [Record findings as planned tasks](0022-record-findings-as-planned-tasks.md) | Accepted |

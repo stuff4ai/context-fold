@@ -5,7 +5,10 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
+| [record-findings-as-planned-tasks](record-findings-as-planned-tasks/task.md) | active | Give a finding somewhere to go when no task is open |
 
 ## Archive
 

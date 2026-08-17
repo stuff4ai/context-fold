@@ -113,9 +113,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   approved. CI covers the mechanical part; the Outcome is the one written thing in that commit
   and nothing verifies it. Moving approval to after archival would close this and would
   contradict `0007`.
-- **Findings that arrive after archival have nowhere to go.** Merging is the last stage, so
-  anything learned from a merge arrives after its task is closed and immutable. It has twice
-  reached the next task only because a person carried it there.
 - **Archive directory names can still collide.** Minute granularity makes it remote rather
   than impossible for two concurrent branches to archive under the same name.
 - **Commit signing is undecided.** `0003` records sign-off as an assertion of responsibility

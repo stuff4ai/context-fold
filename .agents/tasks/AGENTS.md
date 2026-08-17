@@ -68,6 +68,10 @@ Only task-local questions belong here — things unresolved while this task runs
 irrelevant once it ends. A question that will outlive the task belongs in the project layer,
 where it stays visible after this package is archived.
 
+If the project has no place for such questions, open a `planned` task instead. Leaving one here
+buries it: this package is archived when the task ends, and archived packages are history rather
+than current state.
+
 **`plan.md`** — execution strategy. Optional.
 
 Create it when the task is multi-step, complex, long-running, or likely to be resumed by
@@ -85,6 +89,19 @@ Not worth recording: routine steps that went as expected.
 
 An empty problem log at the end of a real task means the capture failed, not that the work
 went well.
+
+### When no task is open
+
+Some things are only learned once the work is finished — most often while merging, which happens
+after the task is archived and can no longer be edited.
+
+Open a `planned` task for it. The finding goes in its `## Problems` verbatim, and the Objective
+is the question to resolve: what should be done about this. It sits in the index until someone
+starts it or cancels it, which is the point — a finding nobody can see is a finding nobody acts
+on.
+
+This is what `planned` is for. Do not reopen an archived task, and do not carry the finding in
+your head to whatever comes next.
 
 ## Status
 
