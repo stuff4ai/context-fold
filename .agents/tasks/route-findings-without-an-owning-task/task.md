@@ -38,7 +38,7 @@ support X?" is.
 ## Scope
 
 - `templates/agents/tasks/AGENTS.md` — which findings still have an owning task, how the rest are
-  triaged, and what a planned task looks like when it holds one.
+  triaged, what a planned task looks like when it holds one, and when a slug fixes.
 - `decisions/0022-route-findings-without-an-owning-task.md` and the index row.
 - `decisions/0006-task-package-model.md` — Status only, to record what `0022` narrows.
 - `OPEN-QUESTIONS.md` — remove the entry this closes.
@@ -62,10 +62,13 @@ support X?" is.
 4. A real finding that names work is parked as a planned task, and the checks accept it —
    `planned` status, no Outcome, listed in the index. Its self-contained account is in `Why` and
    its provenance in `context.md`, with no `## Problems` until the work starts.
-5. `0006` records that `0022` narrows its requirement that every `task.md` carry `## Problems`,
-   in its Status and nowhere else.
-6. Cancelling a task no longer skips folding durable outcomes out of it.
-7. The `OPEN-QUESTIONS.md` entry this closes is removed.
+5. `0006` records both narrowings in its Status and nowhere else: `## Problems` is required only
+   of tasks that have started, and slug identity fixes at acceptance rather than at the start of
+   work.
+6. This task's slug, its decision record's filename, and its branch all name the design that
+   shipped rather than the one review rejected.
+7. Cancelling a task no longer skips folding durable outcomes out of it.
+8. The `OPEN-QUESTIONS.md` entry this closes is removed.
 
 ## Problems
 
@@ -215,3 +218,20 @@ structure and links, not claims.
 Recorded in `0006`'s Status as a partial supersession, which is the pattern four other records
 already use and which `OPEN-QUESTIONS.md` still lists as invented rather than derived from
 `0000`.
+
+### Three names outlived the design that produced them
+
+The rule was narrowed to triage in one round and rewritten around owning tasks in the next, and
+after both the decision record was still called `0022-record-findings-as-planned-tasks`, the
+branch `feat/record-findings-as-planned-tasks`, and the task directory the same.
+Assumed: names are labels, and correcting the body is correcting the artifact.
+Actually: the record filename is what the decisions index shows, the branch is what the pull
+request advertises, and the slug is what the archive will carry forever. All three named the
+design the work had rejected. Each was found by a reviewer, one round apart, because fixing one
+did not prompt anyone to look at the others.
+Renaming the record was easy: it had not merged. Renaming the branch closed the pull request —
+GitHub retargets open pull requests on a branch rename, but the API rename dropped this one, so
+the work continues under a new number with the commits intact. Renaming the slug required
+narrowing `0006`, which fixed identity at the start of work.
+The rule now fixes all three at acceptance, which is where `0007` already put immutability. One
+rule was stricter than the others and nothing had said why.

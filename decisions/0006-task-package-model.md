@@ -2,9 +2,10 @@
 
 ## Status
 
-Accepted. The requirement that `task.md` carry `## Problems` is narrowed by
-[0022](0022-route-findings-without-an-owning-task.md) to tasks that have started; the rest
-stands.
+Accepted. Two parts are narrowed by
+[0022](0022-route-findings-without-an-owning-task.md): the requirement that `task.md` carry
+`## Problems`, to tasks that have started, and slug identity, which fixes at acceptance rather
+than at the start of work. The rest stands.
 
 ## Context
 

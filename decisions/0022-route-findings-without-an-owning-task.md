@@ -64,6 +64,12 @@ when the work does, because it records friction met while working, not the reaso
 exists. This narrows [0006](0006-task-package-model.md), which requires the section of every
 `task.md`.
 
+Renaming follows the same boundary. A task's slug is fixed identity from acceptance, not from
+the moment work starts: until the change merges nothing else references it, and a name that
+describes a design the work rejected is worse than a stable wrong one. This narrows
+[0006](0006-task-package-model.md), which fixes it at the start of work. The same reasoning
+renamed this record before it merged.
+
 The tests are not exclusive because the cases are not. "Should the project support X?" is
 knowledge a reader needs and a decision someone must make.
 
@@ -91,6 +97,10 @@ becomes a task slows that; it does not stop it.
 The index lists planned tasks under Active, which is now slightly wrong: a planned task is
 neither being worked nor archived. The status column disambiguates and the heading is unchanged,
 because renaming it is churn until it demonstrably confuses someone.
+
+A slug that can change before acceptance is a slug that can change under someone working against
+it. The window is one unmerged branch and the alternative is a permanent name for a rejected
+design, but it is not free.
 
 A project with no home for its own durable knowledge still has to build one, and this says to
 raise that rather than paper over it. The planned task carrying the finding meanwhile is a

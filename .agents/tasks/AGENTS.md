@@ -33,8 +33,10 @@ says `None.` instead:
 ## Starting a task
 
 Create `.agents/tasks/{slug}/` with a descriptive slug: `add-retry-to-uploads`, not
-`TASK-042`. Once work starts, the slug is fixed identity. Do not rename it because the wording
-improved — the title inside `task.md` can change instead.
+`TASK-042`. The slug becomes fixed identity when the change is accepted — the same point at
+which the package stops being writable — and after that it does not change, because other things
+reference it. Before then, rename it only if the work turned out to be something else. Improved
+wording is not a reason; the title inside `task.md` absorbs that.
 
 Write `task.md` and `context.md` before starting the work, not after.
 
