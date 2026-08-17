@@ -1,4 +1,4 @@
-# Record findings as planned tasks
+# Route findings without an owning task
 
 ## Status
 
@@ -6,31 +6,40 @@ active
 
 ## Objective
 
-Give a finding somewhere to go when no task is open, using the `planned` status that already
-exists and has never been used.
+Give a finding somewhere to go when it has no owning task, using the `planned` status that
+already exists and has never been used.
 
 ## Why
 
-The loop captures friction in the task's `## Problems` section. That is the only destination the
-rules name, so learning that happens with no task open has none — and merging, the last stage,
-produces exactly that. Three findings have arrived after archival and reached a home only because
-a person carried them or a fix happened to need a task.
+The loop captures friction in the task's `## Problems` section, and that is the only destination
+the rules name. Learning that arrives with no task to hold it has none.
+
+Part of that gap was self-inflicted. The rules read as though archival sealed the package, so
+anything found while merging looked orphaned — but `0007` says the opposite: an archived package
+is amended when review requires it, and immutability starts at merge. Those findings had an
+owning task the whole time.
+
+The rest is real. Once a change is accepted, editing its task rewrites merged history. Three
+findings arrived there and reached a home only because a person carried them or a fix happened to
+need a task.
 
 `planned` means "written down, not started". It was defined in the first task and has not been
-used since, across fifteen tasks. A finding that names work fits it exactly: the task lives in
-`tasks/`, which every installation has, and appears in the index, so the work is visible rather
-than held in someone's memory.
+used since, across fifteen. A finding that names work fits it exactly: the task lives in `tasks/`,
+which every installation has, and appears in the index, so the work is visible rather than held
+in someone's memory.
 
-What a planned task cannot be is a home for knowledge. `.agents/` is removable by design, and the
-task is archived or cancelled eventually, so anything a human needs has to reach the project's own
-artifacts instead. The two questions are asked independently: a finding can be both, and "should
-the project support X?" is.
+What a planned task cannot be is a home for knowledge. The layer is removable by design, and the
+task is archived or cancelled eventually, so anything that must outlive it has to reach the
+project's own artifacts. Where a project has no artifact for it, a planned task can hold the
+finding while one is established — with folding out as the condition for closing the task, not an
+intention. The two questions stay independent: a finding can be both, and "should the project
+support X?" is.
 
 ## Scope
 
-- `templates/agents/tasks/AGENTS.md` — where a finding goes when no task is open, and what a
-  planned task looks like when it holds one.
-- `decisions/0022-record-findings-as-planned-tasks.md` and the index row.
+- `templates/agents/tasks/AGENTS.md` — which findings still have an owning task, how the rest are
+  triaged, and what a planned task looks like when it holds one.
+- `decisions/0022-route-findings-without-an-owning-task.md` and the index row.
 - `OPEN-QUESTIONS.md` — remove the entry this closes.
 - One real finding, parked as a planned task, to demonstrate it.
 
@@ -42,15 +51,18 @@ the project support X?" is.
 
 ## Acceptance
 
-1. The rules say where a finding goes when no task is open, and that a project question with no
-   home is raised rather than left in the layer.
-2. The rules ask independently whether a human needs to know the finding and whether there is
-   something to do about it, allow both answers to be yes, and say the observation is recorded
-   self-contained rather than quoted.
-3. A real finding that names work is parked as a planned task, and the checks accept it —
-   `planned` status, no Outcome, listed in the index.
-4. Cancelling a task no longer skips folding durable outcomes out of it.
-5. The `OPEN-QUESTIONS.md` entry this closes is removed.
+1. The rules say a finding belongs to its task until the change is accepted, matching `0007` on
+   when a package stops being writable, so archival alone does not orphan it.
+2. The rules triage a finding with no owning task by two independent questions — whether removing
+   the layer would lose durable project knowledge, and whether there is work to do — and both
+   answers may be yes.
+3. Durable knowledge with no project artifact to hold it gets the gap named and a planned task to
+   establish one, which cannot be completed or cancelled until the knowledge is folded out.
+4. A real finding that names work is parked as a planned task, and the checks accept it —
+   `planned` status, no Outcome, listed in the index. Its self-contained account is in `Why` and
+   its provenance in `context.md`, with no `## Problems` until the work starts.
+5. Cancelling a task no longer skips folding durable outcomes out of it.
+6. The `OPEN-QUESTIONS.md` entry this closes is removed.
 
 ## Problems
 
@@ -90,7 +102,7 @@ Then a third, in the next round: the rule and `0022` were rewritten around triag
 task's own Why and `context.md` were left arguing the rejected design — that the project-layer
 route had failed and a planned task was the fallback. The contract contradicted the thing it had
 produced. A reviewer found it; nothing else would have. Narrowing the rule again in the same
-round stranded acceptance criterion 2, which still described the two routes as a distinction to
+round stranded an acceptance criterion, which still described the two routes as a distinction to
 draw rather than two questions to ask.
 
 ### Cancelling a task skips folding, and always has
@@ -142,3 +154,46 @@ no task open, and went nowhere. That it happened while writing the fix, to the p
 says the mechanism was needed rather than that someone was careless.
 The criterion was corrected to describe one entry. A scope correction, not a criterion bent to
 match a result: the second entry was never in scope because it was never there.
+
+### The rule invented an immutability the records deny
+
+Every version of this fix so far opened with the same premise: a finding produced while merging
+arrives after archival, and archived packages cannot be edited.
+Assumed: archival seals a package. It is the last stage before merge, the directory moves, and
+the rules call archived tasks history.
+Actually: `0007` says an archived package is amended if review requires it, and that immutability
+applies from merge onward. It says so in its own Consequences. The premise was contradicted by
+the record the task cites as its motivation, and I read that record while writing the task.
+So most of the gap did not exist: a finding from merging has an owning task and belongs in it.
+What survives is the case after acceptance. The mechanism is still needed, for less.
+Found in review, three rounds in. Two reviewers and I all reasoned from the wrong boundary.
+
+### The finding was filed under Problems, which means something else
+
+The rule put the observation that caused a planned task into that task's `## Problems`.
+Assumed: `## Problems` is where findings go, so a finding that becomes a task goes in the new
+task's.
+Actually: `0013` defines it as friction met *while working on that task*. A planned task has not
+started, so its problem log describing work that has not happened redefines the section — and
+duplicates `Why` and `context.md`, which already carry the reason and the provenance.
+The demonstration task had the same shape and has been rewritten.
+
+### "The layer is removable" became ".agents/ is removable"
+
+Two paragraphs written this round said `.agents/` is removable by design.
+Assumed: they are the same thing, since that is where the layer lives.
+Actually: `0018` says `.agents/` is where the layer lives, not what it is — other tools write
+there and their files are not ours to remove. The deletion test is about the layer. Saying the
+directory is removable authorises deleting someone else's data, which is the exact failure an
+adoption run hit in a real repository.
+Found in review. A distinction the project made deliberately, lost by paraphrase in new prose.
+
+### The record was named after the design that was rejected
+
+`0022` was still titled "Record findings as planned tasks" after review narrowed it to triage,
+where only actionable findings become tasks.
+Assumed: the title is a label, and the body carries the decision.
+Actually: the title is what the index shows and what anyone scanning the records reads. It
+advertised the version that had been argued out of the record two rounds earlier.
+Renamed to describe the rule. Renaming a record is normally forbidden; this one has not merged,
+and `0007` puts immutability at merge, which is the same boundary this task just got wrong.

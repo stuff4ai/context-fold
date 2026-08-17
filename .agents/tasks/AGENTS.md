@@ -48,6 +48,9 @@ task begins — not at the end, when it is updated again on archival.
 
 Sections while active: Status, Objective, Why, Scope, Out of scope, Acceptance, Problems.
 
+A `planned` task carries the same sections without Problems. That section records friction met
+while doing the work, so it opens when the work does.
+
 Keep it short. No context dumps, no execution history. Acceptance criteria must be checkable
 by someone who was not present for the work.
 
@@ -69,9 +72,9 @@ irrelevant once it ends. A question that will outlive the task belongs in the pr
 where it stays visible after this package is archived.
 
 If the project has no place for such questions, say so and ask for one. Leaving it here buries
-it: this package is archived when the task ends, and archived packages are history rather than
-current state. Moving it to a `planned` task only delays that — the layer is removable, and the
-task is archived or cancelled eventually too.
+it: this package is archived when the task ends, and once the change is accepted it is history
+rather than current state. A `planned` task can hold the question while a destination is
+established, but it is not the destination — see the triage rule below.
 
 **`plan.md`** — execution strategy. Optional.
 
@@ -91,28 +94,36 @@ Not worth recording: routine steps that went as expected.
 An empty problem log at the end of a real task means the capture failed, not that the work
 went well.
 
-### When no task is open
+## When a finding has no owning task
 
-Some things are only learned once the work is finished — most often while merging, which happens
-after the task is archived and can no longer be edited. Do not reopen an archived task, and do
-not carry the finding to whatever comes next in your head.
+A finding belongs to the task whose work produced it, and that task stays writable until the
+change is accepted. Archiving moves the package; it does not seal it. So something learned while
+merging goes in `## Problems` of the task being merged, even though its directory is already
+under `archive/`.
 
-Ask two questions. They are independent, and both can be yes.
+Past acceptance the task is history, and editing it would rewrite the record of an accepted
+change. A finding arriving then, or one belonging to no task at all, is triaged by two questions.
+They are independent, and both can be yes. Do not carry it to whatever comes next in your head.
 
-**Does a human need to know this?** Then it goes in the project's own artifacts — an open
-question, a constraint, a fact about how the project works. Not here: `.agents/` is removable by
-design, so anything kept only in the layer goes with it, and a task later archived or cancelled
-buries it just as thoroughly. If the project has nowhere for it, say so and ask.
+**Would removing the layer lose durable project knowledge — something that must stay true or
+visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
+an open question, a constraint, a fact about how the project works. The layer is removable by
+design, so nothing kept only inside it survives, and a task later archived or cancelled buries
+its contents just as thoroughly.
 
-**Is there something to do about it?** Then open a `planned` task — an investigation, a decision,
-a change. Write the observation into its `## Problems` as a self-contained account: what
-happened, what was assumed, what was actually true, and where the evidence is. Not a quotation of
-wherever you first wrote it; that text may depend on context this task does not carry. The
-Objective is what the task would achieve, and it points at the project artifact when there is
-one.
+If the project has no artifact for it, say so rather than settling for somewhere convenient. Open
+a `planned` task to establish a destination and record the knowledge there. That task holds the
+finding as operational state, not as its home: it cannot be completed or cancelled until the
+knowledge has been folded out into the project layer.
 
-"Should the project support X?" is both — something a reader needs and a decision someone must
-make. Record it, then plan it. If neither answer is yes, the observation had no reader and no
+**Does the finding call for investigation, a decision, or a change?** Then open a `planned` task
+for that work. `Why` carries the self-contained account — what happened, what was assumed, what
+was actually true — rather than a quotation of wherever you first wrote it, which may depend on
+context this task does not carry. `context.md` carries the provenance: where the evidence is and
+what it references.
+
+"Should the project support X?" is both — knowledge a reader needs and a decision someone must
+make. Record it, then plan it. If neither answer is yes, the finding had no reader and no
 consequence, and did not need keeping.
 
 ## Status

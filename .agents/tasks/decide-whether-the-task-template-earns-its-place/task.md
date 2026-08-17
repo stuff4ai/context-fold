@@ -10,13 +10,19 @@ Decide whether `templates/task/` should be kept, changed, or dropped.
 
 ## Why
 
-Five foreign runs produced five structurally correct task packages. Two copied the template and
-edited it; three wrote the package from scratch and were no worse for it. The shape is already
-carried by the rules, which list the required sections, and by the procedure, which describes
-task zero's content — so the template restates it in a third place.
+Five foreign adoption runs produced five structurally correct task packages. Three wrote the
+package from scratch and two copied the template, and all five carried every required section.
 
-Its one distinctive effect so far has been a defect it introduced: example lines written in the
-voice of real content, which two runs left in the finished package.
+The assumption behind shipping a skeleton was that this is how the shape is transmitted. The
+evidence says otherwise: `tasks/AGENTS.md` lists the required sections and `ADOPTING.md`
+describes task zero's content, so the shape arrives whether or not the template is opened. The
+template restates it in a third place, reached for about half the time.
+
+Its one distinctive effect so far has been a defect it introduced. Two example lines were added
+to `templates/task/context.md` while fixing an unrelated problem, both written in the voice of
+real entries; two runs kept the one that named a file that existed. The fix — a single braced
+placeholder — is untested, because the run after it wrote the package from scratch and never
+touched the template. The absence of residue there proves nothing.
 
 Nothing is broken today, so this is not urgent. It is recorded because the evidence exists now
 and will be harder to reconstruct later.
@@ -34,25 +40,3 @@ and will be harder to reconstruct later.
 
 1. A decision, recorded, with the evidence behind it.
 2. If the template stays, something is different about it — otherwise the evidence said nothing.
-
-## Problems
-
-### The template is used about half the time and the rules carry the load
-
-Five runs: three wrote the package from scratch, two copied the template. All five produced every
-required section, because `tasks/AGENTS.md` lists them and `ADOPTING.md` describes task zero.
-Assumed: shipping a skeleton is how the shape is transmitted.
-Actually: the rules transmit it. The template is a third statement of the same thing, reached for
-about half the time.
-Evidence: the five runs are recorded in
-`.agents/tasks/archive/2026-08-17-0116-add-init-skill/task.md`, under "The task template is
-optional in practice".
-
-### Its only distinctive effect was to introduce a defect
-
-Two example lines were added to `templates/task/context.md` while fixing an unrelated problem.
-Both were written like real entries, and two runs kept the one naming a file that existed.
-The fix — a single braced placeholder — is untested: the run after it wrote the package from
-scratch and never touched the template, so the absence of residue proves nothing.
-Evidence: same archive entry, under "Template examples written in the voice of real content
-survived as content".
