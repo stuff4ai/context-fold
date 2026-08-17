@@ -68,9 +68,10 @@ Only task-local questions belong here — things unresolved while this task runs
 irrelevant once it ends. A question that will outlive the task belongs in the project layer,
 where it stays visible after this package is archived.
 
-If the project has no place for such questions, open a `planned` task instead. Leaving one here
-buries it: this package is archived when the task ends, and archived packages are history rather
-than current state.
+If the project has no place for such questions, say so and ask for one. Leaving it here buries
+it: this package is archived when the task ends, and archived packages are history rather than
+current state. Moving it to a `planned` task only delays that — the layer is removable, and the
+task is archived or cancelled eventually too.
 
 **`plan.md`** — execution strategy. Optional.
 
@@ -93,15 +94,25 @@ went well.
 ### When no task is open
 
 Some things are only learned once the work is finished — most often while merging, which happens
-after the task is archived and can no longer be edited.
+after the task is archived and can no longer be edited. Do not reopen an archived task, and do
+not carry the finding to whatever comes next in your head.
 
-Open a `planned` task for it. The finding goes in its `## Problems` verbatim, and the Objective
-is the question to resolve: what should be done about this. It sits in the index until someone
-starts it or cancels it, which is the point — a finding nobody can see is a finding nobody acts
-on.
+Where it goes depends on what it is.
 
-This is what `planned` is for. Do not reopen an archived task, and do not carry the finding in
-your head to whatever comes next.
+**Something to do** — an investigation, a decision, a change — becomes a `planned` task. Write
+the observation into its `## Problems` as a self-contained account: what happened, what was
+assumed, what was actually true, and where the evidence is. Not a quotation of wherever you
+first wrote it; that text may depend on context this task does not carry. The Objective is what
+the task would achieve. This is what `planned` is for.
+
+**Something the project needs to know** — an open question, a constraint, a fact about how the
+project works — belongs in the project's own artifacts, not here. If the project has nowhere for
+it, say so and ask; do not leave it in the layer. `.agents/` is removable by design, so anything
+kept only here is lost when it goes, and a task that is later archived or cancelled buries it
+just as thoroughly as the package you were avoiding.
+
+Judging which is which is the work. An observation with no action and no reader is one nobody
+needed.
 
 ## Status
 
@@ -124,7 +135,9 @@ planned → active → work → verification → review → approved
         → fold outcomes → archive → final check → merge
 ```
 
-Cancelled work skips to archive.
+Cancelled work skips to archive — but not past **fold outcomes**. A task abandoned halfway may
+still have learned something the project needs, and archiving it without folding that out loses
+it exactly as completion would.
 
 The sequence is the order stages come in, not a path travelled once. Go back whenever review,
 verification, or something you find requires it — that is the normal shape of the work, not a

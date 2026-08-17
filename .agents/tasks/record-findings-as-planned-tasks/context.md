@@ -13,7 +13,7 @@ No task has ever carried the `planned` status.
   findings outside a task in the first place.
 - `decisions/0010-record-open-questions-in-project-layer.md` — this repository's own destination
   for open questions, which an adopter does not have.
-- `OPEN-QUESTIONS.md` — the two entries this closes.
+- `OPEN-QUESTIONS.md` — the entry this closes.
 
 ## Assumptions
 

@@ -44,6 +44,9 @@ required section, because `tasks/AGENTS.md` lists them and `ADOPTING.md` describ
 Assumed: shipping a skeleton is how the shape is transmitted.
 Actually: the rules transmit it. The template is a third statement of the same thing, reached for
 about half the time.
+Evidence: the five runs are recorded in
+`.agents/tasks/archive/2026-08-17-0116-add-init-skill/task.md`, under "The task template is
+optional in practice".
 
 ### Its only distinctive effect was to introduce a defect
 
@@ -51,3 +54,5 @@ Two example lines were added to `templates/task/context.md` while fixing an unre
 Both were written like real entries, and two runs kept the one naming a file that existed.
 The fix — a single braced placeholder — is untested: the run after it wrote the package from
 scratch and never touched the template, so the absence of residue proves nothing.
+Evidence: same archive entry, under "Template examples written in the voice of real content
+survived as content".

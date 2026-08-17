@@ -31,7 +31,7 @@ used since, across fifteen tasks. This is what it was for.
 - `templates/agents/tasks/AGENTS.md` — where a finding goes when no task is open, and what a
   planned task looks like when it holds one.
 - `decisions/0022-record-findings-as-planned-tasks.md` and the index row.
-- `OPEN-QUESTIONS.md` — remove the two entries this closes.
+- `OPEN-QUESTIONS.md` — remove the entry this closes.
 - One real finding, parked as a planned task, to demonstrate it.
 
 ## Out of scope
@@ -42,15 +42,59 @@ used since, across fifteen tasks. This is what it was for.
 
 ## Acceptance
 
-1. The rules say where a finding goes when no task is open, and where an outliving question goes
-   when the project has no place for one.
-2. A planned task holding a finding is described: the finding in `## Problems`, the Objective
-   being the question to resolve.
-3. A real finding from this session is parked as a planned task, and the checks accept it —
+1. The rules say where a finding goes when no task is open, and that a project question with no
+   home is raised rather than left in the layer.
+2. The rules distinguish a finding that names work from one the project needs to know, and say
+   the observation is recorded self-contained rather than quoted.
+3. A real finding that names work is parked as a planned task, and the checks accept it —
    `planned` status, no Outcome, listed in the index.
-4. The `OPEN-QUESTIONS.md` entry this closes is removed.
+4. Cancelling a task no longer skips folding durable outcomes out of it.
+5. The `OPEN-QUESTIONS.md` entry this closes is removed.
 
 ## Problems
+
+### The fix routed project knowledge into the layer the deletion test forbids
+
+The first version sent any outliving question to a `planned` task when the project had no place
+for one.
+Assumed: a planned task is a safe destination because every installation has `tasks/`.
+Actually: it is inside `.agents/`, which is removable by design, so a question humans need would
+go with it. And a planned task is archived or cancelled eventually, which buries it exactly as
+the package it was rescued from would have. The repair recreated the failure it was fixing, one
+level up, and broke the layer's own central rule doing it.
+Found in review. Nothing in the checks reads a new rule against the deletion test.
+
+### A record argued against its own decision, again
+
+`0022` listed among its consequences that the rule "will produce tasks nobody intends to start",
+and shipped anyway.
+Assumed: naming a cost is how a record stays honest.
+Actually: a cost that defeats the purpose is not a cost, it is a refutation. This exact tell was
+identified earlier in this project and written down as a reusable check — a record whose
+Consequences argue for the alternative is rationalizing rather than deciding. I wrote that check
+and then failed it.
+Second instance, and it says something about checks that live only in prose: nothing makes them
+fire. The first time it was caught by a reviewer, and so was this.
+
+### One statement changed, its twins left behind
+
+The rule gained a fallback in `tasks/AGENTS.md`; the shipped task template kept the old sentence,
+so an adopter would get opposite instructions depending on which file it read. Scope and context
+still said two `OPEN-QUESTIONS.md` entries would be removed after the criterion was corrected to
+one.
+Both found in review. Roughly the fifteenth instance in this project, and the second within a
+single task — the criterion was fixed and the scope describing it was not.
+
+### Cancelling a task skips folding, and always has
+
+Reviewing this change surfaced a defect older than it: `tasks/AGENTS.md` says cancelled work
+skips to archive, and the stage it skips past includes **fold outcomes**. A task abandoned
+halfway loses whatever durable thing it learned, by rule.
+Assumed: cancellation means the work did not produce anything worth keeping.
+Actually: it means the work was not finished. Those are different, and the second one still
+learns things.
+Fixed here because it is the same failure this task addresses — durable content with nowhere to
+go — arriving from the other end of the lifecycle.
 
 ### The second finding this task fixes had never been recorded
 
