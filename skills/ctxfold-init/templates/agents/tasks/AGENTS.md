@@ -97,22 +97,23 @@ Some things are only learned once the work is finished — most often while merg
 after the task is archived and can no longer be edited. Do not reopen an archived task, and do
 not carry the finding to whatever comes next in your head.
 
-Where it goes depends on what it is.
+Ask two questions. They are independent, and both can be yes.
 
-**Something to do** — an investigation, a decision, a change — becomes a `planned` task. Write
-the observation into its `## Problems` as a self-contained account: what happened, what was
-assumed, what was actually true, and where the evidence is. Not a quotation of wherever you
-first wrote it; that text may depend on context this task does not carry. The Objective is what
-the task would achieve. This is what `planned` is for.
+**Does a human need to know this?** Then it goes in the project's own artifacts — an open
+question, a constraint, a fact about how the project works. Not here: `.agents/` is removable by
+design, so anything kept only in the layer goes with it, and a task later archived or cancelled
+buries it just as thoroughly. If the project has nowhere for it, say so and ask.
 
-**Something the project needs to know** — an open question, a constraint, a fact about how the
-project works — belongs in the project's own artifacts, not here. If the project has nowhere for
-it, say so and ask; do not leave it in the layer. `.agents/` is removable by design, so anything
-kept only here is lost when it goes, and a task that is later archived or cancelled buries it
-just as thoroughly as the package you were avoiding.
+**Is there something to do about it?** Then open a `planned` task — an investigation, a decision,
+a change. Write the observation into its `## Problems` as a self-contained account: what
+happened, what was assumed, what was actually true, and where the evidence is. Not a quotation of
+wherever you first wrote it; that text may depend on context this task does not carry. The
+Objective is what the task would achieve, and it points at the project artifact when there is
+one.
 
-Judging which is which is the work. An observation with no action and no reader is one nobody
-needed.
+"Should the project support X?" is both — something a reader needs and a decision someone must
+make. Record it, then plan it. If neither answer is yes, the observation had no reader and no
+consequence, and did not need keeping.
 
 ## Status
 

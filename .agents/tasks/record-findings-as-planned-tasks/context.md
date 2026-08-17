@@ -25,8 +25,10 @@ No task has ever carried the `planned` status.
 ## Context conflicts
 
 `0010` puts this repository's open questions in `OPEN-QUESTIONS.md`, and the portable rule cannot
-name that file. The rule therefore treats a planned task as the fallback when a project has no
-place of its own, which leaves `0010` intact here and gives adopters a route.
+name that file. The rule therefore asks only whether a human needs to know the finding and leaves
+each installation to answer with whatever it has — `OPEN-QUESTIONS.md` here. Where a project has
+nothing, the rule says to raise that rather than absorb it into the layer. `0010` stays intact,
+and an adopter gets a question instead of a destination that would lose the answer.
 
 ## Open questions
 

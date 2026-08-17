@@ -21,7 +21,8 @@ once across fifteen.
 Two repairs were tried and rejected before this one.
 
 Naming a project-layer file would prescribe another project's layout, which
-[0011](0011-keep-the-model-vendor-neutral.md) declines to do.
+[0005](0005-agents-layer-boundary.md) declines to do: the layer constrains what may live in
+`.agents/`, not how the rest of a repository is arranged.
 
 Routing *everything* into a planned task looked simpler and fails twice over. It puts durable
 project knowledge inside `.agents/`, which the deletion test forbids — a question humans need
@@ -33,17 +34,23 @@ failure from losing findings, not an absence of one.
 
 ## Decision
 
-Where a finding goes when no task is open depends on what it is, and deciding that is the work.
+A finding arriving with no task open is routed by two questions, asked independently. Both can
+be yes.
 
-Something to do — an investigation, a decision, a change — becomes a `planned` task. The
-observation goes in its `## Problems` as a self-contained account: what happened, what was
-assumed, what was actually true, and where the evidence is. Not a quotation of wherever it was
-first written, which may depend on context the new task does not carry. The Objective is what the
-task would achieve.
+Does a human need to know it? Then it goes in the project's own artifacts — an open question, a
+constraint, a fact about how the project works. Never only in the layer: `.agents/` is removable
+by design, and a task later archived or cancelled buries its contents as thoroughly as the
+package the finding was rescued from. Where a project has nowhere for it, that is said and asked
+about rather than resolved by leaving it in the layer.
 
-Something the project needs to know — an open question, a constraint, a fact about how the
-project works — goes to the project's own artifacts. If the project has nowhere for it, that is
-said and asked about rather than resolved by leaving it in the layer.
+Is there something to do about it? Then a `planned` task is opened — an investigation, a
+decision, a change. The observation goes in its `## Problems` as a self-contained account: what
+happened, what was assumed, what was actually true, and where the evidence is. Not a quotation of
+wherever it was first written, which may depend on context the new task does not carry. The
+Objective is what the task would achieve, and it points at the project artifact when one exists.
+
+The tests are not exclusive because the cases are not. "Should the project support X?" is a
+question a reader needs and a decision someone must make.
 
 Findings during a task are unchanged: they go in that task's `## Problems`.
 
@@ -58,9 +65,10 @@ which is what decided whether the last three survived.
 The task shape forces the question of what should be done. A finding with no answer to that is
 not filed as work; it is either project knowledge or it was not worth keeping.
 
-Triage happens at capture, by whoever found the thing, and they may get it wrong. An observation
-misjudged as project knowledge goes somewhere no one revisits; one misjudged as work becomes a
-task nobody starts.
+Triage happens at capture, by whoever found the thing, and they may get it wrong. Answering the
+first question wrongly is the costly direction: a finding a reader needed, filed only as work,
+is deleted with the layer. Answering the second wrongly produces a task nobody starts, which is
+visible and cheap to cancel.
 
 Planned tasks still accumulate, and nothing prompts anyone to start or cancel one. Narrowing what
 becomes a task slows that; it does not stop it.

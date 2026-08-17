@@ -16,15 +16,15 @@ rules name, so learning that happens with no task open has none — and merging,
 produces exactly that. Three findings have arrived after archival and reached a home only because
 a person carried them or a fix happened to need a task.
 
-The obvious repair — "put it in the project layer" — is the sentence that already failed. A
-foreign run was told an outliving question belongs there, found no such place in its repository,
-and filed it into a package that gets archived.
-
-A planned task needs no project layer. It lives in `tasks/`, which every installation has, and
-appears in the index, so the finding is visible rather than buried.
-
 `planned` means "written down, not started". It was defined in the first task and has not been
-used since, across fifteen tasks. This is what it was for.
+used since, across fifteen tasks. A finding that names work fits it exactly: the task lives in
+`tasks/`, which every installation has, and appears in the index, so the work is visible rather
+than held in someone's memory.
+
+What a planned task cannot be is a home for knowledge. `.agents/` is removable by design, and the
+task is archived or cancelled eventually, so anything a human needs has to reach the project's own
+artifacts instead. The two questions are asked independently: a finding can be both, and "should
+the project support X?" is.
 
 ## Scope
 
@@ -44,8 +44,9 @@ used since, across fifteen tasks. This is what it was for.
 
 1. The rules say where a finding goes when no task is open, and that a project question with no
    home is raised rather than left in the layer.
-2. The rules distinguish a finding that names work from one the project needs to know, and say
-   the observation is recorded self-contained rather than quoted.
+2. The rules ask independently whether a human needs to know the finding and whether there is
+   something to do about it, allow both answers to be yes, and say the observation is recorded
+   self-contained rather than quoted.
 3. A real finding that names work is parked as a planned task, and the checks accept it —
    `planned` status, no Outcome, listed in the index.
 4. Cancelling a task no longer skips folding durable outcomes out of it.
@@ -85,6 +86,13 @@ one.
 Both found in review. Roughly the fifteenth instance in this project, and the second within a
 single task — the criterion was fixed and the scope describing it was not.
 
+Then a third, in the next round: the rule and `0022` were rewritten around triage, and this
+task's own Why and `context.md` were left arguing the rejected design — that the project-layer
+route had failed and a planned task was the fallback. The contract contradicted the thing it had
+produced. A reviewer found it; nothing else would have. Narrowing the rule again in the same
+round stranded acceptance criterion 2, which still described the two routes as a distinction to
+draw rather than two questions to ask.
+
 ### Cancelling a task skips folding, and always has
 
 Reviewing this change surfaced a defect older than it: `tasks/AGENTS.md` says cancelled work
@@ -95,6 +103,30 @@ Actually: it means the work was not finished. Those are different, and the secon
 learns things.
 Fixed here because it is the same failure this task addresses — durable content with nowhere to
 go — arriving from the other end of the lifecycle.
+
+### The two routes were written as a choice, and the real cases are both
+
+The triage rule said where a finding goes "depends on what it is", then described work and
+knowledge as if picking one.
+Assumed: a finding is either something to do or something to know.
+Actually: the common case is both. "Should the project support X?" is a question a reader needs
+and a decision someone must make, and an exclusive rule forces half of it to be dropped —
+silently, and with no way to tell which half. Rewritten as two independent tests, either or both
+of which can be yes.
+Found in review. The exclusive framing came from the previous round's fix, which was itself a
+narrowing of an over-broad rule: correcting too far in one direction produced the opposite defect
+rather than the middle.
+
+### The record cited a decision that does not say what it was cited for
+
+`0022` attributed "does not prescribe another project's layout" to `0011`, which is about vendor
+neutrality. `0005` is where the layer's boundary actually says it.
+Assumed: a plausible-sounding citation to a record I had read is a checked one.
+Actually: it was chosen from memory of what the records are broadly about. A wrong citation is
+worse than none — it sends a reader to a record that will not confirm the claim, and it makes the
+claim look supported to anyone who does not follow it.
+Found in review. No check reads citations for relevance; only the link target's existence is
+verified, and that passed.
 
 ### The second finding this task fixes had never been recorded
 
