@@ -35,10 +35,11 @@ exact-head check consistent."
 
 ## Assumptions
 
-- The lagging-canonical-file case is the common one, because `## Finishing` orders the Status
-  edit first and the index update third, with the directory move between them. An interruption
-  anywhere in that window leaves the index ahead. The reverse — an index edited without the task
-  — requires someone editing the derived view directly, which the rules already discourage.
+- Either file can be the stale one, so the rule must not assume. `## Finishing` orders the Status
+  edit first and the index update third, with the directory move between, so truncation leaves
+  the *task file* ahead — while the observed failure skipped the first step and left the *index*
+  ahead. Both are reachable, which is the argument for an arbiter outside both files rather than
+  a fixed winner.
 
 ## Open questions
 

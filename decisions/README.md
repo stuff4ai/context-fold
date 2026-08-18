@@ -34,3 +34,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0021 | [Separate what upgrades from what diverges](0021-separate-what-upgrades-from-what-diverges.md) | Accepted |
 | 0022 | [Route findings without an owning task](0022-route-findings-without-an-owning-task.md) | Accepted |
 | 0023 | [Approve the final state](0023-approve-the-final-state.md) | Accepted |
+| 0024 | [Settle status disagreements by the directory](0024-settle-status-disagreements-by-the-directory.md) | Accepted |
