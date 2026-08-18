@@ -33,3 +33,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0020 | [Ship an init skill](0020-ship-an-init-skill.md) | Accepted |
 | 0021 | [Separate what upgrades from what diverges](0021-separate-what-upgrades-from-what-diverges.md) | Accepted |
 | 0022 | [Route findings without an owning task](0022-route-findings-without-an-owning-task.md) | Accepted |
+| 0023 | [Approve the final state](0023-approve-the-final-state.md) | Accepted |

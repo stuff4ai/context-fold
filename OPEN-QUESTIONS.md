@@ -110,11 +110,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
   the wording every one of them uses was invented rather than derived. It is consistent by
   imitation, which is not the same as decided.
-- **The archival commit merges without review.** `0007` puts approval before archival and `0019`
-  lets the agent merge after it, so the commit that reaches `main` is not the one that was
-  approved. CI covers the mechanical part; the Outcome is the one written thing in that commit
-  and nothing verifies it. Moving approval to after archival would close this and would
-  contradict `0007`.
 - **Archive directory names can still collide.** Minute granularity makes it remote rather
   than impossible for two concurrent branches to archive under the same name.
 - **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it
@@ -122,6 +117,11 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   passed four green runs. Turning the rule on fails on archived task packages, which are history
   and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
   check exempts `archive/` — not whether to flip a flag.
+- **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
+  archival while two of its Consequences described review after it. The contradiction survived
+  acceptance, five citations by later records, and every check, because checks read structure and
+  links rather than claims. It was found by reading the record end to end, which nothing prompts
+  anyone to do — the citing habit is to quote the sentence you need.
 - **Nothing checks that a citation supports what it is cited for.** `0022` attributed a claim
   about project layout to `0011`, which is about vendor neutrality; `0005` is the actual
   authority. The link resolved, so every check passed. A wrong citation is worse than none: it

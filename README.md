@@ -65,9 +65,9 @@ Tasks are named by descriptive slug rather than ticket number, so paths stay mea
 no separate numbering system is required.
 
 A task is not complete when the coding is done. It is complete when acceptance is satisfied,
-durable outcomes have been folded into the project layer, review has happened, and the
-repository is in a coherent accepted state. Only then is it archived — inside the pull
-request, so the merge commit carries both the work and the record of the work.
+durable outcomes have been folded into the project layer, and the task is archived — all of it
+inside the pull request, so that what a reviewer approves is what merges, and the merge commit
+carries both the work and the record of the work.
 
 ## Decisions
 

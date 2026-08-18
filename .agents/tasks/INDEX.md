@@ -13,6 +13,7 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-1544-approve-after-archival](archive/2026-08-18-1544-approve-after-archival/task.md) | completed | Move the approval gate to after the final exact-head check |
 | [2026-08-18-1518-route-findings-without-an-owning-task](archive/2026-08-18-1518-route-findings-without-an-owning-task/task.md) | completed | Give a finding somewhere to go when it has no owning task |
 | [2026-08-17-0126-delete-branches-on-merge](archive/2026-08-17-0126-delete-branches-on-merge/task.md) | completed | State that merging deletes the branch, so "short-lived" holds now that agents merge |
 | [2026-08-17-0116-add-init-skill](archive/2026-08-17-0116-add-init-skill/task.md) | completed | Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what adoption is |

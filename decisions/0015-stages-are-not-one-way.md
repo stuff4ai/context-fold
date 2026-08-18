@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. The sentence that archival follows approval is narrowed by
+[0023](0023-approve-the-final-state.md), which puts approval after the final check. That
+stages are not one-way, and that returning is normal, stands.
 
 ## Context
 

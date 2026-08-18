@@ -3,7 +3,9 @@
 ## Status
 
 Accepted. Archive directory naming superseded by
-[0009](0009-order-task-index-newest-first.md); the rest stands.
+[0009](0009-order-task-index-newest-first.md); the stage order, and the sentence that approval
+authorizes archival, narrowed by [0023](0023-approve-the-final-state.md) — which is what the
+Consequences below already described. Archival before merge stands.
 
 ## Context
 

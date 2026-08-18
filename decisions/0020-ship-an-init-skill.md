@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. The instruction that the skill stop before archiving is narrowed by
+[0023](0023-approve-the-final-state.md): it now stops before merging, with the task
+finished. The rest stands.
 
 ## Context
 
