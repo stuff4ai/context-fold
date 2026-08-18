@@ -43,6 +43,17 @@ Copy the files, then compare each installed file byte-for-byte against its templ
 going further. If they differ, the copy failed; do it again rather than editing the
 installation until it matches.
 
+## Ignore what must not be committed
+
+Adoption adds a directory whose contents are checkouts, not context, and one file inside it that
+explains that. Both `.gitignore` lines the procedure gives are needed and their order matters —
+a directory excluded outright is never descended into, so the exception would never apply.
+
+Create `.gitignore` if the repository has none. Append to it if it has one; do not rewrite it.
+Then confirm the file is tracked and the directory is not, by asking the version control system
+what it sees rather than by reading the ignore rules — a negation pattern is easy to write and
+easy to get backwards.
+
 ## Supply the judgment the procedure asks for
 
 Two steps need something only a reader of this repository can provide.

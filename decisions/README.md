@@ -36,3 +36,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0023 | [Approve the final state](0023-approve-the-final-state.md) | Accepted |
 | 0024 | [Settle status disagreements by the directory](0024-settle-status-disagreements-by-the-directory.md) | Accepted |
 | 0025 | [Run tasks in parallel](0025-run-tasks-in-parallel.md) | Accepted |
+| 0026 | [Map what is under the agents directory](0026-map-what-is-under-the-agents-directory.md) | Accepted |
