@@ -104,9 +104,8 @@ merging goes in `## Problems` of the task being merged, even though its director
 under `archive/`.
 
 Past acceptance the task is history, and editing it would rewrite the record of an accepted
-change. A finding with no writable owning task — because its task was accepted, or because it
-belongs to no task at all — is triaged by two questions. They are independent, and both can be
-yes. Do not carry it to whatever comes next in your head.
+change. A finding with no writable owning task — because its task was accepted, or because no
+task owns it — is triaged by two questions. They are independent, and both can be yes. Do not carry it to whatever comes next in your head.
 
 **Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
@@ -115,9 +114,9 @@ by design, so nothing kept only inside it survives, and a task later archived or
 a reliable place to preserve durable knowledge.
 
 If the project has no artifact for it, say so rather than settling for somewhere convenient. Open
-a `planned` task to establish a destination and record the knowledge there. That task holds the
-finding as operational state, not as its home: it cannot be completed or cancelled until the
-knowledge has been folded out into the project layer.
+a `planned` task to establish a destination and coordinate moving the knowledge there. The task
+is operational state, not its home: it cannot be completed or cancelled until the knowledge has
+been folded out into the project layer.
 
 **Does the finding call for investigation, a decision, or a change?** Then open a `planned` task
 for that work. `Why` carries the self-contained account — what happened, what was assumed, what

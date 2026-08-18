@@ -41,7 +41,8 @@ support X?" is.
   triaged, what a planned task looks like when it holds one, and when a slug fixes.
 - `decisions/0022-route-findings-without-an-owning-task.md` and the index row.
 - `decisions/0006-task-package-model.md` — Status only, to record what `0022` narrows.
-- `OPEN-QUESTIONS.md` — remove the entry this closes.
+- `OPEN-QUESTIONS.md` — remove the entry this closes, and correct the supersession entry's
+  evidence, which this change adds a sixth instance to.
 - One real finding, parked as a planned task, to demonstrate it.
 
 ## Out of scope
@@ -235,3 +236,16 @@ the work continues under a new number with the commits intact. Renaming the slug
 narrowing `0006`, which fixed identity at the start of work.
 The rule now fixes all three at acceptance, which is where `0007` already put immutability. One
 rule was stricter than the others and nothing had said why.
+
+### An open question cited one instance of a pattern that had six
+
+`OPEN-QUESTIONS.md` said partial supersession was invented for `0009` superseding part of
+`0007`. Verifying that `0006`'s Status edit was legitimate turned up `0001`, `0005`, `0007`,
+`0012` and `0018` all doing the same thing, with `0006` making six.
+Assumed: an entry written when a pattern was first seen stays accurate as the pattern recurs.
+Actually: nothing revisits it. The entry read as a one-off curiosity when it is the normal way
+records are amended here — consistent by imitation, which is not the same as decided. The
+difference matters for whether the gap is worth closing.
+Found while checking a reviewer's question about whether the record format permits this at all.
+It does: `0000` names `Status` as the one exception to immutability. The mechanism was never in
+doubt; the wording around it is what nothing defines.

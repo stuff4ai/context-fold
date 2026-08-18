@@ -105,9 +105,11 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **`0003` says every commit carries a sign-off, but `0008` discards branch commits.** Only
   the squashed commit can carry the assertion. Whether "every commit" means every commit or
   every commit that reaches `main` needs a record superseding `0003`.
-- **Supersession is described as whole-record, but is usually partial.** `0009` superseded only
-  the archive naming in `0007`, whose other decision stands. The wording for that was invented
-  rather than derived from `0000`.
+- **Supersession is described as whole-record, but is usually partial.** Six records now carry a
+  Status that narrows one part and leaves the rest standing — `0001`, `0005`, `0006`, `0007`,
+  `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
+  the wording every one of them uses was invented rather than derived. It is consistent by
+  imitation, which is not the same as decided.
 - **The archival commit merges without review.** `0007` puts approval before archival and `0019`
   lets the agent merge after it, so the commit that reaches `main` is not the one that was
   approved. CI covers the mechanical part; the Outcome is the one written thing in that commit

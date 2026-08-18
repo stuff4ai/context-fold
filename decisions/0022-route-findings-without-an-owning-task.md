@@ -52,8 +52,8 @@ removable by design, and a task later archived or cancelled is not a reliable pl
 durable knowledge.
 
 Where a project has no artifact for it, the missing destination is named rather than worked
-around. A `planned` task is opened to establish one and record the knowledge there. That task is
-temporary operational state, not the home: it cannot be completed or cancelled until the
+around. A `planned` task is opened to establish one and coordinate moving the knowledge there.
+The task is operational state, not its home: it cannot be completed or cancelled until the
 knowledge has been folded into the project layer.
 
 Does the finding call for investigation, a decision, or a change? Then a `planned` task is opened
@@ -101,6 +101,13 @@ because renaming it is churn until it demonstrably confuses someone.
 A slug that can change before acceptance is a slug that can change under someone working against
 it. The window is one unmerged branch and the alternative is a permanent name for a rejected
 design, but it is not free.
+
+Nothing else depended on it, which is why the narrowing is affordable. Archival already renames
+every task directory, so the layer was built to tolerate the operation — `context.md` references
+point out of the package by repository-root path for exactly that reason, and nothing points in
+except `INDEX.md`. The checks discover tasks by reading the directory rather than by name, and
+two of them fail when the index does not match disk, so a rename that forgets the index is caught
+rather than merged.
 
 A project with no home for its own durable knowledge still has to build one, and this says to
 raise that rather than paper over it. The planned task carrying the finding meanwhile is a
