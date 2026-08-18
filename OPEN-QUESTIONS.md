@@ -120,11 +120,12 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
   the wording every one of them uses was invented rather than derived. It is consistent by
   imitation, which is not the same as decided.
-- **Same-minute archives have no defined order.** The recorded worry used to be that names
-  collide; they cannot. A directory is `{YYYY-MM-DD-HHMM}-{slug}` and two active tasks cannot
-  share a slug, because the slug *is* the directory name under `tasks/`. What is undefined is
-  order: two tasks archived in the same minute sort by slug rather than by which finished first,
-  and `0009` orders the archive newest first as though the timestamp settled it.
+- **Archive directory names can still collide, and parallel work makes it likelier.** `0009`
+  records the risk as remote rather than impossible: two branches collide only if they archive
+  within the same minute under the same slug. It is less remote now. `0025` gives each task its
+  own checkout, so two agents choose slugs without seeing each other's, and nothing on `main`
+  registers a slug that is in flight. The checks test a slug's shape and never its uniqueness
+  across branches.
 - **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it
   and `pymarkdown`'s line-length rule is off, so three lines of 141, 105 and 109 characters
   passed four green runs. Turning the rule on fails on archived task packages, which are history

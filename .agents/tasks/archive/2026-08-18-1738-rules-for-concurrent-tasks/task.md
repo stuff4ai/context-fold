@@ -174,3 +174,24 @@ directory, because it read the archive as it was after the failed move. Two mist
 visible, one not — the checks caught the second.
 Repaired by rebuilding the archive rows from disk, which is what `## Conflicts` now says to do
 with a derived file. The rule written this task fixed the mistake made finishing it.
+
+### Rewrote a correct entry into a wrong one, arguing against my own change
+
+`OPEN-QUESTIONS.md` said archive names "can still collide", which faithfully paraphrased `0009`.
+I replaced it with an entry declaring collision impossible and accusing `0009` of treating the
+timestamp as settling order.
+Assumed: the entry was inherited and unchecked, and the directory shape `{timestamp}-{slug}`
+proved collision impossible because two active tasks cannot share a slug.
+Actually: `0009`'s Consequences say both things verbatim — "two tasks archived in the same minute
+unordered relative to each other", and "concurrent branches also cannot collide on a directory
+name unless they archive within the same minute, which a day-only prefix made likely and this
+makes remote". The original entry was right; the correction was wrong; and the accusation was of
+an oversight the record does not have.
+The reasoning failed in the direction of the change being made. "Two active tasks cannot share a
+slug" holds inside one working tree. This task introduces separate checkouts per task, where two
+agents pick slugs without seeing each other's and nothing on `main` registers one in flight — so
+collision became *more* reachable in the same commit that declared it impossible.
+Third instance this session of asserting something about the project without reading the record
+that owns it: the re-entry gap `ADOPTING.md` had covered, the renumbering rule `0000` had already
+scoped, and now this. The first was caught by a verifier, the second by checking because of the
+first, and this one by a verifier again — checking is not yet a habit, it is a reaction.
