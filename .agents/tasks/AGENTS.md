@@ -10,12 +10,15 @@ paths, names, or decisions.
 Start at `INDEX.md`, beside this file. It is a derived view: each task's `task.md` owns its
 status and the index restates it for navigation.
 
-When they disagree, one of them is stale, and the task's own directory says which. Archival moves
-the package and edits both files, so an interruption anywhere in that sequence leaves them out of
-step. A package under `archive/` is finished whatever `task.md` still says; a package that is not
-under `archive/` is unfinished whatever the index says. Repair the stale one — and finish
-whatever else the interrupted archival left undone, because a disagreement here means something
-stopped half-way.
+When they disagree, one of them is stale, and the task's own directory says which. A package
+under `archive/` is finished whatever `task.md` still says; a package that is not under
+`archive/` is unfinished whatever the index says. Repair the file the directory contradicts.
+
+Then check the rest of finishing. It writes an Outcome, sets the Status, moves the package and
+updates the index, and a disagreement means that did not happen cleanly — a step can be skipped
+as easily as a sequence can be cut short, so do not assume the steps either side of the one that
+failed are sound. If the work is genuinely done and the package was never moved, complete the
+archival; the statuses follow from it.
 
 Where the directory cannot settle it — an archived task the two call `completed` and `cancelled`
 — `task.md` is right and the index needs repair.

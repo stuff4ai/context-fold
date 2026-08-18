@@ -52,10 +52,11 @@ The task's directory now settles a status disagreement. A package under `archive
 whatever `task.md` says; one that is not is unfinished whatever the index says. `task.md` still
 wins where the location cannot tell them apart, such as `completed` against `cancelled`.
 
-The arbiter works because it is the one fact neither file asserts, and because the move sits in
-the middle of the archival sequence: if it happened, the edits before it happened and the ones
-after may not. A disagreement therefore means an archival stopped part-way, and the rule now says
-to finish what else it left undone rather than only correcting the status.
+The arbiter works because it is the one fact neither file asserts, and because `0007` fixes what
+the location means. It deliberately does not reason from the order of the steps: the observed run
+did the second and third and skipped the first, so reaching a later step implies nothing about an
+earlier one. A disagreement therefore means finishing did not happen cleanly, and the rule says to
+check the whole sequence rather than only the field that disagreed.
 
 "Canonical" is gone. It was the word doing the damage — it made every disagreement the index's
 fault, which is what the foreign run's successor had to override to be right.
@@ -97,3 +98,22 @@ Actually: each is cheap and the pile is not. The Status has become a list of thi
 got wrong, which is the point at which superseding it whole is more honest than narrowing it
 again. Recorded in `0024`'s Consequences rather than acted on, because replacing `0006` is a
 larger change than this task.
+
+### The record's rationale was refuted by the record's own Context
+
+`0024` argued that the directory move "partitions the failure: if the move happened, the edits
+before it happened too". Four paragraphs above, its own evidence says the run archived the
+package, updated the index, and never set the Status — which `## Finishing` orders first.
+Assumed: an agent that reaches step two has done step one, so the sequence fails by truncation.
+Actually: it failed by skipping. A step can be omitted as easily as a run can stop, and nothing
+makes the steps atomic with each other. The argument asserted the impossibility of the failure
+the record exists to fix.
+The rule survived because it rested on a second, independent ground — the directory is the one
+fact neither file asserts — so only the reasoning was wrong. But the reasoning is the part that
+would have taught the next reader, and a record is immutable once merged.
+Found by a fresh verifier, which also noticed the claim had been copied into the Outcome and the
+assumption behind it into `context.md`. This is the second time in three tasks that a record
+contradicted itself; `0023` exists because `0007` did.
+The skipped-step model is the stronger argument and now carries the record: precisely because
+reaching a later step implies nothing about an earlier one, an inference about which file ran is
+worthless and a fact outside both is required.

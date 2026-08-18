@@ -34,13 +34,19 @@ under `archive/` is unfinished, whatever the index says. Repair whichever file t
 contradicts.
 
 The directory is the right arbiter because it is the one fact neither file asserts. Both files
-are statements about the task; the location is the task. It is also the operation in the middle
-of the sequence, so it partitions the failure: if the move happened, the edits before it happened
-too and the ones after may not.
+are statements about the task; the location is the task, and [0007](0007-archive-before-merge.md)
+fixes what the location means — a package under `archive/` is one whose work is done.
 
-A disagreement means an archival stopped part-way, so repairing the stale status is not the whole
-repair. Whatever else that sequence leaves undone — an unwritten Outcome, an index row never
-added — is undone too.
+Nothing weaker would do. It is tempting to reason from the order of the steps instead: the move
+sits in the middle, so a run that reached it must have done what comes before. The observed run
+refutes that. Setting the Status is the first step and moving the package the second, and it did
+the second, and the third, and not the first. A step can be skipped as easily as a sequence can
+be cut short, so reaching a later step implies nothing about an earlier one. That is exactly why
+a fact outside both files is needed rather than an inference about which of them ran.
+
+For the same reason, a disagreement is evidence that finishing did not happen cleanly, and the
+status is unlikely to be all that is wrong. Check the whole sequence rather than the field that
+disagreed, and do not assume the steps either side of it are sound.
 
 Where the directory cannot settle it, `task.md` is still right. An archived task called
 `completed` by one file and `cancelled` by the other is a disagreement about something the
