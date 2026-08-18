@@ -22,8 +22,9 @@
 
 ## Evidence
 
-`ctxfold-init` against `etu-forms`, first run, in
-`/home/alexengrig/etu/gitlab/it/etu-forms/monorepo/.agents/worktrees/add-context-fold`.
+`ctxfold-init` adopting the `etu-forms` monorepo, first run, in an untracked worktree on one
+workstation. The transcript is the only record of the run itself; the artifact it left is
+readable, and what matters from both is reproduced here.
 
 Gate 3 is "The task directory is under `archive/` with final Status and Outcome set." The run
 archived the package with Status `active`, ran a command whose output showed no `completed`
@@ -34,10 +35,17 @@ Status heading.
 The second run found and repaired it. The consequence for the precedence rule is
 [[fix-index-status-precedence]]; this task is about the check that let it through.
 
-Local corroboration: `route-findings-without-an-owning-task` and `approve-after-archival` both
-passed a self-run check and were then refuted by a fresh verifier — the first on two stranded
-statements, the second on a contradiction the change had introduced into the file it was
-correcting. Neither is reachable by the four gates as written.
+Local corroboration, of two kinds. `approve-after-archival` passed its self-run check and was
+then refuted by a fresh verifier, on a contradiction the change had introduced into the file it
+was correcting; that is recorded in its own package. `route-findings-without-an-owning-task` was
+corrected repeatedly by review after self-checks passed, though its record says only "found in
+review" and does not name a verifier — the claim that a verifier refuted it would be more than
+the artifacts support.
+
+A third instance is this task's own recording change, which asserted in `OPEN-QUESTIONS.md` that
+nothing describes re-entering an adopted repository. `ADOPTING.md` has carried a section titled
+"If the layer is already there" since the skill shipped, written by the same author making the
+claim. A fresh verifier caught it. None of this is reachable by the four gates as written.
 
 ## Assumptions
 

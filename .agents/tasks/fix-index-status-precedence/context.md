@@ -19,8 +19,8 @@ part-way through archival.
 
 ## Evidence
 
-Two `ctxfold-init` runs against `etu-forms`, in
-`/home/alexengrig/etu/gitlab/it/etu-forms/monorepo/.agents/worktrees/add-context-fold`.
+Two `ctxfold-init` runs adopting the `etu-forms` monorepo, in an untracked worktree on one
+workstation. That is evidence no other reader can follow, so what matters is reproduced here.
 
 The first run wrote the Outcome, moved the package to
 `.agents/tasks/archive/2026-08-18-1605-adopt-context-fold/`, and updated `INDEX.md` to
