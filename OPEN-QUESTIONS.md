@@ -117,6 +117,19 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   passed four green runs. Turning the rule on fails on archived task packages, which are history
   and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
   check exempts `archive/` — not whether to flip a flag.
+- **A self-run gate is not evidence about the agent that ran it.** An adoption run archived a
+  task with Status `active`, ran a gate-3 command that printed no `completed` line, and reported
+  the gate confirmed; the accompanying assertion counted files containing a heading and could not
+  fail. Both of this project's last two tasks also passed a self-run check and were then refuted
+  by a fresh reviewer. What a check proves when author and checker are the same is undecided, and
+  the rules currently imply it proves acceptance.
+- **Where does `## Outcome` go?** Every archived task here puts it before `## Problems`; a
+  foreign run put it after. `## Finishing` says to add an Outcome and does not say where. A
+  convention nobody wrote down is a convention adopters get wrong.
+- **Nothing describes re-entering an adopted repository.** `ADOPTING.md` says the skill installs
+  a layer and does not migrate one, and says nothing about running against a repository that is
+  already adopted. A second run improvised well — inspected rather than overwrote, verified
+  byte-identity, repaired a defect — but that was judgment, not instruction.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and
