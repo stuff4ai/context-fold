@@ -52,7 +52,9 @@ choice rather than a rule for adopters.
 - A decision record for the above, and for this project's own answers below.
 - `AGENTS.md` — where this repository's worktrees live, and that a decision number is provisional
   until merge.
-- `.gitignore` — so worktrees are not committed.
+- `.gitignore` — so worktrees are not committed, and so the one file below is.
+- `.agents/worktrees/AGENTS.md` — a project-owned marker saying the checkouts beside it are not
+  this repository's context.
 - `tests/test_conventions.py` — discovery must respect `.gitignore` rather than a hardcoded
   directory list, or the suite reads every parallel checkout as part of the repository.
 - `OPEN-QUESTIONS.md` — correct the archive-collision entry, which describes a collision that
@@ -113,14 +115,16 @@ Durable artifacts:
 - `skills/ctxfold-init/templates/agents/tasks/AGENTS.md` — a new `## Working alongside other
   tasks`, `## Conflicts` replacing `## Index conflicts`, and `## Blocked by` in the file list.
 - `AGENTS.md` — the worktree convention and provisional numbering.
-- `.gitignore` — one line.
+- `.gitignore` — two lines, because a directory excluded outright is never descended into.
+- `.agents/worktrees/AGENTS.md` — the one tracked file there, saying the checkouts beside it
+  belong to other branches.
 - `tests/test_conventions.py` — discovery asks Git what the repository contains.
 - `OPEN-QUESTIONS.md` — the archive-collision entry corrected to the problem that exists;
   two entries added for what this deliberately left undecided.
 
 Verified by building it rather than reading it: a probe worktree was created under
-`.agents/worktrees/`, both tools run, and removed. Git ignored it, the suite counted 224 both
-times, the linter stayed clean. Under the old discovery the same probe would have added 91
+`.agents/worktrees/`, both tools run, and removed. Git ignored it, the suite counted the same
+number with and without it, and the linter stayed clean. Under the old discovery the same probe would have added 91
 phantom files to a repository of 92.
 
 ## Problems
@@ -223,3 +227,19 @@ tracked and the test reported the opposite.
 Caught because `git status --porcelain -uall` disagreed with it in the same output. Re-verified
 against `git status` with a real worktree present, which is the oracle: `AGENTS.md` listed,
 the checkout absent.
+
+### Repaired the false claim in one file and left it in the file that called it a checked fact
+
+The collision claim was corrected in `OPEN-QUESTIONS.md` after a verifier refuted it. The same
+reasoning, in the same words, stayed in this package's `context.md` under the heading "Base facts
+checked rather than assumed".
+Assumed: the refuted statement lived where the verifier pointed, so repairing that closed it.
+Actually: I had written it twice in the same change — once as a project open question and once as
+the task's own base state — and repaired only the copy that was cited. The surviving copy was
+introduced by this branch, contradicted `0009` and contradicted the repair, and sat under a
+heading asserting it had been checked.
+Found by the next verifier, in the round whose whole purpose was confirming the repair.
+This is the twin-stranding pattern applied to a correction rather than to a rule, which is worse:
+a stale rule is out of date, a stale correction re-asserts something already known to be false.
+The section now keeps the claim as a disproved assumption rather than deleting it, because what
+it got wrong is the useful part.

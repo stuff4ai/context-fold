@@ -28,10 +28,14 @@ with `--respect-gitignore` and does. So a checkout under `.agents/worktrees/` wo
 to the linter and fully visible to the suite, which would then read a second copy of every
 record, every archived task and every `AGENTS.md` as though it belonged to this repository.
 
-An archive directory is `{YYYY-MM-DD-HHMM}-{slug}`. Two active tasks cannot share a slug, because
-the slug is the directory name under `.agents/tasks/`. So two archives in the same minute cannot
-collide — they differ in the slug. What is actually ambiguous is their *order*: same-minute
-archives sort by slug rather than by which finished first.
+An archive directory is `{YYYY-MM-DD-HHMM}-{slug}`, so two branches collide only by archiving in
+the same minute under the same slug. `0009` records that as remote rather than impossible.
+
+This section first claimed the collision was impossible, reasoning that two active tasks cannot
+share a slug because the slug is the directory name. That holds inside one working tree and this
+task introduces several, where each branch has a private `.agents/tasks/` and nothing on `main`
+registers a slug in flight. The claim is left here as what it was — an assumption written under a
+heading promising checked facts, and disproved by the change it was written for.
 
 ## Assumptions
 

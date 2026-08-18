@@ -73,9 +73,9 @@ waiting for and what it needs from each. Its status stays `planned`: blocked is 
 *is*, it is what the task is waiting for, and the four values describe the first. Do not start a
 task whose blockers are unmet — clear them, or change the task until it no longer needs them.
 
-**A finding belongs to the task whose work produced it**, which is not always the task you are
-in. Recording it where you happen to be is how an observation ends up archived under work it has
-nothing to do with.
+**A finding still belongs to the task whose work produced it**, as it always did. With one task
+open that was a tautology; with several it is a judgement. Recording an observation where you
+happen to be is how it ends up archived under work it has nothing to do with.
 
 ## The files
 
@@ -86,7 +86,8 @@ Sections while active: Status, Objective, Why, Scope, Out of scope, Acceptance, 
 A `planned` task carries the same sections without Problems. That section records friction met
 while doing the work, so it opens when the work does.
 
-Optional: `## Blocked by`, when the task is waiting on other work. See below.
+Optional: `## Blocked by`, when the task is waiting on other work — see *Working alongside
+other tasks* above.
 
 Keep it short. No context dumps, no execution history. Acceptance criteria must be checkable
 by someone who was not present for the work.

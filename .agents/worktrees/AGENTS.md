@@ -14,6 +14,11 @@ Do not read a worktree as part of this repository. Its `decisions/`, its task pa
 contradictory copy of everything. Current project truth is `decisions/` and `.agents/tasks/` at
 the repository root.
 
+One thing beside this file is worth opening: another task's `task.md`, to see what it claims.
+The rules ask you to read the other active tasks before starting, and while those tasks are in
+flight their packages exist only in their own branches — here. Read them as another branch's
+claims about what it holds, which is the opposite of reading them as this branch's truth.
+
 The rules that apply inside a worktree are the ones in that checkout, not this file. An agent
 working there is at the root of a full repository and should read it as one.
 
