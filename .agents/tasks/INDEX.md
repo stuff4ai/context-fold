@@ -9,12 +9,12 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
-| [declare-who-approves-a-task](declare-who-approves-a-task/task.md) | planned | Let a task declare that a fresh verifier's CONFIRMED verdict is sufficient to merge it |
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-2312-declare-who-approves-a-task](archive/2026-08-18-2312-declare-who-approves-a-task/task.md) | completed | Let a task declare that a fresh verifier's CONFIRMED verdict is sufficient to merge it |
 | [2026-08-18-2246-make-the-final-check-verifiable](archive/2026-08-18-2246-make-the-final-check-verifiable/task.md) | completed | Decide what the final exact-head check proves when self-run |
 | [2026-08-18-2053-make-the-layer-file-an-entry-point](archive/2026-08-18-2053-make-the-layer-file-an-entry-point/task.md) | completed | Make `.agents/AGENTS.md` a map of what is under it and who owns each part |
 | [2026-08-18-1738-rules-for-concurrent-tasks](archive/2026-08-18-1738-rules-for-concurrent-tasks/task.md) | completed | Say what the rules mean when tasks run in parallel |

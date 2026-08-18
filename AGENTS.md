@@ -12,7 +12,9 @@ are recommended anywhere else.
 - Prefer plain files and Git-friendly workflows.
 - Do not introduce unrelated changes.
 - Do not push directly to `main`.
-- Do not merge a pull request until a human has approved it. After that, merging is yours to do.
+- Do not merge a pull request until it is approved — a human's, by default, or a fresh
+  verifier's `CONFIRMED` verdict when the task's own `## Approval` says so. After that,
+  merging is yours to do.
 - Update documentation when behavior or conventions change.
 - After changing `skills/ctxfold-init/templates/`, reinstall `.agents/` from it before finishing
   — copy the `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.

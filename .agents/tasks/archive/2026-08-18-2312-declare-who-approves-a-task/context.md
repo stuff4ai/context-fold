@@ -40,6 +40,6 @@ verdict, traceable from the pull request or the Outcome. Deferred — out of sco
 turn out that the Outcome recording it, as this session's tasks already do by habit, is enough
 without a check forcing it.
 
-Whether `0023` needs a cross-reference to this at all, given its language already covers a
-non-human reviewer without saying so explicitly. A judgment call for whoever starts this task,
-not settled here.
+Resolved while working: `0023`'s Decision needed nothing — it already covers a non-human
+reviewer without saying so explicitly. Its Consequences did: "What a human approves is what
+merges" stated the old norm as universal. Narrowed alongside `0019`.

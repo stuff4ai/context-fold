@@ -4,7 +4,10 @@
 
 Accepted. What approval authorizes is narrowed by
 [0023](0023-approve-the-final-state.md) to the merge alone, since folding, archival and
-the final check now precede it. That an agent may merge stands.
+the final check now precede it. Who may give it is narrowed by
+[0028](0028-let-a-task-declare-its-own-approver.md): a human by default, or a fresh verifier's
+`CONFIRMED` verdict when the task itself says so. That an agent may merge stands, and that an
+unapproved agent may not is unchanged.
 
 ## Context
 
