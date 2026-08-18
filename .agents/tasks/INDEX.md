@@ -10,6 +10,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
 | [make-the-final-check-verifiable](make-the-final-check-verifiable/task.md) | planned | Decide what the final exact-head check proves when self-run |
+| [make-the-layer-file-an-entry-point](make-the-layer-file-an-entry-point/task.md) | planned | Make `.agents/AGENTS.md` a map of what is under it and who owns each part |
 
 ## Archive
 
