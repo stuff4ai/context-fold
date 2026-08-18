@@ -127,9 +127,9 @@ step.
 Assumed: renumbering headings is mechanical, so a script that renumbers them finishes the job.
 Actually: the numbers are also referred to in prose, where no renumbering script looks. The
 reference now names the step rather than its position, which cannot go stale.
-Found by grepping for step and section numbers before finishing, rather than by review. That is
-the first time this session a twin was caught by sweeping for the specific shape of the change
-rather than by a verifier.
+Found by grepping for step and section numbers before finishing. I recorded that as the first
+twin this session caught by sweeping rather than by a verifier. The sweep was incomplete and the
+claim was premature — see below.
 
 ### Shipping a shape on one worked example, knowingly, for the second time
 
@@ -140,3 +140,36 @@ Taken anyway because the failure it prevents was measured rather than imagined, 
 entry point referencing a file adopters do not have would be worse.
 Recorded in `0026`'s Consequences so the next person to weigh it knows the bet was repeated with
 open eyes rather than forgotten.
+
+### The new heading landed inside the step it was meant to follow
+
+`## 2. Ignore the worktrees directory` was inserted after the paragraph about which templates are
+copied once. Four paragraphs of installation content came after that point — the byte-copy
+mandate, why the rule files must stay identical, how `INDEX.md` diverges, and not to edit a rule
+that does not fit — and all of them ended up under the ignore heading.
+Assumed: the paragraph I anchored to was the end of step 1, because it read like a closing
+thought.
+Actually: step 1 continued for another sixteen lines. An adopter would have read "skip the
+directory and its file entirely" and then, still inside that skippable step, the instruction the
+whole distribution model rests on: copy the files, do not retype them.
+Found by a verifier. Moved to after step 1's content, where it was meant to go.
+
+### Swept for one spelling of the thing and called it done
+
+The renumbering sweep grepped for `step [0-9]` and `section [0-9]`. `ADOPTING.md:3` said "Three
+steps, by hand" and there are now four.
+Assumed: references to a step number are written as digits.
+Actually: the most prominent one is a spelled-out count in the first line of the document, which
+matches neither pattern. It shipped stale in the distribution and its installation.
+Both this and the entry above come from the same habit: doing the check I thought of, then
+recording that the check worked. The entry above now says so.
+
+### Wrote the problem log through a shell that ate the backticks
+
+The two entries above were written with an unquoted heredoc, so the shell substituted every
+backtick-quoted span as a command before Python saw the text. `` `INDEX.md` `` became empty, and
+the entries shipped with holes where the file names should be.
+Assumed: a heredoc passes its body through unchanged.
+Actually: only a quoted one does. Every other write this session used the same unquoted form and
+happened not to contain backticks in a position the shell would expand.
+Caught by reading the file after writing it, which is not something I do by default.

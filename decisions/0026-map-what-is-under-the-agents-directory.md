@@ -50,7 +50,9 @@ point references the file, so an adopter needs one; and the `.gitignore` negatio
 writes names that exact path, so a negation with nothing behind it does nothing.
 
 The procedure gains a step: ignore `.agents/worktrees/` and except that one file, creating
-`.gitignore` if the repository has none and appending if it has one.
+`.gitignore` if the repository has none and appending if it has one. That makes
+[0017](0017-adoption-procedure.md)'s enumeration of what adoption copies and does incomplete, so
+its Status is narrowed too.
 
 This narrows `0025`, which called worktrees "this project's workflow, not part of the layer".
 Shipping something is not the same as making it part of the layer — the distribution already

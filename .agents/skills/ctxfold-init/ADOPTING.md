@@ -1,6 +1,6 @@
 # Adopting context-fold
 
-How a repository takes on the agent layer. Three steps, by hand — there is no installer.
+How a repository takes on the agent layer. Four steps, by hand — there is no installer.
 
 This works the same for an empty repository and one with years of history. What changes is
 the pointer step, where an existing `AGENTS.md` is added to rather than created.
@@ -58,6 +58,23 @@ must stay byte-identical to its template for as long as it is installed. `INDEX.
 matching the moment you record your first task, and `worktrees/AGENTS.md` describes a workflow
 this project may not share — both are yours once copied.
 
+**Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
+and then confirm every installed file is byte-for-byte identical to its template. Reproducing
+the contents from what you have read produces files that look right and differ: a rewrapped
+line, a dropped paragraph, a missing file. Those differences are invisible on reading and break
+every future comparison against the distribution.
+
+The `AGENTS.md` files are identical in every installation and carry no project-specific paths,
+names, or decisions — that is what makes them replaceable when the rules change, and that
+property survives only if the copy is exact.
+
+`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never
+again — replacing the rule files later means copying `templates/agents/` over `.agents/`, which
+leaves your index alone.
+
+If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
+edited rule file stops being upgradable and starts being yours.
+
 ## 2. Ignore the worktrees directory
 
 `.agents/worktrees/` holds parallel checkouts, which must not be committed — except the file you
@@ -77,23 +94,6 @@ other than Git, do the equivalent, and say what you did.
 
 If this project will never keep more than one checkout at a time, skip the directory and its
 file entirely and say so — nothing else depends on them.
-
-**Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
-and then confirm every installed file is byte-for-byte identical to its template. Reproducing
-the contents from what you have read produces files that look right and differ: a rewrapped
-line, a dropped paragraph, a missing file. Those differences are invisible on reading and break
-every future comparison against the distribution.
-
-The `AGENTS.md` files are identical in every installation and carry no project-specific paths,
-names, or decisions — that is what makes them replaceable when the rules change, and that
-property survives only if the copy is exact.
-
-`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never
-again — replacing the rule files later means copying `templates/agents/` over `.agents/`, which
-leaves your index alone.
-
-If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
-edited rule file stops being upgradable and starts being yours.
 
 ## 3. Point at the layer
 
