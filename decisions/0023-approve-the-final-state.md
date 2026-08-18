@@ -2,7 +2,10 @@
 
 ## Status
 
-Accepted
+Accepted. The Consequence that a human is who approves is narrowed by
+[0028](0028-let-a-task-declare-its-own-approver.md): a fresh verifier's `CONFIRMED` verdict
+may stand in, when the task itself says so. That approval is the last gate, and precedes
+the merge, stands.
 
 ## Context
 

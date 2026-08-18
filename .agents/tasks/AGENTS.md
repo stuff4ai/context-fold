@@ -87,7 +87,8 @@ A `planned` task carries the same sections without Problems. That section record
 while doing the work, so it opens when the work does.
 
 Optional: `## Blocked by`, when the task is waiting on other work — see *Working alongside
-other tasks* above.
+other tasks* above. `## Approval`, who satisfies review and approval when it is not the
+project's default — see *Who approves* below.
 
 Keep it short. No context dumps, no execution history. Acceptance criteria must be checkable
 by someone who was not present for the work.
@@ -218,6 +219,35 @@ human would need that currently exists only inside the task package must be move
 project's own artifacts — documentation, a decision record, the code — before archival.
 Whatever is left behind is lost.
 
+## Who approves
+
+A task's `## Approval` says who satisfies review and approval. Two values:
+
+**Human** — the project's default, and what applies when a task carries no `## Approval` at
+all. Whatever this project's own workflow defines as review and approval, a human is the one
+who gives it.
+
+**Verifier** — a fresh verifier's `CONFIRMED` verdict against this task's own acceptance criteria
+satisfies review and approval instead. Fresh means a different agent from whoever did the
+work, with no memory of doing it — the standard a check needs to be evidence rather than a
+verdict, applied by someone other than the author. A self-run check, however thorough, is
+never this.
+
+Declare it when the task is written, alongside `## Scope` — not partway through the work, and
+not by the agent doing the work deciding, once it is underway, that it would rather not wait. A
+task that changes its own approval mode mid-flight is exempting itself from the thing that
+would have caught the change.
+
+Two kinds of task need a human regardless of a project's stated default. A task whose scope is
+the approval mechanism itself — what these values mean, who may set them, what a verifier's
+confirmation is worth — cannot authorize its own bypass. And a task whose acceptance criteria
+leave a real, undecided choice for whoever reviews it, not a claim to check but a direction to
+pick, needs a chooser rather than a checker: a verifier confirms or refutes a claim, and has
+nothing to return against an open question.
+
+Everything else is a judgment call for whoever writes the task, the same as `## Scope` and
+`## Blocked by` already are.
+
 ## Finishing
 
 1. Set the final Status and add an Outcome to `task.md`: what happened, and which durable
@@ -226,8 +256,9 @@ Whatever is left behind is lost.
    minute it left active state.
 3. Update `INDEX.md`.
 4. Run the final exact-head check.
-5. Submit the change for review, and stop. What a reviewer sees is now the whole change: the
-   work, the record of the work, and the repository in the state that merging would accept.
+5. Submit the change for review, and stop until it is given — see *Who approves* for what
+   gives it. What a reviewer sees is now the whole change: the work, the record of the work,
+   and the repository in the state that merging would accept.
 6. Merge once approved.
 
 ## Final exact-head check

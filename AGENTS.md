@@ -12,7 +12,9 @@ are recommended anywhere else.
 - Prefer plain files and Git-friendly workflows.
 - Do not introduce unrelated changes.
 - Do not push directly to `main`.
-- Do not merge a pull request until a human has approved it. After that, merging is yours to do.
+- Do not merge a pull request until it is approved — a human's, by default, or a fresh
+  verifier's `CONFIRMED` verdict when the task's own `## Approval` says so. After that,
+  merging is yours to do.
 - Update documentation when behavior or conventions change.
 - After changing `skills/ctxfold-init/templates/`, reinstall `.agents/` from it before finishing
   — copy the `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
@@ -53,7 +55,8 @@ Use GitHub Flow:
 3. Open a pull request. Its description becomes the commit message on `main`, so write it as
    a record of the change — not as a note to the reviewer, and with nothing that stops being
    true once merged.
-4. Wait for a human to approve it.
+4. Wait for approval — a human's, by default, or a fresh verifier's `CONFIRMED` verdict
+   when the task's own `## Approval` says so.
 5. Squash merge, and delete the branch. Branches are short-lived; merging is when one ends.
 
 Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit
