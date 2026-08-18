@@ -173,8 +173,9 @@ mean. The rule is only that a change is archived before it is reviewed, and revi
 is accepted, not that acceptance happens through any particular mechanism.
 
 A task is not complete when the coding is done. It is complete when acceptance is satisfied,
-durable outcomes have been folded into the project layer, review has happened, and the
-repository is in a coherent accepted state.
+durable outcomes have been folded into the project layer, and the package is archived. All of
+that happens before review, so what is approved is the finished state rather than a promise of
+one.
 
 **Fold outcomes** is the stage most easily skipped and the most costly to skip. Anything a
 human would need that currently exists only inside the task package must be moved into the

@@ -39,6 +39,8 @@ Sixteen merges have gone through the early gate. The seventeenth was
 - `decisions/0007-archive-before-merge.md` — Status only, recording what this narrows.
 - `decisions/0019-agents-may-merge-after-approval.md` — Status only; approval authorizes the
   merge, not the folding and archival ahead of it.
+- `decisions/0015-stages-are-not-one-way.md` — Status only. It restates the order and was missed
+  by the first sweep.
 - A new decision record for the corrected order.
 - `templates/agents/tasks/AGENTS.md` — `## Stages`, `## Finishing`, and the sentence in Stages
   that says archival follows approval.
@@ -83,6 +85,7 @@ Durable artifacts:
 - `decisions/0023-approve-the-final-state.md` — the decision.
 - `decisions/0007-archive-before-merge.md` — Status: stage order and "approval authorizes
   archival" narrowed. Archival before merge, which is what the record is about, stands.
+- `decisions/0015-stages-are-not-one-way.md` — Status: its restatement of the order narrowed.
 - `decisions/0019-agents-may-merge-after-approval.md` — Status: approval authorizes the merge
   alone.
 - `decisions/0020-ship-an-init-skill.md` — Status: the skill stops before merging, not before
@@ -96,7 +99,8 @@ Durable artifacts:
   produced it, that nothing checks a record against itself.
 
 This task is the first to run under the new order: everything above was written, folded and
-archived before approval was requested.
+archived before approval was requested. It is also the first whose archived package was amended
+after review, which `0007` always permitted and nothing had exercised.
 
 ## Problems
 
@@ -127,3 +131,32 @@ record whose body cannot be edited at all — it needed a Status narrowing inste
 different repair than the one the other four needed.
 Found by sweeping rather than by reasoning about where the rule lives, which is the only method
 that has ever worked on this in this project.
+
+### The sweep that found two missed a third, and a verifier found it
+
+A fresh-context verifier was asked to check the claim and returned REFUTED.
+`0015-stages-are-not-one-way.md` says "archival follows approval and precedes acceptance" as a
+binding ordering constraint, citing `0007` for it.
+Assumed: sweeping for the rule's vocabulary across the rules, the skill, the procedure and the
+README had found every statement of the order, because it found two nobody expected.
+Actually: `0015` is *about* the stage sequence, so it restates the order as background before
+making its own point. A record whose subject is adjacent to the rule is exactly where a
+restatement hides, and it was the one place a sweep motivated by "where is this rule taught"
+would not look. It was also synchronized with the sentence in `tasks/AGENTS.md` once before —
+the archived `record-iterative-stages` task records fixing both together — so the two had been
+kept in step and this change broke the pair.
+The criterion said "every statement of the order in every artifact agrees". It did not, and the
+criterion was not softened to match; `0015` gained a Status narrowing like the other three.
+
+### The change introduced a contradiction inside the file it was correcting
+
+`tasks/AGENTS.md` said a task "is complete when acceptance is satisfied, durable outcomes have
+been folded into the project layer, review has happened, and the repository is in a coherent
+accepted state" — while its own `## Finishing` sets Status `completed` and archives at steps 1
+and 2, before submitting for review at step 5.
+Assumed: rewriting the twin of that sentence in `README.md` was the whole edit.
+Actually: the sentence exists in both, and only the README copy was rewritten. So this change
+took a file that disagreed with itself about the order and left it disagreeing with itself about
+completion, while newly disagreeing with the README as well. One defect traded for another, in
+the file the task is about.
+Found by the same verifier, as a second instance of the class named in the entry above.
