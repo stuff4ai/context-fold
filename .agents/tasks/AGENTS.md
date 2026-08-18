@@ -7,8 +7,18 @@ paths, names, or decisions.
 
 ## Finding work
 
-Start at `INDEX.md`, beside this file. It is a derived view — each task's `task.md` owns its
-canonical status. If they disagree, `task.md` is right and the index needs repair.
+Start at `INDEX.md`, beside this file. It is a derived view: each task's `task.md` owns its
+status and the index restates it for navigation.
+
+When they disagree, one of them is stale, and the task's own directory says which. Archival moves
+the package and edits both files, so an interruption anywhere in that sequence leaves them out of
+step. A package under `archive/` is finished whatever `task.md` still says; a package that is not
+under `archive/` is unfinished whatever the index says. Repair the stale one — and finish
+whatever else the interrupted archival left undone, because a disagreement here means something
+stopped half-way.
+
+Where the directory cannot settle it — an archived task the two call `completed` and `cancelled`
+— `task.md` is right and the index needs repair.
 
 The archive is listed newest first: it only grows, so the most recent work belongs at the top
 where it is read. Active tasks are listed by slug, in no meaningful order.
@@ -208,3 +218,6 @@ At the branch head, confirm all four:
 `INDEX.md` is one file that every concurrent task touches, so conflicts are normal. Do not
 resolve them by hand — rebuild the affected rows from the task directories, sorting archived
 tasks by directory name descending and active tasks ascending.
+
+Rebuilding copies each `task.md`'s status, so settle any disagreement first. Regenerating from a
+stale task file produces an index that agrees with it and is wrong twice.

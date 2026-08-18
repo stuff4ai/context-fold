@@ -117,12 +117,12 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   passed four green runs. Turning the rule on fails on archived task packages, which are history
   and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
   check exempts `archive/` — not whether to flip a flag.
-- **The index precedence rule is wrong in the failure that actually occurs.** `tasks/AGENTS.md`
-  says a disagreeing index "needs repair" because `task.md` owns canonical status. Archival edits
-  the Status first and the index third, with the directory move between, so an agent that stops
-  in that window leaves the derived view correct and the canonical file stale. Observed adopting
-  `etu-forms`: the index said `completed`, the archived task said `active`, and following the
-  rule literally would have reverted a finished task. Every installation carries this.
+- **`INDEX.md`'s header states rules but cannot be upgraded or checked.** `0021` moved
+  `INDEX.md` out of `templates/agents/` because its rows are the installation's own, and the
+  identity check follows that boundary. Its header is not the installation's own — it restates
+  the precedence rule — so a correction to that rule reaches new adopters and no existing one,
+  and nothing detects when a shipped header and an installed one diverge. Either the header
+  carries no rules, or something has to bind it.
 - **A self-run gate is not evidence about the agent that ran it.** An adoption run archived a
   task with Status `active`, ran a gate-3 command that printed no `completed` line, and reported
   the gate confirmed; the accompanying assertion counted files containing a heading and could not

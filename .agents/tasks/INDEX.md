@@ -1,20 +1,21 @@
 # Tasks
 
-Derived navigation view. Each task's `task.md` owns its canonical status — if this table
-disagrees with a task file, the task file is right and this table needs repair.
+Derived navigation view. Each task's `task.md` owns its status and this table restates it. When
+they disagree, the task's directory says which is stale: a package under `archive/` is finished
+whatever `task.md` says, and one that is not is unfinished whatever this table says.
 
 ## Active
 
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
-| [fix-index-status-precedence](fix-index-status-precedence/task.md) | planned | Correct which file wins when the index and a task disagree |
 | [make-the-final-check-verifiable](make-the-final-check-verifiable/task.md) | planned | Decide what the final exact-head check proves when self-run |
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-1640-fix-index-status-precedence](archive/2026-08-18-1640-fix-index-status-precedence/task.md) | completed | Correct which file wins when the index and a task disagree |
 | [2026-08-18-1544-approve-after-archival](archive/2026-08-18-1544-approve-after-archival/task.md) | completed | Move the approval gate to after the final exact-head check |
 | [2026-08-18-1518-route-findings-without-an-owning-task](archive/2026-08-18-1518-route-findings-without-an-owning-task/task.md) | completed | Give a finding somewhere to go when it has no owning task |
 | [2026-08-17-0126-delete-branches-on-merge](archive/2026-08-17-0126-delete-branches-on-merge/task.md) | completed | State that merging deletes the branch, so "short-lived" holds now that agents merge |
