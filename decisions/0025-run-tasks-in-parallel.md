@@ -61,8 +61,8 @@ ignore and says so in place, because the directory is reachable from the main ch
 agent that wanders into it would otherwise find a second copy of every record and task package
 with nothing marking them as another branch's. And a decision number is provisional until
 merge — `0000` already says a record on a branch is a proposal, so whichever branch merges first
-keeps the number and the other renumbers. That is ordinary rather than a breach of "never renumber", which
-governs records that have landed.
+keeps the number and the other renumbers. That is ordinary rather than a breach of "never
+renumber", which governs records that have landed.
 
 ## Consequences
 
