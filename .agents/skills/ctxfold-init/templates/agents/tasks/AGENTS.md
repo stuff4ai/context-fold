@@ -232,12 +232,31 @@ Whatever is left behind is lost.
 
 ## Final exact-head check
 
-At the finished state of the change, confirm all four:
+At the finished state of the change, produce the evidence for all four — not a verdict, the
+evidence itself, in a form someone other than you could read and judge:
 
 1. Each acceptance criterion in `task.md` is satisfied.
 2. No durable outcome exists only inside the layer — remove it mentally and see what is lost.
 3. The task directory is under `archive/` with final Status and Outcome set.
 4. `INDEX.md` matches the directories on disk.
+
+Running this check does not mean the change is accepted. It means the change is ready to be
+looked at by someone who did not write it — review, next in the sequence, is where that happens.
+A pass here is necessary and never sufficient, whoever runs it: the person closest to a claim is
+the worst-placed to test it, which is true of this check for exactly the reason it is true of the
+work itself.
+
+The first two are judgment about what this task itself claims. No script settles whether an
+acceptance criterion is met or whether something durable was left only in the layer — reading the
+diff against the claim is the check, and doing that once, as the person who already believes the
+claim, is weak evidence. It is what a second reader needs, not a substitute for one.
+
+The last two are facts about the repository as it stands, and facts can be checked plainly: a
+path either is or is not under `archive/`; a table either does or does not match a directory
+listing. Read the actual content — the file, the table — not a count or a summary that reports
+success regardless of what the content says. A check whose verdict cannot disagree with its own
+evidence is not a check: if nothing you could observe would make it report failure, it is not
+testing the thing it claims to.
 
 ## Conflicts
 
