@@ -7,6 +7,7 @@ disagrees with a task file, the task file is right and this table needs repair.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [approve-after-archival](approve-after-archival/task.md) | active | Move the approval gate to after the final exact-head check |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
 
 ## Archive
