@@ -32,8 +32,9 @@ The deletion test:
 
 > If humans need this information too, it does not belong only in the layer.
 
-Remove the layer — these `AGENTS.md` files, the index, and the tasks — and read what remains. The test fails if knowledge was lost, if something a human needs to
-understand or maintain the project is now gone. Anything lost that way was in the wrong layer.
+Remove the layer — these `AGENTS.md` files, the index, and the tasks — and read what remains.
+The test fails if knowledge was lost, if something a human needs to understand or maintain the
+project is now gone. Anything lost that way was in the wrong layer.
 
 It does not fail on references to the layer. Removing it is an ordinary change, and whatever
 pointed at it is updated in the same change.
