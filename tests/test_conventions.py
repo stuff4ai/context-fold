@@ -13,6 +13,7 @@ is correct, consistent with what is already decided, or worth reading.
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -51,7 +52,24 @@ FENCE = re.compile(r"^```.*?^```", re.M | re.S)
 CODE_SPAN = re.compile(r"`[^`\n]*`")
 
 
-IGNORED_DIRS = {".git", ".venv", ".idea", ".vscode"}
+def _visible_markdown() -> list[Path]:
+    """Every Markdown file Git would consider part of the repository.
+
+    Tracked files plus untracked ones Git does not ignore. Asking Git rather than
+    keeping a list here means the suite and the linter agree about what the
+    repository contains — the linter already runs with `--respect-gitignore`. It
+    also keeps parallel checkouts under `.agents/worktrees/` out of the suite,
+    which would otherwise read a second copy of every record as though it were
+    this one.
+    """
+    out = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z", "*.md"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return sorted(ROOT / name for name in out.stdout.split("\0") if name)
 
 
 def markdown_files() -> list[Path]:
@@ -62,11 +80,7 @@ def markdown_files() -> list[Path]:
     checking the shape of a form. Hidden *directories* are still walked — `.agents/` is
     where half the repository lives.
     """
-    return sorted(
-        p
-        for p in ROOT.rglob("*.md")
-        if not IGNORED_DIRS.intersection(p.parts) and not p.name.startswith(".")
-    )
+    return [p for p in _visible_markdown() if not p.name.startswith(".")]
 
 
 def archived_tasks() -> list[Path]:

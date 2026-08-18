@@ -57,6 +57,26 @@ Add the task to `INDEX.md` under Active as soon as the directory exists. The ind
 view of what is on disk, so a task missing from it makes the index wrong from the moment the
 task begins — not at the end, when it is updated again on archival.
 
+## Working alongside other tasks
+
+More than one task can be open at once. Before starting, read the other active ones: their
+`task.md` says what they are touching, and yours has to fit around it.
+
+**Scope is declared by section, not only by file.** Two tasks may hold the same file when they
+hold different parts of it, and that is the ordinary case rather than an exception. Name the
+sections in `## Scope` when a file is shared, so the boundary is written down instead of assumed.
+Where two tasks genuinely need the same section, one of them owns it and the other says so in
+`## Out of scope`.
+
+**A task that cannot start yet says why.** Add `## Blocked by` to `task.md`, listing what it is
+waiting for and what it needs from each. Its status stays `planned`: blocked is not what a task
+*is*, it is what the task is waiting for, and the four values describe the first. Do not start a
+task whose blockers are unmet — clear them, or change the task until it no longer needs them.
+
+**A finding still belongs to the task whose work produced it**, as it always did. With one task
+open that was a tautology; with several it is a judgement. Recording an observation where you
+happen to be is how it ends up archived under work it has nothing to do with.
+
 ## The files
 
 **`task.md`** — the contract.
@@ -65,6 +85,9 @@ Sections while active: Status, Objective, Why, Scope, Out of scope, Acceptance, 
 
 A `planned` task carries the same sections without Problems. That section records friction met
 while doing the work, so it opens when the work does.
+
+Optional: `## Blocked by`, when the task is waiting on other work — see *Working alongside
+other tasks* above.
 
 Keep it short. No context dumps, no execution history. Acceptance criteria must be checkable
 by someone who was not present for the work.
@@ -216,11 +239,20 @@ At the branch head, confirm all four:
 3. The task directory is under `archive/` with final Status and Outcome set.
 4. `INDEX.md` matches the directories on disk.
 
-## Index conflicts
+## Conflicts
 
-`INDEX.md` is one file that every concurrent task touches, so conflicts are normal. Do not
-resolve them by hand — rebuild the affected rows from the task directories, sorting archived
-tasks by directory name descending and active tasks ascending.
+Files that every task touches will conflict, and how to resolve one depends on what kind of file
+it is.
 
-Rebuilding copies each `task.md`'s status, so settle any disagreement first. Regenerating from a
-stale task file produces an index that agrees with it and is wrong twice.
+A **derived** file restates what is already true somewhere else. Do not merge it by hand: rebuild
+it from its sources and the conflict is gone. `INDEX.md` is one — rebuild the affected rows from
+the task directories, sorting archived tasks by directory name descending and active tasks
+ascending. Rebuilding copies each `task.md`'s status, so settle any disagreement first;
+regenerating from a stale task file produces an index that agrees with it and is wrong twice.
+
+An **authored** file says something no other file says. Merge it like any other prose — read both
+sides and write what is true of both. Nothing can regenerate it, so a conflict resolved carelessly
+loses content and nothing will say so.
+
+If you cannot tell which a file is, ask what deleting it would cost. A derived file can be built
+again from what remains; an authored one is gone.

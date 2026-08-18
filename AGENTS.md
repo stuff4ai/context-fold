@@ -16,6 +16,12 @@ are recommended anywhere else.
 - Update documentation when behavior or conventions change.
 - After changing `skills/ctxfold-init/templates/`, reinstall `.agents/` from it before finishing
   — copy the `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
+- Work on more than one task at a time in Git worktrees under `.agents/worktrees/{task-slug}`,
+  which Git ignores. They are checkouts, not context. See
+  [`.agents/worktrees/AGENTS.md`](.agents/worktrees/AGENTS.md), which is the one tracked file
+  there. This is this project's workflow, not part of the layer — `.agents/tasks/AGENTS.md` says
+  how concurrent tasks share files and declare what blocks them, and names no version control
+  system.
 
 ## Decisions
 
@@ -24,6 +30,11 @@ proposing a change, and add a record when a change introduces or replaces one.
 
 Accepted records are immutable apart from their `Status` field. Supersede them with a new
 record; do not rewrite them and do not renumber.
+
+A record on a branch is a proposal ([0000](decisions/0000-use-decision-records.md)), so its
+number is provisional. Two branches can reach for the same one; whichever merges first keeps it,
+and the other renumbers before merge. That is ordinary, not a violation of the rule above, which
+governs records that have landed.
 
 ## Agent layer
 
