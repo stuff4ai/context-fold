@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -65,6 +65,38 @@ Sixteen merges have gone through the early gate. The seventeenth was
 5. A human approving a pull request built under these rules is looking at the Outcome, the
    archived package, and the updated index.
 6. The `OPEN-QUESTIONS.md` entry this closes is removed.
+
+## Outcome
+
+Approval is now the last gate before merge. The order is work, verification, fold outcomes,
+archive, index, final exact-head check, review, approve, merge. Review and approval collapsed
+into one look at the final state rather than two looks at different ones.
+
+The gap turned out not to be the trade-off `OPEN-QUESTIONS.md` recorded. `0007` had been
+internally inconsistent since it was accepted: its Decision ordered approval fourth while two of
+its Consequences described review happening after archival. Closing the gap satisfies `0007`
+instead of contradicting it. The entry had been written from the Decision alone, which is also
+how the record was cited five times without anyone noticing.
+
+Durable artifacts:
+
+- `decisions/0023-approve-the-final-state.md` — the decision.
+- `decisions/0007-archive-before-merge.md` — Status: stage order and "approval authorizes
+  archival" narrowed. Archival before merge, which is what the record is about, stands.
+- `decisions/0019-agents-may-merge-after-approval.md` — Status: approval authorizes the merge
+  alone.
+- `decisions/0020-ship-an-init-skill.md` — Status: the skill stops before merging, not before
+  archiving.
+- `skills/ctxfold-init/templates/agents/tasks/AGENTS.md` — `## Stages` and `## Finishing`, which
+  had disagreed with each other, now agree with each other and with `0007`'s Consequences.
+- `skills/ctxfold-init/SKILL.md` and `ADOPTING.md` — an adopting agent now finishes the task and
+  stops before merging.
+- `README.md` — the front door no longer describes archival as following the accepted state.
+- `OPEN-QUESTIONS.md` — the gap entry removed; a new one added for the class of defect that
+  produced it, that nothing checks a record against itself.
+
+This task is the first to run under the new order: everything above was written, folded and
+archived before approval was requested.
 
 ## Problems
 
