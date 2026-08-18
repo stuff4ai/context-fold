@@ -9,6 +9,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
+| [declare-who-approves-a-task](declare-who-approves-a-task/task.md) | planned | Let a task declare that a fresh verifier's CONFIRMED verdict is sufficient to merge it |
 | [make-the-final-check-verifiable](make-the-final-check-verifiable/task.md) | planned | Decide what the final exact-head check proves when self-run |
 
 ## Archive
