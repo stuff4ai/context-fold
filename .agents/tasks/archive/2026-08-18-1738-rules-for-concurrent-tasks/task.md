@@ -125,8 +125,7 @@ Durable artifacts:
 Verified by building it rather than reading it: a probe worktree was created under
 `.agents/worktrees/`, both tools run, and removed. Git ignored it, the suite counted the same
 number with and without it, and the linter stayed clean. Under the old discovery the same probe
-would have added 91
-phantom files to a repository of 92.
+would have added 91 phantom files to a repository of 92.
 
 ## Problems
 
