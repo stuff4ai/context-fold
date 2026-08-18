@@ -8,6 +8,8 @@ disagrees with a task file, the task file is right and this table needs repair.
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
+| [fix-index-status-precedence](fix-index-status-precedence/task.md) | planned | Correct which file wins when the index and a task disagree |
+| [make-the-final-check-verifiable](make-the-final-check-verifiable/task.md) | planned | Decide what the final exact-head check proves when self-run |
 
 ## Archive
 
