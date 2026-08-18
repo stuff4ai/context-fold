@@ -1,9 +1,9 @@
 # Adopting context-fold
 
-How a repository takes on the agent layer. Three steps, by hand — there is no installer.
+How a repository takes on the agent layer. Four steps, by hand — there is no installer.
 
 This works the same for an empty repository and one with years of history. What changes is
-step 2, where an existing `AGENTS.md` is added to rather than created.
+the pointer step, where an existing `AGENTS.md` is added to rather than created.
 
 ## What you are adding
 
@@ -31,6 +31,9 @@ Do this instead:
 
 - Copy only the `AGENTS.md` files from `templates/agents/`. Leave `INDEX.md` and everything under
   `tasks/` alone — those are this repository's, not the distribution's.
+- Leave `.agents/worktrees/AGENTS.md` alone if it is there. It is the repository's copy and may
+  have been edited on purpose. If it is missing, the repository adopted before this file existed:
+  offer it and the `.gitignore` lines rather than adding them unasked.
 - Leave the root `AGENTS.md` alone if it already points at the layer.
 - Do not open task zero.
 
@@ -47,11 +50,13 @@ templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
 templates/INDEX.md                       →  .agents/tasks/INDEX.md
+templates/worktrees/AGENTS.md            →  .agents/worktrees/AGENTS.md
 ```
 
-`templates/agents/` and `templates/INDEX.md` are separate on purpose. Everything in
-`templates/agents/` must stay byte-identical to its template for as long as it is installed;
-`INDEX.md` stops matching the moment you record your first task.
+`templates/agents/` is separate from the other two on purpose. Everything in `templates/agents/`
+must stay byte-identical to its template for as long as it is installed. `INDEX.md` stops
+matching the moment you record your first task, and `worktrees/AGENTS.md` describes a workflow
+this project may not share — both are yours once copied.
 
 **Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
 and then confirm every installed file is byte-for-byte identical to its template. Reproducing
@@ -70,7 +75,27 @@ leaves your index alone.
 If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
 edited rule file stops being upgradable and starts being yours.
 
-## 2. Point at the layer
+## 2. Ignore the worktrees directory
+
+`.agents/worktrees/` holds parallel checkouts, which must not be committed — except the file you
+just copied there, which explains what they are. Add both lines to `.gitignore`, creating it if
+the repository has none:
+
+```text
+.agents/worktrees/*
+!.agents/worktrees/AGENTS.md
+```
+
+Both lines are needed, in that order. A directory excluded outright is never descended into, so
+`.agents/worktrees/` alone would ignore the file as well and the exception would never apply.
+
+Append to an existing `.gitignore` rather than rewriting it. If the repository uses something
+other than Git, do the equivalent, and say what you did.
+
+If this project will never keep more than one checkout at a time, skip the directory and its
+file entirely and say so — nothing else depends on them.
+
+## 3. Point at the layer
 
 The root `AGENTS.md` is your project's file. context-fold adds a pointer to it and nothing else.
 
@@ -89,7 +114,7 @@ If the repository has no `AGENTS.md`, create one. It belongs to the project, so 
 what the project is and how to work on it; the section above is the only part context-fold
 contributes.
 
-## 3. Open task zero
+## 4. Open task zero
 
 The adoption is itself a task, and it is the first one. This mirrors how decision records begin —
 the first record is the decision to use records.

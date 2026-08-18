@@ -2,7 +2,10 @@
 
 ## Status
 
-Accepted
+Accepted. The enumeration of what adoption copies and does is narrowed by
+[0026](0026-map-what-is-under-the-agents-directory.md): it also copies
+`templates/worktrees/AGENTS.md` and writes ignore rules for the directory it lives in.
+That adoption is a described procedure rather than an installer stands.
 
 ## Context
 

@@ -232,7 +232,7 @@ Whatever is left behind is lost.
 
 ## Final exact-head check
 
-At the branch head, confirm all four:
+At the finished state of the change, confirm all four:
 
 1. Each acceptance criterion in `task.md` is satisfied.
 2. No durable outcome exists only inside the layer — remove it mentally and see what is lost.

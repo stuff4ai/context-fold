@@ -59,9 +59,22 @@ drifts nobody knows which version is true.
 When a task needs project knowledge, link to where that knowledge lives. When a task
 produces project knowledge, write it to where it belongs and link back.
 
-## Follow scoped instructions
+## What you will find under `.agents/`
 
-Directories inside the layer carry their own `AGENTS.md` with rules for that scope. The
-nearest one applies.
+More than the layer. Each thing here has an owner, and knowing which is which is the difference
+between reading this project's current state and reading a copy of it.
 
-Work is organized under `tasks/`. Start there.
+**`tasks/`** — the layer's. How work is organized, tracked and finished, and the task packages
+and index that working here produces. Its rules are in `tasks/AGENTS.md`. Start there.
+
+**`skills/`** — not the layer's. Agent tooling installs reusable procedures here, by a convention
+this layer neither defines nor relies on. What is there answers to whatever put it there: read it
+if it is addressed to you, and do not treat it as a statement about this project.
+
+**`worktrees/`** — parallel checkouts, if this project keeps any. Not context: each is a separate
+copy of this repository at a different point in its history, so reading one as part of this copy
+produces a second and contradictory version of every record and task package. A project that
+keeps them says how in `worktrees/AGENTS.md`.
+
+Directories inside the layer carry their own `AGENTS.md` with rules for that scope, and the
+nearest one applies. Anything else you find here answers to whatever created it.
