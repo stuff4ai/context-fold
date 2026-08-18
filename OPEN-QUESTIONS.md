@@ -146,6 +146,11 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **Where does `## Outcome` go?** Every archived task here puts it before `## Problems`; a
   foreign run put it after. `## Finishing` says to add an Outcome and does not say where. A
   convention nobody wrote down is a convention adopters get wrong.
+- **`README.md` still equates the layer with the directory.** It says the agent layer *is*
+  `.agents/`, and states the deletion test as "Remove `.agents/` and read what remains". `0018`
+  separated the two and `0026` builds a map on the premise that `.agents/` holds more than the
+  layer, so the front door now contradicts both. This is the same wording defect repaired twice
+  inside the rules; nobody has looked for it in the document a reader meets first.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and

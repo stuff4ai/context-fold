@@ -64,14 +64,16 @@ An agent can tell, from the first file it reads, which parts of `.agents/` are t
 which are copies or other tools' business. That is the failure worktrees produced, closed at the
 entry point rather than only at the door it came through.
 
-The distribution now names Git, in `templates/worktrees/AGENTS.md`. That file is copied once and
-belongs to the adopter, and it says so and gives the rule in a form another system can follow —
-one checkout per task, named for the task. The portable rules still name nothing. The line this
-holds is that what upgrades must stay neutral, not that everything shipped must.
+The distribution now names Git, in three places and none of them upgradable.
+`templates/worktrees/AGENTS.md` is copied once and belongs to the adopter, and gives the rule in
+a form another system can follow — one checkout per task, named for the task. The procedure and
+the skill name `.gitignore` and say what to do if the project uses something else; neither named
+Git at all before this. The portable rules still name nothing. The line this holds is that what
+upgrades must stay neutral, not that everything shipped must.
 
 `## Final exact-head check` said "At the branch head", which named a version control system in a
 file that carries none. Corrected. The section's own name keeps "head", because renaming it
-ripples through five records for a word that is not specific to any system.
+ripples through three other records for a word that is not specific to any system.
 
 An adopter who never runs two tasks at once now installs a directory and a file for a workflow
 they do not use. The procedure says to skip both and say so, which trades a decision for the

@@ -173,3 +173,18 @@ Assumed: a heredoc passes its body through unchanged.
 Actually: only a quoted one does. Every other write this session used the same unquoted form and
 happened not to contain backticks in a position the shell would expand.
 Caught by reading the file after writing it, which is not something I do by default.
+
+### Counted the blast radius of a rename without counting it
+
+`0026` justified keeping the name `## Final exact-head check` by saying renaming it "ripples
+through five records". Four reference `exact-head`, one of which is `0026` itself, so the answer
+is three others.
+Assumed: a number that feels right in a sentence explaining a decision does not need checking,
+because the decision does not turn on it.
+Actually: the decision does not, and the record is immutable from merge, so a wrong number is
+permanent and a reader has no way to tell it was a guess. The same paragraph named one place the
+distribution now names Git when the change introduces three — the procedure and the skill named
+it nowhere before this.
+Both found by a verifier, in the pass that confirmed the change. Fixed because they land in a
+record that cannot be edited afterwards, while three other advisories from the same pass were
+left alone because their files stay editable.
