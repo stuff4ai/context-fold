@@ -5,7 +5,9 @@
 Accepted. Archive directory naming superseded by
 [0009](0009-order-task-index-newest-first.md); the stage order, and the sentence that approval
 authorizes archival, narrowed by [0023](0023-approve-the-final-state.md) — which is what the
-Consequences below already described. Archival before merge stands.
+Consequences below already described. What "confirm" means for the four exact-head gates is
+elaborated by [0027](0027-produce-evidence-at-the-final-check.md): the gates themselves are
+unchanged. Archival before merge stands.
 
 ## Context
 
