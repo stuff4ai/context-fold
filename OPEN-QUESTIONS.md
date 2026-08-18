@@ -49,6 +49,16 @@ hides its weaknesses.
 
 ## Open questions about the model
 
+- **Should the layer say once that identity fixes at acceptance?** It has been established
+  three times separately: `0000` for record numbers, `0022` for task slugs, and the rename of
+  `0022`'s own filename before it merged. The portable rules state it only about slugs, so each
+  new case is rediscovered rather than derived. Stating it generally would touch `0000`, `0022`
+  and the rules at once, and generalising from three cases is how this project has produced
+  rules it later had to narrow.
+- **Should `INDEX.md` show what a task is blocked by?** `0025` puts `## Blocked by` in the task
+  file and nowhere else, so finding what is blocked means opening every active task. That is
+  affordable at three concurrent tasks and not at thirty. Adding a column changes the shipped
+  index format for every installation, including the ones that never run two tasks at once.
 - **How broad should a decision record be?** Recording every small choice creates noise;
   recording too few loses the reasoning. Three sentences of workflow rules once produced three
   records, which felt wrong in ratio but right in substance. Size is a poor test — a one-line
@@ -110,8 +120,11 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
   the wording every one of them uses was invented rather than derived. It is consistent by
   imitation, which is not the same as decided.
-- **Archive directory names can still collide.** Minute granularity makes it remote rather
-  than impossible for two concurrent branches to archive under the same name.
+- **Same-minute archives have no defined order.** The recorded worry used to be that names
+  collide; they cannot. A directory is `{YYYY-MM-DD-HHMM}-{slug}` and two active tasks cannot
+  share a slug, because the slug *is* the directory name under `tasks/`. What is undefined is
+  order: two tasks archived in the same minute sort by slug rather than by which finished first,
+  and `0009` orders the archive newest first as though the timestamp settled it.
 - **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it
   and `pymarkdown`'s line-length rule is off, so three lines of 141, 105 and 109 characters
   passed four green runs. Turning the rule on fails on archived task packages, which are history

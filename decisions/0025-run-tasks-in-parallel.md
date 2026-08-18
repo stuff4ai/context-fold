@@ -1,0 +1,89 @@
+# Run tasks in parallel
+
+## Status
+
+Accepted
+
+## Context
+
+Every rule in the layer was written and exercised with one task running. Only `INDEX.md` was ever
+described as contended — "one file that every concurrent task touches, so conflicts are normal" —
+and nothing else acknowledged that a second task could exist.
+
+That is about to stop being true here: work will be planned in one checkout while it is done in
+another, by different agents at the same time.
+
+Five things are unstated the moment a second task starts.
+
+Nothing compares scope across active tasks, and the file is the wrong unit to compare anyway.
+Four of the last five tasks edited `tasks/AGENTS.md`, almost always in different sections. A rule
+forbidding two tasks from sharing a file would serialise work that can safely run at once.
+
+Nothing lets a task say it is waiting for another. The four statuses in
+[0006](0006-task-package-model.md) describe what a task *is*; none of them says "not yet,
+because".
+
+Contention is described for one file and not for the class. `decisions/README.md` has the same
+shape as `INDEX.md` and no rule; `OPEN-QUESTIONS.md` is a different shape entirely, and the
+difference is what decides how a conflict in it is resolved.
+
+[0022](0022-route-findings-without-an-owning-task.md) routes a finding to the task whose work
+produced it. With one task running that is a tautology. With three it is a judgement nobody is
+asked to make.
+
+And two branches can claim the same decision number, each passing the numbering check alone.
+
+## Decision
+
+Scope is declared by section, not only by file. Two tasks may hold the same file when they hold
+different parts of it. Where they need the same section, one owns it and the other records that
+in `## Out of scope`.
+
+A task that cannot start yet carries `## Blocked by`, naming what it waits for and what it needs
+from each. Its status stays `planned`. Blocked is not what a task is, it is what the task is
+waiting for, and `0006`'s four values describe the first — so no fifth value is added.
+
+Conflicts are resolved according to what kind of file conflicted. A *derived* file restates what
+is true elsewhere and is rebuilt from its sources rather than merged; `INDEX.md` becomes the
+example rather than the special case. An *authored* file says something no other file says and is
+merged as prose. The test between them is what deleting the file would cost: a derived file can
+be built again, an authored one is gone.
+
+A finding belongs to the task whose work produced it, which is not always the task you are in.
+
+None of that names a version control system, a decision record, or any artifact a project might
+not have.
+
+Two things are this project's own rather than the layer's. Parallel checkouts live in Git
+worktrees under `.agents/worktrees/{task-slug}`, ignored by Git: they are checkouts, not context,
+and deleting them all loses nothing. And a decision number is provisional until merge — `0000`
+already says a record on a branch is a proposal, so whichever branch merges first keeps the
+number and the other renumbers. That is ordinary rather than a breach of "never renumber", which
+governs records that have landed.
+
+## Consequences
+
+Two agents can work at once without a protocol between them. Nothing here requires them to
+communicate; it requires each to read what the others have written down, which is what the task
+package is for.
+
+Section-level scope is only as good as the sections. It works on a file with stable headings and
+fails on one without them, which makes the granularity of a document part of whether it can be
+worked on in parallel.
+
+`## Blocked by` is declared and not enforced. Nothing detects an unmet blocker, a stale one, or a
+cycle. A dependency that is wrong is worse than none, because it stops work for a reason that no
+longer holds.
+
+Blockers are visible only inside task files. `INDEX.md` shows status and objective, so finding
+what is blocked means opening each active task. That is affordable at three and not at thirty,
+and adding a column is deferred until scanning is what actually fails.
+
+The suite now asks Git what belongs to the repository rather than walking the tree against a
+hardcoded list of directories to skip. With one worktree present the old discovery found 183
+Markdown files where 92 exist — a second copy of every record and every archived task, read as
+though it were this one. The suite and the linter now agree about what the repository contains,
+which they did not before.
+
+That couples the checks to Git. They already ran only in a Git repository, and `0016` chose to
+enforce conventions in CI, so the coupling is real but not new.

@@ -15,6 +15,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-1738-rules-for-concurrent-tasks](archive/2026-08-18-1738-rules-for-concurrent-tasks/task.md) | completed | Say what the rules mean when tasks run in parallel |
 | [2026-08-18-1640-fix-index-status-precedence](archive/2026-08-18-1640-fix-index-status-precedence/task.md) | completed | Correct which file wins when the index and a task disagree |
 | [2026-08-18-1544-approve-after-archival](archive/2026-08-18-1544-approve-after-archival/task.md) | completed | Move the approval gate to after the final exact-head check |
 | [2026-08-18-1518-route-findings-without-an-owning-task](archive/2026-08-18-1518-route-findings-without-an-owning-task/task.md) | completed | Give a finding somewhere to go when it has no owning task |
