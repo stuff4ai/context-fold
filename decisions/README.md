@@ -35,3 +35,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0022 | [Route findings without an owning task](0022-route-findings-without-an-owning-task.md) | Accepted |
 | 0023 | [Approve the final state](0023-approve-the-final-state.md) | Accepted |
 | 0024 | [Settle status disagreements by the directory](0024-settle-status-disagreements-by-the-directory.md) | Accepted |
+| 0025 | [Run tasks in parallel](0025-run-tasks-in-parallel.md) | Accepted |
