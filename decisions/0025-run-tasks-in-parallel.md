@@ -83,22 +83,22 @@ what is blocked means opening each active task. That is affordable at three and 
 and adding a column is deferred until scanning is what actually fails.
 
 The suite now asks Git what belongs to the repository rather than walking the tree against a
-hardcoded list of directories to skip. With one worktree present the old discovery found 183
-Markdown files where 92 exist — a second copy of every record and every archived task, read as
-though it were this one. The suite and the linter now agree about what the repository contains,
-which they did not before.
+hardcoded list of directories to skip. Measured once with a probe worktree in place, the old
+discovery found 183 Markdown files against the 92 that existed at that moment — a second copy of
+every record and every archived task, read as though it were this one. The suite and the linter
+now agree about what the repository contains, which they did not before.
 
-A tracked file inside a Git-ignored directory needs the two-line form —
-`.agents/worktrees/*` and then `!.agents/worktrees/AGENTS.md`. A directory excluded outright is
-never descended into, so a negation for a file inside it does not apply. That is easy to get
-wrong and silent when wrong.
+That couples the checks to Git. They already ran only in a Git repository, and `0016` chose to
+enforce conventions in CI, so the coupling is real but not new.
+
+A tracked file inside a Git-ignored directory needs the two-line form — `.agents/worktrees/*`
+and then `!.agents/worktrees/AGENTS.md`. A directory excluded outright is never descended into,
+so a negation for a file inside it does not apply. That is easy to get wrong and silent when
+wrong.
 
 `.agents/worktrees/AGENTS.md` is a rule file inside `.agents/` that the distribution does not
 ship and no check binds. `0018` already permits that — the layer is what was installed, and
 `.agents/` is only where it lives — and the checks follow it: `installed_layer_files()` reads
 `.agents/AGENTS.md` and `.agents/tasks/` and claims nothing else, and `PORTABLE` is an explicit
-list of three. So the file is free to carry project detail, which is the point, and free to drift,
-which nothing will catch.
-
-That couples the checks to Git. They already ran only in a Git repository, and `0016` chose to
-enforce conventions in CI, so the coupling is real but not new.
+list of three. So the file is free to carry project detail, which is the point, and free to
+drift, which nothing will catch.
