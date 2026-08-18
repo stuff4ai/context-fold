@@ -15,4 +15,6 @@ archived, and a relative link either breaks or starts resolving to something els
 
 ## Open questions
 
-Questions local to this task. Anything that will outlive it belongs in the project layer.
+Questions local to this task. Anything that will outlive it belongs in the project layer — and
+if the project has nowhere for it, say so and ask rather than leaving it here, where archival
+buries it.
