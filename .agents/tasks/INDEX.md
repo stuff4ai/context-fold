@@ -8,12 +8,12 @@ disagrees with a task file, the task file is right and this table needs repair.
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
-| [route-findings-without-an-owning-task](route-findings-without-an-owning-task/task.md) | active | Give a finding somewhere to go when it has no owning task |
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-1518-route-findings-without-an-owning-task](archive/2026-08-18-1518-route-findings-without-an-owning-task/task.md) | completed | Give a finding somewhere to go when it has no owning task |
 | [2026-08-17-0126-delete-branches-on-merge](archive/2026-08-17-0126-delete-branches-on-merge/task.md) | completed | State that merging deletes the branch, so "short-lived" holds now that agents merge |
 | [2026-08-17-0116-add-init-skill](archive/2026-08-17-0116-add-init-skill/task.md) | completed | Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what adoption is |
 | [2026-08-13-2054-let-agents-merge-after-approval](archive/2026-08-13-2054-let-agents-merge-after-approval/task.md) | completed | Allow an agent to merge a pull request once a human has approved it, and record what that changes about the gate |

@@ -117,6 +117,19 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   contradict `0007`.
 - **Archive directory names can still collide.** Minute granularity makes it remote rather
   than impossible for two concurrent branches to archive under the same name.
+- **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it
+  and `pymarkdown`'s line-length rule is off, so three lines of 141, 105 and 109 characters
+  passed four green runs. Turning the rule on fails on archived task packages, which are history
+  and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
+  check exempts `archive/` — not whether to flip a flag.
+- **Nothing checks that a citation supports what it is cited for.** `0022` attributed a claim
+  about project layout to `0011`, which is about vendor neutrality; `0005` is the actual
+  authority. The link resolved, so every check passed. A wrong citation is worse than none: it
+  sends a reader to a record that will not confirm the claim and looks supported to anyone who
+  does not follow it.
+- **The pull request description is outside every check.** It is the surface reviewers read
+  first, and the only one CI cannot see. A sentence corrected in the rules and in a decision
+  record was left standing there for a round, and nothing but a reader could have caught it.
 - **Commit signing is undecided.** `0003` records sign-off as an assertion of responsibility
   and explicitly leaves cryptographic verification open. `0004` attributes agent contributions
   but cannot prove them.
@@ -136,13 +149,20 @@ promotion `0013` describes between a problem and a candidate lesson.
   built on a borrowed frame imported along with its sentence shape; a rule extended past the
   argument that produced it. Each time the pull was toward matching shapes. Consistency is
   worth something, but it is not a reason on its own.
-- **Rules get stated where they are relevant rather than where they are owned.** Seven
-  instances across four tasks, one of which hid a contradiction: the immutability rule was
+- **Rules get stated where they are relevant rather than where they are owned.** Around eighteen
+  instances across five tasks, one of which hid a contradiction: the immutability rule was
   paraphrased in four places, and one paraphrase silently made `Status` an exception nobody had
   decided on. Every file finds every rule relevant, so "reference, do not duplicate" does not
   prevent this on its own — it forbids copying without saying who owns the original. Recording
   a decision is the most common trigger, because a record formalizes something already stated
   loosely somewhere else.
+
+  The count more than doubled in one task, which says the earlier figure was undercounted rather
+  than that the rate changed. Two variants showed up there that the entry did not anticipate: a
+  statement stranded in an artifact outside the repository, where no check can reach it, and
+  three *names* — a decision filename, a branch, a task slug — left describing a design their
+  own body had rejected. Every instance was caught by a reviewer. Nothing else has ever caught
+  one, which is the argument for making it mechanical rather than for trying harder.
 
 ## Questions this project will not answer
 

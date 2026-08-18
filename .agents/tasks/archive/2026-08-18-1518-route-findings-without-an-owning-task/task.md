@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -70,6 +70,42 @@ support X?" is.
    shipped rather than the one review rejected.
 7. Cancelling a task no longer skips folding durable outcomes out of it.
 8. The `OPEN-QUESTIONS.md` entry this closes is removed.
+
+## Outcome
+
+A finding now belongs to the task whose work produced it for as long as that task is writable,
+which is until the change is accepted rather than until the package moves under `archive/`. Most
+of the gap this task set out to close did not exist: `0007` had always allowed an archived
+package to be amended before merge, and three versions of the fix were built on the opposite
+premise before a reviewer checked it.
+
+What remained is triage. A finding with no writable owning task is routed by two independent
+questions — whether removing the layer would lose durable project knowledge, and whether there
+is investigation, a decision or a change to make. Both may be yes. Knowledge goes to the
+project's own artifacts; where a project has none, the gap is named and a `planned` task
+coordinates moving it there, and that task cannot be completed or cancelled until it has.
+
+Durable artifacts:
+
+- `decisions/0022-route-findings-without-an-owning-task.md` — the decision.
+- `decisions/0006-task-package-model.md` — Status narrowed twice: `## Problems` is required only
+  of tasks that have started, and slug identity fixes at acceptance rather than at the start of
+  work.
+- `skills/ctxfold-init/templates/agents/tasks/AGENTS.md` — the portable rule, plus two fixes
+  older than this task: cancelled work no longer skips **fold outcomes**, and the slug rule.
+- `OPEN-QUESTIONS.md` — the post-archival entry removed; three structural gaps added (the
+  unenforced wrap width, unchecked citations, the pull request description no check can see);
+  the supersession entry corrected from one instance to six; the twin-stranding pattern
+  recounted from seven to around eighteen.
+- `.agents/tasks/decide-whether-the-task-template-earns-its-place/` — the first `planned` task
+  in this project, demonstrating the shape: account in `Why`, provenance in `context.md`, no
+  `## Problems` until the work starts.
+
+`planned` was defined in the first task and unused across fifteen. It now has a defined purpose
+and one instance.
+
+Six review rounds. The design was settled after three; the rest was names and stranded
+statements, which is where this project's defects live.
 
 ## Problems
 
