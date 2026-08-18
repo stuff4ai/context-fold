@@ -195,3 +195,31 @@ Third instance this session of asserting something about the project without rea
 that owns it: the re-entry gap `ADOPTING.md` had covered, the renumbering rule `0000` had already
 scoped, and now this. The first was caught by a verifier, the second by checking because of the
 first, and this one by a verifier again — checking is not yet a habit, it is a reaction.
+
+### Answered "should the layer have a worktrees AGENTS.md" without considering the third option
+
+The proposal was `.agents/worktrees/AGENTS.md`. I argued against it because a rule file inside
+the layer ships to every installation, which would make git worktrees part of the model.
+Assumed: a file at that path is necessarily a layer file, so the objection settles the question.
+Actually: `0018` says the layer is what was installed and `.agents/` is only where it lives, and
+the checks already follow that — `installed_layer_files()` reads `.agents/AGENTS.md` and
+`.agents/tasks/` and claims nothing else, `PORTABLE` is an explicit list of three. A
+project-owned file at that path was available all along and fails nothing.
+It also has a purpose the portable rules cannot serve. The directory is reachable from the main
+checkout, and an agent that wanders in finds a full second copy of every record, task package and
+index with nothing saying they belong to another branch. That warning has to live where the
+mistake happens.
+The objection was sound about the shipped version and I let it answer a question it did not
+cover. Raised again by the person who proposed it, after the change had shipped without it.
+
+### `git check-ignore` exit status does not mean what it looks like
+
+Verifying that the new file escapes `.gitignore`, `git check-ignore -v` exited 0 and the check
+printed "STILL IGNORED".
+Assumed: exit 0 from `check-ignore` means the path is ignored.
+Actually: it means a pattern *matched*, and a negation is a pattern. The `-v` output said
+`.gitignore:7:!.agents/worktrees/AGENTS.md` — the `!` being the whole answer. The file was
+tracked and the test reported the opposite.
+Caught because `git status --porcelain -uall` disagreed with it in the same output. Re-verified
+against `git status` with a real worktree present, which is the oracle: `AGENTS.md` listed,
+the checkout absent.

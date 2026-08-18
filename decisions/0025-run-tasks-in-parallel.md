@@ -56,9 +56,12 @@ not have.
 
 Two things are this project's own rather than the layer's. Parallel checkouts live in Git
 worktrees under `.agents/worktrees/{task-slug}`, ignored by Git: they are checkouts, not context,
-and deleting them all loses nothing. And a decision number is provisional until merge — `0000`
-already says a record on a branch is a proposal, so whichever branch merges first keeps the
-number and the other renumbers. That is ordinary rather than a breach of "never renumber", which
+and deleting them all loses nothing. `.agents/worktrees/AGENTS.md` is the exception to that
+ignore and says so in place, because the directory is reachable from the main checkout and an
+agent that wanders into it would otherwise find a second copy of every record and task package
+with nothing marking them as another branch's. And a decision number is provisional until
+merge — `0000` already says a record on a branch is a proposal, so whichever branch merges first
+keeps the number and the other renumbers. That is ordinary rather than a breach of "never renumber", which
 governs records that have landed.
 
 ## Consequences
@@ -84,6 +87,18 @@ hardcoded list of directories to skip. With one worktree present the old discove
 Markdown files where 92 exist — a second copy of every record and every archived task, read as
 though it were this one. The suite and the linter now agree about what the repository contains,
 which they did not before.
+
+A tracked file inside a Git-ignored directory needs the two-line form —
+`.agents/worktrees/*` and then `!.agents/worktrees/AGENTS.md`. A directory excluded outright is
+never descended into, so a negation for a file inside it does not apply. That is easy to get
+wrong and silent when wrong.
+
+`.agents/worktrees/AGENTS.md` is a rule file inside `.agents/` that the distribution does not
+ship and no check binds. `0018` already permits that — the layer is what was installed, and
+`.agents/` is only where it lives — and the checks follow it: `installed_layer_files()` reads
+`.agents/AGENTS.md` and `.agents/tasks/` and claims nothing else, and `PORTABLE` is an explicit
+list of three. So the file is free to carry project detail, which is the point, and free to drift,
+which nothing will catch.
 
 That couples the checks to Git. They already ran only in a Git repository, and `0016` chose to
 enforce conventions in CI, so the coupling is real but not new.

@@ -17,10 +17,11 @@ are recommended anywhere else.
 - After changing `skills/ctxfold-init/templates/`, reinstall `.agents/` from it before finishing
   — copy the `AGENTS.md` files only, never `INDEX.md`, which is this installation's own.
 - Work on more than one task at a time in Git worktrees under `.agents/worktrees/{task-slug}`,
-  which Git ignores. They are checkouts, not context: nothing durable belongs in one, and
-  deleting them all loses nothing. This is this project's workflow, not part of the layer —
-  `.agents/tasks/AGENTS.md` says how concurrent tasks share files and declare what blocks them,
-  without naming any version control system.
+  which Git ignores. They are checkouts, not context. See
+  [`.agents/worktrees/AGENTS.md`](.agents/worktrees/AGENTS.md), which is the one tracked file
+  there. This is this project's workflow, not part of the layer — `.agents/tasks/AGENTS.md` says
+  how concurrent tasks share files and declare what blocks them, and names no version control
+  system.
 
 ## Decisions
 
