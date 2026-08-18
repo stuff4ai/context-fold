@@ -67,9 +67,9 @@ entry point rather than only at the door it came through.
 The distribution now names Git, in three places and none of them upgradable.
 `templates/worktrees/AGENTS.md` is copied once and belongs to the adopter, and gives the rule in
 a form another system can follow — one checkout per task, named for the task. The procedure and
-the skill name `.gitignore` and say what to do if the project uses something else; neither named
-Git at all before this. The portable rules still name nothing. The line this holds is that what
-upgrades must stay neutral, not that everything shipped must.
+the skill both name `.gitignore`, and the procedure says what to do if the project uses
+something else; neither named Git at all before this. The portable rules still name nothing. The
+line this holds is that what upgrades must stay neutral, not that everything shipped must.
 
 `## Final exact-head check` said "At the branch head", which named a version control system in a
 file that carries none. Corrected. The section's own name keeps "head", because renaming it

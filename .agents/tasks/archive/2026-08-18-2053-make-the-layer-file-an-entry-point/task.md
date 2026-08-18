@@ -188,3 +188,19 @@ it nowhere before this.
 Both found by a verifier, in the pass that confirmed the change. Fixed because they land in a
 record that cannot be edited afterwards, while three other advisories from the same pass were
 left alone because their files stay editable.
+
+### The correction inherited the overstatement it was correcting
+
+Fixing `0026`'s claim about where the distribution names Git, I wrote "the procedure and the skill
+name `.gitignore` and say what to do if the project uses something else". `SKILL.md` names
+`.gitignore` and never says what to do if the project uses something else; only `ADOPTING.md`
+does.
+Assumed: having checked the advisory's specifics and found them slightly wrong, I was writing
+from what I had verified.
+Actually: I verified the count and then reused the advisory's phrasing for the detail, which
+attributed one file's instruction to both. A softened version of the error I had just rejected,
+in the record made immutable by merging.
+Found by the narrow pass over the fix itself — the fourth verification of this change, and the
+third time on this project a repair introduced a smaller version of what it repaired. The clause
+now attributes the instruction to the procedure alone. Reflowing after that edit left a
+115-character line, which is the same rewrap failure logged on the previous pull request.
