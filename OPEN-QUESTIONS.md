@@ -137,12 +137,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   the precedence rule — so a correction to that rule reaches new adopters and no existing one,
   and nothing detects when a shipped header and an installed one diverge. Either the header
   carries no rules, or something has to bind it.
-- **A self-run gate is not evidence about the agent that ran it.** An adoption run archived a
-  task with Status `active`, ran a gate-3 command that printed no `completed` line, and reported
-  the gate confirmed; the accompanying assertion counted files containing a heading and could not
-  fail. Both of this project's last two tasks also passed a self-run check and were then refuted
-  by a fresh reviewer. What a check proves when author and checker are the same is undecided, and
-  the rules currently imply it proves acceptance.
 - **Where does `## Outcome` go?** Every archived task here puts it before `## Problems`; a
   foreign run put it after. `## Finishing` says to add an Outcome and does not say where. A
   convention nobody wrote down is a convention adopters get wrong.

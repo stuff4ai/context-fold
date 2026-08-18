@@ -9,12 +9,12 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 | Task | Status | Objective |
 | --- | --- | --- |
 | [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
-| [make-the-final-check-verifiable](make-the-final-check-verifiable/task.md) | planned | Decide what the final exact-head check proves when self-run |
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-18-2246-make-the-final-check-verifiable](archive/2026-08-18-2246-make-the-final-check-verifiable/task.md) | completed | Decide what the final exact-head check proves when self-run |
 | [2026-08-18-2053-make-the-layer-file-an-entry-point](archive/2026-08-18-2053-make-the-layer-file-an-entry-point/task.md) | completed | Make `.agents/AGENTS.md` a map of what is under it and who owns each part |
 | [2026-08-18-1738-rules-for-concurrent-tasks](archive/2026-08-18-1738-rules-for-concurrent-tasks/task.md) | completed | Say what the rules mean when tasks run in parallel |
 | [2026-08-18-1640-fix-index-status-precedence](archive/2026-08-18-1640-fix-index-status-precedence/task.md) | completed | Correct which file wins when the index and a task disagree |
