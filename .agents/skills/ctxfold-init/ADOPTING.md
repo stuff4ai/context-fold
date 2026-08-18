@@ -112,9 +112,10 @@ Acceptance:
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
 
 Then work the task: finish the structure, satisfy the acceptance, and log every friction under
-`## Problems` while it happens. Stop there and ask for approval — approval is what authorizes
-archival, and archival comes before the change is merged. The rules for all of that are in
-`.agents/tasks/AGENTS.md`, which you now have.
+`## Problems` while it happens. Then finish it — Outcome, fold, archive, index, final check —
+and stop there to ask for approval. Approval authorizes the merge, and what it is given for is
+the finished state rather than a promise to file the paperwork later. The rules for all of that
+are in `.agents/tasks/AGENTS.md`, which you now have.
 
 ## What this does not give you
 

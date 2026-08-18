@@ -147,8 +147,8 @@ values above appear in a file.
 ## Stages
 
 ```
-planned → active → work → verification → review → approved
-        → fold outcomes → archive → final check → merge
+planned → active → work → verification → fold outcomes
+        → archive → final check → review → approved → merge
 ```
 
 Cancelled work skips to archive — but not past **fold outcomes**. A task abandoned halfway may
@@ -160,12 +160,17 @@ verification, or something you find requires it — that is the normal shape of 
 deviation, and it needs no explanation. Returning changes no `Status`: the task stays `active`
 until it is archived, however many times it moves.
 
-What the order does constrain is what must happen before what. Verification precedes review;
-archival follows approval and precedes acceptance.
+What the order does constrain is what must happen before what. Verification precedes review,
+and archival precedes both. Everything a reviewer must judge — the work, the Outcome, what was
+folded out, the archived package, the index — exists before anyone is asked to approve it.
+Approval authorizes the merge and nothing else, because nothing else is left.
+
+Do not ask for approval earlier. Work approved before the Outcome is written is work approved on
+a promise, and the Outcome is the one thing in the change that no check can read.
 
 *Review*, *approved*, and *merge* mean whatever this project's own workflow defines them to
-mean. The rule is only that a change is archived before it is accepted, not that acceptance
-happens through any particular mechanism.
+mean. The rule is only that a change is archived before it is reviewed, and reviewed before it
+is accepted, not that acceptance happens through any particular mechanism.
 
 A task is not complete when the coding is done. It is complete when acceptance is satisfied,
 durable outcomes have been folded into the project layer, review has happened, and the
@@ -184,8 +189,9 @@ Whatever is left behind is lost.
    minute it left active state.
 3. Update `INDEX.md`.
 4. Run the final exact-head check.
-5. Submit the change for acceptance. Archival happens *before* the change is accepted, so
-   that what is accepted contains both the work and the record of the work.
+5. Submit the change for review, and stop. What a reviewer sees is now the whole change: the
+   work, the record of the work, and the repository in the state that merging would accept.
+6. Merge once approved.
 
 ## Final exact-head check
 

@@ -110,11 +110,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
   the wording every one of them uses was invented rather than derived. It is consistent by
   imitation, which is not the same as decided.
-- **The archival commit merges without review.** `0007` puts approval before archival and `0019`
-  lets the agent merge after it, so the commit that reaches `main` is not the one that was
-  approved. CI covers the mechanical part; the Outcome is the one written thing in that commit
-  and nothing verifies it. Moving approval to after archival would close this and would
-  contradict `0007`.
 - **Archive directory names can still collide.** Minute granularity makes it remote rather
   than impossible for two concurrent branches to archive under the same name.
 - **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it

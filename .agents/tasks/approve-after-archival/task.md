@@ -81,3 +81,17 @@ Consequences alongside it. The record has been internally inconsistent since it 
 the inconsistency survived being cited in five later records.
 Found while scoping this task, by reading the record end to end rather than the sentence being
 cited.
+
+### The order was written in five places and two were missed by the obvious edits
+
+Correcting `## Stages`, `## Finishing`, `SKILL.md` and `ADOPTING.md` felt like the whole change.
+A sweep found two more: `README.md` told the front door that a task is archived only once the
+repository is "in a coherent accepted state", and `0020` instructs the skill to stop before
+archiving.
+Assumed: the artifacts that state a rule are the ones that teach it.
+Actually: the README is the first thing a reader meets and describes the lifecycle in prose that
+matches no heading, so no search for the rule's own vocabulary reaches it. `0020` is an accepted
+record whose body cannot be edited at all — it needed a Status narrowing instead, which is a
+different repair than the one the other four needed.
+Found by sweeping rather than by reasoning about where the rule lives, which is the only method
+that has ever worked on this in this project.

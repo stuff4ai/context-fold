@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. What approval authorizes is narrowed by
+[0023](0023-approve-the-final-state.md) to the merge alone, since folding, archival and
+the final check now precede it. That an agent may merge stands.
 
 ## Context
 
