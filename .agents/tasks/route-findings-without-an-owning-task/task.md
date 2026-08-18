@@ -249,3 +249,26 @@ difference matters for whether the gap is worth closing.
 Found while checking a reviewer's question about whether the record format permits this at all.
 It does: `0000` names `Status` as the one exception to immutability. The mechanism was never in
 doubt; the wording around it is what nothing defines.
+
+### The pull request description is a twin, and nothing checks it
+
+The absolute claim about cancellation burying knowledge was softened in the rules and in `0022`
+and left standing in the pull request description.
+Assumed: fixing the repository fixes the change.
+Actually: the description is what reviewers read first, and it is the one surface no check
+covers. `test_relative_links_resolve` and the identity checks stop at tracked files; the body of
+the pull request is outside the repository and outside CI.
+Found in review, one round after the same sentence was fixed everywhere a check could see it.
+Roughly the eighteenth instance of one statement changing while its twins did not, and the first
+where the stranded twin was outside the repository.
+
+### Rewriting prose by string substitution left lines twice the wrap width
+
+Three replacements this task joined sentences without rewrapping, leaving lines of 141, 105 and
+109 characters where the files wrap near 98.
+Assumed: the linter enforces what the files visibly do.
+Actually: `pymarkdown`'s line-length rule is off, so nothing failed. The convention is real —
+every hand-written line honours it — and entirely unenforced, which is why three violations
+shipped through four green runs.
+Found in review. `templates/agents/AGENTS.md:35` has been 165 characters since before this task
+and no check or reviewer has ever caught it, which is the same gap seen from the other side.

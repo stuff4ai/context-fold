@@ -32,10 +32,10 @@ Naming a project-layer file would prescribe another project's layout, which
 Routing *everything* into a planned task looked simpler and fails twice over. It puts durable
 project knowledge inside the layer, which the deletion test forbids — a fact the project needs
 would vanish with the layer, and a task later archived or cancelled is no more reliable a place
-to keep it than the package it was rescued from. And it makes every observation pretend to be work, which
-[0013](0013-improve-context-from-the-work.md) explicitly declines: a problem is an observation
-until a person judges it into a change. A backlog of tasks nobody intends to start is a different
-failure from losing findings, not an absence of one.
+to keep it than the package it was rescued from. And it makes every observation pretend to be
+work, which [0013](0013-improve-context-from-the-work.md) explicitly declines: a problem is an
+observation until a person judges it into a change. A backlog of tasks nobody intends to start
+is a different failure from losing findings, not an absence of one.
 
 ## Decision
 

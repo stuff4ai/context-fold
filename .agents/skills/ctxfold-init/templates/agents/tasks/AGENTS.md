@@ -104,8 +104,10 @@ merging goes in `## Problems` of the task being merged, even though its director
 under `archive/`.
 
 Past acceptance the task is history, and editing it would rewrite the record of an accepted
-change. A finding with no writable owning task — because its task was accepted, or because no
-task owns it — is triaged by two questions. They are independent, and both can be yes. Do not carry it to whatever comes next in your head.
+change. Do not carry the finding to whatever comes next in your head either.
+
+A finding with no writable owning task — because its task was accepted, or because no task owns
+it — is triaged by two questions. They are independent, and both can be yes.
 
 **Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
