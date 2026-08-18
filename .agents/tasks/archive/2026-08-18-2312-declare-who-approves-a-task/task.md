@@ -141,3 +141,10 @@ Actually: this project renders `CONFIRMED`/`REFUTED`/`INCONCLUSIVE` as literal v
 everywhere a verifier report appears, and treating one as a code span while introducing the same
 concept as prose elsewhere is the twin-stranding pattern in miniature — one true thing, stated
 two ways. Standardized on the contract's own convention rather than picking a new one.
+
+### The sweep missed a third statement, in the file it was editing
+
+Root AGENTS.md's own Change workflow said "4. Wait for a human to approve it." — unconditional —
+three lines below the bullet this task had just made conditional. The sweep after editing found
+0023's Consequences; it did not re-read the rest of the file it had already touched.
+Found by a verifier. Fixed: step 4 now states both paths, matching the bullet above it.
