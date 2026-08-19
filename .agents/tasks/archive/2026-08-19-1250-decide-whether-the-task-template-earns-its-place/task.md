@@ -24,12 +24,12 @@ real entries; two runs kept the one that named a file that existed. The fix — 
 placeholder — is untested, because the run after it wrote the package from scratch and never
 touched the template. The absence of residue there proves nothing.
 
-A sixth run settles the direction. Adopting `etu-forms` produced a finished, archived package
-carrying three separate pieces of the template that were never meant to be content: the
-instructional paragraph under `## References`, the one under `## Open questions`, and an
-`## Assumptions` heading with nothing beneath it. A second agent inspecting the same repository
-found a fourth independently — a duplicated `## Problems` heading, the placeholder left in place
-beside the real entry.
+Two further runs, both adopting `etu-forms`, settle the direction. The first produced a finished,
+archived package carrying three separate pieces of the template that were never meant to be
+content: the instructional paragraph under `## References`, the one under `## Open questions`,
+and an `## Assumptions` heading with nothing beneath it. The second, adopting the same
+repository, found a fourth independently — a duplicated `## Problems` heading, the placeholder
+left in place beside the real entry — and repaired it.
 
 So the template's distinctive effect is now measured rather than suspected: four defects, none of
 which the rules alone could have caused, in the one run that used it most faithfully. The
@@ -86,7 +86,7 @@ unchanged.
 
 Acceptance:
 
-1. Satisfied — `decisions/0029-drop-the-task-template.md` records the decision and the six-run
+1. Satisfied — `decisions/0029-drop-the-task-template.md` records the decision and the seven-run
    evidence behind it.
 2. Satisfied on the "dropped" branch: the template does not survive, so there is nothing left to
    be different. `templates/task/` no longer exists in either the distribution or the installed

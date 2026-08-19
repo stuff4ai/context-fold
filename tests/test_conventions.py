@@ -208,8 +208,8 @@ def installed_rule_files() -> list[tuple[Path, Path]]:
     """Everything in `templates/agents/`, paired with where it installs to.
 
     The directory holds only files that must stay byte-identical forever, so there is
-    nothing to exclude. `INDEX.md` and the task skeleton live outside it precisely
-    because they are copied once and then diverge.
+    nothing to exclude. `INDEX.md` lives outside it precisely because it is copied once
+    and then diverges.
     """
     return [
         (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))

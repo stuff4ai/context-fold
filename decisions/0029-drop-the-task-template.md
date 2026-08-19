@@ -19,24 +19,25 @@ sections, and `ADOPTING.md` describes task zero's content in prose. Both ship wi
 installation and are read before or during the first task, whether or not the template is
 opened.
 
-Six foreign adoption runs measured the two against each other. Five wrote task packages —
+Seven foreign adoption runs measured the two against each other. Five wrote task packages —
 three from scratch, two by copying the template — and all five carried every required section:
 the rules and the procedure were sufficient on their own. The template's one distinctive effect
 was a defect: two runs kept an example line, written in the voice of a real entry, that named a
 file that happened to exist in their repository. A single braced placeholder fixed the specific
 line; the fix went untested, because the next run wrote its package from scratch.
 
-A sixth run tested it. Adopting `etu-forms`, a task package used the template as intended and
-finished carrying four things that were never meant to be content: the instructional paragraph
-under `## References`, the one under `## Open questions`, an `## Assumptions` heading left in
-place with nothing under it, and a duplicated `## Problems` heading holding the placeholder
-beside the real entry. A second agent inspecting the same repository found the fourth
-independently; the first three were still there when it archived.
+Two further runs, both adopting `etu-forms`, tested it directly. The first used the template as
+intended and finished a task package carrying four things that were never meant to be content:
+the instructional paragraph under `## References`, the one under `## Open questions`, an
+`## Assumptions` heading left in place with nothing under it, and a duplicated `## Problems`
+heading holding the placeholder beside the real entry. The second, adopting the same repository,
+found and repaired the fourth of these without prompting; the first three were still there when
+it archived.
 
 Across every measured use, the template produced a defect — an instruction or a placeholder
 surviving into content that was supposed to describe real work — and never once supplied a
 section the rules and the procedure would otherwise have missed. It is not a case of a rough
-tool that helps more often than it hurts; nothing in six runs shows it helping at all.
+tool that helps more often than it hurts; nothing in seven runs shows it helping at all.
 
 ## Decision
 
@@ -50,11 +51,14 @@ create `task.md` and `context.md` directly, using the sections `.agents/tasks/AG
 requires, and gives task zero's content the same way it already did.
 
 A fixed template — placeholders instead of instructional prose, no empty optional headings — was
-considered and rejected. Two of its four measured defects were already exactly that kind of
-fix, applied once before this decision, and it did not hold past the run that exercised it next.
-A skeleton's failure mode is that whatever sits in the section survives if the author does not
-notice it is not theirs; narrowing what sits there narrows the failure without removing the
-mechanism that produces it.
+considered and rejected. One fix of exactly that shape, a braced placeholder replacing a
+realistic-looking example line, was already applied before this decision and went unexercised
+until `etu-forms` — where none of the four defects found was that line reappearing. What
+`etu-forms` found instead was a category the earlier fix never touched: instructional prose left
+in place, and headings left empty or duplicated. A skeleton's failure mode is that whatever sits
+in a section survives if the author does not notice it is not theirs; fixing one instance of that
+says nothing about the categories it has not yet been tried against, and two rounds of evidence
+are not enough to show a fixed template would stop producing new ones.
 
 ## Consequences
 
