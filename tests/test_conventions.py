@@ -333,6 +333,50 @@ def test_active_directory_is_a_bare_slug(task: Path) -> None:
     assert SLUG.match(task.name), f"{task.name} is not a lowercase hyphenated slug"
 
 
+# --- Leftover scaffolding in a task package (0031) ------------------------------------
+
+
+TASK_OPTIONAL_HEADINGS = ("Blocked by", "Approval")
+CONTEXT_OPTIONAL_HEADINGS = (
+    "Assumptions",
+    "Open questions",
+    "Context conflicts",
+    "Base state",
+    "Not relevant",
+)
+
+
+@pytest.mark.parametrize("task", archived_tasks(), ids=lambda p: p.name)
+def test_archived_task_has_no_empty_optional_heading(task: Path) -> None:
+    """0031: `## Assumptions` survived the `etu-forms` template run empty, because nothing
+    marks an unfilled optional heading wrong on its own — only whether it was ever going to
+    be filled, which archival settles. An optional heading still empty once the task is done
+    was declared and never used; drop it rather than ship it hollow.
+
+    Only archived tasks are checked: an active task may legitimately carry an optional
+    heading it intends to fill before it is done.
+
+    A duplicated heading is the other structural defect in the same `etu-forms` evidence, but
+    it needs no check here: `.pymarkdown.json` already enables MD024 (`siblings_only`), which
+    flags a heading repeated among its siblings in the same file — checked by the lint step
+    0016 already runs in CI, not duplicated by this suite.
+    """
+    empty = []
+    for name, optional in (
+        ("task.md", TASK_OPTIONAL_HEADINGS),
+        ("context.md", CONTEXT_OPTIONAL_HEADINGS),
+    ):
+        path = task / name
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        for heading in optional:
+            body = section(text, heading)
+            if body is not None and not body.strip():
+                empty.append(f"{name}#{heading}")
+    assert not empty, f"{task.name} archived with empty optional heading(s): {empty}"
+
+
 # --- Task index (0009) ----------------------------------------------------------------
 
 
