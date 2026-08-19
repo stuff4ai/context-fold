@@ -69,6 +69,17 @@ enforced by `tests/test_conventions.py::test_installed_skill_matches_the_shipped
 `templates/task/` and editing `ADOPTING.md` had to happen in both trees or the suite would fail;
 not obvious from the task's own `## Scope`, which names only the distribution copy.
 
+The repository root `AGENTS.md` was never read before starting. Work began from
+`.agents/tasks/` — the task package, `.agents/tasks/AGENTS.md`, `ADOPTING.md`, and the decision
+records the task itself pointed at — and that chain looked complete without going up to the
+repository root. The commit that closed the task carried no `Signed-off-by` trailer, and the
+branch was named `decide-task-template-fate` instead of `<type>/<kebab-case-topic>`; both rules
+are stated only in the root `AGENTS.md`. Caught only when asked directly why `AGENTS.md` hadn't
+been read — after the pull request was already open — and fixed afterward: the commit amended,
+the branch renamed, the pull request reopened under it. Claude Code auto-loads `CLAUDE.md` at
+session start, not `AGENTS.md`, so nothing prompted the read automatically; opened
+`.agents/tasks/support-claude-code/` as a follow-up.
+
 ## Outcome
 
 Decided: drop. `skills/ctxfold-init/templates/task/` is removed from both the distribution
