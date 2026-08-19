@@ -2,7 +2,7 @@
 
 ## Status
 
-planned
+completed
 
 ## Objective
 
@@ -53,3 +53,29 @@ product, if it happens, is an adapter over the canonical model — never the sou
 3. No portable rule file (`.agents/AGENTS.md`, `.agents/tasks/AGENTS.md`,
    `.agents/tasks/archive/AGENTS.md`) names Claude Code or assumes its layout —
    `decisions/0011-keep-the-model-vendor-neutral.md` still holds.
+
+## Problems
+
+The Markdown linter (`pymarkdown`, `MD041`) rejected `CLAUDE.md` with only `@AGENTS.md` on its
+first line — every tracked document needs a top-level heading. Added `# CLAUDE.md` above the
+import and re-ran the verification session to confirm the import still resolves with a heading
+preceding it, rather than assuming a one-line change to a file the linter had just flagged was
+safe.
+
+## Outcome
+
+`CLAUDE.md` added at the repository root: a heading plus `@AGENTS.md`, Claude Code's own import
+syntax. Verified with two fresh, tool-less `claude -p` sessions in this repository — each denied
+every tool so an answer could only come from context already loaded at session start — that
+correctly answered questions about branch naming and commit sign-off from `AGENTS.md` and named
+the source as "the AGENTS.md content shown at session start." Recorded in
+`decisions/0030-add-a-claude-code-adapter.md`.
+
+No portable rule file changed; `decisions/0011-keep-the-model-vendor-neutral.md` holds.
+
+Acceptance:
+
+1. Satisfied — `CLAUDE.md` is a one-line pointer, not a copy.
+2. Satisfied — verified empirically, twice, not assumed.
+3. Satisfied — `.agents/AGENTS.md`, `.agents/tasks/AGENTS.md`, and
+   `.agents/tasks/archive/AGENTS.md` are unchanged.
