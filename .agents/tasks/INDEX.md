@@ -6,7 +6,9 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [add-task-rfc](add-task-rfc/task.md) | planned | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
 
 ## Archive
 
