@@ -39,3 +39,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0026 | [Map what is under the agents directory](0026-map-what-is-under-the-agents-directory.md) | Accepted |
 | 0027 | [Produce evidence at the final check](0027-produce-evidence-at-the-final-check.md) | Accepted |
 | 0028 | [Let a task declare its own approver](0028-let-a-task-declare-its-own-approver.md) | Accepted |
+| 0029 | [Drop the task template](0029-drop-the-task-template.md) | Accepted |

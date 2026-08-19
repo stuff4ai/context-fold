@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. `templates/task/` is removed by [0029](0029-drop-the-task-template.md); the map and the
+ownership rules stand for what remains.
 
 ## Context
 
