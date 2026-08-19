@@ -9,6 +9,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 | Task | Status | Objective |
 | --- | --- | --- |
 | [guard-against-leftover-scaffolding](guard-against-leftover-scaffolding/task.md) | planned | Decide whether to add a mechanical check that catches leftover instructional prose, empty headings, or duplicated headings in a task package |
+| [support-claude-code](support-claude-code/task.md) | planned | Add a Claude Code adapter so a session in this repository has `AGENTS.md`'s content without being told to read it |
 
 ## Archive
 
