@@ -2,7 +2,7 @@
 
 ## Status
 
-planned
+active
 
 ## Objective
 
@@ -47,3 +47,14 @@ failure.
    false-negative risk is stated. A check that flags real content as scaffolding, or misses real
    scaffolding, is worse than no check — the four `etu-forms` defects it would need to catch are
    the concrete cases to test it against.
+
+## Problems
+
+- While setting up this task's worktree, read a sibling worktree's (`reconcile-live-questions`)
+  `git log` and commit diff, looking for a branch- and commit-naming pattern to copy. Assumed a
+  worktree's own history was reusable precedent. `.agents/worktrees/AGENTS.md` only sanctions
+  opening another task's `task.md` there ("to see what it claims") — its git history is another
+  copy's, and reading it "produces a second and contradictory version of every record and task
+  package." Corrected by using `git branch -a` at the repository root instead, which already
+  showed the same convention (`docs/reconcile-live-questions` off `main`, worktree dir dropping
+  the type prefix).
