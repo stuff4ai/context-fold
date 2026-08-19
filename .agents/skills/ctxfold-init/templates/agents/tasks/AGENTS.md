@@ -120,6 +120,10 @@ established, but it is not the destination — see the triage rule below.
 Create it when the task is multi-step, complex, long-running, or likely to be resumed by
 another agent. Keep it mutable and short. It is not an execution log.
 
+An optional heading you have nothing to put under yet is left out, not kept empty. An active
+task may still fill one in before it is done; one still empty at archival was declared and never
+used, and a mechanical check treats it that way.
+
 ## Recording problems
 
 Append to `## Problems` in `task.md` **while working**, not at the end. A few lines per entry:

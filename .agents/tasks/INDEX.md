@@ -6,14 +6,13 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [guard-against-leftover-scaffolding](guard-against-leftover-scaffolding/task.md) | planned | Decide whether to add a mechanical check that catches leftover instructional prose, empty headings, or duplicated headings in a task package |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-19-2015-guard-against-leftover-scaffolding](archive/2026-08-19-2015-guard-against-leftover-scaffolding/task.md) | completed | Decide whether to add a mechanical check that catches leftover instructional prose, empty headings, or duplicated headings in a task package |
 | [2026-08-19-1928-reconcile-live-questions](archive/2026-08-19-1928-reconcile-live-questions/task.md) | completed | Correct the README and live open-question list where accepted decisions and shipped work have made their descriptions stale |
 | [2026-08-19-1619-support-claude-code](archive/2026-08-19-1619-support-claude-code/task.md) | completed | Add a Claude Code adapter so a session in this repository has `AGENTS.md`'s content without being told to read it |
 | [2026-08-19-1250-decide-whether-the-task-template-earns-its-place](archive/2026-08-19-1250-decide-whether-the-task-template-earns-its-place/task.md) | completed | Decide whether `templates/task/` should be kept, changed, or dropped |

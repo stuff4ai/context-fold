@@ -41,3 +41,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0028 | [Let a task declare its own approver](0028-let-a-task-declare-its-own-approver.md) | Accepted |
 | 0029 | [Drop the task template](0029-drop-the-task-template.md) | Accepted |
 | 0030 | [Add a Claude Code adapter](0030-add-a-claude-code-adapter.md) | Accepted |
+| 0031 | [Check task packages for scaffolding by shape](0031-check-task-packages-for-scaffolding-by-shape.md) | Accepted |
