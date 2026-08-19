@@ -6,14 +6,13 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [decide-whether-the-task-template-earns-its-place](decide-whether-the-task-template-earns-its-place/task.md) | planned | Decide whether `templates/task/` should be kept, changed, or dropped |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-19-1250-decide-whether-the-task-template-earns-its-place](archive/2026-08-19-1250-decide-whether-the-task-template-earns-its-place/task.md) | completed | Decide whether `templates/task/` should be kept, changed, or dropped |
 | [2026-08-18-2312-declare-who-approves-a-task](archive/2026-08-18-2312-declare-who-approves-a-task/task.md) | completed | Let a task declare that a fresh verifier's CONFIRMED verdict is sufficient to merge it |
 | [2026-08-18-2250-park-agent-native-sdlc-questions](archive/2026-08-18-2250-park-agent-native-sdlc-questions/task.md) | completed | Preserve proposed agent-native SDLC and harness directions as live, neutral questions without treating the proposal as an accepted architecture or implementation plan |
 | [2026-08-18-2246-make-the-final-check-verifiable](archive/2026-08-18-2246-make-the-final-check-verifiable/task.md) | completed | Decide what the final exact-head check proves when self-run |
