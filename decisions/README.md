@@ -40,3 +40,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0027 | [Produce evidence at the final check](0027-produce-evidence-at-the-final-check.md) | Accepted |
 | 0028 | [Let a task declare its own approver](0028-let-a-task-declare-its-own-approver.md) | Accepted |
 | 0029 | [Drop the task template](0029-drop-the-task-template.md) | Accepted |
+| 0030 | [Add a Claude Code adapter](0030-add-a-claude-code-adapter.md) | Accepted |
