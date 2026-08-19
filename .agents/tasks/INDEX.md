@@ -14,6 +14,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-19-1928-reconcile-live-questions](archive/2026-08-19-1928-reconcile-live-questions/task.md) | completed | Correct the README and live open-question list where accepted decisions and shipped work have made their descriptions stale |
 | [2026-08-19-1619-support-claude-code](archive/2026-08-19-1619-support-claude-code/task.md) | completed | Add a Claude Code adapter so a session in this repository has `AGENTS.md`'s content without being told to read it |
 | [2026-08-19-1250-decide-whether-the-task-template-earns-its-place](archive/2026-08-19-1250-decide-whether-the-task-template-earns-its-place/task.md) | completed | Decide whether `templates/task/` should be kept, changed, or dropped |
 | [2026-08-18-2312-declare-who-approves-a-task](archive/2026-08-18-2312-declare-who-approves-a-task/task.md) | completed | Let a task declare that a fresh verifier's CONFIRMED verdict is sufficient to merge it |

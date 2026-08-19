@@ -39,16 +39,18 @@ Two layers, with a hard boundary between them.
 **The project layer** holds what the project knows: the code, its tests, its documentation,
 and its decision records. This is durable, human-owned truth.
 
-**The agent layer** (`.agents/`) holds how agents operate: navigation, task coordination,
-lifecycle state, working context. It is scaffolding, not knowledge.
+**The agent layer** holds how agents operate: navigation, task coordination, lifecycle state,
+working context. It is scaffolding, not knowledge. It lives under `.agents/`, a shared directory
+that may also contain files owned by other tools; the directory is not itself the layer.
 
 The boundary is enforced by a test anyone can apply:
 
-> If humans need this information too, it does not belong only in `.agents/`.
+> If humans need this information too, it does not belong only in the agent layer.
 
-Remove `.agents/` and read what remains. The test fails if knowledge was lost, not if a
-pointer to the layer dangles — removing the layer is an ordinary change, and what pointed at
-it is updated alongside. A layer that fails has quietly become a second, drifting source of
+Remove the layer-owned rule files, index, and tasks, then read what remains. The test fails if
+knowledge was lost, not if a pointer to the layer dangles — removing the layer is an ordinary
+change, and what pointed at it is updated alongside. Files under `.agents/` that belong to other
+tools are outside the test. A layer that fails has quietly become a second, drifting source of
 truth.
 
 ## Tasks
@@ -84,16 +86,20 @@ requirement.
 Everything a repository needs is in
 [`skills/ctxfold-init/`](skills/ctxfold-init/): the procedure in
 [`ADOPTING.md`](skills/ctxfold-init/ADOPTING.md), the files it installs, and a skill that carries
-out the adoption for an agent that supports one.
+out the adoption for an agent that supports one. The procedure remains readable and usable by
+hand; the skill is an adapter over it.
 
 ## Status
 
 v0. Methodology and repository conventions, applied to this repository first.
 
-Nothing produces anything. Task packages, the index, and the archive are maintained by hand, by
-decision rather than by omission — see
-[0012](decisions/0012-build-the-methodology-before-the-tooling.md). Checks that verify those
-conventions run in CI ([0016](decisions/0016-check-conventions-in-ci.md)).
+`ctxfold-init` performs adoption. After that, ordinary task packages, the index, and the archive
+are maintained by hand, by decision rather than by omission — see
+[0012](decisions/0012-build-the-methodology-before-the-tooling.md). Promoting repeated problems
+into lessons also remains a person's judgment
+([0013](decisions/0013-improve-context-from-the-work.md)).
+Checks that verify the conventions run in CI
+([0016](decisions/0016-check-conventions-in-ci.md)).
 
 What is deliberately unbuilt, and what using it has shown to be unresolved, is in
 [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).
