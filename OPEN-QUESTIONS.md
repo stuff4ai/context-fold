@@ -13,22 +13,19 @@ historical records. This document is the live list.
 Chosen not to build yet, so that the methodology can be judged on its own before tooling
 hides its weaknesses.
 
-- **Tooling that produces artifacts.** Creating a task package, moving it to the archive, and
-  maintaining the index are done by hand, by decision rather than omission. What the eventual
-  tooling should be — a command, agent skills, or neither — is undecided. Skills were the
-  original intent, reached before any of the current structure existed and never tested
-  against it.
-- **Skills and workflows.** `.agents/skills/` and `.agents/workflows/` are unbuilt. Reusable
-  procedures should appear only when a pattern has actually repeated.
+- **Ongoing task-lifecycle automation.** `ctxfold-init` performs adoption, but creating an
+  ordinary task package, moving it to the archive, and maintaining the index are still done by
+  hand, by decision rather than omission. What, if anything, should automate that ongoing
+  lifecycle — a command, further agent skills, workflows, or something else — is undecided.
+- **Further skills and workflows.** `ctxfold-init` packages one repeated procedure: adoption.
+  Which other repeated procedures merit a skill, whether workflows earn a separate form, and
+  where either should be distributed remain open.
 - **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
   problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
   perform that step is undecided — it would have to hold candidate lessons without becoming a
   second place where rules live.
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
   second documentation tree.
-- **Adapters for specific agent tools.** Integrations for particular products come later, if
-  at all — the model is neutral by decision, so nothing works out of the box until someone
-  writes one.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
   rather than by reading files.
 - **Automatic context selection.** Whether the layer should decide which context a task needs
@@ -45,10 +42,11 @@ hides its weaknesses.
 - **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
   that no program implements.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
-- **Distribution and versioning.** How the portable rule files reach another repository, and
-  how an installation is upgraded. The direction favoured so far is a single repository plus
-  Git tags, installed by whatever ecosystem tooling already exists, rather than a registry of
-  this project's own — but nothing has been built or tried.
+- **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
+  files and performs adoption, but an installation records neither its source nor a version,
+  cannot discover that upstream rules changed, and has no upgrade procedure. What identity an
+  installation needs, how it discovers changes, and how replacement preserves installation-owned
+  state remain undecided.
 - **Metadata schemas.** No frontmatter, no structured fields. Everything is prose under known
   headings. Traceability, executable checks and event records would each need stable identity and
   relationships, but it is unknown whether those consumers justify introducing a schema.
@@ -200,18 +198,20 @@ hides its weaknesses.
 - **Should the workflow be enforced rather than written down?** Branch protection could require
   what `0001` and `0008` describe, instead of relying on repository settings any administrator
   can change. Enforcement makes rules real but moves them out of the repository.
-- **What does adopting this into an existing repository look like?** Establishing the structure
-  in an empty repository is solved — this one did it. An existing repository already has
-  documentation, conventions, and history, and nothing describes how the layer arrives without
-  either ignoring them or rewriting them. Whoever adopts it also needs somewhere to disagree
-  with the defaults, and no customization mechanism exists.
+- **How should an adopter customize or replace the portable rules?** `ctxfold-init` has adopted
+  the layer into existing repositories without rewriting their documentation, conventions, or
+  other `.agents/` content. Its installed rule files must remain byte-identical to the
+  distribution, so an adopter still has no supported way to disagree with a default while
+  retaining replaceability. What belongs in local project rules, what constitutes a maintained
+  fork, and how either path interacts with upgrades remain undecided.
 - **Should an adopter's installation be checkable?** This repository verifies that its installed
   rule files match the distribution, so editing them fails CI. An adopter gets no such check —
   the instruction not to edit is a request, and a copy that drifts is indistinguishable from one
   that did not.
-- **What distinguishes a workflow from a skill?** Both are deferred, and the difference matters
-  before either is built: roughly, how work moves through stages versus a reusable capability
-  applied within a stage. Whether that distinction survives contact with real use is untested.
+- **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
+  capability applied to adoption; no workflow has been built. Whether a workflow should instead
+  describe how work moves through stages, and whether that distinction survives real use, is
+  untested.
 - **What convention governs skill names?** `ctxfold-init` follows the pattern observed in
   installed skills — a lowercase hyphenated name matching its directory — and a check enforces
   the match. Whether the `ctxfold-` prefix is right, and what a second skill would be called,
@@ -259,14 +259,9 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   the precedence rule — so a correction to that rule reaches new adopters and no existing one,
   and nothing detects when a shipped header and an installed one diverge. Either the header
   carries no rules, or something has to bind it.
-- **Where does `## Outcome` go?** Every archived task here puts it before `## Problems`; a
-  foreign run put it after. `## Finishing` says to add an Outcome and does not say where. A
-  convention nobody wrote down is a convention adopters get wrong.
-- **`README.md` still equates the layer with the directory.** It says the agent layer *is*
-  `.agents/`, and states the deletion test as "Remove `.agents/` and read what remains". `0018`
-  separated the two and `0026` builds a map on the premise that `.agents/` holds more than the
-  layer, so the front door now contradicts both. This is the same wording defect repaired twice
-  inside the rules; nobody has looked for it in the document a reader meets first.
+- **Where does `## Outcome` go?** Twenty-four of the twenty-six archived tasks here put it
+  before `## Problems`; two put it after. `## Finishing` says to add an Outcome and does not say
+  where. The dominant order is therefore a convention by imitation, not a written rule.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and
