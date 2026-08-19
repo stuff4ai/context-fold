@@ -4,6 +4,8 @@
 
 Accepted. `templates/task/` is removed by [0029](0029-drop-the-task-template.md); the split
 between what upgrades and what diverges stands for what remains.
+[0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) adds a fourth file to
+`templates/agents/`, narrowing this record's "three `AGENTS.md` files" to four.
 
 ## Context
 

@@ -71,10 +71,11 @@ and index that working here produces. Its rules are in `tasks/AGENTS.md`. Start 
 this layer neither defines nor relies on. What is there answers to whatever put it there: read it
 if it is addressed to you, and do not treat it as a statement about this project.
 
-**`worktrees/`** — parallel checkouts, if this project keeps any. Not context: each is a separate
-copy of this repository at a different point in its history, so reading one as part of this copy
-produces a second and contradictory version of every record and task package. A project that
-keeps them says how in `worktrees/AGENTS.md`.
+**`worktrees/`** — parallel checkouts, if this project keeps any, and not the layer's: the
+workflow is this project's own, described in `worktrees/AGENTS.md`. That one file ships
+byte-identical, the same as this one; everything beside it is checkouts, not context — each a
+separate copy of this repository at a different point in its history, so reading one as part of
+this copy produces a second and contradictory version of every record and task package.
 
 Directories inside the layer carry their own `AGENTS.md` with rules for that scope, and the
 nearest one applies. Anything else you find here answers to whatever created it.

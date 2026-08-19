@@ -32,10 +32,13 @@ add the pointer a second time, and open an adoption task for an adoption that al
 
 Do this instead:
 
-- Copy only the `AGENTS.md` files from `templates/agents/`. Leave `INDEX.md` and everything under
+- Copy only the `AGENTS.md` files from `templates/agents/`, including `worktrees/AGENTS.md` — all
+  of them are the distribution's now, and re-copying overwrites whatever was there before. This is
+  a change from earlier installations, which left `.agents/worktrees/AGENTS.md` alone on the
+  assumption it had been edited on purpose; it is byte-identical now, the same as the other rule
+  files, so overwriting it on re-adoption is correct. Leave `INDEX.md` and everything under
   `tasks/` alone — those are this repository's, not the distribution's.
-- Leave `.agents/worktrees/AGENTS.md` alone if it is there. It is the repository's copy and may
-  have been edited on purpose. If it is missing, the repository adopted before this file existed:
+- If `.agents/worktrees/AGENTS.md` is missing, the repository adopted before this file existed:
   offer it and the `.gitignore` lines rather than adding them unasked.
 - Leave the root `AGENTS.md` alone if it already points at the layer.
 - Do not open task zero.
@@ -52,14 +55,14 @@ structure inside it.
 templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
+templates/agents/worktrees/AGENTS.md     →  .agents/worktrees/AGENTS.md
 templates/INDEX.md                       →  .agents/tasks/INDEX.md
-templates/worktrees/AGENTS.md            →  .agents/worktrees/AGENTS.md
 ```
 
-`templates/agents/` is separate from the other two on purpose. Everything in `templates/agents/`
-must stay byte-identical to its template for as long as it is installed. `INDEX.md` stops
-matching the moment you record your first task, and `worktrees/AGENTS.md` describes a workflow
-this project may not share — both are yours once copied.
+`templates/agents/` is separate from `INDEX.md` on purpose. Everything in `templates/agents/` —
+worktree conventions included — must stay byte-identical to its template for as long as it is
+installed. `INDEX.md` stops matching the moment you record your first task; it is yours once
+copied, the one file the distribution does not keep in sync.
 
 **Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
 and then confirm every installed file is byte-for-byte identical to its template. Reproducing
