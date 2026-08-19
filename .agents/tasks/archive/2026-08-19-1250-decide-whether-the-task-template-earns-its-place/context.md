@@ -7,7 +7,7 @@ package and filled in. It was added when the distribution was separated from the
 
 The first five adoption runs are recorded in
 `.agents/tasks/archive/2026-08-17-0116-add-init-skill/task.md`, under the entries about the
-template being optional and about its example lines surviving as content. A sixth is recorded
+template being optional and about its example lines surviving as content. Two more are recorded
 below.
 
 ## References

@@ -12,8 +12,11 @@ need is in this directory — nothing has to be fetched.
 
 ```text
 templates/agents/   →   .agents/
-templates/task/     →   the shape of a task package
 ```
+
+The shape of a task package is not shipped as a skeleton to copy. `.agents/tasks/AGENTS.md`,
+installed by the step above, lists the sections a task package needs; task zero below shows it
+filled in.
 
 Plus a pointer in the repository's root `AGENTS.md`.
 
@@ -119,8 +122,8 @@ contributes.
 The adoption is itself a task, and it is the first one. This mirrors how decision records begin —
 the first record is the decision to use records.
 
-Copy `templates/task/` to `.agents/tasks/adopt-context-fold/` and fill it in. The skeleton is
-generic; for task zero the content is:
+Create `.agents/tasks/adopt-context-fold/task.md` and `context.md` directly, with the sections
+`.agents/tasks/AGENTS.md` lists as required. For task zero the content is:
 
 **`task.md`** — Objective: establish the context-fold agent layer in this repository. Why: work
 here is organized as task packages so context survives between sessions and agents, and so what
