@@ -32,6 +32,14 @@ one checkout per task, named for the task.
 
 A worktree whose task has landed is finished. Remove it rather than leaving it to drift.
 
+Merging from inside a task's own worktree needs its own order. `main` is checked out at the
+repository root the whole time a task worktree exists, so a merge command that tries to also
+check out `main` in the worktree it runs from — `gh pr merge --delete-branch`'s local half does
+this — fails there, even though the merge itself already went through. Merge first without that
+flag, remove the worktree, then delete the branch: `gh pr merge <N> --squash`, `git worktree
+remove .agents/worktrees/{task-slug}`, `git branch -D {branch}`, `git push origin --delete
+{branch}`.
+
 This is a workflow, not part of the agent layer. The portable rules say how concurrent tasks
 share files and declare what blocks them, and name no version control system: see
 `.agents/tasks/AGENTS.md`.

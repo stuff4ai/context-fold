@@ -12,6 +12,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-19-2059-avoid-worktree-merge-branch-conflict](archive/2026-08-19-2059-avoid-worktree-merge-branch-conflict/task.md) | completed | Document a merge sequence for task worktrees that avoids `gh pr merge --delete-branch`'s local checkout conflict with `main` |
 | [2026-08-19-2015-guard-against-leftover-scaffolding](archive/2026-08-19-2015-guard-against-leftover-scaffolding/task.md) | completed | Decide whether to add a mechanical check that catches leftover instructional prose, empty headings, or duplicated headings in a task package |
 | [2026-08-19-1928-reconcile-live-questions](archive/2026-08-19-1928-reconcile-live-questions/task.md) | completed | Correct the README and live open-question list where accepted decisions and shipped work have made their descriptions stale |
 | [2026-08-19-1619-support-claude-code](archive/2026-08-19-1619-support-claude-code/task.md) | completed | Add a Claude Code adapter so a session in this repository has `AGENTS.md`'s content without being told to read it |
