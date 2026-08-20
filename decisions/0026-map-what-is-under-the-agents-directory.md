@@ -4,6 +4,10 @@
 
 Accepted. `templates/task/` is removed by [0029](0029-drop-the-task-template.md); the map and the
 ownership rules stand for what remains.
+[0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) narrows this record's
+classification of `templates/worktrees/AGENTS.md` as copied-once-and-diverges — it now ships
+byte-identical instead, while remaining, as this record already established, not part of the
+layer merely by being shipped.
 
 ## Context
 

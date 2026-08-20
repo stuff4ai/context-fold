@@ -3,8 +3,9 @@
 Parallel checkouts live here, one per task, named for its slug. This project's version control
 ignores everything in this directory except this file.
 
-This file is yours. It was copied here once and is not replaced when the layer is updated, so
-change it to match how this project actually works.
+The `AGENTS.md` files are identical in every installation. They carry no project-specific
+paths, names, or decisions. Do not edit them to fit this project, and expect them to be
+replaced wholesale when the rules are updated.
 
 ## These are not context
 

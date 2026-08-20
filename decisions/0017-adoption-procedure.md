@@ -5,7 +5,9 @@
 Accepted. The enumeration of what adoption copies and does is narrowed by
 [0026](0026-map-what-is-under-the-agents-directory.md): it also copies
 `templates/worktrees/AGENTS.md` and writes ignore rules for the directory it lives in.
-That adoption is a described procedure rather than an installer stands.
+[0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) narrows this further:
+`templates/worktrees/AGENTS.md` is one of the portable rule files copied unchanged, not a
+separate "also" step. That adoption is a described procedure rather than an installer stands.
 
 ## Context
 

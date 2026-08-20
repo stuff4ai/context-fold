@@ -36,6 +36,7 @@ PORTABLE = [
     ROOT / ".agents" / "AGENTS.md",
     TASKS / "AGENTS.md",
     ARCHIVE / "AGENTS.md",
+    ROOT / ".agents" / "worktrees" / "AGENTS.md",
 ]
 
 ARCHIVE_DIR = re.compile(r"^\d{4}-\d{2}-\d{2}-\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -250,6 +251,15 @@ def installed_layer_files() -> set[Path]:
             found.add(path.relative_to(agents))
         elif path.is_dir():
             found |= {p.relative_to(agents) for p in path.rglob("AGENTS.md")}
+
+    # `worktrees/` cannot use the `tasks`-style recursive glob: it also holds live worktree
+    # checkouts (0025), each a full nested copy of this repository with its own nested
+    # `AGENTS.md` files. `rglob` would descend into whichever happen to be checked out and
+    # break the set comparison depending on what work is in progress when the suite runs.
+    worktrees_agents = agents / "worktrees" / "AGENTS.md"
+    if worktrees_agents.is_file():
+        found.add(worktrees_agents.relative_to(agents))
+
     return found
 
 
