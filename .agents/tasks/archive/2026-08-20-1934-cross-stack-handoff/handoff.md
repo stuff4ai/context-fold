@@ -4,6 +4,13 @@ Exchanges between agent stacks working this task. An entry is not rewritten once
 its request text is fixed then, and answering it changes only `state:` and fills `### Return`.
 A new exchange is a new entry.
 
+**Who wrote what.** In every return below, the verdict is the answering role's own words,
+quoted. The prose around it — attribution, commentary, what was accepted — is the asking lead's.
+The convention says a lead answers a handoff, having dispatched its own role to do the work; in
+these exchanges no answering lead existed, because the asking lead invoked the role across the
+boundary itself. The returns are therefore assembled by the asker, not written by an answerer,
+and are marked as such rather than presented as the other stack's voice.
+
 ---
 
 ## 001
@@ -250,3 +257,13 @@ checked rather than taken on trust.
 What is established is that the protocol was followed, which is what acceptance criterion 3
 requires. The verdict is a separate matter: a compliant exchange returning `REVISE` would have
 been an equally good exercise of the convention.
+
+**Correction, added after the fact.** The paragraph above overstates this exchange, and the
+sentence calling it "the first exchange to obey the convention" is wrong. It obeyed one rule —
+*Commit the request, then dispatch it* — which is all the four Git facts establish. It broke
+*Stop after asking*: the asking lead dispatched and continued in the same turn rather than
+stopping. And it did not satisfy the requirement that only a lead answers a handoff, because
+the asking lead invoked `codex:plan-verifier` directly and no answering lead took part. The
+`READY` above is the role's, verbatim; everything around it is the asking lead's. Acceptance
+criterion 3 has been narrowed to the rule this actually demonstrates, and criterion 7 now
+requires the unexercised rules to be named.

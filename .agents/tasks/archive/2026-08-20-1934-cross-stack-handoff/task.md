@@ -53,18 +53,25 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
    is byte-identical to `.agents/skills/ctxfold-init/templates/agents/tasks/AGENTS.md` and
    to `skills/ctxfold-init/templates/agents/tasks/AGENTS.md`, verifiable by comparing the
    bytes between the `agent-layer` markers in all three.
-3. This package contains a `handoff.md` recording at least one exchange with a second agent
-   stack that followed the convention's own rules, each part checkable from Git: the entry's
-   `state:` is `returned`; its `rev:` names a commit that already contains what the request
-   asked about; the entry itself was committed before dispatch, in a commit descended from
-   `rev:`; and that dispatch commit differs from `rev:` in nothing but the entry, or the
-   request discloses what else differs.
+3. This package contains a `handoff.md` recording at least one exchange whose revision and
+   dispatch lifecycle obeyed *Commit the request, then dispatch it*, each part checkable from
+   Git: the entry's `state:` is `returned`; its `rev:` names a commit that already contains
+   what the request asked about; the entry itself was committed before dispatch, in a commit
+   descended from `rev:`; and that dispatch commit differs from `rev:` in nothing but the
+   entry, or the request discloses what else differs.
+
+   This is a claim about one rule, not about the convention. *Stop after asking* and the
+   requirement that only a lead answers a handoff leave no trace in Git, and no exchange here
+   satisfied either; criterion 7 covers saying so.
 4. That exchange was real. The return records which stack and which role produced it, and
    the verdict is one this task did not write for it.
 5. The convention's rules are stated somewhere a reader who was not present can apply them
    to a new task without reading this package.
 6. `.agents/tasks/AGENTS.md`'s suffix does not contradict its managed block, and states no
    rule that only makes sense for this repository.
+7. The record names every rule no exchange exercised, rather than letting evidence for one
+   rule read as evidence for the convention. It also distinguishes, in each return, the text
+   the answering role produced from the text the asking lead wrote around it.
 
 ## Approval
 
@@ -101,16 +108,25 @@ dispatch commit changed three files the entry never disclosed. Each failure prod
 that now forbids it, which is the substance of what this task learned: the rules were not
 designed and then demonstrated, they were extracted from the demonstration going wrong.
 
-Entry 003 is the first exchange to obey the convention, and the only evidence that it can be
-obeyed at all. It named a revision that already contained what it asked about, was committed
-before dispatch in that revision's immediate child, changed nothing but the entry, and returned
-`READY`. The compliance is checkable from Git and the request asked for it to be checked rather
-than asserted; the verdict is a separate matter, and a compliant exchange returning `REVISE`
-would have demonstrated the convention just as well.
+Entry 003 obeyed the revision and dispatch rule, and is the only evidence that that rule can be
+obeyed. It named a revision already containing what it asked about, was committed before
+dispatch in that revision's immediate child, changed nothing but the entry, and returned
+`READY`. Every part of that is checkable from Git, and the request asked for it to be checked
+rather than asserted. The verdict is a separate matter: a returning `REVISE` would have
+demonstrated the rule just as well.
 
-No exchange has crossed a person. The asking stack invoked the answering one as a subprocess
-each time, so the rule that assumes a human moves the work between stacks remains untested, and
-is named as a condition that would reopen promotion.
+Two rules were exercised by no exchange at all, and Git cannot show otherwise either way.
+*Stop after asking* was broken every time: the asking lead dispatched and then continued in the
+same turn, because it invoked the answering stack itself instead of stopping for something
+outside to carry the work. And no answering *lead* was ever involved — the asking lead invoked
+`codex:plan-verifier` directly, so the convention's requirement that only a lead answers a
+handoff, which is what keeps a dispatched role from being addressed across stacks, has never
+been tested. In each entry the verdict is the role's, quoted; the prose around it is the asking
+lead's.
+
+So the convention is evidenced in part. One rule is demonstrated, three are visible in the
+entries as written, and two remain claims. A handoff that crosses a person is already recorded
+as a condition that would reopen promotion; it is also what would exercise the two.
 
 ## Problems
 
@@ -218,3 +234,21 @@ once an exchange became one entry with one state, the criterion had no meaning a
 checked either way. It was drafted at the start and not re-read when the format changed. Criteria
 are as capable of going stale as rules, and nothing prompts a re-read of them at the point the
 design moves.
+
+Evidence for one rule was presented as evidence for the convention. Acceptance criterion 3
+listed four facts recoverable from Git and called satisfying them "followed the convention's own
+rules", when they establish only the revision and dispatch lifecycle. Two of the five rules
+leave no trace in Git at all — stopping after dispatch, and the requirement that only a lead
+answers a handoff — and both were broken in every exchange, including the one held up as
+compliant. The asking lead invoked the answering role directly and continued in the same turn,
+so no answering lead ever existed and no turn ever ended. Checkability is not coverage: the
+rules that can be verified mechanically are not the rules most likely to be broken, and
+collecting the easy evidence made the record look complete. The criterion now claims one rule,
+a new criterion requires the unexercised ones to be named, and entry 003 carries a correction
+saying what it did and did not demonstrate.
+
+Returns were written to read as the other stack's voice. Each begins "Answered by
+`codex:plan-verifier`", but only the verdict is that role's; the attribution, the commentary and
+the acceptance of blockers were all written by the asking lead, which under the convention is
+the one participant that should not be composing the answer. The file now states that boundary
+once at the top rather than leaving each return to imply otherwise.
