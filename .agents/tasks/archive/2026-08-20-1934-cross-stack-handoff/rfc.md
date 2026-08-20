@@ -6,8 +6,11 @@ status: resolved
 
 ## The proposal
 
-A task package may carry `handoff.md`: an append-only record of requests between agent
-stacks working the same repository, and the answers to them.
+A task package may carry `handoff.md`: a record of requests between agent stacks working the
+same repository, and the answers to them. An entry is not rewritten once dispatched — its
+request text is fixed then, and answering it changes only `state:` and fills `### Return`. A
+fact that turns out to be wrong is corrected by adding to the entry, marked as added
+afterwards.
 
 Each entry is one exchange, opening with a fenced `yaml` block and then two sections. The
 header is fenced rather than document frontmatter because the file holds many entries and a
@@ -46,10 +49,10 @@ Five rules:
 3. **Return.** The receiving lead answers in the vocabulary `returns:` names, appends it
    under `### Return`, and sets `state: returned`. A review request is answered, not
    continued into implementation.
-4. **Record the revision.** `rev:` is what makes a return meaningful: a verdict is about a
-   state, and without one recorded the reader cannot tell what was judged. A sender whose
-   tree is dirty says so in the request rather than naming a revision that does not
-   describe it.
+4. **Commit the request, then dispatch it.** `rev:` names the commit that contains the
+   entry itself. A request read from an uncommitted tree cannot be shown afterwards to be
+   what was actually asked. Where anything else in the tree differs from `rev:` at dispatch,
+   the request says what and why.
 5. **Stop.** After writing a request, stop. Something outside the repository moves the work
    to the other stack; the file does not deliver itself.
 

@@ -1,7 +1,8 @@
 # Handoff — cross-stack handoff
 
-Exchanges between agent stacks working this task. Append-only: a new exchange is a new
-section, and a return is written into its own entry rather than replacing the request.
+Exchanges between agent stacks working this task. An entry is not rewritten once dispatched:
+its request text is fixed then, and answering it changes only `state:` and fills `### Return`.
+A new exchange is a new entry.
 
 ---
 
@@ -37,6 +38,16 @@ Alternative A must be one this project's own decisions actually support, not a p
 
 **Read first** — `.agents/tasks/cross-stack-handoff/rfc.md`, then the four decision records
 named above, then `.agents/tasks/AGENTS.md` for what a package may contain today.
+
+**Disclosure, added after the fact.** This entry did not satisfy the rule it demonstrates.
+`9a668f0` contains `task.md`, `context.md` and `rfc.md` — the material actually under review —
+but not this file, which was staged and uncommitted when the request was dispatched and first
+committed one revision later in `c474667`. So the request text the answering stack read cannot
+be recovered from the revision this entry names. Nothing else in the tree differed.
+
+The rule then read that a sender whose tree was dirty says so, and this entry did not. It now
+reads that the request is committed before it is dispatched and `rev:` names the commit
+containing it, which is the rule this failure produced. Entry 002 is the exchange run under it.
 
 ### Return
 

@@ -360,11 +360,16 @@ roles and its own lead session. They coordinate through the package rather than 
 channel between them, so that what one asked and what another answered stays readable in the
 change afterwards.
 
-A task that needs this carries `handoff.md`. It is append-only: each exchange is a new entry,
-and a return is written into its own entry rather than replacing the request. An entry opens
-with a fenced `yaml` block carrying `id`, `from`, `to`, `state`, `rev` and `returns`, then a
-`### Request` section and a `### Return` section. The header is fenced rather than document
-frontmatter because the file holds many entries.
+A task that needs this carries `handoff.md`. An entry opens with a fenced `yaml` block carrying
+`id`, `from`, `to`, `state`, `rev` and `returns`, then a `### Request` section and a `### Return`
+section. The header is fenced rather than document frontmatter because the file holds many
+entries.
+
+An entry is not rewritten once it is dispatched. Its request text is fixed at that moment, and
+answering it changes only `state:` and fills `### Return`. A new exchange is a new entry; nothing
+edits an earlier one. Correcting the record is the one exception: a fact that turns out to be
+wrong is corrected by adding to the entry, marked as added afterwards, never by replacing what it
+corrects.
 
 - **Address by role, never by model.** `to:` names a stack and one of the roles that stack
   already has. The role's own definition decides what it runs as, so an address naming a model
@@ -374,9 +379,10 @@ frontmatter because the file holds many entries.
 - **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
   request for a review is answered and returned, not continued into the work it reviewed — the
   asking stack decides what to do with a verdict.
-- **Record the revision.** `rev:` is what a return is about. A verdict with no state attached
-  cannot be judged later, and a sender whose tree is dirty says so in the request instead of
-  naming a revision that does not describe it.
+- **Commit the request, then dispatch it.** `rev:` names the commit that contains the entry
+  itself. A request read from an uncommitted working tree cannot be shown afterwards to be what
+  was actually asked, and a verdict with no state attached cannot be judged at all. Where
+  anything else in the tree differs from `rev:` at dispatch, the request says what and why.
 - **Stop after asking.** Writing a request ends your turn. Nothing in the repository delivers
   it; something outside does.
 

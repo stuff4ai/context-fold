@@ -69,10 +69,11 @@ Human. The RFC leaves a direction for the reviewer to choose rather than a claim
 
 ## Outcome
 
-Decision `0036` records `handoff.md` as a task-package artifact: an append-only record of what
-one agent stack asked another and what came back, governed by five rules — address by role and
-never by model, an entry addressed elsewhere is not yours, answer in the vocabulary the request
-names, record the revision, and stop after asking.
+Decision `0036` records `handoff.md` as a task-package artifact: a record of what one agent
+stack asked another and what came back, governed by five rules — address by role and never by
+model, an entry addressed elsewhere is not yours, answer in the vocabulary the request names,
+commit the request before dispatching it, and stop after asking. An entry is not rewritten once
+dispatched; answering it changes only its state and fills its return.
 
 The convention is stated as this repository's project suffix in `.agents/tasks/AGENTS.md`, the
 first use of the boundary `0035` created. The portable managed rule block is untouched, so its
@@ -122,3 +123,31 @@ Here the Claude lead invoked Codex as a subprocess instead. The verdict is genui
 other stack's, so the format and the vocabulary were exercised, but the one part of the
 convention that assumes a human in the loop was not. Recorded in `handoff.md` entry 001 and
 named as a reopening condition rather than left to look like a completed round trip.
+
+The worked example broke the rule it was demonstrating. Entry 001 named `9a668f0` as the
+revision its request referred to, but `9a668f0` does not contain `handoff.md` — the file was
+staged and uncommitted at dispatch and first landed in `c474667`. The request the answering
+stack actually read is therefore not recoverable from the revision the entry names, which is
+the one thing `rev:` exists to make possible. The rule as written only required a dirty tree
+to be disclosed, and even that was not done. Caught in review of the pull request, not by the
+author and not by the reviewing stack — which had the evidence, having run `git status` and
+seen the file staged, and did not treat it as a defect because it was asked about the
+placement argument instead. A review answers the question it was given.
+
+`rev:` now names the commit containing the entry, and the request is committed before it is
+dispatched.
+
+"Append-only" described the file as something it was not. The rules said each exchange was a
+new entry and a return went into its own entry, while the prescribed flow changed `state:
+requested` to `state: returned` in place and filled that same entry's `### Return`. Both
+statements were written in the same sitting and neither was checked against the other, because
+the wrong word was reached for first and then justified. It now says what is actually
+guaranteed: an entry is not rewritten once dispatched, its request text is fixed then, and
+answering changes only the state and the return.
+
+Correcting entry 001 then violated the rule that had just replaced it. Adding the disclosure
+meant editing a dispatched entry, which "not rewritten once dispatched" forbids outright —
+leaving no way to fix a factual error in a record whose value is being accurate. The rule now
+carries one narrow exception: a correction is added to the entry and marked as added
+afterwards, never substituted for what it corrects. Found by applying the new rule to the act
+of writing it, which is the cheapest review available and was not done for the first version.
