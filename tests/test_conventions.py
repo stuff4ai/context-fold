@@ -446,6 +446,18 @@ def test_discovery_finds_content() -> None:
     assert installed_rule_files(), "the distribution shipped no rule files"
 
 
+def test_task_index_is_absent() -> None:
+    """0037: neither this installation nor either skill copy carries a task index."""
+    paths = [
+        TASKS / "INDEX.md",
+        TEMPLATES / "INDEX.md",
+        ROOT / ".agents" / "skills" / "ctxfold-init" / "templates" / "INDEX.md",
+    ]
+    assert not (existing := [path.relative_to(ROOT) for path in paths if path.exists()]), (
+        f"task index still exists: {existing}"
+    )
+
+
 # --- Task packages (0006) -------------------------------------------------------------
 
 

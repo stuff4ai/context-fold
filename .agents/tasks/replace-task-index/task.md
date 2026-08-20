@@ -81,3 +81,12 @@ Deleting the two index templates left their paths in `git ls-files --cached` unt
 Markdown helper returned those paths as repository documents and the link test crashed while
 opening files that no longer existed. Discovery now keeps Git's tracked-and-untracked boundary but
 filters it to files present in the working tree, so deletion changes are testable before staging.
+
+### The draft claimed index removal without enforcing it
+
+The first draft made `README.md` say there was no duplicated task index while the integration
+plan deliberately left this installation's `INDEX.md` under PR #39's ownership. Worse, the
+replacement tests validated frontmatter but did not assert that all three index locations were
+absent, so the suite could become green after decision integration while still shipping the old
+file. Review caught both. The README now states only the already-true canonical-source rule, and a
+new check covers the repository index plus the source and installed skill templates.

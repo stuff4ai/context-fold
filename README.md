@@ -67,8 +67,8 @@ Work is organized into task packages under `.agents/tasks/{slug}/`:
 Tasks are named by descriptive slug rather than ticket number, so paths stay meaningful and
 no separate numbering system is required.
 
-Agents find unfinished work by enumerating direct task directories and read each `task.md`'s
-strict frontmatter. The package is the source; there is no duplicated task index to reconcile.
+Agents can find unfinished work by enumerating direct task directories and reading each
+`task.md`'s strict frontmatter. The package is the canonical source for that metadata.
 
 A task is not complete when the coding is done. It is complete when acceptance is satisfied,
 durable outcomes have been folded into the project layer, and the task is archived — all of it
