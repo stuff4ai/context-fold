@@ -41,7 +41,8 @@ leaving an additive suffix under the adopting project's ownership.
 ## Acceptance
 
 1. Each portable template is one vendor-neutral `agent-layer` managed block at byte zero, with a
-   warning that updates replace the block and project additions belong only after it.
+   source-visible HTML comment warning that updates replace the block and project additions belong
+   only after it; rendered Markdown shows only the operating rules.
 2. Fresh installation writes the templates; repeat adoption preflights all four targets, replaces
    unmarked legacy files wholesale, replaces a single valid managed block while preserving every
    suffix byte, and makes no writes when any marker structure is malformed.

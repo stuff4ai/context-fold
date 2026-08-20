@@ -1,9 +1,11 @@
 <!-- agent-layer:begin -->
 
-# AGENTS.md — tasks
+<!--
+Managed rule block. Updates replace everything between the agent-layer markers.
+Do not edit this block. Add only non-conflicting project instructions after the end marker.
+-->
 
-> **Managed rule block.** Updates replace everything between the `agent-layer` markers.
-> Do not edit this block. Add only non-conflicting project instructions after the end marker.
+# AGENTS.md — tasks
 
 How to run work in this repository.
 

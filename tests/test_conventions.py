@@ -281,6 +281,25 @@ def installed_rule_files() -> list[tuple[Path, Path, Path]]:
 
 
 @pytest.mark.parametrize(
+    "template",
+    sorted(p for p in AGENT_TEMPLATES.rglob("*") if p.is_file()),
+    ids=lambda p: str(p.relative_to(ROOT)),
+)
+def test_managed_rule_notice_is_source_only(template: Path) -> None:
+    """0035: ownership metadata stays in source rather than rendered instructions."""
+    block, suffix = managed_rule_parts(template.read_bytes()) or (b"", b"")
+    notice = (
+        b"<!--\n"
+        b"Managed rule block. Updates replace everything between the agent-layer markers.\n"
+        b"Do not edit this block. Add only non-conflicting project instructions after the end "
+        b"marker.\n"
+        b"-->\n"
+    )
+    assert block.startswith(MANAGED_BEGIN + b"\n" + notice + b"\n# AGENTS.md")
+    assert not suffix
+
+
+@pytest.mark.parametrize(
     "template,installed_template,installed",
     installed_rule_files(),
     ids=lambda p: str(p.relative_to(ROOT)) if isinstance(p, Path) else str(p),

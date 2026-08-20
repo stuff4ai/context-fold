@@ -1,9 +1,11 @@
 <!-- agent-layer:begin -->
 
-# AGENTS.md — archive
+<!--
+Managed rule block. Updates replace everything between the agent-layer markers.
+Do not edit this block. Add only non-conflicting project instructions after the end marker.
+-->
 
-> **Managed rule block.** Updates replace everything between the `agent-layer` markers.
-> Do not edit this block. Add only non-conflicting project instructions after the end marker.
+# AGENTS.md — archive
 
 Completed and cancelled tasks, flat, one directory each:
 `{YYYY-MM-DD-HHMM}-{slug}/`, timed to the minute the task left active state.

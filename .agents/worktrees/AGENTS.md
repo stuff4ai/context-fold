@@ -1,9 +1,11 @@
 <!-- agent-layer:begin -->
 
-# AGENTS.md — worktrees
+<!--
+Managed rule block. Updates replace everything between the agent-layer markers.
+Do not edit this block. Add only non-conflicting project instructions after the end marker.
+-->
 
-> **Managed rule block.** Updates replace everything between the `agent-layer` markers.
-> Do not edit this block. Add only non-conflicting project instructions after the end marker.
+# AGENTS.md — worktrees
 
 Parallel checkouts live here, one per task, named for its slug. This project's version control
 ignores everything in this directory except this file.

@@ -29,8 +29,10 @@ zero with a standalone `<!-- agent-layer:begin -->` line and ends with a standal
 `<!-- agent-layer:end -->` line and its terminating LF. The template ends there. The markers are
 generic because the portable model names no vendor and a fork may maintain the same rules.
 
-The whole portable document, including its title and a visible ownership warning, lives inside
-the block. An installation may append project-specific instructions after the end-marker LF.
+The whole portable document, including its title and a source-visible ownership warning in an
+HTML comment, lives inside the block. Rendered Markdown shows only the operating rules, while
+humans and agents editing the source can still see the update boundary. An installation may
+append project-specific instructions after the end-marker LF.
 Those instructions belong to the adopting project, must not contradict the portable rules, and
 are not part of the layer's distribution. Conflicting overrides and finer-grained blocks are not
 defined.
@@ -69,7 +71,8 @@ overwrite behavior. Their underlying boundaries, neutrality, distribution, and f
 ## Consequences
 
 An adopter can add local operating guidance and still update the portable rules without a manual
-merge. The markers make ownership visible to humans, agents, and mechanical checks.
+merge. The markers and ownership comment make the boundary visible in source to humans, agents,
+and mechanical checks without adding update metadata to rendered instructions.
 
 Updating is no longer a directory copy. The procedure must classify every target before writing,
 preserve suffix bytes, and stop as one operation when any marker is ambiguous. It remains a
