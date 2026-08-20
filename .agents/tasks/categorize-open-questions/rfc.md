@@ -69,8 +69,8 @@ The initiating discussion established that the RFC-artifact work was a prerequis
 categorization itself. This task exists to finish that original objective without conflating an
 organized question list with an execution plan.
 
-A review pass placed all 59 live items under the six candidate topics. Every Deferred-capability
-and Gaps-in-the-current-rules item found an unambiguous home. Three clusters did not:
+A review pass placed all 59 live items under the six candidate topics. Most Deferred-capability
+and Gaps-in-the-current-rules items found an unambiguous home. Three clusters did not:
 
 - The two Recurring-patterns entries — symmetry treated as a reason on its own, and rules
   stated where they are relevant rather than where they are owned — describe a property of how
@@ -91,17 +91,20 @@ all of it. Before subsections are cut into `OPEN-QUESTIONS.md`, it is worth deci
 whether every item must land under exactly one topic, or whether a small number of genuinely
 cross-cutting items get an explicit allowance rather than a forced placement.
 
-On the RFC's first open question: keeping evidentiary state as the top-level organization, with
-topics as subsections, avoids re-deriving each item's evidentiary status in prose alongside its
-topic — the topical split only has to do one job, not two. That favors the proposal's current
-direction over flipping the two axes.
+The original open question about evidentiary-state-vs-topics-first ordering is reflected in the
+current proposal rather than left open: keeping evidentiary state as the top-level organization
+avoids re-deriving each item's evidentiary status in prose alongside its topic, so the topical
+split only has to do one job, not two. The revision goes further by making topical subsections
+optional per section rather than universal, which removes the forced-fit problem the six-topic
+review found without abandoning evidentiary state as the top level.
 
-On the third open question: the ten evidence-backed gaps do not cluster under one or two
-topics — they already spread across at least four of the six (decisions and traceability, task
-lifecycle, verification, distribution). Starting the promotion discussion there surfaces the
-cross-cutting problem immediately rather than easing into it with a more topically coherent
-group first. That is a reason to choose the starting group deliberately, not a reason to avoid
-the gaps.
+On where promotion discussion should start: the ten evidence-backed gaps do not cluster under
+one or two topics — they spread across at least four of the original six (decisions and
+traceability, task lifecycle, verification, distribution), which is part of why the
+rule-consistency-and-enforceability cluster now has its own topic. Starting promotion with the
+whole Gaps section surfaces that cross-cutting placement question immediately rather than easing
+into it with a more topically coherent group first — a reason to choose the starting group
+deliberately, which is what the current open question already asks.
 
 The proposal was revised after that review. Evidentiary state remains the top-level organization,
 but topical subsections are now a navigation tool rather than a universal partition. Learning and
