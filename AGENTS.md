@@ -18,8 +18,8 @@ are recommended anywhere else.
 - Update documentation when behavior or conventions change.
 - After changing `skills/ctxfold-init/templates/`, reinstall the complete skill into
   `.agents/skills/ctxfold-init/`, invoke that installed skill to update the managed rule blocks,
-  and verify block parity before finishing. Never replace `INDEX.md`, which is this installation's
-  own, or overwrite project instructions after an `agent-layer:end` marker.
+  and verify block parity before finishing. Never overwrite project instructions after an
+  `agent-layer:end` marker.
 - Work on more than one task at a time in Git worktrees under `.agents/worktrees/{task-slug}`,
   which Git ignores. They are checkouts, not context. See
   [`.agents/worktrees/AGENTS.md`](.agents/worktrees/AGENTS.md), which is the one tracked file

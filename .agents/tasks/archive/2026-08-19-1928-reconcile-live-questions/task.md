@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Correct the README and live open-question list where accepted decisions and shipped work have
+  made their descriptions stale.
+---
+
 # Reconcile live project questions
-
-## Status
-
-completed
-
-## Objective
-
-Correct the README and live open-question list where accepted decisions and shipped work have
-made their descriptions stale.
 
 ## Why
 

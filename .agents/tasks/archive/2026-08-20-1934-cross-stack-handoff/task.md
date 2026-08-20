@@ -1,21 +1,18 @@
+---
+status: completed
+objective: >-
+  Establish the record two agent stacks use to ask each other for work through a file in the
+  task package rather than a live channel, and exercise it far enough to learn what that record
+  has to say.
+  One exchange did coordinate that way. Entry 004 was committed, the asking lead's turn ended,
+  a person carried the work to the other stack, and the Codex lead found the entry, dispatched
+  its own `plan-verifier`, and wrote the return. Entries 001–003 did not: the asking lead invoked
+  the answering role as a subprocess, so no turn ended and no answering lead took part. Which
+  rules that leaves evidenced and which it does not is accounted for in the Outcome, rule by rule,
+  and is not summarised here.
+---
+
 # Record a cross-stack handoff in the task package
-
-## Status
-
-completed
-
-## Objective
-
-Establish the record two agent stacks use to ask each other for work through a file in the
-task package rather than a live channel, and exercise it far enough to learn what that record
-has to say.
-
-One exchange did coordinate that way. Entry 004 was committed, the asking lead's turn ended,
-a person carried the work to the other stack, and the Codex lead found the entry, dispatched
-its own `plan-verifier`, and wrote the return. Entries 001–003 did not: the asking lead invoked
-the answering role as a subprocess, so no turn ended and no answering lead took part. Which
-rules that leaves evidenced and which it does not is accounted for in the Outcome, rule by rule,
-and is not summarised here.
 
 ## Why
 

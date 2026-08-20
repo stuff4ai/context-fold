@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0037](0037-replace-task-index-with-frontmatter.md) removes index visibility and index
+consistency claims; routing findings into planned task packages stands.
 
 ## Context
 

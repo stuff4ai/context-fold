@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0037](0037-replace-task-index-with-frontmatter.md) removes index disagreement and
+rebuild rules; the constraint between directory location and task status stands.
 
 ## Context
 

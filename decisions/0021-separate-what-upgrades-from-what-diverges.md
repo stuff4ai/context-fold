@@ -8,6 +8,8 @@ between what upgrades and what diverges stands for what remains.
 `templates/agents/`, narrowing this record's "three `AGENTS.md` files" to four.
 [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows whole-file replacement and
 identity to managed blocks while preserving the separation from installation-owned state.
+[0037](0037-replace-task-index-with-frontmatter.md) removes the copied-once task index; the
+upgrade-versus-installation boundary stands for what remains.
 
 ## Context
 

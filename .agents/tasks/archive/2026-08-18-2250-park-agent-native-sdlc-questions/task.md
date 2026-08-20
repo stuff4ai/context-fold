@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Preserve proposed agent-native SDLC and harness directions as live, neutral questions without
+  treating the proposal as an accepted architecture or implementation plan.
+---
+
 # Park agent-native SDLC questions
-
-## Status
-
-completed
-
-## Objective
-
-Preserve proposed agent-native SDLC and harness directions as live, neutral questions without
-treating the proposal as an accepted architecture or implementation plan.
 
 ## Why
 

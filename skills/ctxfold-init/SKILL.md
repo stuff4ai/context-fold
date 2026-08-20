@@ -90,8 +90,8 @@ smooth in retrospect.
 ## Stop before merging
 
 Complete the work, satisfy the acceptance criteria, then finish the task: write the Outcome, fold
-anything durable out into the project's own artifacts, archive the package, update `INDEX.md`,
-and run the final exact-head check. `.agents/tasks/AGENTS.md` describes all of it.
+anything durable out into the project's own artifacts, archive the package, and run the final
+exact-head check. `.agents/tasks/AGENTS.md` describes all of it.
 
 Then stop. Do not merge anything. Approval authorizes the merge and has not been given — and a
 reviewer asked before the Outcome exists is being asked to approve a promise.

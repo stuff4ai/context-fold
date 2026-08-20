@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Allow an agent to merge a pull request once a human has approved it, and record what that
+  changes about the gate.
+---
+
 # Let agents merge after approval
-
-## Status
-
-completed
-
-## Objective
-
-Allow an agent to merge a pull request once a human has approved it, and record what that
-changes about the gate.
 
 ## Why
 

@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Decide whether agent-facing project navigation should have a context sublayer containing only
+  summaries and references to authoritative project artifacts.
+---
+
 # Define the context sublayer
-
-## Status
-
-planned
-
-## Objective
-
-Decide whether agent-facing project navigation should have a context sublayer containing only
-summaries and references to authoritative project artifacts.
 
 ## Why
 

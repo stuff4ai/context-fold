@@ -33,8 +33,9 @@ and preserve every byte of that suffix.
 ## If the layer is already there
 
 `.agents/AGENTS.md` existing means this repository has adopted before. The steps below assume
-nothing is installed, and following them as written destroys work: they overwrite the index,
-add the pointer a second time, and open an adoption task for an adoption that already happened.
+nothing is installed, and following them as written destroys work: they can overwrite project
+suffixes, add the pointer a second time, and open an adoption task for an adoption that already
+happened.
 
 Do this instead, in two phases. First preflight all four portable targets before changing any of
 them:
@@ -55,7 +56,7 @@ them:
 Only after every target passes preflight, apply all selected candidates: install a missing file,
 replace a legacy file wholesale, or replace exactly the managed block and append its recorded
 suffix unchanged. Then verify that each installed block is byte-for-byte identical to its template
-and every recorded suffix has the same bytes as before. Leave `INDEX.md` and task packages alone.
+and every recorded suffix has the same bytes as before. Leave task packages alone.
 
 Leave the root `AGENTS.md` alone if it already points at the layer, and do not open task zero.
 
@@ -72,14 +73,10 @@ templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
 templates/agents/worktrees/AGENTS.md     →  .agents/worktrees/AGENTS.md
-templates/INDEX.md                       →  .agents/tasks/INDEX.md
 ```
 
-`templates/agents/` is separate from `INDEX.md` on purpose. Everything in `templates/agents/` —
-worktree conventions included — is a managed block that stays byte-identical to its installed
-counterpart. An installed suffix may differ by design. `INDEX.md` stops matching the moment you
-record your first task; it is yours once copied, the one file the distribution does not keep in
-sync.
+Everything in `templates/agents/` — worktree conventions included — is a managed block that stays
+byte-identical to its installed counterpart. An installed suffix may differ by design.
 
 **Copy the files. Do not retype them.** On a fresh adoption, use a file copy — `cp`, or whatever
 your tools call it — and confirm every installed file is byte-for-byte identical to its template.
@@ -90,9 +87,6 @@ dropped paragraph, or a missing file.
 The managed blocks are identical in every installation and carry no project-specific paths, names,
 or decisions. Project-specific additions go only after the end marker and must not contradict the
 block. That boundary keeps the portable rules replaceable without making the whole file uniform.
-
-`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never again.
-Updating managed blocks does not encounter it.
 
 If a rule does not fit your project, do not edit or contradict the managed block. Record it as a
 problem in task zero so a reviewed portable-rule change can address it.
@@ -141,13 +135,24 @@ contributes.
 The adoption is itself a task, and it is the first one. This mirrors how decision records begin —
 the first record is the decision to use records.
 
-Create `.agents/tasks/adopt-context-fold/task.md` and `context.md` directly, with the sections
-`.agents/tasks/AGENTS.md` lists as required. For task zero the content is:
+Create `.agents/tasks/adopt-context-fold/task.md` and `context.md` directly, with the frontmatter
+and sections `.agents/tasks/AGENTS.md` requires. Start `task.md` exactly like this:
 
-**`task.md`** — Objective: establish the context-fold agent layer in this repository. Why: work
-here is organized as task packages so context survives between sessions and agents, and so what
-is learned while working outlasts the working. Scope: the layer and the root `AGENTS.md` pointer.
-Out of scope: changing existing documentation, conventions, or workflow.
+```yaml
+---
+status: active
+objective: >-
+  Establish the context-fold agent layer in this repository.
+---
+
+# Adopt context-fold
+```
+
+Then add the required sections. For task zero their content is:
+
+**`task.md`** — Why: work here is organized as task packages so context survives between sessions
+and agents, and so what is learned while working outlasts the working. Scope: the layer and the
+root `AGENTS.md` pointer. Out of scope: changing existing documentation, conventions, or workflow.
 
 Acceptance:
 
@@ -159,7 +164,7 @@ Acceptance:
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
 
 Then work the task: finish the structure, satisfy the acceptance, and log every friction under
-`## Problems` while it happens. Then finish it — Outcome, fold, archive, index, final check —
+`## Problems` while it happens. Then finish it — Outcome, fold, archive, final check —
 and stop there to ask for approval. Approval authorizes the merge, and what it is given for is
 the finished state rather than a promise to file the paperwork later. The rules for all of that
 are in `.agents/tasks/AGENTS.md`, which you now have.

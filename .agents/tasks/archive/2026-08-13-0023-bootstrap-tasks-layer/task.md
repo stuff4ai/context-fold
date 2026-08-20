@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Establish context-fold v0: the `.agents/` tasks layer, the project-layer artifacts that must
+  survive without it, and decision records for what is already settled.
+---
+
 # Bootstrap the tasks layer
-
-## Status
-
-completed
-
-## Objective
-
-Establish context-fold v0: the `.agents/` tasks layer, the project-layer artifacts that must
-survive without it, and decision records for what is already settled.
 
 ## Why
 

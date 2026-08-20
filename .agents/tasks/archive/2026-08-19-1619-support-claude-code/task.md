@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Add a Claude Code adapter so a session started in this repository has `AGENTS.md`'s content
+  without being told to read it.
+---
+
 # Support Claude Code reading AGENTS.md
-
-## Status
-
-completed
-
-## Objective
-
-Add a Claude Code adapter so a session started in this repository has `AGENTS.md`'s content
-without being told to read it.
 
 ## Why
 

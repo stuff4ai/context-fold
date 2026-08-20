@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Add an optional `rfc.md` for mutable proposal discussion, and distinguish it from an agreed
+  `plan.md` that guides execution after the direction is settled.
+---
+
 # Add an RFC artifact to task packages
-
-## Status
-
-completed
-
-## Objective
-
-Add an optional `rfc.md` for mutable proposal discussion, and distinguish it from an agreed
-`plan.md` that guides execution after the direction is settled.
 
 ## Why
 

@@ -1,14 +1,12 @@
+---
+status: completed
+objective: >-
+  Move `templates/worktrees/AGENTS.md` into `templates/agents/worktrees/AGENTS.md`, so it joins the
+  byte-identical/portable set the rest of `templates/agents/` already belongs to, instead of being a
+  one-time seed that is copied once and never re-synced.
+---
+
 # Fold worktrees/AGENTS.md into the byte-identical template set
-
-## Status
-
-completed
-
-## Objective
-
-Move `templates/worktrees/AGENTS.md` into `templates/agents/worktrees/AGENTS.md`, so it joins the
-byte-identical/portable set the rest of `templates/agents/` already belongs to, instead of being a
-one-time seed that is copied once and never re-synced.
 
 ## Why
 

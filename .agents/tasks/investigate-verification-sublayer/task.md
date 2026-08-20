@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Determine whether agent verification and evidence need a distinct sublayer or remain responsibilities
+  of project tests and task lifecycle rules.
+---
+
 # Investigate a verification sublayer
-
-## Status
-
-planned
-
-## Objective
-
-Determine whether agent verification and evidence need a distinct sublayer or remain responsibilities
-of project tests and task lifecycle rules.
 
 ## Why
 

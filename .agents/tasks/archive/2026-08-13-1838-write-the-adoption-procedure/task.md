@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Describe how another repository adopts context-fold, well enough that following the description
+  is the test rather than the improvisation around it.
+---
+
 # Write the adoption procedure
-
-## Status
-
-completed
-
-## Objective
-
-Describe how another repository adopts context-fold, well enough that following the description
-is the test rather than the improvisation around it.
 
 ## Why
 

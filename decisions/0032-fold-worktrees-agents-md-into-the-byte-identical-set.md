@@ -7,6 +7,8 @@ Accepted. Narrows [0021](0021-separate-what-upgrades-from-what-diverges.md),
 [0017](0017-adoption-procedure.md)'s narrowing of `0026`.
 [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows this record's whole-file
 identity and overwrite behavior to the managed rule block; the fourth-file decision stands.
+[0037](0037-replace-task-index-with-frontmatter.md) removes the index contrast and template
+claims; the byte-identical managed-rule set stands.
 
 ## Context
 

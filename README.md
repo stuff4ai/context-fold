@@ -47,7 +47,7 @@ The boundary is enforced by a test anyone can apply:
 
 > If humans need this information too, it does not belong only in the agent layer.
 
-Remove the layer-owned managed rule blocks, index, and tasks, then read what remains. The test
+Remove the layer-owned managed rule blocks and tasks, then read what remains. The test
 fails if knowledge was lost, not if a pointer to the layer dangles — removing the layer is an
 ordinary change, and what pointed at it is updated alongside. Project suffixes and files under
 `.agents/` that belong to other tools are outside the test. A layer that fails has quietly become
@@ -59,13 +59,16 @@ Work is organized into task packages under `.agents/tasks/{slug}/`:
 
 | File | Purpose |
 | --- | --- |
-| `task.md` | The contract — objective, scope, acceptance, and the problems hit along the way |
+| `task.md` | The contract — frontmatter status/objective, scope, acceptance, and problems |
 | `context.md` | A curated map of what matters for this task, by reference |
 | `rfc.md` | Mutable proposal discussion while a direction is unsettled, when one is needed |
 | `plan.md` | Selected execution strategy, when the task is large enough to need one |
 
 Tasks are named by descriptive slug rather than ticket number, so paths stay meaningful and
 no separate numbering system is required.
+
+Agents can find unfinished work by enumerating direct task directories and reading each
+`task.md`'s strict frontmatter. The package is the canonical source for that metadata.
 
 A task is not complete when the coding is done. It is complete when acceptance is satisfied,
 durable outcomes have been folded into the project layer, and the task is archived — all of it
@@ -98,8 +101,8 @@ installed skill replaces the portable block while preserving the appended bytes.
 
 v0. Methodology and repository conventions, applied to this repository first.
 
-`ctxfold-init` performs adoption and explicit managed-rule updates. Ordinary task packages, the
-index, and the archive are maintained by hand, by decision rather than by omission — see
+`ctxfold-init` performs adoption and explicit managed-rule updates. Ordinary task packages and
+the archive are maintained by hand, by decision rather than by omission — see
 [0012](decisions/0012-build-the-methodology-before-the-tooling.md). Promoting repeated problems
 into lessons also remains a person's judgment
 ([0013](decisions/0013-improve-context-from-the-work.md)).

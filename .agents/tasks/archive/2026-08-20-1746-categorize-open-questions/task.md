@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Organize the live open questions into useful categories, discuss how each category should be
+  handled, and identify individual questions that should become separate planned tasks.
+---
+
 # Categorize open questions and identify task candidates
-
-## Status
-
-completed
-
-## Objective
-
-Organize the live open questions into useful categories, discuss how each category should be
-handled, and identify individual questions that should become separate planned tasks.
 
 ## Why
 

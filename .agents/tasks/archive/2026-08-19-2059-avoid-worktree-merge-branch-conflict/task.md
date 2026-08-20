@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Document, in `.agents/worktrees/AGENTS.md`, a merge sequence that does not conflict with a task
+  worktree still holding the branch being merged.
+---
+
 # Avoid the worktree/merge branch-conflict on delete-branch merges
-
-## Status
-
-completed
-
-## Objective
-
-Document, in `.agents/worktrees/AGENTS.md`, a merge sequence that does not conflict with a task
-worktree still holding the branch being merged.
 
 ## Why
 

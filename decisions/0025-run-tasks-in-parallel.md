@@ -5,6 +5,8 @@
 Accepted. That worktrees are "this project's workflow, not part of the layer" is narrowed
 by [0026](0026-map-what-is-under-the-agents-directory.md): the convention now ships as a
 copied-once template, which is not the same as joining the layer. The rest stands.
+[0037](0037-replace-task-index-with-frontmatter.md) removes the index conflict example and its
+blocker-visibility claim; section ownership and concurrent-task rules stand.
 
 ## Context
 

@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Decide whether `.agents/` should become a governed set of agent sublayers with a goal-oriented
+  entry point and a contract for each recognized sublayer.
+---
+
 # Define the agent sublayer model
-
-## Status
-
-planned
-
-## Objective
-
-Decide whether `.agents/` should become a governed set of agent sublayers with a goal-oriented
-entry point and a contract for each recognized sublayer.
 
 ## Why
 

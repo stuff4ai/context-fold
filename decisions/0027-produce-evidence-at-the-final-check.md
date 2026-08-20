@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0037](0037-replace-task-index-with-frontmatter.md) replaces heading and index evidence
+with strict frontmatter and directory/status evidence; the evidence principle stands.
 
 ## Context
 

@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Decide whether adoption should assess project-layer capabilities and create separate planned tasks
+  for evidence-backed gaps while leaving each project's final structure to its users.
+---
+
 # Extend initialization with project assessment
-
-## Status
-
-planned
-
-## Objective
-
-Decide whether adoption should assess project-layer capabilities and create separate planned tasks
-for evidence-backed gaps while leaving each project's final structure to its users.
 
 ## Why
 

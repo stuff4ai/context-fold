@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Record that the model does not depend on any agent product, and preserve the alternatives that
+  were considered and rejected before that was chosen.
+---
+
 # Record vendor neutrality
-
-## Status
-
-completed
-
-## Objective
-
-Record that the model does not depend on any agent product, and preserve the alternatives that
-were considered and rejected before that was chosen.
 
 ## Why
 

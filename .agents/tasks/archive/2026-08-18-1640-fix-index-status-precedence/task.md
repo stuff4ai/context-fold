@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Correct the precedence rule so it repairs the file that is actually stale, rather than always
+  assuming the index is.
+---
+
 # Fix which file wins when the index and a task disagree
-
-## Status
-
-completed
-
-## Objective
-
-Correct the precedence rule so it repairs the file that is actually stale, rather than always
-assuming the index is.
 
 ## Why
 

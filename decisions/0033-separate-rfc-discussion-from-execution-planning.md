@@ -6,6 +6,8 @@ Accepted. Narrows [0006](0006-task-package-model.md)'s task-package model and ap
 [0010](0010-record-open-questions-in-project-layer.md),
 [0014](0014-do-not-store-source-material.md), and
 [0015](0015-stages-are-not-one-way.md) to proposal discussion.
+[0037](0037-replace-task-index-with-frontmatter.md) gives `task.md` its separate exact
+frontmatter schema; the RFC lifecycle and plan distinction stand.
 
 ## Context
 

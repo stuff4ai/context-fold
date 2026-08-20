@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Record that source material is not stored raw, and locate the step in the loop where a
+  task-local problem becomes project-scoped.
+---
+
 # Record that decisions carry history
-
-## Status
-
-completed
-
-## Objective
-
-Record that source material is not stored raw, and locate the step in the loop where a
-task-local problem becomes project-scoped.
 
 ## Why
 

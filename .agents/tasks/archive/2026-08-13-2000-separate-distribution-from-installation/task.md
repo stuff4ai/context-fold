@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Ship a distribution, install this repository from it, and make the fact that they match a check
+  rather than a claim.
+---
+
 # Separate distribution from installation
-
-## Status
-
-completed
-
-## Objective
-
-Ship a distribution, install this repository from it, and make the fact that they match a check
-rather than a claim.
 
 ## Why
 

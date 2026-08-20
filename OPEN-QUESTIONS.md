@@ -16,11 +16,9 @@ hides its weaknesses.
 ### Task lifecycle and coordination
 
 - **Ongoing task-lifecycle automation.** `ctxfold-init` performs adoption, but creating an
-  ordinary task package, moving it to the archive, and maintaining the index are still done by
-  hand, by decision rather than omission. What, if anything, should automate that ongoing
-  lifecycle — a command, further agent skills, workflows, or something else — is undecided.
-- **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
-  that no program implements.
+  ordinary task package and moving it to the archive are still done by hand, by decision rather
+  than omission. What, if anything, should automate that ongoing lifecycle — a command, further
+  agent skills, workflows, or something else — is undecided.
 - **Should a cross-stack handoff be portable?** `0036` records `handoff.md` — how one agent
   stack asks another for something and where the answer goes — as this project's suffix rather
   than a portable rule, because the rule had not been followed once when it was written. One of
@@ -59,10 +57,11 @@ hides its weaknesses.
 
 ### Decisions, identity, and traceability
 
-- **Metadata schemas beyond RFC state.** `0033` adds one deliberately minimal frontmatter field for
-  an RFC's `draft` or `resolved` state without introducing a general YAML schema. Traceability,
-  executable checks and event records would each need stable identity and relationships, but it is
-  still unknown whether those consumers justify broader structured metadata.
+- **Metadata schemas beyond tasks and RFC state.** `0033` and `0037` define separate exact
+  frontmatter schemas for RFC lifecycle and task status/objective rather than a general YAML
+  schema. Traceability, executable checks and event records would each need stable identity and
+  relationships, but it is still unknown whether those consumers justify broader structured
+  metadata.
 
 ### Distribution, adoption, skills, and host integration
 
@@ -101,20 +100,17 @@ hides its weaknesses.
   review without promoting anything automatically. It is unknown whether a separate fold
   proposal would make that judgment inspectable or merely restate the task's Outcome and final
   diff.
-- **Should `INDEX.md` show what a task is blocked by?** `0025` puts `## Blocked by` in the task
-  file and nowhere else, so finding what is blocked means opening every active task. That is
-  affordable at three concurrent tasks and not at thirty. Adding a column changes the shipped
-  index format for every installation, including the ones that never run two tasks at once.
+- **How should agents find blocked work at scale?** `0025` puts `## Blocked by` in the task file,
+  so finding what is blocked means opening every unfinished task. That is affordable at three
+  concurrent tasks and not at thirty. A future read-only task-query skill could expose blockers,
+  but its contract has not been designed.
 - **When is a task package warranted?** The rules describe how to start a task but never say
   what is too small to need one.
 - **How does a task split when it grows mid-flight?** The slug is fixed identity once work
   starts, so a task that turns out to be two has no defined way to become two.
-- **How much does index-based navigation earn?** A cold agent found its task by searching the
-  tree, reading the index last, where it changed nothing. Well-named, self-sufficient files
-  did the work. Whether the index is worth maintaining by hand is genuinely unclear.
-- **Should other derived views follow the index's rules?** Only one derived view exists. If
-  more appear, whether ordering and regeneration are general properties or decided per view is
-  undecided.
+- **Should derived views share lifecycle rules?** The task index was removed rather than made a
+  precedent. If other derived views appear, whether ordering and regeneration are general
+  properties or decided per view is still undecided.
 
 ### Context selection and knowledge boundaries
 
@@ -350,12 +346,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   passed four green runs. Turning the rule on fails on archived task packages, which are history
   and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
   check exempts `archive/` — not whether to flip a flag.
-- **`INDEX.md`'s header states rules but cannot be upgraded or checked.** `0021` moved
-  `INDEX.md` out of `templates/agents/` because its rows are the installation's own, and the
-  identity check follows that boundary. Its header is not the installation's own — it restates
-  the precedence rule — so a correction to that rule reaches new adopters and no existing one,
-  and nothing detects when a shipped header and an installed one diverge. Either the header
-  carries no rules, or something has to bind it.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and

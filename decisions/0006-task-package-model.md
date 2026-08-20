@@ -9,6 +9,8 @@ than at the start of work. That `task.md` always wins a status disagreement is n
 [0024](0024-settle-status-disagreements-by-the-directory.md). The package contents and role of
 `plan.md` are narrowed by
 [0033](0033-separate-rfc-discussion-from-execution-planning.md). The rest stands.
+[0037](0037-replace-task-index-with-frontmatter.md) replaces Status and Objective headings with
+strict frontmatter and removes the derived task index; the remaining package model stands.
 
 ## Context
 

@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Decide how an installation detects and recovers structural damage to governed agent sublayers
+  without overwriting project- or tool-owned contents.
+---
+
 # Define agent-layer health and recovery
-
-## Status
-
-planned
-
-## Objective
-
-Decide how an installation detects and recovers structural damage to governed agent sublayers
-without overwriting project- or tool-owned contents.
 
 ## Why
 

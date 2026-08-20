@@ -1,13 +1,11 @@
+---
+status: planned
+objective: >-
+  Decide whether `.agents/skills/` should have a portable sublayer contract while preserving the
+  ownership and contents of skills installed by projects and tools.
+---
+
 # Formalize the skills sublayer
-
-## Status
-
-planned
-
-## Objective
-
-Decide whether `.agents/skills/` should have a portable sublayer contract while preserving the
-ownership and contents of skills installed by projects and tools.
 
 ## Why
 

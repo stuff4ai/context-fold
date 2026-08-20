@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Preserve the discussed agent-sublayer and project-assessment directions as neutral live questions
+  and separate planned discussion tasks.
+---
+
 # Park the agent sublayer model
-
-## Status
-
-completed
-
-## Objective
-
-Preserve the discussed agent-sublayer and project-assessment directions as neutral live questions
-and separate planned discussion tasks.
 
 ## Why
 
