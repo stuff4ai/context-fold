@@ -31,7 +31,7 @@ INDEX = TASKS / "INDEX.md"
 DECISIONS = ROOT / "decisions"
 DECISIONS_INDEX = DECISIONS / "README.md"
 
-# The rule files shipped to every project using context-fold (0005, 0011).
+# Files carrying the portable managed blocks in this installation (0005, 0011, 0035).
 PORTABLE = [
     ROOT / ".agents" / "AGENTS.md",
     TASKS / "AGENTS.md",
@@ -43,6 +43,9 @@ ARCHIVE_DIR = re.compile(r"^\d{4}-\d{2}-\d{2}-\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 RECORD_FILE = re.compile(r"^(\d{4})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RFC_FRONTMATTER = re.compile(r"\A---\nstatus: (draft|resolved)\n---\n")
+MANAGED_BEGIN = b"<!-- agent-layer:begin -->\n"
+MANAGED_END = b"<!-- agent-layer:end -->\n"
+MANAGED_MARKER_PREFIX = b"<!-- agent-layer:"
 
 # [text](target) — not images, not autolinks.
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
@@ -241,39 +244,126 @@ def test_installed_skill_matches_the_shipped_one(shipped: Path, installed: Path)
 # --- Dogfooding -----------------------------------------------------------------------
 
 
-def installed_rule_files() -> list[tuple[Path, Path]]:
-    """Everything in `templates/agents/`, paired with where it installs to.
+def managed_rule_parts(data: bytes) -> tuple[bytes, bytes] | None:
+    """0035: split a valid managed rule block from its installation-owned suffix.
 
-    The directory holds only files that must stay byte-identical forever, so there is
-    nothing to exclude. `INDEX.md` lives outside it precisely because it is copied once
-    and then diverges.
+    No marker is the legacy whole-file case handled by the adoption procedure. Once any
+    `agent-layer` marker appears, the complete shape must be unambiguous before an update can
+    write any target.
+    """
+    marker_lines = [
+        line for line in data.splitlines(keepends=True) if line.startswith(MANAGED_MARKER_PREFIX)
+    ]
+    if not marker_lines:
+        return None
+    if marker_lines != [MANAGED_BEGIN, MANAGED_END] or not data.startswith(MANAGED_BEGIN):
+        raise ValueError("managed rule markers are malformed")
+
+    end = data.index(MANAGED_END, len(MANAGED_BEGIN)) + len(MANAGED_END)
+    return data[:end], data[end:]
+
+
+def installed_rule_files() -> list[tuple[Path, Path, Path]]:
+    """Each source template, installed-skill template, and active installation.
+
+    The two skill packages remain identical as wholes. Their templates and the active rule file
+    share a byte-identical managed block, while only the active file may carry a project suffix.
     """
     return [
-        (t, ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES))
+        (
+            t,
+            ROOT / ".agents" / "skills" / "ctxfold-init" / "templates" / "agents"
+            / t.relative_to(AGENT_TEMPLATES),
+            ROOT / ".agents" / t.relative_to(AGENT_TEMPLATES),
+        )
         for t in sorted(p for p in AGENT_TEMPLATES.rglob("*") if p.is_file())
     ]
 
 
 @pytest.mark.parametrize(
-    "template,installed",
+    "template",
+    sorted(p for p in AGENT_TEMPLATES.rglob("*") if p.is_file()),
+    ids=lambda p: str(p.relative_to(ROOT)),
+)
+def test_managed_rule_notice_is_source_only(template: Path) -> None:
+    """0035: ownership metadata stays in source rather than rendered instructions."""
+    block, suffix = managed_rule_parts(template.read_bytes()) or (b"", b"")
+    notice = (
+        b"<!--\n"
+        b"Managed rule block. Updates replace everything between the agent-layer markers.\n"
+        b"Do not edit this block. Add only non-conflicting project instructions after the end "
+        b"marker.\n"
+        b"-->\n"
+    )
+    assert block.startswith(MANAGED_BEGIN + b"\n" + notice + b"\n# AGENTS.md")
+    assert not suffix
+
+
+@pytest.mark.parametrize(
+    "template,installed_template,installed",
     installed_rule_files(),
     ids=lambda p: str(p.relative_to(ROOT)) if isinstance(p, Path) else str(p),
 )
-def test_installation_matches_the_distribution(template: Path, installed: Path) -> None:
+def test_installation_matches_the_distribution(
+    template: Path, installed_template: Path, installed: Path
+) -> None:
     """This repository runs what it ships.
 
-    `templates/agents/` is the distribution; `.agents/` is one installation of it. If they
-    differ, either the shipped rules were edited in place — which is what the layer tells
-    adopters never to do — or a change was made to the distribution and not installed.
+    `0035`: all three copies expose the same managed block. The source and installed-skill
+    templates end with that block; the active installation may append project instructions.
     """
-    assert installed.is_file(), f"{installed.relative_to(ROOT)} is not installed"
-    assert installed.read_bytes() == template.read_bytes(), (
-        f"{installed.relative_to(ROOT)} differs from {template.relative_to(ROOT)}"
+    for path in (template, installed_template, installed):
+        assert path.is_file(), f"{path.relative_to(ROOT)} is missing"
+
+    template_parts = managed_rule_parts(template.read_bytes())
+    installed_template_parts = managed_rule_parts(installed_template.read_bytes())
+    installed_parts = managed_rule_parts(installed.read_bytes())
+    assert template_parts is not None, f"{template.relative_to(ROOT)} has no managed block"
+    assert installed_template_parts is not None, (
+        f"{installed_template.relative_to(ROOT)} has no managed block"
+    )
+    assert installed_parts is not None, f"{installed.relative_to(ROOT)} has no managed block"
+
+    template_block, template_suffix = template_parts
+    installed_template_block, installed_template_suffix = installed_template_parts
+    installed_block, _ = installed_parts
+    assert not template_suffix, f"{template.relative_to(ROOT)} has content outside its block"
+    assert not installed_template_suffix, (
+        f"{installed_template.relative_to(ROOT)} has content outside its block"
+    )
+    assert template_block == installed_template_block == installed_block, (
+        f"managed block drift for {installed.relative_to(ROOT)}"
     )
 
 
+@pytest.mark.parametrize(
+    "data",
+    [
+        b"preamble\n<!-- agent-layer:begin -->\nrules\n<!-- agent-layer:end -->\n",
+        b"<!-- agent-layer:end -->\nrules\n<!-- agent-layer:begin -->\n",
+        b"<!-- agent-layer:begin -->\nrules\n<!-- agent-layer:begin -->\n<!-- agent-layer:end -->\n",
+        b"<!-- agent-layer:begin -->\nrules\n",
+        b"<!-- agent-layer:begin -->\nrules\n<!-- agent-layer:end -->",
+        b"<!-- agent-layer:begin -->\nrules\n<!-- agent-layer:other -->\n<!-- agent-layer:end -->\n",
+    ],
+    ids=["displaced", "reversed", "duplicate", "missing-mate", "missing-lf", "stray"],
+)
+def test_managed_rule_parts_rejects_ambiguous_markers(data: bytes) -> None:
+    with pytest.raises(ValueError, match="malformed"):
+        managed_rule_parts(data)
+
+
+def test_managed_rule_parts_distinguishes_legacy_and_preserves_suffix() -> None:
+    assert managed_rule_parts(b"legacy whole file\n") is None
+
+    block = MANAGED_BEGIN + b"# Rules\n" + MANAGED_END
+    suffix = b"\n## Project additions\n\nKeep this byte-for-byte.\n"
+    assert managed_rule_parts(block) == (block, b"")
+    assert managed_rule_parts(block + suffix) == (block, suffix)
+
+
 def installed_layer_files() -> set[Path]:
-    """Rule files belonging to the layer, which is not the whole of `.agents/`.
+    """Files carrying layer-owned blocks, which are not the whole of `.agents/`.
 
     `0018`: the layer is what was installed, and `.agents/` is only where it lives. Other
     tools write there — including a skill installer placing this project's own skill, whose
@@ -618,7 +708,7 @@ def test_decision_index_lists_every_record() -> None:
 
 @pytest.mark.parametrize("rules", PORTABLE, ids=lambda p: str(p.relative_to(ROOT)))
 def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
-    """0005, 0011, 0018: these files are identical in every installation.
+    """0005, 0011, 0018, 0035: managed blocks carry no project detail.
 
     A record number, a path to this repository's documents, or one of its task slugs
     would be wrong in any other repository — and would read correctly here, which is
@@ -628,7 +718,10 @@ def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
     naming its vendor is wrong for anyone who forks and maintains them. Where the layer
     came from is metadata, and metadata is not built yet.
     """
-    text = rules.read_text(encoding="utf-8")
+    parts = managed_rule_parts(rules.read_bytes())
+    assert parts is not None, f"{rules.relative_to(ROOT)} has no managed block"
+    block, _ = parts
+    text = block.decode("utf-8")
     slugs = {p.name.split("-", 4)[-1] for p in archived_tasks()} | {
         p.name for p in active_tasks()
     }

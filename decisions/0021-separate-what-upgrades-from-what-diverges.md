@@ -6,6 +6,8 @@ Accepted. `templates/task/` is removed by [0029](0029-drop-the-task-template.md)
 between what upgrades and what diverges stands for what remains.
 [0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) adds a fourth file to
 `templates/agents/`, narrowing this record's "three `AGENTS.md` files" to four.
+[0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows whole-file replacement and
+identity to managed blocks while preserving the separation from installation-owned state.
 
 ## Context
 

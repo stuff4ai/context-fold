@@ -1,3 +1,10 @@
+<!-- agent-layer:begin -->
+
+<!--
+Managed rule block. Updates replace everything between the agent-layer markers.
+Do not edit this block. Add only non-conflicting project instructions after the end marker.
+-->
+
 # AGENTS.md — the agent layer
 
 The agent layer holds how agents work on this repository, not what this repository knows.
@@ -7,20 +14,20 @@ information.
 
 ## What the layer is
 
-It is installed rather than authored here, and consists of exactly two things: these
-`AGENTS.md` files, and what working here produces — the task index, task packages, and the
-archive.
+It is installed rather than authored here, and consists of exactly two things: the managed
+blocks in these `AGENTS.md` files, and what working here produces — the task index, task
+packages, and the archive.
 
 `.agents/` is where it lives, not what it is. Other tools write there too, and their files are
 not part of the layer and not its concern. Nothing here claims the directory.
 
-The `AGENTS.md` files are identical in every installation. They carry no project-specific
-paths, names, or decisions. Do not edit them to fit this project, and expect them to be
-replaced wholesale when the rules are updated.
+The managed rule blocks are identical in every installation. They carry no project-specific
+paths, names, or decisions. An adopting project may append instructions after the end marker,
+but those additions do not become portable rules and must not contradict this block.
 
 If a rule here does not fit this project, record it as a problem in the task rather than
-editing the rule. An edited rule stops being replaceable and becomes this project's to
-maintain.
+overriding it locally. The portable rule can then change through the distribution's reviewed
+workflow instead of becoming a different rule in each installation.
 
 ## Project truth lives outside the layer
 
@@ -32,9 +39,9 @@ The deletion test:
 
 > If humans need this information too, it does not belong only in the layer.
 
-Remove the layer — these `AGENTS.md` files, the index, and the tasks — and read what remains.
+Remove the layer — the managed rule blocks, the index, and the tasks — and read what remains.
 The test fails if knowledge was lost, if something a human needs to understand or maintain the
-project is now gone. Anything lost that way was in the wrong layer.
+project is now gone. Project-owned suffixes remain. Anything lost that way was in the wrong layer.
 
 It does not fail on references to the layer. Removing it is an ordinary change, and whatever
 pointed at it is updated in the same change.
@@ -72,10 +79,11 @@ this layer neither defines nor relies on. What is there answers to whatever put 
 if it is addressed to you, and do not treat it as a statement about this project.
 
 **`worktrees/`** — parallel checkouts, if this project keeps any, and not the layer's: the
-workflow is this project's own, described in `worktrees/AGENTS.md`. That one file ships
-byte-identical, the same as this one; everything beside it is checkouts, not context — each a
+workflow is this project's own, described in `worktrees/AGENTS.md`. That file's managed block
+ships byte-identical, the same as this one; everything beside it is checkouts, not context — each a
 separate copy of this repository at a different point in its history, so reading one as part of
 this copy produces a second and contradictory version of every record and task package.
 
 Directories inside the layer carry their own `AGENTS.md` with rules for that scope, and the
 nearest one applies. Anything else you find here answers to whatever created it.
+<!-- agent-layer:end -->

@@ -8,6 +8,8 @@ ownership rules stand for what remains.
 classification of `templates/worktrees/AGENTS.md` as copied-once-and-diverges — it now ships
 byte-identical instead, while remaining, as this record already established, not part of the
 layer merely by being shipped.
+[0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows that whole-file identity to
+the managed rule block; the map and ownership distinctions stand.
 
 ## Context
 

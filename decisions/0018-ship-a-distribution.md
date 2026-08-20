@@ -4,7 +4,8 @@
 
 Accepted. The contents of `templates/agents/` are narrowed by
 [0021](0021-separate-what-upgrades-from-what-diverges.md); `templates/task/` is removed by
-[0029](0029-drop-the-task-template.md); the separation itself stands.
+[0029](0029-drop-the-task-template.md). [0035](0035-manage-portable-rules-as-replaceable-blocks.md)
+narrows installed-rule identity from whole files to managed blocks; the separation itself stands.
 
 ## Context
 

@@ -7,7 +7,9 @@ Accepted. The enumeration of what adoption copies and does is narrowed by
 `templates/worktrees/AGENTS.md` and writes ignore rules for the directory it lives in.
 [0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) narrows this further:
 `templates/worktrees/AGENTS.md` is one of the portable rule files copied unchanged, not a
-separate "also" step. That adoption is a described procedure rather than an installer stands.
+separate "also" step. [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows the
+unchanged-copy rule after adoption: repeat runs replace managed blocks and preserve additive
+suffixes. That adoption is a described procedure rather than an installer stands.
 
 ## Context
 

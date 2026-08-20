@@ -1,11 +1,18 @@
+<!-- agent-layer:begin -->
+
+<!--
+Managed rule block. Updates replace everything between the agent-layer markers.
+Do not edit this block. Add only non-conflicting project instructions after the end marker.
+-->
+
 # AGENTS.md — worktrees
 
 Parallel checkouts live here, one per task, named for its slug. This project's version control
 ignores everything in this directory except this file.
 
-The `AGENTS.md` files are identical in every installation. They carry no project-specific
-paths, names, or decisions. Do not edit them to fit this project, and expect them to be
-replaced wholesale when the rules are updated.
+This managed rule block is identical in every installation. It carries no project-specific
+paths, names, or decisions. An adopting project may append non-conflicting instructions after
+the end marker.
 
 ## These are not context
 
@@ -44,3 +51,4 @@ remove .agents/worktrees/{task-slug}`, `git branch -D {branch}`, `git push origi
 This is a workflow, not part of the agent layer. The portable rules say how concurrent tasks
 share files and declare what blocks them, and name no version control system: see
 `.agents/tasks/AGENTS.md`.
+<!-- agent-layer:end -->

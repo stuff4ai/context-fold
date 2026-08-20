@@ -3,7 +3,8 @@
 ## Status
 
 Accepted. The identification of the layer with the `.agents/` directory is narrowed by
-[0018](0018-ship-a-distribution.md); the boundary itself stands.
+[0018](0018-ship-a-distribution.md). [0035](0035-manage-portable-rules-as-replaceable-blocks.md)
+narrows whole-file ownership to the managed rule block; the boundary itself stands.
 
 ## Context
 

@@ -24,24 +24,40 @@ Nothing else in the repository moves. `.agents/` may already hold other tools' f
 sits alongside them and does not claim the directory. Removing the layer later is a normal
 change.
 
+Each portable `AGENTS.md` template is one managed block. The block starts at byte zero with
+`<!-- agent-layer:begin -->` and ends with a standalone `<!-- agent-layer:end -->` line and its
+terminating LF. The template ends there. An installation may append project-specific instructions
+after that LF, but they must not contradict the portable rules. Updates replace the managed block
+and preserve every byte of that suffix.
+
 ## If the layer is already there
 
 `.agents/AGENTS.md` existing means this repository has adopted before. The steps below assume
 nothing is installed, and following them as written destroys work: they overwrite the index,
 add the pointer a second time, and open an adoption task for an adoption that already happened.
 
-Do this instead:
+Do this instead, in two phases. First preflight all four portable targets before changing any of
+them:
 
-- Copy only the `AGENTS.md` files from `templates/agents/`, including `worktrees/AGENTS.md` — all
-  of them are the distribution's now, and re-copying overwrites whatever was there before. This is
-  a change from earlier installations, which left `.agents/worktrees/AGENTS.md` alone on the
-  assumption it had been edited on purpose; it is byte-identical now, the same as the other rule
-  files, so overwriting it on re-adoption is correct. Leave `INDEX.md` and everything under
-  `tasks/` alone — those are this repository's, not the distribution's.
-- If `.agents/worktrees/AGENTS.md` is missing, the repository adopted before this file existed:
-  offer it and the `.gitignore` lines rather than adding them unasked.
-- Leave the root `AGENTS.md` alone if it already points at the layer.
-- Do not open task zero.
+1. A missing target is ready to receive its template. Keep the existing offer gate for a missing
+   `worktrees/AGENTS.md`: treat it as an install candidate only if the user accepts that file and
+   its `.gitignore` lines; otherwise omit that optional target from the update.
+2. A target containing no line beginning with `<!-- agent-layer:` is a legacy whole-file
+   installation and is ready to be replaced wholesale. The old contract already forbade local
+   edits to it; this update does not attempt to recover any.
+3. A managed target is valid only when it begins at byte zero with exactly one standalone begin
+   marker, contains exactly one later standalone end marker with a terminating LF, and contains no
+   other line beginning with `<!-- agent-layer:`. Record every byte after the end-marker LF as its
+   project-owned suffix.
+4. Anything else — a displaced, reversed, duplicated, unmatched, or malformed marker — is
+   ambiguous. Stop the entire update without writing any target and ask the user to repair it.
+
+Only after every target passes preflight, apply all selected candidates: install a missing file,
+replace a legacy file wholesale, or replace exactly the managed block and append its recorded
+suffix unchanged. Then verify that each installed block is byte-for-byte identical to its template
+and every recorded suffix has the same bytes as before. Leave `INDEX.md` and task packages alone.
+
+Leave the root `AGENTS.md` alone if it already points at the layer, and do not open task zero.
 
 If nothing changed, say so. A repository already holding the current rules is the expected
 result, not a failure.
@@ -60,26 +76,26 @@ templates/INDEX.md                       →  .agents/tasks/INDEX.md
 ```
 
 `templates/agents/` is separate from `INDEX.md` on purpose. Everything in `templates/agents/` —
-worktree conventions included — must stay byte-identical to its template for as long as it is
-installed. `INDEX.md` stops matching the moment you record your first task; it is yours once
-copied, the one file the distribution does not keep in sync.
+worktree conventions included — is a managed block that stays byte-identical to its installed
+counterpart. An installed suffix may differ by design. `INDEX.md` stops matching the moment you
+record your first task; it is yours once copied, the one file the distribution does not keep in
+sync.
 
-**Copy the files. Do not retype them.** Use a file copy — `cp`, or whatever your tools call it —
-and then confirm every installed file is byte-for-byte identical to its template. Reproducing
-the contents from what you have read produces files that look right and differ: a rewrapped
-line, a dropped paragraph, a missing file. Those differences are invisible on reading and break
-every future comparison against the distribution.
+**Copy the files. Do not retype them.** On a fresh adoption, use a file copy — `cp`, or whatever
+your tools call it — and confirm every installed file is byte-for-byte identical to its template.
+On an update, use the all-target preflight above and compare the installed managed blocks instead.
+Reproducing contents from what you have read yields invisible differences: a rewrapped line, a
+dropped paragraph, or a missing file.
 
-The `AGENTS.md` files are identical in every installation and carry no project-specific paths,
-names, or decisions — that is what makes them replaceable when the rules change, and that
-property survives only if the copy is exact.
+The managed blocks are identical in every installation and carry no project-specific paths, names,
+or decisions. Project-specific additions go only after the end marker and must not contradict the
+block. That boundary keeps the portable rules replaceable without making the whole file uniform.
 
-`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never
-again — replacing the rule files later means copying `templates/agents/` over `.agents/`, which
-leaves your index alone.
+`INDEX.md` ships empty and becomes yours as you work. Copy it once, on adoption, and never again.
+Updating managed blocks does not encounter it.
 
-If a rule does not fit your project, do not edit it. Record it as a problem in task zero. An
-edited rule file stops being upgradable and starts being yours.
+If a rule does not fit your project, do not edit or contradict the managed block. Record it as a
+problem in task zero so a reviewed portable-rule change can address it.
 
 ## 2. Ignore the worktrees directory
 
@@ -137,7 +153,7 @@ Acceptance:
 
 1. The layer is installed and the pointer resolves.
 2. It satisfies the deletion test described in `.agents/AGENTS.md`.
-3. The rule files are unmodified — nothing in them was adjusted to fit this project.
+3. The managed rule blocks are unmodified — nothing in them was adjusted to fit this project.
 
 **`context.md`** — Base state: the repository as it is. What it contains, what conventions it
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
@@ -150,8 +166,9 @@ are in `.agents/tasks/AGENTS.md`, which you now have.
 
 ## What this does not give you
 
-**No customization.** The rules are what they are. If they do not fit, that is worth knowing —
-record it as a problem rather than working around it quietly.
+**No overrides.** A repository may append non-conflicting instructions after a managed block. If a
+portable rule does not fit, record it as a problem rather than overriding it locally. Multiple
+blocks and finer-grained customization are not defined.
 
 **No migration.** This installs a layer; it does not convert one. If `.agents/` already holds a
 task system of its own — packages, an archive, another index — leave it exactly where it is.
@@ -159,10 +176,9 @@ Describe it in task zero's base state, note it under `## Problems`, and let the 
 Deciding what to do about it is a later decision for that project, and not something adoption
 should make on its behalf.
 
-**No provenance, and no upgrade path.** Copying is the whole distribution story. Nothing records
-which version you took, nothing tells you when the rule files change upstream, and there is no
-procedure for replacing them. Note the source commit in your adoption commit message if you
-want it later.
+**No provenance or update discovery.** Re-running this procedure safely replaces managed blocks,
+but nothing records which version you took or tells you when upstream rules changed. Note the
+source commit in your adoption commit message if you want it later.
 
 **Nothing runs.** There is no command, no check, and no automation. The layer is Markdown and a
 directory structure, maintained by hand.

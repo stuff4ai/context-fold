@@ -12,6 +12,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-1804-manage-agent-rule-blocks](archive/2026-08-20-1804-manage-agent-rule-blocks/task.md) | completed | Let adopted repositories preserve additive project instructions while portable rules update by managed block |
 | [2026-08-20-1746-categorize-open-questions](archive/2026-08-20-1746-categorize-open-questions/task.md) | completed | Organize live questions into discussion categories and identify individual task candidates |
 | [2026-08-20-1543-link-claude-skills](archive/2026-08-20-1543-link-claude-skills/task.md) | completed | Let a Claude Code session in this repository discover and invoke the already-installed `ctxfold-init` skill |
 | [2026-08-20-1505-add-task-rfc](archive/2026-08-20-1505-add-task-rfc/task.md) | completed | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
