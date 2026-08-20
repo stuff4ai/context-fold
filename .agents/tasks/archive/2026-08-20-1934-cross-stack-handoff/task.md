@@ -13,8 +13,9 @@ has to say.
 One exchange did coordinate that way. Entry 004 was committed, the asking lead's turn ended,
 a person carried the work to the other stack, and the Codex lead found the entry, dispatched
 its own `plan-verifier`, and wrote the return. Entries 001–003 did not: the asking lead invoked
-the answering role as a subprocess, so no turn ended and no answering lead took part. Every rule
-now has at least one exchange that obeyed it, and three of them have exactly one.
+the answering role as a subprocess, so no turn ended and no answering lead took part. Which
+rules that leaves evidenced and which it does not is accounted for in the Outcome, rule by rule,
+and is not summarised here.
 
 ## Why
 
@@ -340,3 +341,19 @@ Five sections of this file have now been corrected in five successive rounds, ev
 same reason: written when true, overtaken by the work, not re-read. The pattern outlasted being
 named in the problem log twice, which suggests noticing it is not the same as having a place in
 the lifecycle where re-reading happens.
+
+The Objective went stale a second time, from the round that fixed the Outcome it summarised. It
+had been corrected once already, and the correction introduced its own summary — that every rule
+had an obeying exchange and three were obeyed only once. Splitting the delivery requirement into
+its own rule falsified both halves in the same commit that wrote the accurate account four
+paragraphs below. Correcting a section does not inoculate it: the new text is a summary too, and
+a summary goes stale whenever the thing it summarises moves. The sentence is gone rather than
+rewritten, and the Objective now points at the Outcome instead of restating it, which is the same
+remedy the rules themselves needed.
+
+That makes six sections corrected in six rounds, and the sixth was a re-correction. Each fix was
+right about the fact it corrected and wrong to state the fact in a second place. The remedy that
+finally holds is not a more careful summary but no summary: one owner per claim, pointers
+everywhere else. Nothing in the lifecycle would have caught any of them — the final exact-head
+check reads the repository's structure and never compares two sections of a task against each
+other.
