@@ -1,8 +1,8 @@
+---
+status: resolved
+---
+
 # RFC — separate proposal discussion from execution planning
-
-## Status
-
-Draft
 
 ## Problem
 
@@ -18,7 +18,9 @@ execute the document or should continue discussing it.
 
 Add optional `rfc.md` as the task-local, mutable proposal artifact. It may contain the problem,
 current proposal, alternatives, open questions, and review notes in whatever structure makes the
-discussion clear. It is curated working context, not a stored transcript.
+discussion clear. It is curated working context, not a stored transcript. Its open questions are
+task-local; any unresolved question that may outlive the task is folded into the project layer
+before the task is accepted, including when the task is cancelled.
 
 Once the direction is resolved:
 
@@ -41,18 +43,98 @@ and requires the task contract and plan to be reconciled again before execution 
 | `plan.md` | Selected execution strategy after the direction is settled |
 | Project documentation or decision record | Durable authority that survives removal of the agent layer |
 
-## Open questions
+## Resolution
 
-- What minimum state marker must distinguish a draft, resolved, reopened, or withdrawn RFC
-  without turning a free-form discussion into a form?
-- Is a written Resolution required before `plan.md` may be created, or is agreement captured in
-  `task.md` sufficient?
-- Must a task remain `planned` while its RFC has an unresolved direction, even if evidence-gathering
-  work is already underway?
-- Which structural properties, if any, should convention checks enforce for an optional RFC?
+### RFC state
+
+Require a deliberately minimal YAML frontmatter block at the start of the file: delimiter lines
+containing `---` and exactly one field, `status: draft` or `status: resolved`. No YAML dependency is
+needed to recognize that grammar. Task cancellation already represents abandonment, so the RFC
+does not need a separate `withdrawn` state. This keeps machine-readable lifecycle state separate
+from the free-form discussion body without introducing a general metadata schema.
+
+### Resolution and plan
+
+When an RFC exists, require a written `## Resolution` before creating `plan.md`. The resolution
+states the selected direction and may point to the reconciled task contract or a project decision;
+it does not duplicate durable reasoning. A task without an RFC may still create `plan.md` directly
+once its direction is settled.
+
+If a direction changes after resolution, first fold still-relevant facts, rationale, and durable
+outcomes out of the Resolution and existing plan. Then change the RFC back to `draft`, remove its
+now-obsolete `## Resolution`, summarize why it was reopened in Review notes, remove the invalid
+`plan.md`, and pause execution. A new current Resolution is required before the RFC returns to
+`resolved`; the task contract and replacement plan must agree with it before execution continues.
+Removal is intentional disposal after folding, not an assumption that Git history preserved an
+uncommitted artifact.
+
+### Task status while discussing
+
+An RFC may be drafted while its task is `planned`, before substantive work starts. Change the task
+to `active` when RFC discussion, review, or evidence gathering begins. A task may therefore be
+active with a draft RFC, but implementation does not begin until the RFC is resolved and the task
+contract is reconciled. If an active task reopens its RFC, it stays active under the existing rule
+that returning to an earlier stage does not change task status, while execution pauses.
+
+### Open questions and finished tasks
+
+RFC questions are task-local working context. Before either completion or cancellation, fold any
+question that remains relevant beyond the task into the project layer. A completed task with an RFC
+must archive it as `resolved`; a cancelled task may archive either a draft or resolved RFC because
+cancellation may end discussion without selecting a direction.
+
+The supported combinations are:
+
+| Task status | RFC status | Resolution | `plan.md` |
+| --- | --- | --- | --- |
+| `planned` | absent | n/a | governed by the existing plan rule |
+| `planned` | `draft` | absent | absent |
+| `active` | absent | n/a | governed by the existing plan rule |
+| `active` | `draft` | absent | absent |
+| `active` | `resolved` | present | optional |
+| `completed` | absent | n/a | governed by the existing plan rule |
+| `completed` | `resolved` | present | optional |
+| `cancelled` | absent | n/a | governed by the existing plan rule |
+| `cancelled` | `draft` | absent | absent |
+| `cancelled` | `resolved` | present | optional |
+
+A `planned` task cannot have a resolved RFC because resolving it requires substantive review and
+therefore activates the task. When no RFC exists, this decision does not narrow the existing rules
+for `plan.md`.
+
+### Mechanical checks
+
+Check only structure that represents an explicit lifecycle invariant:
+
+- an existing `rfc.md` has the exact minimal frontmatter shape and a recognized status;
+- a resolved RFC has one non-empty `## Resolution`, while a draft RFC has none;
+- when both `rfc.md` and `plan.md` exist, the RFC is resolved;
+- a completed task with an RFC archives it as resolved, while a cancelled task may archive either
+  state.
+
+Exercise every row in the state matrix with isolated positive cases rather than relying on the
+repository's one final task state, including planned draft and completed resolved packages. Add
+isolated negative cases for malformed frontmatter, unknown status, planned resolved, draft with a
+Resolution or plan, resolved without one non-empty Resolution, and completed with a draft RFC.
+
+Do not require particular discussion sections, alternatives, question counts, or review-note
+formats. Their usefulness is semantic and cannot be established mechanically.
 
 ## Review notes
 
 The initial discussion agreed on the separation: RFC for changeable discussion, plan for the
 chosen execution approach. It also established that `plan.md` cannot become durable project
 authority merely by being called final; accepted decisions still have to pass the deletion test.
+
+The first repository-grounded review proposed three stable RFC states, an explicit Resolution
+gate for a plan, `planned` as the pre-execution state, and checks limited to lifecycle structure.
+
+Review replaced the Status heading with YAML frontmatter so lifecycle metadata is structured while
+the RFC body stays free-form.
+
+A fresh plan-verifier found that the proposal left stale Resolutions reusable after reopening,
+contradicted the accepted meaning of `planned`, left `withdrawn` undefined, did not route durable
+open questions, and assumed removed plans were committed. Resolution incorporated all five
+findings: draft RFC work activates a task; withdrawal uses task cancellation; reopening removes the
+old Resolution and plan only after folding; and structural checks cover the resulting state
+combinations.

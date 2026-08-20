@@ -2,7 +2,7 @@
 
 ## Status
 
-planned
+active
 
 ## Objective
 
@@ -24,12 +24,18 @@ second source of project truth.
 
 ## Scope
 
-- The task-package model and a decision record defining optional `rfc.md` and the revised role of
-  `plan.md`.
-- `README.md` — the task-artifact summary.
-- The portable task rules, their shipped template, and this repository's installed copies.
-- Convention checks only where a decided structural invariant can be checked mechanically.
-- `OPEN-QUESTIONS.md` — only questions directly resolved or narrowed by this decision.
+- `decisions/0033-*.md` — a provisional decision defining optional `rfc.md` and the revised role of
+  `plan.md`; its number and every reference to it move together if the number collides before
+  merge.
+- `decisions/0006-task-package-model.md` — Status only, naming the new narrowing.
+- `decisions/README.md` — decision-index table only, adding the new record under its final number.
+- `README.md` — `## Tasks` only, updating the task-artifact summary.
+- The `## The files`, `## Status`, `## Stages`, and `## Finishing` sections of the portable task
+  rules in `.agents/tasks/AGENTS.md`, their shipped template, and the installed skill copy.
+- `tests/test_conventions.py` — task-package helpers and tests only, encoding the decided RFC state
+  matrix with direct positive and negative cases.
+- `OPEN-QUESTIONS.md` — only the **Metadata schemas** and **Which task-local choices are worth
+  preserving as decisions?** entries directly narrowed or resolved by this decision.
 - `.agents/tasks/INDEX.md` — this task's derived row and eventual archival update.
 
 ## Out of scope
@@ -48,11 +54,34 @@ second source of project truth.
 2. `rfc.md` is the mutable place for a curated proposal, alternatives, open questions, and review
    feedback while direction is unsettled; it is explicitly not a raw transcript or durable
    project authority.
-3. `plan.md` represents the selected execution strategy. Its direction is settled before work
-   starts, while tactical details may still change without altering the task contract.
+3. `plan.md` represents the selected execution strategy. Its direction is settled before
+   implementation starts, while tactical details may still change without altering the task
+   contract.
 4. The portable rules say when either optional artifact earns its place, how an RFC is resolved
    or reopened, and where its durable outcome must be folded before acceptance.
-5. This task uses `rfc.md` while planned and does not create `plan.md` until its RFC is resolved.
-6. Shipped and installed portable rules remain byte-identical, relevant documentation and live
+5. The final task package has a resolved RFC with one non-empty Resolution and a plan consistent
+   with that Resolution.
+6. Convention tests use a dependency-free recognizer for the exact three-line RFC frontmatter and
+   directly exercise every supported row in the decided task/RFC/plan matrix plus each named
+   malformed or forbidden case; no YAML dependency is added.
+7. Shipped and installed portable rules remain byte-identical, relevant documentation and live
    questions agree with the decision, and pytest, recursive Markdown lint, and
    `git diff --check` pass.
+
+## Problems
+
+The initial acceptance criterion said the task would discuss its RFC while remaining `planned`.
+Fresh review showed that this contradicted the accepted status model: substantive discussion,
+review, and evidence gathering are work, even when implementation is still gated. The task became
+`active`, and the RFC now separates task status from permission to implement.
+
+The first plan-readiness review found four omissions: decision-index and supersession integration,
+a precise dependency-free frontmatter grammar with isolated state-matrix tests, actionable shared
+section ownership, and acceptance phrased as final-state evidence. The task contract and plan were
+narrowed accordingly. The only concurrent task then merged as `0032`, leaving no live shared owner;
+this branch uses provisional decision number `0033` after integrating that accepted base.
+
+The final plan-readiness pass found that `planned` RFC combinations and the completed-resolved
+positive case were not explicitly covered, while acceptance could still pass on the old suite.
+The RFC now contains the complete supported matrix, and acceptance requires its isolated positive
+and negative cases plus the exact dependency-free recognizer.

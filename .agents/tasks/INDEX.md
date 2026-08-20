@@ -8,7 +8,7 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 | Task | Status | Objective |
 | --- | --- | --- |
-| [add-task-rfc](add-task-rfc/task.md) | planned | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
+| [add-task-rfc](add-task-rfc/task.md) | active | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
 
 ## Archive
 
