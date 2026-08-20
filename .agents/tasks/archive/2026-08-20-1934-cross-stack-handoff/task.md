@@ -101,6 +101,13 @@ dispatch commit changed three files the entry never disclosed. Each failure prod
 that now forbids it, which is the substance of what this task learned: the rules were not
 designed and then demonstrated, they were extracted from the demonstration going wrong.
 
+Entry 003 is the first exchange to obey the convention, and the only evidence that it can be
+obeyed at all. It named a revision that already contained what it asked about, was committed
+before dispatch in that revision's immediate child, changed nothing but the entry, and returned
+`READY`. The compliance is checkable from Git and the request asked for it to be checked rather
+than asserted; the verdict is a separate matter, and a compliant exchange returning `REVISE`
+would have demonstrated the convention just as well.
+
 No exchange has crossed a person. The asking stack invoked the answering one as a subprocess
 each time, so the rule that assumes a human moves the work between stacks remains untested, and
 is named as a condition that would reopen promotion.
