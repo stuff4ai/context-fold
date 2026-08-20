@@ -6,6 +6,11 @@
 about the model, 10 under Gaps in the current rules, and 2 under Recurring patterns. Its final
 section also records two questions the project explicitly will not answer.
 
+The categorization before-state is commit `793e3072e92c4f82f8c69badd907c3de90322094` and
+`OPEN-QUESTIONS.md` blob `3017b1b7472fe7438b0f55d59bfb9a4fc04d1595`: 57 live item blocks will receive a topical
+destination, 2 recurring-pattern blocks remain flat, and the 2 non-answer blocks remain flat and
+outside the 59-item live count.
+
 No other task package is active. The preceding `add-task-rfc` task was accepted and archived, so
 this task can use a draft RFC while discussing taxonomy and create no plan until its direction is
 resolved.

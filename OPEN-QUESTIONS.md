@@ -13,17 +13,17 @@ historical records. This document is the live list.
 Chosen not to build yet, so that the methodology can be judged on its own before tooling
 hides its weaknesses.
 
+### Task lifecycle and coordination
+
 - **Ongoing task-lifecycle automation.** `ctxfold-init` performs adoption, but creating an
   ordinary task package, moving it to the archive, and maintaining the index are still done by
   hand, by decision rather than omission. What, if anything, should automate that ongoing
   lifecycle — a command, further agent skills, workflows, or something else — is undecided.
-- **Further skills and workflows.** `ctxfold-init` packages one repeated procedure: adoption.
-  Which other repeated procedures merit a skill, whether workflows earn a separate form, and
-  where either should be distributed remain open.
-- **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
-  problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
-  perform that step is undecided — it would have to hold candidate lessons without becoming a
-  second place where rules live.
+- **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
+  that no program implements.
+
+### Context selection and knowledge boundaries
+
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
   second documentation tree.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
@@ -37,22 +37,64 @@ hides its weaknesses.
   into something derived, rather than read where they live; whether that bundle carries the
   source and reason for every item; and what would demonstrate that it was both sufficient and
   no larger than necessary.
-- **Behavior at scale.** Every rule here was written against a repository with a handful of
-  tasks. What breaks at hundreds of archived tasks is unknown.
-- **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
-  that no program implements.
+
+### Decisions, identity, and traceability
+
+- **Metadata schemas beyond RFC state.** `0033` adds one deliberately minimal frontmatter field for
+  an RFC's `draft` or `resolved` state without introducing a general YAML schema. Traceability,
+  executable checks and event records would each need stable identity and relationships, but it is
+  still unknown whether those consumers justify broader structured metadata.
+
+### Distribution, adoption, skills, and host integration
+
+- **Further skills and workflows.** `ctxfold-init` packages one repeated procedure: adoption.
+  Which other repeated procedures merit a skill, whether workflows earn a separate form, and
+  where either should be distributed remain open.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
   files and performs adoption, but an installation records neither its source nor a version,
   cannot discover that upstream rules changed, and has no upgrade procedure. What identity an
   installation needs, how it discovers changes, and how replacement preserves installation-owned
   state remain undecided.
-- **Metadata schemas beyond RFC state.** `0033` adds one deliberately minimal frontmatter field for
-  an RFC's `draft` or `resolved` state without introducing a general YAML schema. Traceability,
-  executable checks and event records would each need stable identity and relationships, but it is
-  still unknown whether those consumers justify broader structured metadata.
+
+### Product boundary, behavior at scale, and measurement
+
+- **Behavior at scale.** Every rule here was written against a repository with a handful of
+  tasks. What breaks at hundreds of archived tasks is unknown.
+
+### Learning and the improvement loop
+
+- **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
+  problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
+  perform that step is undecided — it would have to hold candidate lessons without becoming a
+  second place where rules live.
 
 ## Open questions about the model
+
+### Task lifecycle and coordination
+
+- **Should folding outcomes produce an explicit proposal?** Finishing already requires durable
+  outcomes to be moved into documentation, decisions, code or tests before archival, while
+  temporary material is left behind. A tool could propose those destinations and deletions for
+  review without promoting anything automatically. It is unknown whether a separate fold
+  proposal would make that judgment inspectable or merely restate the task's Outcome and final
+  diff.
+- **Should `INDEX.md` show what a task is blocked by?** `0025` puts `## Blocked by` in the task
+  file and nowhere else, so finding what is blocked means opening every active task. That is
+  affordable at three concurrent tasks and not at thirty. Adding a column changes the shipped
+  index format for every installation, including the ones that never run two tasks at once.
+- **When is a task package warranted?** The rules describe how to start a task but never say
+  what is too small to need one.
+- **How does a task split when it grows mid-flight?** The slug is fixed identity once work
+  starts, so a task that turns out to be two has no defined way to become two.
+- **How much does index-based navigation earn?** A cold agent found its task by searching the
+  tree, reading the index last, where it changed nothing. Well-named, self-sufficient files
+  did the work. Whether the index is worth maintaining by hand is genuinely unclear.
+- **Should other derived views follow the index's rules?** Only one derived view exists. If
+  more appear, whether ordering and regeneration are general properties or decided per view is
+  undecided.
+
+### Context selection and knowledge boundaries
 
 - **Should context discovery have a canonical manifest?** Task `context.md` files curate what one
   task needs, and the project layer keeps durable knowledge wherever the project already owns it.
@@ -64,12 +106,31 @@ hides its weaknesses.
   rebuilt and discarded. That requires an unambiguous canonical source, generation provenance
   and a rule for files such as root `AGENTS.md` that are project-owned rather than generated.
   Without those boundaries, a projection becomes another authored copy that can drift.
-- **What product intent must a task be able to reach?** A task's `context.md` can point to any
-  project artifact, while `0005` deliberately does not prescribe where requirements, product
-  vocabulary or other durable knowledge live. Requiring a path from a task back to problems,
-  actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
-  prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
-  instead make context-fold prescribe a project's documentation layout for the first time.
+- **What system model must be available to a task, if any?** Service ownership, dependency and
+  domain boundaries, invariants and impact relationships can answer where a change belongs and
+  what it must not break. They may already be expressed in code, tests or project documentation,
+  and `0005` leaves that layout to the project. Requiring maps for them could improve context
+  selection while creating another model whose freshness and authority must be established.
+- **Should a task identify the context snapshot under which it ran?** Git already versions the
+  repository, and the accepted change archives its task beside the project state it produced.
+  An explicit snapshot earns its place only if selected context, generated projections, external
+  inputs or runtime rules cannot be reconstructed from that commit. What identity and retention
+  would make such a reference useful rather than a second version number is unknown.
+- **Which history should remain active context?** Migrations, deprecated approaches, incidents,
+  postmortems and the conditions for revisiting an old choice can explain why current code looks
+  wrong but is deliberate. Keeping all history available defeats context selection, while keeping
+  it only in an archive makes a relevant failed approach easy to repeat. The criterion that turns
+  historical evidence into current guidance is not defined.
+- **Do the two ownership layers need a more detailed responsibility map?** Intent, decisions,
+  specification, context, execution, verification, learning and adapters name useful concerns,
+  while a harness cuts across several of them. They do not necessarily form new storage layers:
+  most durable intent, decisions, specifications and tests remain project knowledge under `0005`.
+  Task context is currently temporary working state inside the agent layer, not a third source of
+  truth. It is unknown whether distinguishing project, agent and task context more explicitly
+  prevents ownership mistakes or merely gives the existing boundary more names.
+
+### Decisions, identity, and traceability
+
 - **Should intent, decisions, behavior and evidence form an explicit trace?** Today acceptance,
   context, project decisions, tests and outcomes can reference one another, but no rule makes
   them a traversable chain in either direction. Stable relationships could answer why a check or
@@ -78,11 +139,23 @@ hides its weaknesses.
   in prose unless one representation clearly owns them. Calling the graph context does not make
   it current: it would need either authoritative edges or a way to derive them from authoritative
   artifacts.
-- **What system model must be available to a task, if any?** Service ownership, dependency and
-  domain boundaries, invariants and impact relationships can answer where a change belongs and
-  what it must not break. They may already be expressed in code, tests or project documentation,
-  and `0005` leaves that layout to the project. Requiring maps for them could improve context
-  selection while creating another model whose freshness and authority must be established.
+- **Should the layer say once that identity fixes at acceptance?** It has been established
+  three times separately: `0000` for record numbers, `0022` for task slugs, and the rename of
+  `0022`'s own filename before it merged. The portable rules state it only about slugs, so each
+  new case is rediscovered rather than derived. Stating it generally would touch `0000`, `0022`
+  and the rules at once, and generalising from three cases is how this project has produced
+  rules it later had to narrow.
+- **How broad should a decision record be?** Recording every small choice creates noise;
+  recording too few loses the reasoning. Three sentences of workflow rules once produced three
+  records, which felt wrong in ratio but right in substance. Size is a poor test — a one-line
+  change to a portable rule file affects every installation, and a large change to one
+  repository's own documents affects nobody else.
+- **Should the portable rule files be able to cite their own rationale?** They cannot today:
+  the reasoning lives in context-fold, and decision numbering is local to whoever installed
+  the layer. "Reference, do not duplicate" has no answer for a cross-repository reference.
+
+### Verification, evidence, and observable execution
+
 - **When does acceptance need behavior scenarios rather than criteria alone?** `task.md` states
   checkable acceptance criteria without prescribing Given/When/Then examples or a mapping to
   project tests. Scenarios could connect user-visible journeys to deterministic checks and expose
@@ -94,11 +167,6 @@ hides its weaknesses.
   tools, avoided unrelated files, recovered from failure and stopped at the right boundary.
   Context-fold has evidence for structural checks, but none yet that these agent behaviors can be
   evaluated portably without depending on a particular runtime.
-- **Where is the boundary between the neutral model and an agent harness?** `0011` requires no
-  runtime beyond a filesystem and Git and puts product integrations in adapters. Tool semantics,
-  permissions, context assembly, hooks, model routing and quality gates nevertheless affect how
-  the written method is executed. It is unknown which of those, if any, need canonical contracts
-  for runs to be comparable, and which must remain properties of a host or adapter.
 - **Which observable execution facts should survive a run?** `0006` keeps execution history out
   of task packages, and `0014` rejects raw transcripts as a second source of truth. Recording
   context inputs, tool schemas, tool calls and results, compaction, verification events and the
@@ -121,78 +189,14 @@ hides its weaknesses.
   could look for stale context, duplicated knowledge, abandoned task state or unsupported
   decisions, but each semantic warning needs evidence and an authority to compare against or it
   becomes an opinion presented as a check.
-- **Should a task identify the context snapshot under which it ran?** Git already versions the
-  repository, and the accepted change archives its task beside the project state it produced.
-  An explicit snapshot earns its place only if selected context, generated projections, external
-  inputs or runtime rules cannot be reconstructed from that commit. What identity and retention
-  would make such a reference useful rather than a second version number is unknown.
-- **Should lessons become a first-class project artifact?** `0013` currently treats a repeated
-  problem as a candidate lesson and a reviewed change to a rule as the lesson's only durable
-  promotion; recurring candidates remain in this document. A separate lifecycle could preserve
-  evidence, rejected interpretations and integration status. It could also create a registry
-  that duplicates the rule or decision where an accepted lesson must ultimately live.
-- **Which history should remain active context?** Migrations, deprecated approaches, incidents,
-  postmortems and the conditions for revisiting an old choice can explain why current code looks
-  wrong but is deliberate. Keeping all history available defeats context selection, while keeping
-  it only in an archive makes a relevant failed approach easy to repeat. The criterion that turns
-  historical evidence into current guidance is not defined.
-- **Should folding outcomes produce an explicit proposal?** Finishing already requires durable
-  outcomes to be moved into documentation, decisions, code or tests before archival, while
-  temporary material is left behind. A tool could propose those destinations and deletions for
-  review without promoting anything automatically. It is unknown whether a separate fold
-  proposal would make that judgment inspectable or merely restate the task's Outcome and final
-  diff.
-- **How should outcome and context economy be measured?** Success, human intervention, retries,
-  tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
-  such as context precision and context sufficiency are closer to the project's purpose, but both
-  require a defensible account of which context was relevant and which missing item caused a
-  failure. A metric without that ground truth may reward smaller bundles rather than better work.
-- **Does context-fold organize project knowledge or produce it?** The current product is a
-  methodology in plain files: it routes durable knowledge to project-owned artifacts and keeps
-  the agent layer replaceable. Extracted architecture, domain or dependency maps could remain
-  disposable projections, or become authored project knowledge when their outputs are
-  authoritative, persisted and maintained independently. A provenance-aware bundle that only
-  explains what was selected could be a derived implementation of the existing metaphor;
-  maintaining rationale or becoming a context-intelligence or agent-operating system would raise
-  a broader product boundary whose ownership and evidence have not been established.
-- **Do the two ownership layers need a more detailed responsibility map?** Intent, decisions,
-  specification, context, execution, verification, learning and adapters name useful concerns,
-  while a harness cuts across several of them. They do not necessarily form new storage layers:
-  most durable intent, decisions, specifications and tests remain project knowledge under `0005`.
-  Task context is currently temporary working state inside the agent layer, not a third source of
-  truth. It is unknown whether distinguishing project, agent and task context more explicitly
-  prevents ownership mistakes or merely gives the existing boundary more names.
-- **Should the layer say once that identity fixes at acceptance?** It has been established
-  three times separately: `0000` for record numbers, `0022` for task slugs, and the rename of
-  `0022`'s own filename before it merged. The portable rules state it only about slugs, so each
-  new case is rediscovered rather than derived. Stating it generally would touch `0000`, `0022`
-  and the rules at once, and generalising from three cases is how this project has produced
-  rules it later had to narrow.
-- **Should `INDEX.md` show what a task is blocked by?** `0025` puts `## Blocked by` in the task
-  file and nowhere else, so finding what is blocked means opening every active task. That is
-  affordable at three concurrent tasks and not at thirty. Adding a column changes the shipped
-  index format for every installation, including the ones that never run two tasks at once.
-- **How broad should a decision record be?** Recording every small choice creates noise;
-  recording too few loses the reasoning. Three sentences of workflow rules once produced three
-  records, which felt wrong in ratio but right in substance. Size is a poor test — a one-line
-  change to a portable rule file affects every installation, and a large change to one
-  repository's own documents affects nobody else.
-- **When is a task package warranted?** The rules describe how to start a task but never say
-  what is too small to need one.
-- **How does a task split when it grows mid-flight?** The slug is fixed identity once work
-  starts, so a task that turns out to be two has no defined way to become two.
-- **Should the portable rule files be able to cite their own rationale?** They cannot today:
-  the reasoning lives in context-fold, and decision numbering is local to whoever installed
-  the layer. "Reference, do not duplicate" has no answer for a cross-repository reference.
-- **How much does index-based navigation earn?** A cold agent found its task by searching the
-  tree, reading the index last, where it changed nothing. Well-named, self-sufficient files
-  did the work. Whether the index is worth maintaining by hand is genuinely unclear.
-- **Should other derived views follow the index's rules?** Only one derived view exists. If
-  more appear, whether ordering and regeneration are general properties or decided per view is
-  undecided.
-- **Should the workflow be enforced rather than written down?** Branch protection could require
-  what `0001` and `0008` describe, instead of relying on repository settings any administrator
-  can change. Enforcement makes rules real but moves them out of the repository.
+
+### Distribution, adoption, skills, and host integration
+
+- **Where is the boundary between the neutral model and an agent harness?** `0011` requires no
+  runtime beyond a filesystem and Git and puts product integrations in adapters. Tool semantics,
+  permissions, context assembly, hooks, model routing and quality gates nevertheless affect how
+  the written method is executed. It is unknown which of those, if any, need canonical contracts
+  for runs to be comparable, and which must remain properties of a host or adapter.
 - **How should an adopter customize or replace the portable rules?** `ctxfold-init` has adopted
   the layer into existing repositories without rewriting their documentation, conventions, or
   other `.agents/` content. Its installed rule files must remain byte-identical to the
@@ -225,9 +229,59 @@ hides its weaknesses.
   leave delivery entirely outside the project is undecided. Any integration would still have to
   remain a projection rather than the source of truth.
 
+### Product boundary, behavior at scale, and measurement
+
+- **What product intent must a task be able to reach?** A task's `context.md` can point to any
+  project artifact, while `0005` deliberately does not prescribe where requirements, product
+  vocabulary or other durable knowledge live. Requiring a path from a task back to problems,
+  actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
+  prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
+  instead make context-fold prescribe a project's documentation layout for the first time.
+- **How should outcome and context economy be measured?** Success, human intervention, retries,
+  tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
+  such as context precision and context sufficiency are closer to the project's purpose, but both
+  require a defensible account of which context was relevant and which missing item caused a
+  failure. A metric without that ground truth may reward smaller bundles rather than better work.
+- **Does context-fold organize project knowledge or produce it?** The current product is a
+  methodology in plain files: it routes durable knowledge to project-owned artifacts and keeps
+  the agent layer replaceable. Extracted architecture, domain or dependency maps could remain
+  disposable projections, or become authored project knowledge when their outputs are
+  authoritative, persisted and maintained independently. A provenance-aware bundle that only
+  explains what was selected could be a derived implementation of the existing metaphor;
+  maintaining rationale or becoming a context-intelligence or agent-operating system would raise
+  a broader product boundary whose ownership and evidence have not been established.
+
+### Learning and the improvement loop
+
+- **Should lessons become a first-class project artifact?** `0013` currently treats a repeated
+  problem as a candidate lesson and a reviewed change to a rule as the lesson's only durable
+  promotion; recurring candidates remain in this document. A separate lifecycle could preserve
+  evidence, rejected interpretations and integration status. It could also create a registry
+  that duplicates the rule or decision where an accepted lesson must ultimately live.
+
+### Rule consistency and enforceability
+
+- **Should the workflow be enforced rather than written down?** Branch protection could require
+  what `0001` and `0008` describe, instead of relying on repository settings any administrator
+  can change. Enforcement makes rules real but moves them out of the repository.
+
 ## Gaps in the current rules
 
 Found by using them. Each is a defect with evidence, not a hypothetical.
+
+### Task lifecycle and coordination
+
+- **Archive directory names can still collide, and parallel work makes it likelier.** `0009`
+  records the risk as remote rather than impossible: two branches collide only if they archive
+  within the same minute under the same slug. It is less remote now. `0025` gives each task its
+  own checkout, so two agents choose slugs without seeing each other's, and nothing on `main`
+  registers a slug that is in flight. The checks test a slug's shape and never its uniqueness
+  across branches.
+- **Where does `## Outcome` go?** Twenty-four of the twenty-six archived tasks here put it
+  before `## Problems`; two put it after. `## Finishing` says to add an Outcome and does not say
+  where. The dominant order is therefore a convention by imitation, not a written rule.
+
+### Decisions, identity, and traceability
 
 - **`0003` says every commit carries a sign-off, but `0008` discards branch commits.** Only
   the squashed commit can carry the assertion. Whether "every commit" means every commit or
@@ -237,12 +291,12 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   `0012`, `0018`. `0000` permits the Status edit and describes only whole-record replacement, so
   the wording every one of them uses was invented rather than derived. It is consistent by
   imitation, which is not the same as decided.
-- **Archive directory names can still collide, and parallel work makes it likelier.** `0009`
-  records the risk as remote rather than impossible: two branches collide only if they archive
-  within the same minute under the same slug. It is less remote now. `0025` gives each task its
-  own checkout, so two agents choose slugs without seeing each other's, and nothing on `main`
-  registers a slug that is in flight. The checks test a slug's shape and never its uniqueness
-  across branches.
+- **Commit signing is undecided.** `0003` records sign-off as an assertion of responsibility
+  and explicitly leaves cryptographic verification open. `0004` attributes agent contributions
+  but cannot prove them.
+
+### Rule consistency and enforceability
+
 - **The 98-column wrap is a convention no check enforces.** Every hand-written line honours it
   and `pymarkdown`'s line-length rule is off, so three lines of 141, 105 and 109 characters
   passed four green runs. Turning the rule on fails on archived task packages, which are history
@@ -254,9 +308,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   the precedence rule — so a correction to that rule reaches new adopters and no existing one,
   and nothing detects when a shipped header and an installed one diverge. Either the header
   carries no rules, or something has to bind it.
-- **Where does `## Outcome` go?** Twenty-four of the twenty-six archived tasks here put it
-  before `## Problems`; two put it after. `## Finishing` says to add an Outcome and does not say
-  where. The dominant order is therefore a convention by imitation, not a written rule.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and
@@ -270,9 +321,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
 - **The pull request description is outside every check.** It is the surface reviewers read
   first, and the only one CI cannot see. A sentence corrected in the rules and in a decision
   record was left standing there for a round, and nothing but a reader could have caught it.
-- **Commit signing is undecided.** `0003` records sign-off as an assertion of responsibility
-  and explicitly leaves cryptographic verification open. `0004` attributes agent contributions
-  but cannot prove them.
 
 ## Recurring patterns
 

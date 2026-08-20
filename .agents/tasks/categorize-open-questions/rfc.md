@@ -1,5 +1,5 @@
 ---
-status: draft
+status: resolved
 ---
 
 # RFC — categorize live open questions and promote selected items
@@ -55,13 +55,22 @@ Promotion remains item-by-item:
 Opening a task does not remove its question from `OPEN-QUESTIONS.md`. The item remains live until a
 decision resolves it or it turns out not to matter, as the existing project-layer rule requires.
 
-## Open questions
+## Resolution
 
-- Are the eight proposed topics coherent, or should any be split, combined, or renamed?
-- Should promotion discussion start with the rule-consistency-and-enforceability gap cluster, the
-  whole evidence-backed Gaps section, or a different first group?
-- Does promotion require selecting individual questions only, or is there any case where a whole
-  tightly-coupled group should share one task?
+Adopt the eight proposed topics, but use them only where a section benefits from subdivision.
+Evidentiary state remains the top-level organization, and the two-item Recurring-patterns section
+stays flat. An item has one location in the document; a cross-cutting subject does not justify
+duplicating the question under several headings.
+
+Begin promotion discussion with the rule-consistency-and-enforceability cluster inside Gaps in the
+current rules. It is small enough to review coherently and exposes the boundary between a shared
+quality problem and several independently actionable defects.
+
+Promote questions individually by default. Several questions may share one task only when they
+cannot be resolved independently and can honestly share one objective, scope boundary, and set of
+acceptance criteria. Topical proximity alone is not sufficient. Opening a task does not remove the
+live question; it remains in `OPEN-QUESTIONS.md` until a decision resolves it or it no longer
+matters.
 
 ## Review notes
 
@@ -111,3 +120,7 @@ but topical subsections are now a navigation tool rather than a universal partit
 the improvement loop, and rule consistency and enforceability, were added for the two coherent
 clusters the original six topics obscured. Recurring patterns stays flat because two cross-cutting
 items do not earn another level of headings.
+
+The user then authorized implementation of the revised proposal. The Resolution adopts the eight
+topics, selects the rule-consistency-and-enforceability cluster as the first promotion discussion,
+and makes individual promotion the default with a narrow shared-task exception.

@@ -24,9 +24,10 @@ without turning `OPEN-QUESTIONS.md` into a roadmap or creating execution plans p
 ## Scope
 
 - `OPEN-QUESTIONS.md` — heading hierarchy, category introductions, and placement of existing live
-  items; wording changes only when needed to keep meaning and transitions accurate after grouping.
+  items; every complete item block and its top-level evidentiary section remain unchanged.
 - Separate planned task packages and `.agents/tasks/INDEX.md` rows only for individual questions
-  explicitly selected during RFC resolution; each new package declares its own scope.
+  explicitly selected during a later promotion discussion and recorded in the RFC Review notes;
+  each new package declares its own scope.
 - `.agents/tasks/categorize-open-questions/` and `.agents/tasks/INDEX.md` — this task's discussion,
   status, and navigation lifecycle.
 
@@ -40,15 +41,30 @@ without turning `OPEN-QUESTIONS.md` into a roadmap or creating execution plans p
 
 ## Acceptance
 
-1. A reviewed taxonomy accounts for every currently live item without silently dropping,
-   duplicating, answering, or changing its meaning.
+1. A reviewed taxonomy accounts for all 59 live items and 2 explicit non-answers without dropping,
+   duplicating, answering, changing, or moving any complete item block out of its top-level
+   evidentiary section.
 2. `OPEN-QUESTIONS.md` is organized into categories small and coherent enough to discuss, while
    preserving the distinction between live questions, evidence-backed gaps, recurring patterns,
    deferred capability, and questions the project will not answer.
 3. The resolved RFC explains how categorization differs from promotion and records which kinds of
    item may become investigation, decision, or change tasks.
-4. Every question explicitly selected for promotion has its own separate planned task package with
-   `task.md`, `context.md`, and a draft `rfc.md`; no derived task has `plan.md` yet.
+4. Before any question is promoted, its exact item or inseparable group is recorded in RFC Review
+   notes. Every selected question then has its own separate planned task package with `task.md`,
+   `context.md`, and a draft `rfc.md`; no derived task has `plan.md` yet.
 5. Questions not selected remain live project questions, with no implied priority or schedule.
 6. The task index agrees with task directories, and pytest, recursive Markdown lint, and
    `git diff --check` pass.
+
+## Problems
+
+The initial RFC assumed six subject topics could cleanly partition all 59 live items. Review showed
+that the recurring patterns, learning-loop questions, and rule-self-consistency gaps did not fit
+without arbitrary placement. The resolved proposal uses topical subsections only where useful,
+adds two topics for coherent missing clusters, and leaves the small cross-cutting section flat.
+
+The first plan review found that the proposed mapping incorrectly included the two recurring
+patterns among the topically assigned population, and that comparing labels could not detect body
+or evidentiary-state changes. It also found that derived-task creation depended on a future user
+choice. The plan now pins the complete before-state, compares full item blocks with their parent
+sections, and stops the current slice before any derived task or index change.
