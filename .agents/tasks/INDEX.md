@@ -12,6 +12,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-1543-link-claude-skills](archive/2026-08-20-1543-link-claude-skills/task.md) | completed | Let a Claude Code session in this repository discover and invoke the already-installed `ctxfold-init` skill |
 | [2026-08-20-1505-add-task-rfc](archive/2026-08-20-1505-add-task-rfc/task.md) | completed | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
 | [2026-08-19-2354-fold-worktrees-into-agents-template](archive/2026-08-19-2354-fold-worktrees-into-agents-template/task.md) | completed | Move `templates/worktrees/AGENTS.md` into `templates/agents/worktrees/AGENTS.md`, joining the byte-identical/portable set |
 | [2026-08-19-2059-avoid-worktree-merge-branch-conflict](archive/2026-08-19-2059-avoid-worktree-merge-branch-conflict/task.md) | completed | Document a merge sequence for task worktrees that avoids `gh pr merge --delete-branch`'s local checkout conflict with `main` |

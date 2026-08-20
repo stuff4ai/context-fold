@@ -44,3 +44,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0031 | [Check task packages for scaffolding by shape](0031-check-task-packages-for-scaffolding-by-shape.md) | Accepted |
 | 0032 | [Fold worktrees/AGENTS.md into the byte-identical set](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) | Accepted |
 | 0033 | [Separate RFC discussion from execution planning](0033-separate-rfc-discussion-from-execution-planning.md) | Accepted |
+| 0034 | [Extend the Claude Code adapter to skills](0034-extend-the-claude-code-adapter-to-skills.md) | Accepted |
