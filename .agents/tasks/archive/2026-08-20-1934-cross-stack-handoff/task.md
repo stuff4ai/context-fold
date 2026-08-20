@@ -6,8 +6,15 @@ completed
 
 ## Objective
 
-Let two agent stacks working the same repository coordinate through a file in the task
-package instead of through a live channel, and prove it with a real exchange.
+Establish the record two agent stacks use to ask each other for work through a file in the
+task package rather than a live channel, and exercise it far enough to learn what that record
+has to say.
+
+File-mediated coordination itself is not established here, and this task does not claim it.
+Every exchange it ran invoked the answering stack as a subprocess: no turn ever ended, and no
+answering lead took part. What they tested is the entry format and the revision and dispatch
+rule. A handoff that crosses a person is deferred, and `OPEN-QUESTIONS.md` names it as a
+condition that would reopen promotion.
 
 ## Why
 
@@ -252,3 +259,20 @@ Returns were written to read as the other stack's voice. Each begins "Answered b
 the acceptance of blockers were all written by the asking lead, which under the convention is
 the one participant that should not be composing the answer. The file now states that boundary
 once at the top rather than leaving each return to imply otherwise.
+
+The Objective outlived what the task could show. It promised to let two stacks "coordinate
+through a file in the task package instead of through a live channel, and prove it with a real
+exchange", and every exchange run against it used a live channel: the asking lead invoked the
+answering stack as a subprocess, so no turn ended and no answering lead took part. The Outcome
+was corrected to admit this while the Objective above it still made the original promise, which
+left the package asserting two incompatible things about the same work. Narrowing the acceptance
+criteria made them truthful and left the Objective they were meant to serve untouched — a
+criterion can be honest about what it checks and still not answer the question that was asked.
+The Objective now claims the record format and says plainly that file-mediated coordination is
+deferred.
+
+That is four sections of this one file — Outcome, acceptance criterion 3, criterion 7 and now
+Objective — each corrected in a separate round, each stale for the same reason: written early,
+overtaken by what the work found, and not re-read when it was. Nothing in the lifecycle prompts
+re-reading a task's own contract against its findings before archival, and the final check does
+not compare the Objective with the Outcome.
