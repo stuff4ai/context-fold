@@ -115,7 +115,8 @@ Check only structure that represents an explicit lifecycle invariant:
 Exercise every row in the state matrix with isolated positive cases rather than relying on the
 repository's one final task state, including planned draft and completed resolved packages. Add
 isolated negative cases for malformed frontmatter, unknown status, planned resolved, draft with a
-Resolution or plan, resolved without one non-empty Resolution, and completed with a draft RFC.
+Resolution or plan, resolved without exactly one non-empty Resolution, and completed with a draft
+RFC.
 
 Do not require particular discussion sections, alternatives, question counts, or review-note
 formats. Their usefulness is semantic and cannot be established mechanically.

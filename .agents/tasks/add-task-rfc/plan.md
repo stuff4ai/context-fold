@@ -28,8 +28,8 @@ durable truth.
    cancelled packages without an RFC; planned/active/cancelled draft RFCs; and
    active/completed/cancelled resolved RFCs, including both allowed plan-presence variants where an
    RFC is resolved. Add negative cases for malformed frontmatter, unknown status, planned resolved,
-   draft with Resolution, draft with a plan, resolved without a non-empty Resolution, and completed
-   with a draft RFC. Do not add a YAML dependency.
+   draft with Resolution, draft with a plan, resolved with a missing, empty, or duplicate
+   Resolution, and completed with a draft RFC. Do not add a YAML dependency.
 6. Run focused state-matrix and decision integration tests while iterating, then the full pytest
    suite, recursive Markdown lint, explicit portable-file byte comparisons, and `git diff --check`.
 7. Fold the outcome into project artifacts, write the task Outcome, archive the package, update the

@@ -115,10 +115,32 @@ it: this package is archived when the task ends, and once the change is accepted
 rather than current state. A `planned` task can hold the question while a destination is
 established, but it is not the destination — see the triage rule below.
 
-**`plan.md`** — execution strategy. Optional.
+**`rfc.md`** — proposal discussion. Optional.
+
+Create it when a direction needs discussion before execution: a current proposal, alternatives,
+task-local open questions, or review feedback. Curate it; do not store a raw transcript, source
+notes, hidden reasoning, or an execution log. Like `context.md`, it is not a durable home: fold any
+question or outcome that may outlive the task into the project layer before completion or
+cancellation.
+
+Its body is free-form, but it starts with exactly three frontmatter lines: `---`, then
+`status: draft` or `status: resolved`, then `---`. A draft has no `## Resolution`; a resolved RFC
+has exactly one non-empty Resolution stating the selected direction.
+
+Drafting an initial RFC does not start a `planned` task. Substantive discussion, review, or evidence
+gathering does, so change the task to `active` then. Implementation waits until the RFC is resolved
+and `task.md` agrees with it.
+
+To reopen a resolved RFC, first fold anything still relevant out of its Resolution and plan. Then
+change it to `draft`, remove the Resolution, record why in the RFC, remove `plan.md`, and pause
+implementation. A new Resolution is required before returning to `resolved`.
+
+**`plan.md`** — selected execution strategy. Optional.
 
 Create it when the task is multi-step, complex, long-running, or likely to be resumed by
-another agent. Keep it mutable and short. It is not an execution log.
+another agent. When an RFC exists, create or keep the plan only while the RFC is resolved, and make
+its direction agree with the Resolution and `task.md`. Tactical steps stay mutable. It is not an
+execution log or durable project authority.
 
 An optional heading you have nothing to put under yet is left out, not kept empty. An active
 task may still fill one in before it is done; one still empty at archival was declared and never
@@ -177,7 +199,7 @@ consequence, and did not need keeping.
 
 | Status | Meaning |
 | --- | --- |
-| `planned` | Written down, not started |
+| `planned` | Written down; substantive work not started |
 | `active` | Being worked on |
 | `completed` | Finished and archived |
 | `cancelled` | Abandoned and archived |
@@ -195,6 +217,10 @@ planned → active → work → verification → fold outcomes
 Cancelled work skips to archive — but not past **fold outcomes**. A task abandoned halfway may
 still have learned something the project needs, and archiving it without folding that out loses
 it exactly as completion would.
+
+An unresolved RFC pauses implementation, not the task lifecycle. A task becomes `active` when its
+RFC receives substantive discussion, review, or evidence gathering, and stays active if a resolved
+RFC is later reopened.
 
 The sequence is the order stages come in, not a path travelled once. Go back whenever review,
 verification, or something you find requires it — that is the normal shape of the work, not a
@@ -253,6 +279,10 @@ Everything else is a judgment call for whoever writes the task, the same as `## 
 `## Blocked by` already are.
 
 ## Finishing
+
+Before finishing a task with an RFC, fold every question and outcome that may outlive it into the
+project layer. A completed task's RFC is resolved. A cancelled task's RFC may remain draft when
+abandonment ended discussion without selecting a direction.
 
 1. Set the final Status and add an Outcome to `task.md`: what happened, and which durable
    artifacts it produced.
