@@ -53,9 +53,12 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
    is byte-identical to `.agents/skills/ctxfold-init/templates/agents/tasks/AGENTS.md` and
    to `skills/ctxfold-init/templates/agents/tasks/AGENTS.md`, verifiable by comparing the
    bytes between the `agent-layer` markers in all three.
-3. This package contains a `handoff.md` recording at least one completed exchange with a
-   second agent stack: a request in one stack's hand, a return in the other's, both states
-   `returned`, naming the git rev the request referred to.
+3. This package contains a `handoff.md` recording at least one exchange with a second agent
+   stack that followed the convention's own rules, each part checkable from Git: the entry's
+   `state:` is `returned`; its `rev:` names a commit that already contains what the request
+   asked about; the entry itself was committed before dispatch, in a commit descended from
+   `rev:`; and that dispatch commit differs from `rev:` in nothing but the entry, or the
+   request discloses what else differs.
 4. That exchange was real. The return records which stack and which role produced it, and
    the verdict is one this task did not write for it.
 5. The convention's rules are stated somewhere a reader who was not present can apply them
@@ -86,11 +89,21 @@ Promotion is deferred rather than refused. `OPEN-QUESTIONS.md` now carries what 
 crosses a person rather than a subprocess, or two stacks holding one package at once — and,
 separately, the three details of the entry format this task did not settle.
 
-The convention was exercised on itself. `handoff.md` entry 001 asked the Codex stack's
-`plan-verifier` whether the RFC was ready to resolve; it returned `REVISE` against two arguments
-the draft rested on, and the resolution now standing is what replaced them. The exchange did not
-cross a person, which is recorded as a limitation rather than presented as a completed round
-trip.
+The convention was exercised on itself, and that is where nearly everything it now says came
+from. `handoff.md` entry 001 asked the Codex stack's `plan-verifier` whether the RFC was ready
+to resolve, and entry 002 asked whether the corrections made after the first round of
+pull-request review held. Both returned `REVISE`; every blocker was accepted.
+
+Neither of those two exchanges obeyed the convention. Entry 001's request was uncommitted when
+it was dispatched, so the text the answering stack read is not recoverable from the revision the
+entry names. Entry 002 named a revision that did not yet contain the fix it asked about, and its
+dispatch commit changed three files the entry never disclosed. Each failure produced the rule
+that now forbids it, which is the substance of what this task learned: the rules were not
+designed and then demonstrated, they were extracted from the demonstration going wrong.
+
+No exchange has crossed a person. The asking stack invoked the answering one as a subprocess
+each time, so the rule that assumes a human moves the work between stacks remains untested, and
+is named as a condition that would reopen promotion.
 
 ## Problems
 
@@ -185,3 +198,16 @@ the parts written quickly because they seemed like description rather than desig
 loop was closed after the second `REVISE` rather than running a third exchange: the remaining
 blockers ask for things a grep and a diff settle, and a fourth opinion on them would be
 ceremony.
+
+The Outcome claimed a successful exercise the record did not support. It said the convention
+"was exercised on itself" while both exchanges had broken it — one dispatched uncommitted, the
+other naming a revision without the fix it asked about — and it described only entry 001, having
+been written before entry 002 existed and never revisited. A summary written once and left alone
+while the thing it summarizes changes underneath is how an accurate record becomes a false one.
+
+Acceptance criterion 3 was written against a design that had already been abandoned. It required
+"both states `returned`", which made sense when a request and its return were separate entries;
+once an exchange became one entry with one state, the criterion had no meaning and could not be
+checked either way. It was drafted at the start and not re-read when the format changed. Criteria
+are as capable of going stale as rules, and nothing prompts a re-read of them at the point the
+design moves.
