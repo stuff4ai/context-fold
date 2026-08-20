@@ -67,9 +67,10 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
    descended from `rev:`; and that dispatch commit differs from `rev:` in nothing but the
    entry, or the request discloses what else differs.
 
-   This is a claim about one rule, not about the convention. *Stop after asking* and the
-   requirement that only a lead answers a handoff leave no trace in Git, and no exchange here
-   satisfied either; criterion 7 covers saying so.
+   This is a claim about one rule, not about the convention. Entry 004 satisfied *stop after
+   asking* and the requirement that only a lead answers a handoff, but neither leaves a trace
+   in Git and both rest on the record of how that exchange was carried out. *Commit the
+   return* no exchange has satisfied at all. Criterion 7 covers saying so.
 4. That exchange was real. The return records which stack and which role produced it, and
    the verdict is one this task did not write for it.
 5. The convention's rules are stated somewhere a reader who was not present can apply them
@@ -87,10 +88,9 @@ Human. The RFC leaves a direction for the reviewer to choose rather than a claim
 ## Outcome
 
 Decision `0036` records `handoff.md` as a task-package artifact: a record of what one agent
-stack asked another and what came back, governed by five rules — address by role and never by
-model, an entry addressed elsewhere is not yours, answer in the vocabulary the request names,
-commit the request before dispatching it, and stop after asking. An entry is not rewritten once
-dispatched; answering it changes only its state and fills its return.
+stack asked another and what came back. The rules governing it live in `.agents/tasks/AGENTS.md`
+and are not restated here. An entry is not rewritten once dispatched; answering it changes only
+its state and fills its return.
 
 The convention is stated as this repository's project suffix in `.agents/tasks/AGENTS.md`, the
 first use of the boundary `0035` created. The portable managed rule block is untouched, so its
@@ -135,6 +135,7 @@ Rule by rule, as the record stands:
 | Check for entries addressed to you before starting | 004, after a second prompt | 004 on first attempt |
 | An entry addressed elsewhere is not yours | 004 | 001–003 |
 | Answer in the vocabulary the request names | 001–004 | — |
+| Commit the return | — | 004, which is why the rule exists |
 | Commit the request, then dispatch it | 003, 004 | 001, 002 |
 | Stop after asking | 004 | 001–003 |
 | Only a lead answers a handoff | 004 | 001–003 |
@@ -144,8 +145,15 @@ counted as merely unexercised: each was addressed to the Codex stack and answere
 lead that sent it. That is the failure the rule exists to prevent, committed three times by the
 author of the rule, and found by the exchange that finally obeyed it.
 
-Every rule now has at least one exchange that obeyed it. Three have exactly one, and it is the
-same one.
+One rule has no exchange that obeyed it. *Commit the return* was written because entry 004
+exposed the gap — the Codex lead wrote its answer and left it in the working tree, where the
+asking stack could not have told it from an answer never written — and nothing has run since to
+exercise it. Every rule that exactly one exchange obeyed was obeyed by entry 004.
+
+No count of the rules appears in this package or in `0036`. Three separate statements of how
+many there were went stale as the set grew, which is the same failure as restating the rules
+themselves: `.agents/tasks/AGENTS.md` owns them, and the table above is an account of exchanges
+rather than a second copy of the list.
 
 ## Problems
 
@@ -256,8 +264,8 @@ design moves.
 
 Evidence for one rule was presented as evidence for the convention. Acceptance criterion 3
 listed four facts recoverable from Git and called satisfying them "followed the convention's own
-rules", when they establish only the revision and dispatch lifecycle. Two of the five rules
-leave no trace in Git at all — stopping after dispatch, and the requirement that only a lead
+rules", when they establish only the revision and dispatch lifecycle. Two of the rules as they
+then stood leave no trace in Git at all — stopping after dispatch, and the requirement that only a lead
 answers a handoff — and both were broken in every exchange, including the one held up as
 compliant. The asking lead invoked the answering role directly and continued in the same turn,
 so no answering lead ever existed and no turn ever ended. Checkability is not coverage: the
@@ -313,3 +321,22 @@ is the thing the rule exists to stop.
 The answering lead did not commit its return. The convention said who writes a return and never
 said who commits it, so the answer sat in the working tree where the asking stack could not
 distinguish it from an answer never written. Added to the rule.
+
+An exchange was credited with obeying a rule written after it ran. The Outcome table said entry
+004 obeyed *answer in the vocabulary the request names*, and that rule had just been amended to
+require the answering lead to commit the return — which entry 004 did not do, as the problem log
+directly above said. Amending a rule silently re-scored every exchange already recorded against
+it. The delivery requirement is now its own rule so that its accounting cannot hide inside
+another's, and no exchange has obeyed it.
+
+Counting the rules went stale three times. `0036` said five while the suffix had six bullets and
+a lead-only clause and the Outcome table listed eight rows. Each count was written when it was
+true and none was revisited when the set grew, which is the restatement problem in its smallest
+form: a number is a copy of a list. No count appears anywhere now — `.agents/tasks/AGENTS.md`
+owns the rules, `0036` points at it without enumerating, and the Outcome table is an account of
+exchanges rather than a second copy of the set.
+
+Five sections of this file have now been corrected in five successive rounds, every one for the
+same reason: written when true, overtaken by the work, not re-read. The pattern outlasted being
+named in the problem log twice, which suggests noticing it is not the same as having a place in
+the lifecycle where re-reading happens.

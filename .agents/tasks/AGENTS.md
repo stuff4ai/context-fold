@@ -384,9 +384,10 @@ corrects.
   return for one you sent, however obvious the answer seems.
 - **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
   request for a review is answered and returned, not continued into the work it reviewed — the
-  asking stack decides what to do with a verdict. The answering lead commits the return; an
-  answer left in the working tree has not been delivered, and the asking stack cannot tell it
-  from an answer never written.
+  asking stack decides what to do with a verdict.
+- **Commit the return.** An answer left in the working tree has not been delivered, and the
+  asking stack cannot tell it from an answer never written. The answering lead commits it, in a
+  commit that changes nothing but the entry.
 - **Commit the request, then dispatch it.** `rev:` names the commit under review — what the
   verdict will be about. A request read from an uncommitted working tree cannot be shown
   afterwards to be what was actually asked, so the entry is committed too, necessarily in a

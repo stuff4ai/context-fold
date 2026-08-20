@@ -39,24 +39,10 @@ returns: READY|REVISE     # the vocabulary expected back
 ### Return
 ````
 
-Five rules:
-
-1. **Address.** `to:` names a stack and a role within it. Roles are the ones that stack
-   already has; a handoff never invents one and never names a model, because the role
-   definition already pins it.
-2. **Inbox.** Check every `handoff.md` under `.agents/tasks/` before starting, including
-   archived packages — a task is archived before review, so a handoff sent during review
-   waits inside one. An entry with `state: requested` addressed to your stack is yours.
-   Nothing else is, including one you sent yourself.
-3. **Return.** The receiving lead answers in the vocabulary `returns:` names, appends it
-   under `### Return`, and sets `state: returned`. A review request is answered, not
-   continued into implementation.
-4. **Commit the request, then dispatch it.** `rev:` names the commit under review, and must
-   already contain whatever the request asks about. The entry is committed too, necessarily
-   in a later commit, since an entry cannot name the commit containing it. Where the tree at
-   dispatch differs from `rev:` in anything but the entry, the request says what and why.
-5. **Stop.** After writing a request, stop. Something outside the repository moves the work
-   to the other stack; the file does not deliver itself.
+The rules themselves are not reproduced here. They were rewritten in response to every one of
+the four exchanges this task ran, and each copy of them made outside the file that owns them
+went stale at the next rewrite; `.agents/tasks/AGENTS.md` carries the set that stands. What this
+RFC decides is where the convention lives, not what it says.
 
 ## The question this RFC exists to settle
 
