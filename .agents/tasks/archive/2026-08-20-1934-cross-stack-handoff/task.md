@@ -134,8 +134,9 @@ author and not by the reviewing stack — which had the evidence, having run `gi
 seen the file staged, and did not treat it as a defect because it was asked about the
 placement argument instead. A review answers the question it was given.
 
-`rev:` now names the commit containing the entry, and the request is committed before it is
-dispatched.
+The rule was rewritten in response, and rewritten again when that version turned out to be
+unsatisfiable — see the next two entries. `.agents/tasks/AGENTS.md` owns the wording that
+stands; restating it here is what made three copies go stale at once.
 
 "Append-only" described the file as something it was not. The rules said each exchange was a
 new entry and a return went into its own entry, while the prescribed flow changed `state:
@@ -161,3 +162,26 @@ later commit; both guarantees hold, and the impossibility is stated in the rule 
 reader does not rediscover it. Two rules in a row were written confidently and were wrong, and
 neither survived its first application. Writing a rule and following it are separate acts, and
 only the second is a check.
+
+Entry 002 asked about a fix that was not in the revision it named. `rev: 8b255a7` was the
+commit before the correction; the corrected rule reached the repository only in `8747d88`, the
+commit carrying the entry itself. So the request asked the answering stack to judge a state
+that still contained the defect it claimed to have fixed, and the same commit also changed
+three files the entry never mentioned, which the disclosure rule required. One mistake with two
+faces: corrections belong in the revision under review, and the dispatch commit should add the
+entry and nothing else. The rule now says a named revision must already contain whatever the
+request asks about.
+
+The rule about `rev:` was restated in four places and three went stale the moment it changed.
+`0036`, entry 001's disclosure and this log each carried their own copy; when the wording was
+corrected, the copies contradicted the original and each other. This is the pattern
+`OPEN-QUESTIONS.md` already records — rules stated where they are relevant rather than where
+they are owned — and it was reproduced here within an hour of citing it. The copies are now
+pointers to `.agents/tasks/AGENTS.md`, which owns the rule.
+
+Three rounds of review, each finding real defects, none of them in the placement decision the
+task was actually about. Every finding was in the worked example or in the rules governing it —
+the parts written quickly because they seemed like description rather than design. The review
+loop was closed after the second `REVISE` rather than running a third exchange: the remaining
+blockers ask for things a grep and a diff settle, and a fourth opinion on them would be
+ceremony.

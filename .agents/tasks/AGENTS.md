@@ -384,8 +384,9 @@ corrects.
   afterwards to be what was actually asked, so the entry is committed too, necessarily in a
   later commit than `rev:`: an entry cannot name the commit that contains it, because writing
   the hash in would change it. Both guarantees hold anyway, since the entry's own commit is in
-  the history. Where the tree at dispatch differs from `rev:` in anything but the entry, the
-  request says what and why.
+  the history. `rev:` must already contain whatever the request asks about — a fix asked about
+  before it is committed is not in the state being judged. Where the tree at dispatch differs
+  from `rev:` in anything but the entry, the request says what and why.
 - **Stop after asking.** Writing a request ends your turn. Nothing in the repository delivers
   it; something outside does.
 

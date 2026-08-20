@@ -30,8 +30,8 @@ before deciding whether every installation should carry it.
 
 A task that is worked by more than one agent stack carries `handoff.md` in its package: an
 record of requests between stacks and the answers to them. Each exchange is an entry carrying an
-id, the addresses it is from and to, its state, the commit the request was dispatched from, and
-the vocabulary the answer must use. An entry is not rewritten once dispatched: its request text
+id, the addresses it is from and to, its state, the commit under review, and the vocabulary the
+answer must use. An entry is not rewritten once dispatched: its request text
 is fixed then, and answering it changes only the state and fills the return.
 
 Five rules govern it, stated in full in `.agents/tasks/AGENTS.md`: address by role and never by

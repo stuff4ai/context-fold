@@ -45,9 +45,10 @@ but not this file, which was staged and uncommitted when the request was dispatc
 committed one revision later in `c474667`. So the request text the answering stack read cannot
 be recovered from the revision this entry names. Nothing else in the tree differed.
 
-The rule then read that a sender whose tree was dirty says so, and this entry did not. It now
-reads that the request is committed before it is dispatched and `rev:` names the commit
-containing it, which is the rule this failure produced. Entry 002 is the exchange run under it.
+The rule then read that a sender whose tree was dirty says so, and this entry did not. It was
+rewritten in response, and again after that; `.agents/tasks/AGENTS.md` carries the wording that
+now stands, and this disclosure does not restate it. Entry 002 is the exchange run under the
+first of those rewrites, and found it wanting.
 
 ### Return
 
@@ -96,7 +97,7 @@ the convention working end to end.
 id: 002
 from: claude:lead
 to: codex:plan-verifier
-state: requested
+state: returned
 rev: 8b255a7
 returns: READY|REVISE
 ```
@@ -132,4 +133,61 @@ including its disclosure, then `## Problems` in `task.md`.
 
 ### Return
 
-<!-- awaiting codex:plan-verifier -->
+Answered by `codex:plan-verifier` (pilotfish-codex v1.7.1, `gpt-5.6-sol`, reasoning effort
+high, read-only sandbox), against `8b255a7`.
+
+Verdict: `REVISE`, with three blockers, all graded P2 and all quoted in full:
+
+> Blocker: P2 — Readiness unit 002 names an unsatisfiable revision as its review target.
+>
+> Evidence: `rev: 8b255a7` identifies the stable state under review, but that commit's
+> `.agents/tasks/AGENTS.md`, `rfc.md`, and `task.md` say `rev:` names the commit containing
+> its own entry. An entry cannot contain its own commit hash. The satisfiable wording exists
+> only in child commit `8747d88`, outside the named target.
+>
+> Minimum revision: Create a stable reviewed revision containing the satisfiable rule, then
+> commit the request entry afterward with `rev:` naming that revision.
+>
+> Acceptance check: The commit named by `rev:` consistently defines it as the commit under
+> review, and the request entry exists in a later commit.
+>
+> Blocker: P2 — The dispatch commit contains undisclosed scoped changes beyond entry 002.
+>
+> Evidence: Relative to `8b255a7`, commit `8747d88` changes `.agents/tasks/AGENTS.md`,
+> `rfc.md`, and `task.md` as well as `handoff.md`. Entry 002 does not disclose those
+> differences, although the rule requires every difference beyond the entry to be identified
+> and explained.
+>
+> Minimum revision: Put the reviewed corrections in the revision named by `rev:`, make the
+> later dispatch commit entry-only, or explicitly disclose every remaining non-entry
+> difference and its reason.
+>
+> Acceptance check: The diff from the named revision to the dispatch commit contains only
+> entry 002, or the request accounts for every additional changed scoped artifact.
+>
+> Blocker: P2 — The intended corrected state still contains contradictory definitions of
+> `rev:`.
+>
+> Evidence: In `8747d88`, the operative rule says `rev:` names the commit under review, but
+> decision 0036 calls it "the commit the request was dispatched from"; entry 001's disclosure
+> says it names the commit containing the entry; and `task.md` repeats that statement before
+> later giving the corrected definition.
+>
+> Minimum revision: Align all current statements with the commit-under-review definition and
+> explicitly qualify superseded historical statements.
+>
+> Acceptance check: Every in-scope description distinguishes the reviewed revision from the
+> later entry-containing dispatch commit, with no unqualified claim that `rev:` names the
+> latter.
+
+All three accepted; none disputed. The first two are one mistake seen twice: the corrections
+were folded into the dispatch commit instead of the revision under review, so the request
+asked about a state that did not yet contain what it claimed to have fixed. The third is a
+rule restated in four places, three of which went stale when it changed — the pattern
+`OPEN-QUESTIONS.md` already records under *Rules get stated where they are relevant rather
+than where they are owned*. The restatements are now pointers to the file that owns the rule
+rather than copies of it.
+
+No entry 003 was dispatched. Two consecutive `REVISE` verdicts close the review loop, and what
+these blockers ask for is mechanically checkable rather than a matter of judgment; the evidence
+is in the pull request.
