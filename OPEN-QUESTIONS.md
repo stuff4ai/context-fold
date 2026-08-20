@@ -41,7 +41,10 @@ hides its weaknesses.
 ### Context selection and knowledge boundaries
 
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
-  second documentation tree.
+  second documentation tree. One proposed minimum is a portable contract plus a project-specific
+  index containing only short navigational summaries and references to authoritative project
+  artifacts. Whether that earns a distinct sublayer, how its summaries avoid drift, and whether
+  deleting it truly loses only convenience remain undecided.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
   rather than by reading files.
 - **Automatic context selection.** Whether the layer should decide which context a task needs
@@ -65,7 +68,9 @@ hides its weaknesses.
 
 - **Further skills and workflows.** `ctxfold-init` packages one repeated procedure: adoption.
   Which other repeated procedures merit a skill, whether workflows earn a separate form, and
-  where either should be distributed remain open.
+  where either should be distributed remain open. MCP/tool capabilities may have different
+  authority, discovery and runtime semantics again; whether they ever belong beside skills or
+  workflows is deferred until use provides evidence.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
   files, performs adoption, and can explicitly replace their managed blocks while preserving an
@@ -83,7 +88,8 @@ hides its weaknesses.
 - **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
   problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
   perform that step is undecided — it would have to hold candidate lessons without becoming a
-  second place where rules live.
+  second place where rules live. A disposable summary-and-reference view could avoid owning
+  candidate state, but it has not shown value beyond the task archive and this live list.
 
 ## Open questions about the model
 
@@ -143,7 +149,12 @@ hides its weaknesses.
   most durable intent, decisions, specifications and tests remain project knowledge under `0005`.
   Task context is currently temporary working state inside the agent layer, not a third source of
   truth. It is unknown whether distinguishing project, agent and task context more explicitly
-  prevents ownership mistakes or merely gives the existing boundary more names.
+  prevents ownership mistakes or merely gives the existing boundary more names. One proposed
+  model instead treats `.agents/` as a governed namespace: its entry point routes by goal, each
+  recognized sublayer has a portable contract, and context-fold may own that contract without
+  owning every project- or tool-installed file below it. Whether that is compatible with `0018`
+  and `0026`, how unknown extensions coexist, and which concerns deserve physical sublayers are
+  unresolved.
 
 ### Decisions, identity, and traceability
 
@@ -183,6 +194,11 @@ hides its weaknesses.
   tools, avoided unrelated files, recovered from failure and stopped at the right boundary.
   Context-fold has evidence for structural checks, but none yet that these agent behaviors can be
   evaluated portably without depending on a particular runtime.
+- **Does verification need its own agent sublayer?** Project tests, task acceptance and the final
+  check already have owners. A separate contract might describe portable agent evals, executable
+  gates or evidence references, while raw host execution remains external or disposable. It is
+  unknown whether any information is left for that sublayer to own, or whether a verification
+  index would only duplicate project checks and task context.
 - **Which observable execution facts should survive a run?** `0006` keeps execution history out
   of task packages, and `0014` rejects raw transcripts as a second source of truth. Recording
   context inputs, tool schemas, tool calls and results, compaction, verification events and the
@@ -220,7 +236,16 @@ hides its weaknesses.
 - **Should an adopter's installation be checkable?** This repository verifies that its installed
   managed blocks match the distribution while permitting additive suffixes. An adopter gets no
   such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not.
+  indistinguishable from one that did not. A governed set of sublayers would also have to
+  distinguish missing or malformed contracts, unknown extensions, independently owned contents
+  and intentional forks. What can be diagnosed or repaired without overwriting user or tool state,
+  and which semantic boundary violations remain review judgments, are undecided.
+- **Should skills become a governed agent sublayer?** `.agents/skills/` currently belongs to
+  whatever installed each package, and `0034` exposes it to one host without changing that
+  ownership. A portable directory contract could explain discovery, invocation and authority while
+  preserving independently owned skills. It is unknown whether one contract can cover
+  project-authored, third-party and context-fold-installed skills without adopting an installer or
+  skill format as canonical.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is
@@ -251,6 +276,15 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
+- **Should adoption assess project-layer readiness?** Context-fold can prescribe the agent
+  structure it installs but cannot assume that project intent, decisions, documentation,
+  verification or reusable agent procedures are authoritative and discoverable. One proposal is
+  to classify those five capabilities as established, partial, absent, ambiguous or not
+  applicable, reference established sources from agent context, and create separate planned tasks
+  for applicable gaps with recommendations rather than mandatory paths. Whether assessment belongs
+  in adoption, how repeat runs avoid duplicate or unwanted tasks, and what evidence justifies each
+  classification are unresolved. Operations, security, data, release and integrations are possible
+  future assessment categories, not part of the initial proposal.
 - **How should outcome and context economy be measured?** Success, human intervention, retries,
   tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
   such as context precision and context sufficiency are closer to the project's purpose, but both
