@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -85,3 +85,17 @@ The final plan-readiness pass found that `planned` RFC combinations and the comp
 positive case were not explicitly covered, while acceptance could still pass on the old suite.
 The RFC now contains the complete supported matrix, and acceptance requires its isolated positive
 and negative cases plus the exact dependency-free recognizer.
+
+The first full check after archival failed four link-test cases because Markdown discovery reads
+Git's cached file list: before the move was staged, it returned the old active-task paths that no
+longer existed on disk. Staging the archival rename made the index and filesystem describe the same
+candidate change; the unchanged checks were then rerun.
+
+## Outcome
+
+Added optional `rfc.md` as the mutable, curated proposal artifact and narrowed `plan.md` to the
+selected execution strategy. Decision `0033` owns the durable lifecycle and authority boundaries;
+the README, portable task rules, and live questions now agree with it. A dependency-free convention
+check enforces the exact RFC frontmatter and supported task/RFC/plan matrix with isolated positive
+and negative cases. The shipped template, installed skill, and this repository's installed task
+rules remain byte-identical.

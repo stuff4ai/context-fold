@@ -6,14 +6,13 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [add-task-rfc](add-task-rfc/task.md) | active | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-1505-add-task-rfc](archive/2026-08-20-1505-add-task-rfc/task.md) | completed | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
 | [2026-08-19-2354-fold-worktrees-into-agents-template](archive/2026-08-19-2354-fold-worktrees-into-agents-template/task.md) | completed | Move `templates/worktrees/AGENTS.md` into `templates/agents/worktrees/AGENTS.md`, joining the byte-identical/portable set |
 | [2026-08-19-2059-avoid-worktree-merge-branch-conflict](archive/2026-08-19-2059-avoid-worktree-merge-branch-conflict/task.md) | completed | Document a merge sequence for task worktrees that avoids `gh pr merge --delete-branch`'s local checkout conflict with `main` |
 | [2026-08-19-2015-guard-against-leftover-scaffolding](archive/2026-08-19-2015-guard-against-leftover-scaffolding/task.md) | completed | Decide whether to add a mechanical check that catches leftover instructional prose, empty headings, or duplicated headings in a task package |
