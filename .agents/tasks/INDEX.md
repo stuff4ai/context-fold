@@ -6,7 +6,9 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [categorize-open-questions](categorize-open-questions/task.md) | planned | Organize live questions into discussion categories and identify individual task candidates |
 
 ## Archive
 
