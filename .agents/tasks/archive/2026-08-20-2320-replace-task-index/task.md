@@ -73,7 +73,7 @@ unfinished-task discovery.
 
 The convention suite now rejects legacy or malformed task metadata and asserts that the
 repository, source skill, and installed skill carry no task index. The final integrated run passes
-546 tests, Markdown lint, skill validation, managed-block and whole-skill parity, and whitespace
+547 tests, Markdown lint, skill validation, managed-block and whole-skill parity, and whitespace
 checks.
 
 ## Approval
