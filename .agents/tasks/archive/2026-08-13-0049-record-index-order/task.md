@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Record that the task index is ordered newest first, and state the rule in the portable tasks
+  instructions.
+---
+
 # Record the task index order
-
-## Status
-
-completed
-
-## Objective
-
-Record that the task index is ordered newest first, and state the rule in the portable tasks
-instructions.
 
 ## Why
 

@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Move the approval gate to after the final exact-head check, so that what a human approves is what
+  merges.
+---
+
 # Approve after archival, not before
-
-## Status
-
-completed
-
-## Objective
-
-Move the approval gate to after the final exact-head check, so that what a human approves is what
-merges.
 
 ## Why
 

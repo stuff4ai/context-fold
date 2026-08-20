@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what
+  adoption is.
+---
+
 # Add an init skill
-
-## Status
-
-completed
-
-## Objective
-
-Ship adoption as a skill an agent can invoke, without the skill becoming the definition of what
-adoption is.
 
 ## Why
 

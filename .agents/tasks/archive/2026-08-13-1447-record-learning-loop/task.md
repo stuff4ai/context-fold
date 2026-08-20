@@ -1,14 +1,12 @@
+---
+status: completed
+objective: >-
+  Record the loop this project exists to create — work produces problems, problems become
+  lessons, lessons improve the context the next agent reads — and preserve the designs that were
+  cut to keep it cheap enough to follow.
+---
+
 # Record the learning loop
-
-## Status
-
-completed
-
-## Objective
-
-Record the loop this project exists to create — work produces problems, problems become
-lessons, lessons improve the context the next agent reads — and preserve the designs that were
-cut to keep it cheap enough to follow.
 
 ## Why
 

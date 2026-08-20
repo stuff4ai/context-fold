@@ -1,12 +1,10 @@
+---
+status: completed
+objective: >-
+  Decide whether `templates/task/` should be kept, changed, or dropped.
+---
+
 # Decide whether the task template earns its place
-
-## Status
-
-completed
-
-## Objective
-
-Decide whether `templates/task/` should be kept, changed, or dropped.
 
 ## Why
 

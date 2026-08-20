@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Superseded by [0037](0037-replace-task-index-with-frontmatter.md)
 
 ## Context
 

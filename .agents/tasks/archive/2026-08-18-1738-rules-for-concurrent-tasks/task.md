@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Make the portable rules answer the questions two simultaneous tasks raise, and settle where this
+  repository's parallel checkouts live.
+---
+
 # Say what the rules mean when tasks run in parallel
-
-## Status
-
-completed
-
-## Objective
-
-Make the portable rules answer the questions two simultaneous tasks raise, and settle where this
-repository's parallel checkouts live.
 
 ## Why
 

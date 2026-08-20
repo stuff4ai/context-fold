@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Record how pull requests are merged, and the convention that follows from it for writing pull
+  request descriptions.
+---
+
 # Record the merge strategy
-
-## Status
-
-completed
-
-## Objective
-
-Record how pull requests are merged, and the convention that follows from it for writing pull
-request descriptions.
 
 ## Why
 

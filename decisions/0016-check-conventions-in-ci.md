@@ -5,6 +5,8 @@
 Accepted. [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows portability and
 distribution identity checks from whole installed files to their managed rule blocks. Automatic
 checking and the boundary between structural and semantic verification stand.
+[0037](0037-replace-task-index-with-frontmatter.md) replaces index and heading checks with strict
+task-frontmatter and directory/status checks.
 
 ## Context
 

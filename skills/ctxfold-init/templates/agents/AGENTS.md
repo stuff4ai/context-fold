@@ -15,8 +15,8 @@ information.
 ## What the layer is
 
 It is installed rather than authored here, and consists of exactly two things: the managed
-blocks in these `AGENTS.md` files, and what working here produces — the task index, task
-packages, and the archive.
+blocks in these `AGENTS.md` files, and what working here produces — task packages and their
+archive.
 
 `.agents/` is where it lives, not what it is. Other tools write there too, and their files are
 not part of the layer and not its concern. Nothing here claims the directory.
@@ -39,7 +39,7 @@ The deletion test:
 
 > If humans need this information too, it does not belong only in the layer.
 
-Remove the layer — the managed rule blocks, the index, and the tasks — and read what remains.
+Remove the layer — the managed rule blocks and the tasks — and read what remains.
 The test fails if knowledge was lost, if something a human needs to understand or maintain the
 project is now gone. Project-owned suffixes remain. Anything lost that way was in the wrong layer.
 
@@ -72,7 +72,7 @@ More than the layer. Each thing here has an owner, and knowing which is which is
 between reading this project's current state and reading a copy of it.
 
 **`tasks/`** — the layer's. How work is organized, tracked and finished, and the task packages
-and index that working here produces. Its rules are in `tasks/AGENTS.md`. Start there.
+that working here produces. Its rules are in `tasks/AGENTS.md`. Start there.
 
 **`skills/`** — not the layer's. Agent tooling installs reusable procedures here, by a convention
 this layer neither defines nor relies on. What is there answers to whatever put it there: read it

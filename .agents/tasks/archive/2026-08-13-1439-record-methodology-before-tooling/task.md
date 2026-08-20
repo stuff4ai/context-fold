@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Record that v0 is conventions in plain files rather than software, and preserve the reasoning
+  and the rejected alternative that produced it.
+---
+
 # Record methodology before tooling
-
-## Status
-
-completed
-
-## Objective
-
-Record that v0 is conventions in plain files rather than software, and preserve the reasoning
-and the rejected alternative that produced it.
 
 ## Why
 

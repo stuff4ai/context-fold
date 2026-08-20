@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Let an adopted repository append project-specific agent instructions without losing them when
+  `ctxfold-init` updates the portable rules.
+---
+
 # Manage portable agent rules by block
-
-## Status
-
-completed
-
-## Objective
-
-Let an adopted repository append project-specific agent instructions without losing them when
-`ctxfold-init` updates the portable rules.
 
 ## Why
 

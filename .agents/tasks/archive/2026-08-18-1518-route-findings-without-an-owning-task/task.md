@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Give a finding somewhere to go when it has no owning task, using the `planned` status that
+  already exists and has never been used.
+---
+
 # Route findings without an owning task
-
-## Status
-
-completed
-
-## Objective
-
-Give a finding somewhere to go when it has no owning task, using the `planned` status that
-already exists and has never been used.
 
 ## Why
 

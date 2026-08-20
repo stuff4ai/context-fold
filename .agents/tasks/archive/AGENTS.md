@@ -24,6 +24,11 @@ changes. If
 something in an archived task is wrong or has been superseded, the correction belongs in the
 project layer or in a new task.
 
+During v0, a repository-wide task-schema migration is the one exception. It must be an explicit
+task whose declared scope names the accepted archive, preserves the meaning of migrated metadata
+and every unrelated byte, and verifies the complete corpus before review. Never rewrite an
+accepted package opportunistically while doing other work.
+
 ## Reading them
 
 Useful for: why a decision was made the way it was, what was tried and rejected, what went

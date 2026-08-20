@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Let a Claude Code session in this repository discover and invoke the already-installed
+  `ctxfold-init` skill.
+---
+
 # Link Claude Code to the installed skills
-
-## Status
-
-completed
-
-## Objective
-
-Let a Claude Code session in this repository discover and invoke the already-installed
-`ctxfold-init` skill.
 
 ## Why
 

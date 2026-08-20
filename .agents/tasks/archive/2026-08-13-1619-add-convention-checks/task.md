@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Enforce the repository invariants that encode decisions, on every change, instead of checking
+  them by hand.
+---
+
 # Add convention checks
-
-## Status
-
-completed
-
-## Objective
-
-Enforce the repository invariants that encode decisions, on every change, instead of checking
-them by hand.
 
 ## Why
 

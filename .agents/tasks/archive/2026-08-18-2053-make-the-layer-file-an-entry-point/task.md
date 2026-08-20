@@ -1,19 +1,17 @@
+---
+status: completed
+objective: >-
+  Turn `.agents/AGENTS.md` into an entry point that says what an agent will find under `.agents/`
+  and who owns each part, and ship the worktrees convention so an adopter can have one too.
+---
+
 # Make the layer file a map of what is under `.agents/`
-
-## Status
-
-completed
 
 ## Blocked by
 
 - `rules-for-concurrent-tasks` (pull request 21) — **cleared**, merged as `2d5f9cb`. It
   introduced `## Blocked by` itself, the two-line `.gitignore` form this task extends, and
   `0025`, whose position on worktrees this task revises.
-
-## Objective
-
-Turn `.agents/AGENTS.md` into an entry point that says what an agent will find under `.agents/`
-and who owns each part, and ship the worktrees convention so an adopter can have one too.
 
 ## Why
 

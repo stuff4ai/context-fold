@@ -27,7 +27,6 @@ AGENT_TEMPLATES = TEMPLATES / "agents"
 
 TASKS = ROOT / ".agents" / "tasks"
 ARCHIVE = TASKS / "archive"
-INDEX = TASKS / "INDEX.md"
 DECISIONS = ROOT / "decisions"
 DECISIONS_INDEX = DECISIONS / "README.md"
 
@@ -43,6 +42,14 @@ ARCHIVE_DIR = re.compile(r"^\d{4}-\d{2}-\d{2}-\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 RECORD_FILE = re.compile(r"^(\d{4})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RFC_FRONTMATTER = re.compile(r"\A---\nstatus: (draft|resolved)\n---\n")
+TASK_FRONTMATTER = re.compile(
+    r"\A---\n"
+    r"status: (?P<status>planned|active|completed|cancelled)\n"
+    r"objective: >-\n"
+    r"(?P<objective>(?:  \S(?:[^\n]*\S)?\n)+)"
+    r"---\n\n"
+    r"(?=# \S(?:[^\n]*\S)?\n)"
+)
 MANAGED_BEGIN = b"<!-- agent-layer:begin -->\n"
 MANAGED_END = b"<!-- agent-layer:end -->\n"
 MANAGED_MARKER_PREFIX = b"<!-- agent-layer:"
@@ -74,7 +81,8 @@ def _visible_markdown() -> list[Path]:
         text=True,
         check=True,
     )
-    return sorted(ROOT / name for name in out.stdout.split("\0") if name)
+    paths = (ROOT / name for name in out.stdout.split("\0") if name)
+    return sorted(path for path in paths if path.is_file())
 
 
 def markdown_files() -> list[Path]:
@@ -97,7 +105,7 @@ def active_tasks() -> list[Path]:
 
 
 def records() -> list[Path]:
-    """The decision records. Not the index, and not the template."""
+    """The decision records. Not their README index or the hidden template."""
     return sorted(
         p
         for p in DECISIONS.glob("*.md")
@@ -111,8 +119,26 @@ def section(text: str, heading: str) -> str | None:
     return match.group(1).strip() if match else None
 
 
-def status_of(task: Path) -> str | None:
-    return section((task / "task.md").read_text(encoding="utf-8"), "Status")
+def task_metadata(text: str) -> tuple[str, str]:
+    """Strict task frontmatter: two ordered keys and no legacy metadata headings."""
+    if "\r" in text:
+        raise ValueError("task.md must use LF line endings")
+    if re.search(r"^## (?:Status|Objective)\s*$", text, re.M):
+        raise ValueError("task.md contains a legacy metadata heading")
+
+    frontmatter = TASK_FRONTMATTER.match(text)
+    if not frontmatter:
+        raise ValueError("task.md does not start with exact status/objective frontmatter")
+
+    objective = " ".join(
+        line[2:] for line in frontmatter.group("objective").splitlines()
+    )
+    return frontmatter.group("status"), objective
+
+
+def status_of(task: Path) -> str:
+    text = (task / "task.md").read_bytes().decode("utf-8")
+    return task_metadata(text)[0]
 
 
 def rfc_lifecycle_errors(task: Path) -> list[str]:
@@ -392,8 +418,8 @@ def installed_layer_files() -> set[Path]:
 def test_distribution_is_complete() -> None:
     """A rule file installed but not shipped would reach no other repository.
 
-    Compares `AGENTS.md` files only. The installation also holds an index and task
-    packages, which it produced rather than received.
+    Compares `AGENTS.md` files only. The installation also holds task packages, which it
+    produced rather than received.
     """
     shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
     installed = installed_layer_files()
@@ -428,6 +454,76 @@ def test_task_package_has_required_files(task: Path) -> None:
     """0006: a package is task.md and context.md; plan.md is optional."""
     for required in ("task.md", "context.md"):
         assert (task / required).is_file(), f"{task.name} is missing {required}"
+
+
+@pytest.mark.parametrize("task", archived_tasks() + active_tasks(), ids=lambda p: p.name)
+def test_task_metadata_is_canonical(task: Path) -> None:
+    """0037: task status and objective use the one supported frontmatter format."""
+    text = (task / "task.md").read_bytes().decode("utf-8")
+    status, objective = task_metadata(text)
+    assert status in {"planned", "active", "completed", "cancelled"}
+    assert objective
+
+
+def test_task_metadata_decodes_folded_objective() -> None:
+    text = (
+        "---\nstatus: active\nobjective: >-\n"
+        "  Make task metadata canonical and\n"
+        "  remove its duplicated view.\n"
+        "---\n\n# Case\n"
+    )
+    assert task_metadata(text) == (
+        "active",
+        "Make task metadata canonical and remove its duplicated view.",
+    )
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "preamble\n---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n",
+        "---\nobjective: >-\n  Work.\nstatus: active\n---\n\n# Case\n",
+        "---\nstatus: unknown\nobjective: >-\n  Work.\n---\n\n# Case\n",
+        "---\nstatus: active\nowner: agent\nobjective: >-\n  Work.\n---\n\n# Case\n",
+        "---\nstatus: active\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n---\n\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n  Work.\n  \n---\n\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n Work.\n---\n\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n   Work.\n---\n\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n  Work. \n---\n\n# Case\n",
+        "---\r\nstatus: active\r\nobjective: >-\r\n  Work.\r\n---\r\n\r\n# Case\r\n",
+        "---\nstatus: active\nobjective: >-\n  Work.\n---\n# Case\n",
+        "---\nstatus: active\nobjective: >-\n  Work.\n---\n\nCase\n",
+        (
+            "---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n\n"
+            "## Status\n\nactive\n"
+        ),
+        (
+            "---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n\n"
+            "## Objective\n\nLegacy.\n"
+        ),
+    ],
+    ids=[
+        "preamble",
+        "wrong-order",
+        "unknown-status",
+        "unknown-key",
+        "duplicate-key",
+        "empty-objective",
+        "blank-objective-line",
+        "one-space-indent",
+        "three-space-indent",
+        "trailing-whitespace",
+        "crlf",
+        "missing-blank-line",
+        "missing-title",
+        "legacy-status-heading",
+        "legacy-objective-heading",
+    ],
+)
+def test_task_metadata_rejects_noncanonical_format(text: str) -> None:
+    with pytest.raises(ValueError):
+        task_metadata(text)
 
 
 @pytest.mark.parametrize("task", archived_tasks(), ids=lambda p: p.name)
@@ -471,7 +567,7 @@ def _rfc_case(
     task = root / "case"
     task.mkdir()
     (task / "task.md").write_text(
-        f"# Case\n\n## Status\n\n{task_status}\n",
+        f"---\nstatus: {task_status}\nobjective: >-\n  Exercise RFC state.\n---\n\n# Case\n",
         encoding="utf-8",
     )
     if rfc_status:
@@ -647,25 +743,6 @@ def test_archived_task_has_no_empty_optional_heading(task: Path) -> None:
             if body is not None and not body.strip():
                 empty.append(f"{name}#{heading}")
     assert not empty, f"{task.name} archived with empty optional heading(s): {empty}"
-
-
-# --- Task index (0009) ----------------------------------------------------------------
-
-
-def index_rows(heading: str) -> list[str]:
-    """Task directory names linked from one section of the index, in order."""
-    body = section(INDEX.read_text(encoding="utf-8"), heading) or ""
-    return [m.group(1) for m in re.finditer(r"\]\((?:archive/)?([^/)]+)/task\.md\)", body)]
-
-
-def test_index_archive_matches_disk() -> None:
-    """0009: newest first, which is directory name descending."""
-    assert index_rows("Archive") == [p.name for p in sorted(archived_tasks(), reverse=True)]
-
-
-def test_index_active_matches_disk() -> None:
-    """0009: active tasks sort by slug ascending; the order carries no meaning."""
-    assert index_rows("Active") == [p.name for p in active_tasks()]
 
 
 # --- Decision records (0000) ----------------------------------------------------------

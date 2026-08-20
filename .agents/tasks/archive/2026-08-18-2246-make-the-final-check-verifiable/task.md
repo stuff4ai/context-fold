@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Decide what the final exact-head check is worth when the agent running it is the agent being
+  checked, and change the rule to match.
+---
+
 # Make the final check verifiable, or stop calling it a check
-
-## Status
-
-completed
-
-## Objective
-
-Decide what the final exact-head check is worth when the agent running it is the agent being
-checked, and change the rule to match.
 
 ## Why
 

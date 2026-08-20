@@ -1,13 +1,11 @@
+---
+status: active
+objective: >-
+  Make each task package directly discoverable and machine-readable without a duplicated index by
+  putting canonical status and objective metadata in strict frontmatter.
+---
+
 # Replace the task index with canonical frontmatter
-
-## Status
-
-active
-
-## Objective
-
-Make each task package directly discoverable and machine-readable without a duplicated index by
-putting canonical status and objective metadata in strict frontmatter.
 
 ## Why
 
@@ -76,3 +74,10 @@ The first migration pass assumed every task began with Status immediately follow
 stopped after rewriting the earlier files. Git still held every accepted original and no other
 archive file changed. The migration now locates the two metadata sections independently and treats
 everything else, including section order, as retained authored content.
+
+### Markdown discovery treated deleted files as visible
+
+Deleting the two index templates left their paths in `git ls-files --cached` until staging. The
+Markdown helper returned those paths as repository documents and the link test crashed while
+opening files that no longer existed. Discovery now keeps Git's tracked-and-untracked boundary but
+filters it to files present in the working tree, so deletion changes are testable before staging.

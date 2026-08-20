@@ -10,6 +10,8 @@ Accepted. The enumeration of what adoption copies and does is narrowed by
 separate "also" step. [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows the
 unchanged-copy rule after adoption: repeat runs replace managed blocks and preserve additive
 suffixes. That adoption is a described procedure rather than an installer stands.
+[0037](0037-replace-task-index-with-frontmatter.md) removes the empty index from adoption and
+changes task zero to the canonical frontmatter schema.
 
 ## Context
 

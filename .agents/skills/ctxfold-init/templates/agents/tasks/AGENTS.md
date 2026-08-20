@@ -15,41 +15,14 @@ instructions after the end marker.
 
 ## Finding work
 
-Start at `INDEX.md`, beside this file. It is a derived view: each task's `task.md` owns its
-status and the index restates it for navigation.
+Start in this directory. Each direct child directory except `archive/` is unfinished work;
+read its `task.md` frontmatter for status and objective. Read packages under `archive/` when
+history matters, not to discover current work.
 
-When they disagree, one of them is stale, and the task's own directory says which. A package
-under `archive/` is finished whatever `task.md` still says; a package that is not under
-`archive/` is unfinished whatever the index says. Repair the file the directory contradicts.
-
-Then check the rest of finishing. It writes an Outcome, sets the Status, moves the package and
-updates the index, and a disagreement means that did not happen cleanly — a step can be skipped
-as easily as a sequence can be cut short, so do not assume the steps either side of the one that
-failed are sound. If the work is genuinely done and the package was never moved, complete the
-archival; the statuses follow from it.
-
-Where the directory cannot settle it — an archived task the two call `completed` and `cancelled`
-— `task.md` is right and the index needs repair.
-
-The archive is listed newest first: it only grows, so the most recent work belongs at the top
-where it is read. Active tasks are listed by slug, in no meaningful order.
-
-Each section is a table of task, status, and a one-line objective. A section with nothing in it
-says `None.` instead:
-
-```markdown
-## Active
-
-| Task | Status | Objective |
-| --- | --- | --- |
-| [{slug}]({slug}/task.md) | active | What the task is for |
-
-## Archive
-
-| Task | Status | Objective |
-| --- | --- | --- |
-| [{YYYY-MM-DD-HHMM}-{slug}](archive/{YYYY-MM-DD-HHMM}-{slug}/task.md) | completed | ... |
-```
+The directory and status constrain each other. A direct child has status `planned` or `active`;
+a package under `archive/` has status `completed` or `cancelled`. A disagreement means finishing
+was interrupted. Check the Outcome and the rest of the package rather than changing whichever
+side is convenient, then complete or reverse the archival so location and status tell one story.
 
 ## Starting a task
 
@@ -60,10 +33,6 @@ reference it. Before then, rename it only if the work turned out to be something
 wording is not a reason; the title inside `task.md` absorbs that.
 
 Write `task.md` and `context.md` before starting the work, not after.
-
-Add the task to `INDEX.md` under Active as soon as the directory exists. The index is a derived
-view of what is on disk, so a task missing from it makes the index wrong from the moment the
-task begins — not at the end, when it is updated again on archival.
 
 ## Working alongside other tasks
 
@@ -89,7 +58,26 @@ happen to be is how it ends up archived under work it has nothing to do with.
 
 **`task.md`** — the contract.
 
-Sections while active: Status, Objective, Why, Scope, Out of scope, Acceptance, Problems.
+It begins at byte zero with this exact LF-only frontmatter, followed by one blank line and its
+level-one title:
+
+```yaml
+---
+status: active
+objective: >-
+  State what the task is for, folding longer text
+  across non-empty lines when useful.
+---
+
+# Task title
+```
+
+The two keys are required in that order and are the only keys. `status` is one of the four values
+defined below. `objective` uses `>-` and one or more non-empty lines, each indented by exactly two
+spaces with no trailing whitespace; joining those lines with one space produces the objective.
+Do not add `## Status` or `## Objective` headings anywhere in `task.md`.
+
+Sections while active: Why, Scope, Out of scope, Acceptance, Problems.
 
 A `planned` task carries the same sections without Problems. That section records friction met
 while doing the work, so it opens when the work does.
@@ -232,12 +220,12 @@ RFC is later reopened.
 
 The sequence is the order stages come in, not a path travelled once. Go back whenever review,
 verification, or something you find requires it — that is the normal shape of the work, not a
-deviation, and it needs no explanation. Returning changes no `Status`: the task stays `active`
+deviation, and it needs no explanation. Returning changes no status: the task stays `active`
 until it is archived, however many times it moves.
 
 What the order does constrain is what must happen before what. Verification precedes review,
 and archival precedes both. Everything a reviewer must judge — the work, the Outcome, what was
-folded out, the archived package, the index — exists before anyone is asked to approve it.
+folded out, and the archived package — exists before anyone is asked to approve it.
 Approval authorizes the merge and nothing else, because nothing else is left.
 
 Do not ask for approval earlier. Work approved before the Outcome is written is work approved on
@@ -292,26 +280,24 @@ Before finishing a task with an RFC, fold every question and outcome that may ou
 project layer. A completed task's RFC is resolved. A cancelled task's RFC may remain draft when
 abandonment ended discussion without selecting a direction.
 
-1. Set the final Status and add an Outcome to `task.md`: what happened, and which durable
+1. Set the final frontmatter status and add an Outcome to `task.md`: what happened, and which durable
    artifacts it produced.
 2. Move the directory to `.agents/tasks/archive/{YYYY-MM-DD-HHMM}-{slug}/`, timed to the
    minute it left active state.
-3. Update `INDEX.md`.
-4. Run the final exact-head check.
-5. Submit the change for review, and stop until it is given — see *Who approves* for what
+3. Run the final exact-head check.
+4. Submit the change for review, and stop until it is given — see *Who approves* for what
    gives it. What a reviewer sees is now the whole change: the work, the record of the work,
    and the repository in the state that merging would accept.
-6. Merge once approved.
+5. Merge once approved.
 
 ## Final exact-head check
 
-At the finished state of the change, produce the evidence for all four — not a verdict, the
+At the finished state of the change, produce the evidence for all three — not a verdict, the
 evidence itself, in a form someone other than you could read and judge:
 
 1. Each acceptance criterion in `task.md` is satisfied.
 2. No durable outcome exists only inside the layer — remove it mentally and see what is lost.
-3. The task directory is under `archive/` with final Status and Outcome set.
-4. `INDEX.md` matches the directories on disk.
+3. The task directory is under `archive/` with terminal frontmatter status and Outcome set.
 
 Running this check does not mean the change is accepted. It means the change is ready to be
 looked at by someone who did not write it — review, next in the sequence, is where that happens.
@@ -324,12 +310,10 @@ acceptance criterion is met or whether something durable was left only in the la
 diff against the claim is the check, and doing that once, as the person who already believes the
 claim, is weak evidence. It is what a second reader needs, not a substitute for one.
 
-The last two are facts about the repository as it stands, and facts can be checked plainly: a
-path either is or is not under `archive/`; a table either does or does not match a directory
-listing. Read the actual content — the file, the table — not a count or a summary that reports
-success regardless of what the content says. A check whose verdict cannot disagree with its own
-evidence is not a check: if nothing you could observe would make it report failure, it is not
-testing the thing it claims to.
+The last is a fact about the repository as it stands, and can be checked plainly: a path either
+is or is not under `archive/`, and its frontmatter and Outcome either agree with that location or
+do not. Read the actual content, not a count or a summary that reports success regardless of what
+the content says. A check whose verdict cannot disagree with its own evidence is not a check.
 
 ## Conflicts
 
@@ -337,10 +321,7 @@ Files that every task touches will conflict, and how to resolve one depends on w
 it is.
 
 A **derived** file restates what is already true somewhere else. Do not merge it by hand: rebuild
-it from its sources and the conflict is gone. `INDEX.md` is one — rebuild the affected rows from
-the task directories, sorting archived tasks by directory name descending and active tasks
-ascending. Rebuilding copies each `task.md`'s status, so settle any disagreement first;
-regenerating from a stale task file produces an index that agrees with it and is wrong twice.
+it from its sources and the conflict is gone.
 
 An **authored** file says something no other file says. Merge it like any other prose — read both
 sides and write what is true of both. Nothing can regenerate it, so a conflict resolved carelessly

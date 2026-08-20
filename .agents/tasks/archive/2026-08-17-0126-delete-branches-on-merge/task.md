@@ -1,12 +1,10 @@
+---
+status: completed
+objective: >-
+  State that merging deletes the branch, so "short-lived" holds now that agents merge.
+---
+
 # Delete branches on merge
-
-## Status
-
-completed
-
-## Objective
-
-State that merging deletes the branch, so "short-lived" holds now that agents merge.
 
 ## Why
 

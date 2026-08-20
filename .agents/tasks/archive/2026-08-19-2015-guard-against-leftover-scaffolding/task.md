@@ -1,14 +1,12 @@
+---
+status: completed
+objective: >-
+  Decide whether to add a mechanical check that catches leftover instructional prose, empty
+  optional headings, or duplicated headings surviving into a task package's real content — and
+  implement it if the decision is yes.
+---
+
 # Guard against leftover scaffolding in a task package
-
-## Status
-
-completed
-
-## Objective
-
-Decide whether to add a mechanical check that catches leftover instructional prose, empty
-optional headings, or duplicated headings surviving into a task package's real content — and
-implement it if the decision is yes.
 
 ## Why
 

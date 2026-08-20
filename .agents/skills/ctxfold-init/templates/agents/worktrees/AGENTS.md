@@ -20,9 +20,9 @@ Each entry beside this file is a separate copy of this repository at a different
 history, with its own `.agents/` inside it. Nothing durable belongs here. Delete every one of
 them and no project knowledge is lost — only work in progress.
 
-Do not read a worktree as part of this repository. Its decision records, its task packages and
-its `INDEX.md` are another copy's, and treating them as this one's produces a second and
-contradictory version of everything. Current project truth is what sits at the repository root.
+Do not read a worktree as part of this repository. Its decision records and task packages are
+another copy's, and treating them as this one's produces a second and contradictory version of
+everything. Current project truth is what sits at the repository root.
 
 One thing beside this file is worth opening: another task's `task.md`, to see what it claims.
 The rules ask you to read the other active tasks before starting, and while those tasks are being

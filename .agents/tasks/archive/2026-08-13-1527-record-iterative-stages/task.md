@@ -1,12 +1,10 @@
+---
+status: completed
+objective: >-
+  Record that work returns to earlier stages, and state the rule where agents read it.
+---
+
 # Record that stages are not one-way
-
-## Status
-
-completed
-
-## Objective
-
-Record that work returns to earlier stages, and state the rule where agents read it.
 
 ## Why
 

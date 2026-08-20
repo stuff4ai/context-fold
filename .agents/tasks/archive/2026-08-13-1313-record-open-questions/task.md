@@ -1,13 +1,11 @@
+---
+status: completed
+objective: >-
+  Give the project's unresolved questions and deferred scope a home in the project layer, and
+  record that they belong there rather than in task packages.
+---
+
 # Record open questions in the project layer
-
-## Status
-
-completed
-
-## Objective
-
-Give the project's unresolved questions and deferred scope a home in the project layer, and
-record that they belong there rather than in task packages.
 
 ## Why
 

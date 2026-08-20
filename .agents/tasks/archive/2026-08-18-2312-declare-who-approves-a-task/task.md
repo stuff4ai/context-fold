@@ -1,14 +1,12 @@
+---
+status: completed
+objective: >-
+  Let a task declare that a fresh verifier's `CONFIRMED` verdict is sufficient to merge it, without
+  a human. Default to requiring a human when a task says nothing, and give an agent opening a task
+  on its own something to judge by when it chooses.
+---
+
 # Declare who approves a task
-
-## Status
-
-completed
-
-## Objective
-
-Let a task declare that a fresh verifier's `CONFIRMED` verdict is sufficient to merge it, without
-a human. Default to requiring a human when a task says nothing, and give an agent opening a task
-on its own something to judge by when it chooses.
 
 ## Why
 
