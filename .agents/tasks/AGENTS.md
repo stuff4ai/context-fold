@@ -349,3 +349,58 @@ loses content and nothing will say so.
 If you cannot tell which a file is, ask what deleting it would cost. A derived file can be built
 again from what remains; an authored one is gone.
 <!-- agent-layer:end -->
+
+## Handing work to another agent stack
+
+*This section is this project's own, not part of the portable layer. See
+[`decisions/0036-record-cross-stack-handoff.md`](../../decisions/0036-record-cross-stack-handoff.md).*
+
+More than one agent stack may work this repository — different products, each with its own
+roles and its own lead session. They coordinate through the package rather than through a live
+channel between them, so that what one asked and what another answered stays readable in the
+change afterwards.
+
+A task that needs this carries `handoff.md`. An entry opens with a fenced `yaml` block carrying
+`id`, `from`, `to`, `state`, `rev` and `returns`, then a `### Request` section and a `### Return`
+section. The header is fenced rather than document frontmatter because the file holds many
+entries.
+
+An entry is not rewritten once it is dispatched. Its request text is fixed at that moment, and
+answering it changes only `state:` and fills `### Return`. A new exchange is a new entry; nothing
+edits an earlier one. Correcting the record is the one exception: a fact that turns out to be
+wrong is corrected by adding to the entry, marked as added afterwards, never by replacing what it
+corrects.
+
+- **Address by role, never by model.** `to:` names a stack and one of the roles that stack
+  already has. The role's own definition decides what it runs as, so an address naming a model
+  would assert something it does not own.
+- **Check for entries addressed to you before starting.** Look in every `handoff.md` under
+  `.agents/tasks/`, including the packages under `archive/`. A request outlives its package's
+  move: a task is archived before it is reviewed, so a handoff sent during review sits in an
+  archived package while still waiting for an answer. The index lists active work and will not
+  show it.
+- **An entry addressed elsewhere is not yours.** `state: requested` plus your stack in `to:` is
+  the whole inbox rule. Do not answer, amend, or act on any other entry — including writing the
+  return for one you sent, however obvious the answer seems.
+- **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
+  request for a review is answered and returned, not continued into the work it reviewed — the
+  asking stack decides what to do with a verdict.
+- **Commit the return.** An answer left in the working tree has not been delivered, and the
+  asking stack cannot tell it from an answer never written. The answering lead commits it, in a
+  commit that changes nothing but the entry.
+- **Commit the request, then dispatch it.** `rev:` names the commit under review — what the
+  verdict will be about. A request read from an uncommitted working tree cannot be shown
+  afterwards to be what was actually asked, so the entry is committed too, necessarily in a
+  later commit than `rev:`: an entry cannot name the commit that contains it, because writing
+  the hash in would change it. Both guarantees hold anyway, since the entry's own commit is in
+  the history. `rev:` must already contain whatever the request asks about — a fix asked about
+  before it is committed is not in the state being judged. Where the tree at dispatch differs
+  from `rev:` in anything but the entry, the request says what and why.
+- **Stop after asking.** Writing a request ends your turn. Nothing in the repository delivers
+  it; something outside does.
+
+Only a lead session writes or answers a handoff. A role dispatched by a lead does that work and
+reports back to that lead — asking another stack is not among the things it was given to do.
+
+Whether this belongs in the portable layer is
+[an open question](../../OPEN-QUESTIONS.md), deferred until the convention has been used.

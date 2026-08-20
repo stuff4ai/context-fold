@@ -12,6 +12,7 @@ None.
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-1934-cross-stack-handoff](archive/2026-08-20-1934-cross-stack-handoff/task.md) | completed | Establish the record two agent stacks use to ask each other for work through the task package |
 | [2026-08-20-1804-manage-agent-rule-blocks](archive/2026-08-20-1804-manage-agent-rule-blocks/task.md) | completed | Let adopted repositories preserve additive project instructions while portable rules update by managed block |
 | [2026-08-20-1746-categorize-open-questions](archive/2026-08-20-1746-categorize-open-questions/task.md) | completed | Organize live questions into discussion categories and identify individual task candidates |
 | [2026-08-20-1543-link-claude-skills](archive/2026-08-20-1543-link-claude-skills/task.md) | completed | Let a Claude Code session in this repository discover and invoke the already-installed `ctxfold-init` skill |
