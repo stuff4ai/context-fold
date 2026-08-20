@@ -374,11 +374,19 @@ corrects.
 - **Address by role, never by model.** `to:` names a stack and one of the roles that stack
   already has. The role's own definition decides what it runs as, so an address naming a model
   would assert something it does not own.
+- **Check for entries addressed to you before starting.** Look in every `handoff.md` under
+  `.agents/tasks/`, including the packages under `archive/`. A request outlives its package's
+  move: a task is archived before it is reviewed, so a handoff sent during review sits in an
+  archived package while still waiting for an answer. The index lists active work and will not
+  show it.
 - **An entry addressed elsewhere is not yours.** `state: requested` plus your stack in `to:` is
-  the whole inbox rule. Do not answer, amend, or act on any other entry.
+  the whole inbox rule. Do not answer, amend, or act on any other entry — including writing the
+  return for one you sent, however obvious the answer seems.
 - **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
   request for a review is answered and returned, not continued into the work it reviewed — the
-  asking stack decides what to do with a verdict.
+  asking stack decides what to do with a verdict. The answering lead commits the return; an
+  answer left in the working tree has not been delivered, and the asking stack cannot tell it
+  from an answer never written.
 - **Commit the request, then dispatch it.** `rev:` names the commit under review — what the
   verdict will be about. A request read from an uncommitted working tree cannot be shown
   afterwards to be what was actually asked, so the entry is committed too, necessarily in a

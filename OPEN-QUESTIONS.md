@@ -23,11 +23,14 @@ hides its weaknesses.
   that no program implements.
 - **Should a cross-stack handoff be portable?** `0036` records `handoff.md` — how one agent
   stack asks another for something and where the answer goes — as this project's suffix rather
-  than a portable rule, because the rule had not been followed once when it was written. It
-  reopens on repeated use without the format changing, a second repository asking for the same
-  convention, an exchange that crosses a person rather than a subprocess, or two stacks holding
-  one package at once. If instead the file stays mostly empty or mostly one stack talking to
-  itself, it did not earn the suffix either.
+  than a portable rule, because the rule had not been followed once when it was written. One of
+  the four conditions named for reopening it has since been met: an exchange crossed a person
+  rather than a subprocess, and immediately found two defects three subprocess exchanges could
+  not. The other three stand — repeated use without the format changing, a second repository
+  asking for the same convention, and two stacks holding one package at once. Against them, the
+  format changed in response to every one of the four exchanges so far, which is the opposite of
+  the stability promotion would need. If instead the file ends up mostly empty or mostly one
+  stack talking to itself, it did not earn the suffix either.
 - **Three details of the handoff entry are undecided.** Whether `returns:` should be a closed
   vocabulary — checkable, but bound to the verdicts two particular stacks happen to use now;
   whether a request nobody answers needs an expiry, or whether a stale entry is visible enough

@@ -44,8 +44,10 @@ Five rules:
 1. **Address.** `to:` names a stack and a role within it. Roles are the ones that stack
    already has; a handoff never invents one and never names a model, because the role
    definition already pins it.
-2. **Inbox.** An entry with `state: requested` addressed to your stack is yours. Nothing
-   else is.
+2. **Inbox.** Check every `handoff.md` under `.agents/tasks/` before starting, including
+   archived packages — a task is archived before review, so a handoff sent during review
+   waits inside one. An entry with `state: requested` addressed to your stack is yours.
+   Nothing else is, including one you sent yourself.
 3. **Return.** The receiving lead answers in the vocabulary `returns:` names, appends it
    under `### Return`, and sets `state: returned`. A review request is answered, not
    continued into implementation.

@@ -10,11 +10,11 @@ Establish the record two agent stacks use to ask each other for work through a f
 task package rather than a live channel, and exercise it far enough to learn what that record
 has to say.
 
-File-mediated coordination itself is not established here, and this task does not claim it.
-Every exchange it ran invoked the answering stack as a subprocess: no turn ever ended, and no
-answering lead took part. What they tested is the entry format and the revision and dispatch
-rule. A handoff that crosses a person is deferred, and `OPEN-QUESTIONS.md` names it as a
-condition that would reopen promotion.
+One exchange did coordinate that way. Entry 004 was committed, the asking lead's turn ended,
+a person carried the work to the other stack, and the Codex lead found the entry, dispatched
+its own `plan-verifier`, and wrote the return. Entries 001–003 did not: the asking lead invoked
+the answering role as a subprocess, so no turn ended and no answering lead took part. Every rule
+now has at least one exchange that obeyed it, and three of them have exactly one.
 
 ## Why
 
@@ -122,18 +122,30 @@ dispatch in that revision's immediate child, changed nothing but the entry, and 
 rather than asserted. The verdict is a separate matter: a returning `REVISE` would have
 demonstrated the rule just as well.
 
-Two rules were exercised by no exchange at all, and Git cannot show otherwise either way.
-*Stop after asking* was broken every time: the asking lead dispatched and then continued in the
-same turn, because it invoked the answering stack itself instead of stopping for something
-outside to carry the work. And no answering *lead* was ever involved — the asking lead invoked
-`codex:plan-verifier` directly, so the convention's requirement that only a lead answers a
-handoff, which is what keeps a dispatched role from being addressed across stacks, has never
-been tested. In each entry the verdict is the role's, quoted; the prose around it is the asking
-lead's.
+Entry 004 is the exchange that tested the rest. It was committed, the asking lead stopped, a
+person carried it across, and the Codex lead found it, dispatched its own `plan-verifier`,
+waited, and wrote the return itself — quoting the role's verdict verbatim and marking which
+words were whose. It returned `REVISE`, and the blocker was this Outcome's own rule accounting.
 
-So the convention is evidenced in part. One rule is demonstrated, three are visible in the
-entries as written, and two remain claims. A handoff that crosses a person is already recorded
-as a condition that would reopen promotion; it is also what would exercise the two.
+Rule by rule, as the record stands:
+
+| Rule | Obeyed by | Broken by |
+| --- | --- | --- |
+| Address by role, never by model | 001–004 | — |
+| Check for entries addressed to you before starting | 004, after a second prompt | 004 on first attempt |
+| An entry addressed elsewhere is not yours | 004 | 001–003 |
+| Answer in the vocabulary the request names | 001–004 | — |
+| Commit the request, then dispatch it | 003, 004 | 001, 002 |
+| Stop after asking | 004 | 001–003 |
+| Only a lead answers a handoff | 004 | 001–003 |
+
+Entries 001–003 broke the third rule as well as the last two, which this Outcome previously
+counted as merely unexercised: each was addressed to the Codex stack and answered by the Claude
+lead that sent it. That is the failure the rule exists to prevent, committed three times by the
+author of the rule, and found by the exchange that finally obeyed it.
+
+Every rule now has at least one exchange that obeyed it. Three have exactly one, and it is the
+same one.
 
 ## Problems
 
@@ -276,3 +288,28 @@ Objective — each corrected in a separate round, each stale for the same reason
 overtaken by what the work found, and not re-read when it was. Nothing in the lifecycle prompts
 re-reading a task's own contract against its findings before archival, and the final check does
 not compare the Objective with the Outcome.
+
+A Codex lead followed the layer's own navigation and did not find the handoff. Given only "you
+are the Codex lead in this repository, follow AGENTS.md", it read the root file, the layer file,
+the tasks rules and `INDEX.md`, then reported that there were no active tasks. It was right:
+the index says `Active: None.`, and the entry addressed to it sat in an archived package. Two
+causes, both in the convention. The inbox rule said what an entry addressed to you *is* and
+never said to go looking, so it described recognising mail without describing checking the
+letterbox. And a request outlives archival by design — `0007` archives before review, so any
+handoff sent during review lands in an archived package, invisible to a navigation path built
+around the active list. Found only because the exchange crossed a person; three subprocess
+dispatches had been handed the file path directly and could not have surfaced it. The rule is
+now active and names the archive.
+
+The asking lead answered its own requests, three times. Entries 001–003 were addressed to
+`codex:plan-verifier`, and the Claude lead that sent them wrote every return — quoting a role's
+verdict, but composing the attribution, the commentary and the acceptance of blockers. That is
+precisely what *an entry addressed elsewhere is not yours* forbids, and this Outcome had counted
+the rule among those merely visible in the entries rather than among those broken. The
+dispatched verifier caught the miscount; the underlying violation had been sitting in the file
+since the first exchange. Writing the return for a handoff you sent feels like bookkeeping and
+is the thing the rule exists to stop.
+
+The answering lead did not commit its return. The convention said who writes a return and never
+said who commits it, so the answer sat in the working tree where the asking stack could not
+distinguish it from an answer never written. Added to the rule.
