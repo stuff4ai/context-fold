@@ -60,3 +60,37 @@ decision resolves it or it turns out not to matter, as the existing project-laye
 The initiating discussion established that the RFC-artifact work was a prerequisite, not the
 categorization itself. This task exists to finish that original objective without conflating an
 organized question list with an execution plan.
+
+A review pass placed all 59 live items under the six candidate topics. Every Deferred-capability
+and Gaps-in-the-current-rules item found an unambiguous home. Three clusters did not:
+
+- The two Recurring-patterns entries — symmetry treated as a reason on its own, and rules
+  stated where they are relevant rather than where they are owned — describe a property of how
+  rules get written across the project, not a subject any one topic owns. Assigning either to a
+  topic would give it a home by force, not by fit.
+- "Should lessons become a first-class project artifact?" and "Automating the loop" form a
+  small learning cluster. Task lifecycle and coordination is the closest of the six, but only
+  because the fold step happens during finishing, not because the question is about lifecycle or
+  coordination.
+- A rule-self-consistency cluster in Gaps — the undetected `0007` contradiction, the uncaught
+  wrong citation, the pull request description outside every check, the unenforced 98-column
+  wrap, and the unbound `INDEX.md` header — splits close to evenly between "decisions, identity,
+  and traceability" and "verification, evidence, and observable execution." Each entry could sit
+  in either without a clear tiebreaker.
+
+This means the six topics are subject-coherent for most of the list but not a clean partition of
+all of it. Before subsections are cut into `OPEN-QUESTIONS.md`, it is worth deciding explicitly
+whether every item must land under exactly one topic, or whether a small number of genuinely
+cross-cutting items get an explicit allowance rather than a forced placement.
+
+On the RFC's first open question: keeping evidentiary state as the top-level organization, with
+topics as subsections, avoids re-deriving each item's evidentiary status in prose alongside its
+topic — the topical split only has to do one job, not two. That favors the proposal's current
+direction over flipping the two axes.
+
+On the third open question: the ten evidence-backed gaps do not cluster under one or two
+topics — they already spread across at least four of the six (decisions and traceability, task
+lifecycle, verification, distribution). Starting the promotion discussion there surfaces the
+cross-cutting problem immediately rather than easing into it with a more topically coherent
+group first. That is a reason to choose the starting group deliberately, not a reason to avoid
+the gaps.
