@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows whole-file identity
+to managed-block identity; the vendor-neutral model and portable-content constraints stand.
 
 ## Context
 

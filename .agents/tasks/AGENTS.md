@@ -1,9 +1,15 @@
+<!-- agent-layer:begin -->
+
 # AGENTS.md — tasks
+
+> **Managed rule block.** Updates replace everything between the `agent-layer` markers.
+> Do not edit this block. Add only non-conflicting project instructions after the end marker.
 
 How to run work in this repository.
 
-These rules are the same in every installation of the layer. They carry no project-specific
-paths, names, or decisions.
+This managed rule block is the same in every installation of the layer. It carries no
+project-specific paths, names, or decisions. An adopting project may append non-conflicting
+instructions after the end marker.
 
 ## Finding work
 
@@ -340,3 +346,4 @@ loses content and nothing will say so.
 
 If you cannot tell which a file is, ask what deleting it would cost. A derived file can be built
 again from what remains; an authored one is gone.
+<!-- agent-layer:end -->

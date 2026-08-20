@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows portability and
+distribution identity checks from whole installed files to their managed rule blocks. Automatic
+checking and the boundary between structural and semantic verification stand.
 
 ## Context
 

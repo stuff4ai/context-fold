@@ -47,11 +47,11 @@ The boundary is enforced by a test anyone can apply:
 
 > If humans need this information too, it does not belong only in the agent layer.
 
-Remove the layer-owned rule files, index, and tasks, then read what remains. The test fails if
-knowledge was lost, not if a pointer to the layer dangles — removing the layer is an ordinary
-change, and what pointed at it is updated alongside. Files under `.agents/` that belong to other
-tools are outside the test. A layer that fails has quietly become a second, drifting source of
-truth.
+Remove the layer-owned managed rule blocks, index, and tasks, then read what remains. The test
+fails if knowledge was lost, not if a pointer to the layer dangles — removing the layer is an
+ordinary change, and what pointed at it is updated alongside. Project suffixes and files under
+`.agents/` that belong to other tools are outside the test. A layer that fails has quietly become
+a second, drifting source of truth.
 
 ## Tasks
 
@@ -90,12 +90,16 @@ Everything a repository needs is in
 out the adoption for an agent that supports one. The procedure remains readable and usable by
 hand; the skill is an adapter over it.
 
+Portable rules live inside one managed block at the start of each installed `AGENTS.md`. A
+repository may append non-conflicting project instructions after that block. Re-running the
+installed skill replaces the portable block while preserving the appended bytes.
+
 ## Status
 
 v0. Methodology and repository conventions, applied to this repository first.
 
-`ctxfold-init` performs adoption. After that, ordinary task packages, the index, and the archive
-are maintained by hand, by decision rather than by omission — see
+`ctxfold-init` performs adoption and explicit managed-rule updates. Ordinary task packages, the
+index, and the archive are maintained by hand, by decision rather than by omission — see
 [0012](decisions/0012-build-the-methodology-before-the-tooling.md). Promoting repeated problems
 into lessons also remains a person's judgment
 ([0013](decisions/0013-improve-context-from-the-work.md)).

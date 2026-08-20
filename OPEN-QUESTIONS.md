@@ -52,10 +52,10 @@ hides its weaknesses.
   where either should be distributed remain open.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
-  files and performs adoption, but an installation records neither its source nor a version,
-  cannot discover that upstream rules changed, and has no upgrade procedure. What identity an
-  installation needs, how it discovers changes, and how replacement preserves installation-owned
-  state remain undecided.
+  files, performs adoption, and can explicitly replace their managed blocks while preserving an
+  installation's additive suffix. An installation still records neither its source nor a version
+  and cannot discover that upstream rules changed. What identity it needs and how it discovers
+  changes remain undecided.
 
 ### Product boundary, behavior at scale, and measurement
 
@@ -197,16 +197,14 @@ hides its weaknesses.
   permissions, context assembly, hooks, model routing and quality gates nevertheless affect how
   the written method is executed. It is unknown which of those, if any, need canonical contracts
   for runs to be comparable, and which must remain properties of a host or adapter.
-- **How should an adopter customize or replace the portable rules?** `ctxfold-init` has adopted
-  the layer into existing repositories without rewriting their documentation, conventions, or
-  other `.agents/` content. Its installed rule files must remain byte-identical to the
-  distribution, so an adopter still has no supported way to disagree with a default while
-  retaining replaceability. What belongs in local project rules, what constitutes a maintained
-  fork, and how either path interacts with upgrades remain undecided.
+- **How should an adopter override or replace the portable rules?** An adopter may append
+  non-conflicting project instructions after a managed rule block, and `ctxfold-init` preserves
+  them during an explicit update. Conflicting overrides, finer-grained customizable blocks, and
+  maintained forks remain undefined.
 - **Should an adopter's installation be checkable?** This repository verifies that its installed
-  rule files match the distribution, so editing them fails CI. An adopter gets no such check —
-  the instruction not to edit is a request, and a copy that drifts is indistinguishable from one
-  that did not.
+  managed blocks match the distribution while permitting additive suffixes. An adopter gets no
+  such check — the instruction not to edit a block is a request, and a block that drifts is
+  indistinguishable from one that did not.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is

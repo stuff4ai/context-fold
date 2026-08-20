@@ -4,7 +4,8 @@ description: >
   Install the context-fold agent layer into a repository: a task package structure under
   .agents/, a pointer in the root AGENTS.md, and a first task recording the adoption.
   Works on an empty repository, one with years of history, or one that has already adopted
-  it, and leaves anything else already under .agents/ untouched.
+  it; repeat runs update managed rule blocks while leaving project additions and anything
+  else already under .agents/ untouched.
   Trigger: /ctxfold-init, "adopt context-fold", "set up the agent layer".
 ---
 
@@ -32,16 +33,26 @@ If it says nothing — or does not exist — make the changes in the working tre
 and say so when you report. Do not invent a branch name, a commit convention, or a review
 process for a project that has not chosen one.
 
-## Copy, then verify
+## Install or update, then verify
 
 The install step is a file copy, not a transcription. Agents that edit by patch tend to
 reproduce file contents from what they have read, which yields files that differ from the
 originals in ways nobody notices — a rewrapped line, a paragraph dropped, a file forgotten
 entirely.
 
-Copy the files, then compare each installed file byte-for-byte against its template before
-going further. If they differ, the copy failed; do it again rather than editing the
-installation until it matches.
+On a fresh adoption, copy the files, then compare each installed file byte-for-byte against its
+template before going further. If they differ, the copy failed; do it again rather than editing
+the installation until it matches.
+
+On a repeat run, do not copy whole files over an installation that has managed blocks. Follow
+`ADOPTING.md`'s two-phase update literally: classify all portable targets before writing any,
+abort all of them if one marker structure is ambiguous, then replace only valid managed blocks
+and restore every recorded suffix byte. An unmarked target still belongs to the legacy whole-file
+contract and is replaced wholesale.
+
+After updating, compare each installed managed block byte-for-byte against its template and
+compare every preserved suffix against the bytes recorded during preflight. A correct block with
+a project suffix is intentionally not byte-identical to the whole template file.
 
 ## Ignore what must not be committed
 

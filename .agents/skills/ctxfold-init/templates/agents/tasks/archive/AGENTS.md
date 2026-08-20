@@ -1,4 +1,9 @@
+<!-- agent-layer:begin -->
+
 # AGENTS.md — archive
+
+> **Managed rule block.** Updates replace everything between the `agent-layer` markers.
+> Do not edit this block. Add only non-conflicting project instructions after the end marker.
 
 Completed and cancelled tasks, flat, one directory each:
 `{YYYY-MM-DD-HHMM}-{slug}/`, timed to the minute the task left active state.
@@ -25,3 +30,4 @@ wrong and how it was handled.
 The `## Problems` sections are the reason the archive is worth keeping. A problem that recurs
 across several archived tasks is a signal that something in the project layer or in these
 operating rules needs to change.
+<!-- agent-layer:end -->

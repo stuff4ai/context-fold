@@ -6,7 +6,9 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [manage-agent-rule-blocks](manage-agent-rule-blocks/task.md) | active | Let adopted repositories preserve additive project instructions while portable rules update by managed block |
 
 ## Archive
 
