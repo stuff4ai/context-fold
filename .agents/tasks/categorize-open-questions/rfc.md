@@ -22,15 +22,25 @@ different levels of readiness, and `OPEN-QUESTIONS.md` is explicitly not a roadm
 
 ## Current proposal
 
-Keep the existing evidentiary distinctions, but split large sections into topical subsections.
-Start with these candidate topics and revise them as items are reviewed:
+Keep evidentiary state as the top-level organization. Add topical subsections only inside sections
+whose size or mixture currently makes discussion difficult; do not require every evidentiary
+section to use the same topical partition. A small, coherent section may remain flat.
+
+Use these candidate topics where they improve navigation:
 
 - task lifecycle and coordination;
 - context selection and knowledge boundaries;
 - decisions, identity, and traceability;
 - verification, evidence, and observable execution;
 - distribution, adoption, skills, and host integration;
-- product boundary, behavior at scale, and measurement.
+- product boundary, behavior at scale, and measurement;
+- learning and the improvement loop;
+- rule consistency and enforceability.
+
+The last two topics address clusters the first review found rather than forcing them into adjacent
+subjects. The two-item Recurring-patterns section remains flat: its entries are cross-cutting
+observations about how rules are written, and a topical split would add structure without making
+that section easier to discuss.
 
 Promotion remains item-by-item:
 
@@ -47,11 +57,9 @@ decision resolves it or it turns out not to matter, as the existing project-laye
 
 ## Open questions
 
-- Should the document keep evidentiary state as the top-level organization with topical
-  subsections, or use topics first and preserve state in prose?
-- Are the six proposed topics coherent, or should any be split, combined, or renamed?
-- Should we discuss and promote candidates one topical group at a time, starting with the ten
-  evidence-backed rule gaps?
+- Are the eight proposed topics coherent, or should any be split, combined, or renamed?
+- Should promotion discussion start with the rule-consistency-and-enforceability gap cluster, the
+  whole evidence-backed Gaps section, or a different first group?
 - Does promotion require selecting individual questions only, or is there any case where a whole
   tightly-coupled group should share one task?
 
@@ -94,3 +102,9 @@ lifecycle, verification, distribution). Starting the promotion discussion there 
 cross-cutting problem immediately rather than easing into it with a more topically coherent
 group first. That is a reason to choose the starting group deliberately, not a reason to avoid
 the gaps.
+
+The proposal was revised after that review. Evidentiary state remains the top-level organization,
+but topical subsections are now a navigation tool rather than a universal partition. Learning and
+the improvement loop, and rule consistency and enforceability, were added for the two coherent
+clusters the original six topics obscured. Recurring patterns stays flat because two cross-cutting
+items do not earn another level of headings.
