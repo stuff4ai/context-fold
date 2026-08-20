@@ -10,8 +10,8 @@ objective: >-
 ## Why
 
 The task-index migration deliberately removed the private listing helper and did not provide a
-human CLI. The design discussion for `ctxfold-tasks` currently exists only in archived notes, so
-the intended follow-up needs a durable task contract before implementation starts.
+human CLI. The follow-up now needs a durable task contract before implementation starts, while
+keeping the agent query interface separate from future human tooling.
 
 ## Scope
 
