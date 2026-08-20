@@ -6,12 +6,20 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [define-agent-layer-health](define-agent-layer-health/task.md) | planned | Decide how an installation detects and recovers structural damage to governed agent sublayers without overwriting independently owned contents |
+| [define-agent-sublayer-model](define-agent-sublayer-model/task.md) | planned | Decide whether `.agents/` should become a governed set of agent sublayers with a goal-oriented entry point and a contract for each recognized sublayer |
+| [define-context-sublayer](define-context-sublayer/task.md) | planned | Decide whether agent-facing project navigation should have a context sublayer containing only summaries and references to authoritative project artifacts |
+| [extend-init-project-assessment](extend-init-project-assessment/task.md) | planned | Decide whether adoption should assess project-layer capabilities and create separate planned tasks for evidence-backed gaps |
+| [formalize-skills-sublayer](formalize-skills-sublayer/task.md) | planned | Decide whether `.agents/skills/` should have a portable sublayer contract while preserving independently owned skill contents |
+| [investigate-verification-sublayer](investigate-verification-sublayer/task.md) | planned | Determine whether agent verification and evidence need a distinct sublayer or remain in project tests and task lifecycle rules |
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-2220-park-agent-sublayer-model](archive/2026-08-20-2220-park-agent-sublayer-model/task.md) | completed | Preserve the discussed agent-sublayer and project-assessment directions as neutral live questions and separate planned discussion tasks |
 | [2026-08-20-1934-cross-stack-handoff](archive/2026-08-20-1934-cross-stack-handoff/task.md) | completed | Establish the record two agent stacks use to ask each other for work through the task package |
 | [2026-08-20-1804-manage-agent-rule-blocks](archive/2026-08-20-1804-manage-agent-rule-blocks/task.md) | completed | Let adopted repositories preserve additive project instructions while portable rules update by managed block |
 | [2026-08-20-1746-categorize-open-questions](archive/2026-08-20-1746-categorize-open-questions/task.md) | completed | Organize live questions into discussion categories and identify individual task candidates |
