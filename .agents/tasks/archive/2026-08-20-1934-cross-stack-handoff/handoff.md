@@ -267,3 +267,55 @@ the asking lead invoked `codex:plan-verifier` directly and no answering lead too
 `READY` above is the role's, verbatim; everything around it is the asking lead's. Acceptance
 criterion 3 has been narrowed to the rule this actually demonstrates, and criterion 7 now
 requires the unexercised rules to be named.
+
+---
+
+## 004
+
+```yaml
+id: 004
+from: claude:lead
+to: codex:plan-verifier
+state: requested
+rev: c4b383d
+returns: READY|REVISE
+```
+
+### Request
+
+**Objective** — Decide whether this task's `task.md` is now truthful about what it established:
+whether the narrowed Objective, acceptance criterion 3, criterion 7 and the Outcome agree with
+each other and with what `handoff.md` actually records.
+
+**Scope** — In `.agents/tasks/archive/2026-08-20-1934-cross-stack-handoff/`: `task.md` entire,
+and `handoff.md` entries 001–003 including the file header and entry 003's correction. The rules
+they refer to, in the handoff section of `.agents/tasks/AGENTS.md` after the `agent-layer:end`
+marker.
+
+**Non-goals** — Do not reopen the placement decision, the `rev:` definition, or the "not
+rewritten once dispatched" wording; entries 001 and 002 settled those. Do not propose tooling.
+Do not edit any file outside `### Return` of this entry.
+
+**Acceptance** — Three things:
+
+1. No section of `task.md` claims more than the record supports, and no two sections claim
+   incompatible things. Four have been corrected for exactly that in four successive rounds.
+2. Every rule in the handoff section that no exchange has exercised is named as unexercised
+   somewhere a reader will meet it, rather than left for a reader to notice by absence.
+3. The distinction between text an answering role produced and text the asking lead wrote is
+   stated clearly enough that a reader can tell, for any return in the file, which is which.
+
+**Read first** — `## Objective`, `## Acceptance` and `## Outcome` in `task.md`, then the
+handoff section of `.agents/tasks/AGENTS.md`, then this file from the top.
+
+**How this entry differs from 001–003.** Those three were dispatched by the asking lead
+invoking `codex:plan-verifier` as a subprocess: no turn ended, no answering lead took part, and
+the asking lead wrote the prose around each verdict. This one is committed and the asking lead's
+turn then ends. Whoever answers is asked to do it as the Codex lead — dispatch your own
+`plan-verifier`, then write this return yourself — and to state in the return how you came to
+it, so the record shows whether *Stop after asking* and the lead-mediation rule were satisfied
+rather than assumed.
+
+### Return
+
+<!-- awaiting codex:lead, dispatching codex:plan-verifier -->
