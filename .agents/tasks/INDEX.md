@@ -6,14 +6,13 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-| Task | Status | Objective |
-| --- | --- | --- |
-| [categorize-open-questions](categorize-open-questions/task.md) | active | Organize live questions into discussion categories and identify individual task candidates |
+None.
 
 ## Archive
 
 | Task | Status | Objective |
 | --- | --- | --- |
+| [2026-08-20-1746-categorize-open-questions](archive/2026-08-20-1746-categorize-open-questions/task.md) | completed | Organize live questions into discussion categories and identify individual task candidates |
 | [2026-08-20-1543-link-claude-skills](archive/2026-08-20-1543-link-claude-skills/task.md) | completed | Let a Claude Code session in this repository discover and invoke the already-installed `ctxfold-init` skill |
 | [2026-08-20-1505-add-task-rfc](archive/2026-08-20-1505-add-task-rfc/task.md) | completed | Add an optional RFC artifact for mutable proposal discussion before an execution plan is settled |
 | [2026-08-19-2354-fold-worktrees-into-agents-template](archive/2026-08-19-2354-fold-worktrees-into-agents-template/task.md) | completed | Move `templates/worktrees/AGENTS.md` into `templates/agents/worktrees/AGENTS.md`, joining the byte-identical/portable set |

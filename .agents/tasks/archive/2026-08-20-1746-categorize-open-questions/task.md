@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -56,6 +56,16 @@ without turning `OPEN-QUESTIONS.md` into a roadmap or creating execution plans p
 6. The task index agrees with task directories, and pytest, recursive Markdown lint, and
    `git diff --check` pass.
 
+## Outcome
+
+`OPEN-QUESTIONS.md` now keeps evidentiary state as its top-level organization and groups 57 live
+items under eight topical subsections. The two recurring patterns and two explicit non-answers
+remain flat, and every existing item block retains its text and evidentiary parent section.
+
+The resolved RFC separates categorization from promotion and defines when individual or
+inseparable questions may share a task. No question was selected for promotion in this task, so no
+derived task package, priority, owner, schedule, or roadmap state was created.
+
 ## Problems
 
 The initial RFC assumed six subject topics could cleanly partition all 59 live items. Review showed
@@ -68,3 +78,8 @@ patterns among the topically assigned population, and that comparing labels coul
 or evidentiary-state changes. It also found that derived-task creation depended on a future user
 choice. The plan now pins the complete before-state, compares full item blocks with their parent
 sections, and stops the current slice before any derived task or index change.
+
+Running pytest after moving the task but before staging the rename made its Markdown-file inventory
+name the four old tracked paths, which no longer existed, so the link test failed with four
+`FileNotFoundError`s. Staging the exact archive rename makes the inventory reflect the final
+snapshot; verification must run after that point.
