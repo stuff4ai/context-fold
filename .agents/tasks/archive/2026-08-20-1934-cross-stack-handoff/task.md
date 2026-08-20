@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -66,6 +66,30 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
 ## Approval
 
 Human. The RFC leaves a direction for the reviewer to choose rather than a claim to check.
+
+## Outcome
+
+Decision `0036` records `handoff.md` as a task-package artifact: an append-only record of what
+one agent stack asked another and what came back, governed by five rules — address by role and
+never by model, an entry addressed elsewhere is not yours, answer in the vocabulary the request
+names, record the revision, and stop after asking.
+
+The convention is stated as this repository's project suffix in `.agents/tasks/AGENTS.md`, the
+first use of the boundary `0035` created. The portable managed rule block is untouched, so its
+three copies remain byte-identical and no adopter receives the convention. The rules name a
+stack and a role rather than any product, so promoting them later is a move rather than a
+rewrite.
+
+Promotion is deferred rather than refused. `OPEN-QUESTIONS.md` now carries what would reopen it
+— repeated use without the format changing, a second repository asking for it, an exchange that
+crosses a person rather than a subprocess, or two stacks holding one package at once — and,
+separately, the three details of the entry format this task did not settle.
+
+The convention was exercised on itself. `handoff.md` entry 001 asked the Codex stack's
+`plan-verifier` whether the RFC was ready to resolve; it returned `REVISE` against two arguments
+the draft rested on, and the resolution now standing is what replaced them. The exchange did not
+cross a person, which is recorded as a limitation rather than presented as a completed round
+trip.
 
 ## Problems
 
