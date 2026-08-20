@@ -42,6 +42,7 @@ PORTABLE = [
 ARCHIVE_DIR = re.compile(r"^\d{4}-\d{2}-\d{2}-\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 RECORD_FILE = re.compile(r"^(\d{4})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+RFC_FRONTMATTER = re.compile(r"\A---\nstatus: (draft|resolved)\n---\n")
 
 # [text](target) — not images, not autolinks.
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
@@ -109,6 +110,41 @@ def section(text: str, heading: str) -> str | None:
 
 def status_of(task: Path) -> str | None:
     return section((task / "task.md").read_text(encoding="utf-8"), "Status")
+
+
+def rfc_lifecycle_errors(task: Path) -> list[str]:
+    """0033: report structural contradictions in an optional task RFC."""
+    rfc = task / "rfc.md"
+    if not rfc.is_file():
+        return []
+
+    text = rfc.read_text(encoding="utf-8")
+    frontmatter = RFC_FRONTMATTER.match(text)
+    if not frontmatter:
+        return ["rfc.md does not start with the exact draft/resolved frontmatter block"]
+
+    rfc_status = frontmatter.group(1)
+    task_status = status_of(task)
+    resolution_headings = len(re.findall(r"^## Resolution\s*$", text, re.M))
+    resolution = section(text, "Resolution")
+    plan_exists = (task / "plan.md").is_file()
+    errors = []
+
+    if rfc_status == "draft":
+        if resolution_headings:
+            errors.append("a draft RFC has a Resolution")
+        if plan_exists:
+            errors.append("a draft RFC has a plan")
+    else:
+        if resolution_headings != 1 or not resolution:
+            errors.append("a resolved RFC does not have exactly one non-empty Resolution")
+
+    if task_status == "planned" and rfc_status == "resolved":
+        errors.append("a planned task has a resolved RFC")
+    if task_status == "completed" and rfc_status != "resolved":
+        errors.append("a completed task has a draft RFC")
+
+    return errors
 
 
 # --- Shipped skills -------------------------------------------------------------------
@@ -327,6 +363,142 @@ def test_active_task_is_unfinished(task: Path) -> None:
     assert not section(text, "Outcome"), (
         f"{task.name} has an Outcome but is still in the active directory"
     )
+
+
+@pytest.mark.parametrize("task", archived_tasks() + active_tasks(), ids=lambda p: p.name)
+def test_task_rfc_lifecycle_is_consistent(task: Path) -> None:
+    """0033: an optional RFC and plan agree with the task's lifecycle state."""
+    assert not (errors := rfc_lifecycle_errors(task)), f"{task.name}: {errors}"
+
+
+def _rfc_case(
+    root: Path,
+    task_status: str,
+    rfc_status: str | None,
+    *,
+    plan: bool = False,
+) -> Path:
+    task = root / "case"
+    task.mkdir()
+    (task / "task.md").write_text(
+        f"# Case\n\n## Status\n\n{task_status}\n",
+        encoding="utf-8",
+    )
+    if rfc_status:
+        resolution = "\n## Resolution\n\nSelected direction.\n" if rfc_status == "resolved" else ""
+        (task / "rfc.md").write_text(
+            f"---\nstatus: {rfc_status}\n---\n\n# RFC\n{resolution}",
+            encoding="utf-8",
+        )
+    if plan:
+        (task / "plan.md").write_text("# Plan\n", encoding="utf-8")
+    return task
+
+
+@pytest.mark.parametrize(
+    "task_status,rfc_status,plan",
+    [
+        ("planned", None, False),
+        ("planned", "draft", False),
+        ("active", None, False),
+        ("active", "draft", False),
+        ("active", "resolved", False),
+        ("active", "resolved", True),
+        ("completed", None, False),
+        ("completed", "resolved", False),
+        ("completed", "resolved", True),
+        ("cancelled", None, False),
+        ("cancelled", "draft", False),
+        ("cancelled", "resolved", False),
+        ("cancelled", "resolved", True),
+    ],
+    ids=[
+        "planned-without-rfc",
+        "planned-draft",
+        "active-without-rfc",
+        "active-draft",
+        "active-resolved",
+        "active-resolved-with-plan",
+        "completed-without-rfc",
+        "completed-resolved",
+        "completed-resolved-with-plan",
+        "cancelled-without-rfc",
+        "cancelled-draft",
+        "cancelled-resolved",
+        "cancelled-resolved-with-plan",
+    ],
+)
+def test_task_rfc_lifecycle_accepts_supported_matrix_row(
+    tmp_path: Path,
+    task_status: str,
+    rfc_status: str | None,
+    plan: bool,
+) -> None:
+    task = _rfc_case(tmp_path, task_status, rfc_status, plan=plan)
+    assert not rfc_lifecycle_errors(task)
+
+
+@pytest.mark.parametrize(
+    "case,task_status,rfc_text,plan",
+    [
+        (
+            "malformed-frontmatter",
+            "active",
+            "---\nstatus: draft\nowner: agent\n---\n\n# RFC\n",
+            False,
+        ),
+        ("unknown-status", "active", "---\nstatus: withdrawn\n---\n\n# RFC\n", False),
+        (
+            "planned-resolved",
+            "planned",
+            "---\nstatus: resolved\n---\n\n# RFC\n\n## Resolution\n\nSelected.\n",
+            False,
+        ),
+        (
+            "draft-with-resolution",
+            "active",
+            "---\nstatus: draft\n---\n\n# RFC\n\n## Resolution\n\nStale.\n",
+            False,
+        ),
+        ("draft-with-plan", "active", "---\nstatus: draft\n---\n\n# RFC\n", True),
+        ("resolved-without-resolution", "active", "---\nstatus: resolved\n---\n\n# RFC\n", False),
+        (
+            "resolved-with-empty-resolution",
+            "active",
+            "---\nstatus: resolved\n---\n\n# RFC\n\n## Resolution\n",
+            False,
+        ),
+        (
+            "resolved-with-duplicate-resolution",
+            "active",
+            "---\nstatus: resolved\n---\n\n# RFC\n\n## Resolution\n\nOne.\n\n"
+            "## Resolution\n\nTwo.\n",
+            False,
+        ),
+        ("completed-draft", "completed", "---\nstatus: draft\n---\n\n# RFC\n", False),
+    ],
+    ids=[
+        "malformed-frontmatter",
+        "unknown-status",
+        "planned-resolved",
+        "draft-with-resolution",
+        "draft-with-plan",
+        "resolved-without-resolution",
+        "resolved-with-empty-resolution",
+        "resolved-with-duplicate-resolution",
+        "completed-draft",
+    ],
+)
+def test_task_rfc_lifecycle_rejects_forbidden_case(
+    tmp_path: Path,
+    case: str,
+    task_status: str,
+    rfc_text: str,
+    plan: bool,
+) -> None:
+    task = _rfc_case(tmp_path, task_status, None, plan=plan)
+    (task / "rfc.md").write_text(rfc_text, encoding="utf-8")
+    assert rfc_lifecycle_errors(task), case
 
 
 @pytest.mark.parametrize("task", archived_tasks(), ids=lambda p: p.name)

@@ -7,6 +7,10 @@ mutable execution strategy. Across the accepted history, only the bootstrap task
 `plan.md`; it labels itself mutable and uses the file for ordering and execution steps. No task
 contains `rfc.md`.
 
+The formerly concurrent `fold-worktrees-into-agents-template` task was accepted on `origin/main` at
+`0a4d777`. It explicitly excluded task-package structure and is no longer a live owner. This branch
+must integrate that base before implementation; the next provisional decision number is `0033`.
+
 ## References
 
 - `decisions/0006-task-package-model.md` — the accepted task-package contents and current mutable
@@ -20,6 +24,9 @@ contains `rfc.md`.
   `plan.md` and evidence for its current execution-strategy role.
 - `OPEN-QUESTIONS.md` — the live home for unresolved project-level questions that must not be
   buried in a task RFC.
+- `decisions/README.md` — the required index for the new decision record.
+- `tests/test_conventions.py` — existing task-package discovery and state checks, plus the decision
+  index and contiguous-number checks the new record must satisfy.
 
 ## Not relevant
 

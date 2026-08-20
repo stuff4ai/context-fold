@@ -6,7 +6,9 @@ Accepted. Two parts are narrowed by
 [0022](0022-route-findings-without-an-owning-task.md): the requirement that `task.md` carry
 `## Problems`, to tasks that have started, and slug identity, which fixes at acceptance rather
 than at the start of work. That `task.md` always wins a status disagreement is narrowed by
-[0024](0024-settle-status-disagreements-by-the-directory.md). The rest stands.
+[0024](0024-settle-status-disagreements-by-the-directory.md). The package contents and role of
+`plan.md` are narrowed by
+[0033](0033-separate-rfc-discussion-from-execution-planning.md). The rest stands.
 
 ## Context
 

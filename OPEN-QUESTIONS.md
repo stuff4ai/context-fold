@@ -47,9 +47,10 @@ hides its weaknesses.
   cannot discover that upstream rules changed, and has no upgrade procedure. What identity an
   installation needs, how it discovers changes, and how replacement preserves installation-owned
   state remain undecided.
-- **Metadata schemas.** No frontmatter, no structured fields. Everything is prose under known
-  headings. Traceability, executable checks and event records would each need stable identity and
-  relationships, but it is unknown whether those consumers justify introducing a schema.
+- **Metadata schemas beyond RFC state.** `0033` adds one deliberately minimal frontmatter field for
+  an RFC's `draft` or `resolved` state without introducing a general YAML schema. Traceability,
+  executable checks and event records would each need stable identity and relationships, but it is
+  still unknown whether those consumers justify broader structured metadata.
 
 ## Open questions about the model
 
@@ -69,12 +70,6 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
-- **Which task-local choices are worth preserving as decisions?** Durable decisions already go
-  into project-layer records, and `task.md` records problems rather than conclusions. Between
-  them are accepted, rejected and deferred choices that can matter to the next person working on
-  the same task without being durable enough for a project record. Giving each a status and
-  alternatives could prevent accidental reversal; it could also restore the per-task ceremony
-  that `0013` deliberately cut, or bury knowledge that should have passed the deletion test.
 - **Should intent, decisions, behavior and evidence form an explicit trace?** Today acceptance,
   context, project decisions, tests and outcomes can reference one another, but no rule makes
   them a traversable chain in either direction. Stable relationships could answer why a check or

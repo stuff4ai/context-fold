@@ -61,7 +61,8 @@ Work is organized into task packages under `.agents/tasks/{slug}/`:
 | --- | --- |
 | `task.md` | The contract — objective, scope, acceptance, and the problems hit along the way |
 | `context.md` | A curated map of what matters for this task, by reference |
-| `plan.md` | Execution strategy, when the task is large enough to need one |
+| `rfc.md` | Mutable proposal discussion while a direction is unsettled, when one is needed |
+| `plan.md` | Selected execution strategy, when the task is large enough to need one |
 
 Tasks are named by descriptive slug rather than ticket number, so paths stay meaningful and
 no separate numbering system is required.
