@@ -2,7 +2,7 @@
 
 ## Status
 
-active
+completed
 
 ## Objective
 
@@ -24,7 +24,7 @@ leaving an additive suffix under the adopting project's ownership.
   templates, and this repository's whole-package installation.
 - Root `AGENTS.md`, the four installed `.agents/**/AGENTS.md` files, README, and convention checks.
 - `OPEN-QUESTIONS.md` — only the wording of **Versioning, provenance, discovery, and upgrades**,
-  **How should an adopter customize or replace the portable rules?**, and **Should an adopter's
+  **How should an adopter override or replace the portable rules?**, and **Should an adopter's
   installation be checkable?** The concurrent `categorize-open-questions` task retains heading
   structure, introductions, and item placement.
 - `.agents/tasks/INDEX.md` — this task's derived row and eventual archival update; rebuild it from
@@ -51,11 +51,24 @@ leaving an additive suffix under the adopting project's ownership.
    byte-identical and installed suffixes may differ.
 4. A decision record narrows the accepted whole-file ownership, portability, adoption,
    distribution, and checking claims without weakening vendor neutrality.
-5. README, the two owned open-question items, root project workflow, and portable rules agree with
+5. README, the three owned open-question items, root project workflow, and portable rules agree with
    the new contract; conflicting overrides, granularity, identity, discovery, and migration remain
    deferred.
 6. Disposable fixtures demonstrate suffix preservation and all-target no-write behavior, and
    pytest, recursive Markdown lint, skill parity, and `git diff --check` pass.
+
+## Outcome
+
+Decision `0035` now defines each portable `AGENTS.md` document as one vendor-neutral managed block
+whose source-only ownership notice is an HTML comment. An adopter may append non-conflicting
+project instructions after that block, and an explicit `ctxfold-init` update replaces the block
+while preserving the suffix byte for byte.
+
+The adoption procedure and skill now preflight all four targets before writing, reject ambiguous
+marker structures as one operation, and distinguish legacy whole-file installations from marked
+ones. The shipped and installed skill packages remain identical, while convention checks compare
+the three managed-block copies and permit an active installation suffix. README, project workflow,
+the affected accepted decisions, and the three live open questions now state the same boundary.
 
 ## Problems
 
