@@ -93,6 +93,10 @@ rules are where an agent finds out what a package may contain.
 
 ## What would reopen Alternative A
 
+The reasoning below is why these conditions were chosen. The live list, and which of them have
+since been met, are kept in `OPEN-QUESTIONS.md`; read that for the current state rather than
+this section.
+
 The evidence missing today is use: one exchange, run by this task against itself, with the
 Claude lead invoking the Codex stack directly rather than a person carrying the work across.
 That is enough to show the format parses and a verdict comes back. It is not enough to show

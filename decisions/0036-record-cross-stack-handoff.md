@@ -28,7 +28,7 @@ before deciding whether every installation should carry it.
 
 ## Decision
 
-A task that is worked by more than one agent stack carries `handoff.md` in its package: an
+A task that is worked by more than one agent stack carries `handoff.md` in its package: a
 record of requests between stacks and the answers to them. Each exchange is an entry carrying an
 id, the addresses it is from and to, its state, the commit under review, and the vocabulary the
 answer must use. An entry is not rewritten once dispatched: its request text
@@ -54,10 +54,9 @@ product. Which stacks exist is a fact about an installation; that a handoff addr
 not. This is `0011`'s split — a neutral model, with the product-specific part outside it — applied
 inside a suffix, so that promotion later is a move rather than a rewrite.
 
-Promotion is deferred rather than refused, and the observations that would reopen it are named
-in the task's RFC and carried into `OPEN-QUESTIONS.md`: repeated use without the format changing,
-a second repository asking for the same convention, an exchange that crosses a person rather than
-a subprocess, or two stacks holding one package at once.
+Promotion is deferred rather than refused. `OPEN-QUESTIONS.md` names the observations that would
+reopen it and records which of them have since been met; that list is live and is not reproduced
+here.
 
 ## Consequences
 

@@ -55,8 +55,9 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
 
 ## Acceptance
 
-1. `decisions/` carries a record stating the handoff convention, its rules, and why the
-   portable block was not changed; `decisions/README.md` lists it.
+1. `decisions/` carries a record that identifies where the convention's rules are stated,
+   explains why they live there and why the portable block was not changed, and does not
+   restate them; `decisions/README.md` lists it.
 2. `.agents/tasks/AGENTS.md` carries the convention as a project suffix. Its managed block
    is byte-identical to `.agents/skills/ctxfold-init/templates/agents/tasks/AGENTS.md` and
    to `skills/ctxfold-init/templates/agents/tasks/AGENTS.md`, verifiable by comparing the
@@ -100,9 +101,9 @@ stack and a role rather than any product, so promoting them later is a move rath
 rewrite.
 
 Promotion is deferred rather than refused. `OPEN-QUESTIONS.md` now carries what would reopen it
-— repeated use without the format changing, a second repository asking for it, an exchange that
-crosses a person rather than a subprocess, or two stacks holding one package at once — and,
-separately, the three details of the entry format this task did not settle.
+— and, separately, the three details of the entry format this task did not settle. That list is
+live, and which of its conditions have since been met changes; `OPEN-QUESTIONS.md` is where it
+is kept current, and this package does not carry a second copy.
 
 The convention was exercised on itself, and that is where nearly everything it now says came
 from. `handoff.md` entry 001 asked the Codex stack's `plan-verifier` whether the RFC was ready
@@ -357,3 +358,23 @@ finally holds is not a more careful summary but no summary: one owner per claim,
 everywhere else. Nothing in the lifecycle would have caught any of them — the final exact-head
 check reads the repository's structure and never compares two sections of a task against each
 other.
+
+An acceptance criterion outlived the thing it was accepting. Criterion 1 required the decision
+record to state the convention's rules, and the decision record was later changed to do the
+opposite — to name where they live and explicitly not restate them, because every copy of them
+had gone stale. The criterion was not re-read when the artifact it judged was rewritten, so the
+package demanded of `0036` exactly what `0036` had just been corrected for doing. A criterion is
+a claim about another file, and changing that file can falsify it silently.
+
+Reading `0036` to check that criterion turned up two more defects in it, neither of which any
+review had raised. Removing the phrase "append-only" three rounds earlier had left "an record of
+requests" behind, a broken sentence sitting in an accepted decision record. And `0036` still
+listed the four conditions that would reopen promotion, one of which entry 004 has since met —
+so a durable project artifact was carrying a stale copy of a live list. The conditions were
+written in four places: `0036`, the RFC, the task's Outcome, and `OPEN-QUESTIONS.md`. Only the
+last was updated when one was met. That is the same restatement failure as the rules and the
+counts, on its fourth distinct subject, and it was found by reading rather than by any check.
+
+`OPEN-QUESTIONS.md` now owns the list alone. `0036` points at it, the Outcome points at it, and
+the RFC says outright that its own section records why the conditions were chosen and not what
+their current state is.
