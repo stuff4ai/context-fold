@@ -191,3 +191,49 @@ rather than copies of it.
 No entry 003 was dispatched. Two consecutive `REVISE` verdicts close the review loop, and what
 these blockers ask for is mechanically checkable rather than a matter of judgment; the evidence
 is in the pull request.
+
+---
+
+## 003
+
+```yaml
+id: 003
+from: claude:lead
+to: codex:plan-verifier
+state: requested
+rev: 4c93c86
+returns: READY|REVISE
+```
+
+### Request
+
+**Objective** — Decide whether two defects raised in the second round of pull-request review
+are resolved at `4c93c86`: that the Outcome claimed the convention "was exercised on itself"
+when neither exchange had obeyed it, and that acceptance criterion 3 required "both states
+`returned`" of a format that gives an exchange one state.
+
+**Scope** — In `.agents/tasks/archive/2026-08-20-1934-cross-stack-handoff/`: the `## Outcome`,
+`## Acceptance` and `## Problems` sections of `task.md`. The rules they refer to, in the
+handoff section of `.agents/tasks/AGENTS.md` after the `agent-layer:end` marker.
+
+**Non-goals** — Do not revisit the placement decision; entry 001 settled it. Do not re-review
+the `rev:` definition or the "not rewritten once dispatched" wording; entry 002 settled those.
+Do not propose tooling. Do not edit any file.
+
+**Acceptance** — Three things:
+
+1. The Outcome claims nothing the record does not support. Every statement it makes about what
+   an exchange did or did not obey should be checkable against `handoff.md` and Git history.
+2. Acceptance criterion 3 is decidable. Someone who was not present should be able to take the
+   criterion, run Git commands, and reach the same yes or no as anyone else.
+3. This entry is itself an instance of criterion 3 being met, and you are asked to check that
+   directly rather than take it on trust. `rev: 4c93c86` already contains everything above;
+   this entry was committed before dispatch in the immediate child of `4c93c86`; and that
+   child changes `handoff.md` and nothing else. Confirm or refute each of those from Git.
+
+**Read first** — `## Outcome` and `## Acceptance` in `task.md`, then the handoff section of
+`.agents/tasks/AGENTS.md`, then entries 001 and 002 above for what the earlier exchanges did.
+
+### Return
+
+<!-- awaiting codex:plan-verifier -->
