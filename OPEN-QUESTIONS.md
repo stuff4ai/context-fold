@@ -21,6 +21,19 @@ hides its weaknesses.
   lifecycle — a command, further agent skills, workflows, or something else — is undecided.
 - **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
   that no program implements.
+- **Should a cross-stack handoff be portable?** `0036` records `handoff.md` — how one agent
+  stack asks another for something and where the answer goes — as this project's suffix rather
+  than a portable rule, because the rule had not been followed once when it was written. It
+  reopens on repeated use without the format changing, a second repository asking for the same
+  convention, an exchange that crosses a person rather than a subprocess, or two stacks holding
+  one package at once. If instead the file stays mostly empty or mostly one stack talking to
+  itself, it did not earn the suffix either.
+- **Three details of the handoff entry are undecided.** Whether `returns:` should be a closed
+  vocabulary — checkable, but bound to the verdicts two particular stacks happen to use now;
+  whether a request nobody answers needs an expiry, or whether a stale entry is visible enough
+  to correct itself; and whether `from:` earns its place, given that the return says who
+  answered and the branch usually says who asked. `0036` settles where the convention lives,
+  not these.
 
 ### Context selection and knowledge boundaries
 

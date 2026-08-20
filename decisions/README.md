@@ -46,3 +46,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0033 | [Separate RFC discussion from execution planning](0033-separate-rfc-discussion-from-execution-planning.md) | Accepted |
 | 0034 | [Extend the Claude Code adapter to skills](0034-extend-the-claude-code-adapter-to-skills.md) | Accepted |
 | 0035 | [Manage portable rules as replaceable blocks](0035-manage-portable-rules-as-replaceable-blocks.md) | Accepted |
+| 0036 | [Record a cross-stack handoff in the task package](0036-record-cross-stack-handoff.md) | Accepted |

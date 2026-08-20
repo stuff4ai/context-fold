@@ -349,3 +349,39 @@ loses content and nothing will say so.
 If you cannot tell which a file is, ask what deleting it would cost. A derived file can be built
 again from what remains; an authored one is gone.
 <!-- agent-layer:end -->
+
+## Handing work to another agent stack
+
+*This section is this project's own, not part of the portable layer. See
+[`decisions/0036-record-cross-stack-handoff.md`](../../decisions/0036-record-cross-stack-handoff.md).*
+
+More than one agent stack may work this repository — different products, each with its own
+roles and its own lead session. They coordinate through the package rather than through a live
+channel between them, so that what one asked and what another answered stays readable in the
+change afterwards.
+
+A task that needs this carries `handoff.md`. It is append-only: each exchange is a new entry,
+and a return is written into its own entry rather than replacing the request. An entry opens
+with a fenced `yaml` block carrying `id`, `from`, `to`, `state`, `rev` and `returns`, then a
+`### Request` section and a `### Return` section. The header is fenced rather than document
+frontmatter because the file holds many entries.
+
+- **Address by role, never by model.** `to:` names a stack and one of the roles that stack
+  already has. The role's own definition decides what it runs as, so an address naming a model
+  would assert something it does not own.
+- **An entry addressed elsewhere is not yours.** `state: requested` plus your stack in `to:` is
+  the whole inbox rule. Do not answer, amend, or act on any other entry.
+- **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
+  request for a review is answered and returned, not continued into the work it reviewed — the
+  asking stack decides what to do with a verdict.
+- **Record the revision.** `rev:` is what a return is about. A verdict with no state attached
+  cannot be judged later, and a sender whose tree is dirty says so in the request instead of
+  naming a revision that does not describe it.
+- **Stop after asking.** Writing a request ends your turn. Nothing in the repository delivers
+  it; something outside does.
+
+Only a lead session writes or answers a handoff. A role dispatched by a lead does that work and
+reports back to that lead — asking another stack is not among the things it was given to do.
+
+Whether this belongs in the portable layer is
+[an open question](../../OPEN-QUESTIONS.md), deferred until the convention has been used.

@@ -1,5 +1,5 @@
 ---
-status: draft
+status: resolved
 ---
 
 # RFC — where a cross-stack handoff lives, and what it looks like
@@ -9,20 +9,23 @@ status: draft
 A task package may carry `handoff.md`: an append-only record of requests between agent
 stacks working the same repository, and the answers to them.
 
-Each entry is one exchange. Frontmatter carries the address and state; the body carries the
-request and, later, the return.
+Each entry is one exchange, opening with a fenced `yaml` block and then two sections. The
+header is fenced rather than document frontmatter because the file holds many entries and a
+Markdown document has only one frontmatter block.
 
-```markdown
----
+````markdown
+## 001
+
+```yaml
 id: 001
 from: claude:lead
 to: codex:plan-verifier
 state: requested          # requested | returned
 rev: d7e4bd4              # the revision the request refers to
 returns: READY|REVISE     # the vocabulary expected back
----
+```
 
-## Request
+### Request
 
 **Objective** — one sentence: the outcome being judged.
 **Scope** — what is in play.
@@ -30,10 +33,10 @@ returns: READY|REVISE     # the vocabulary expected back
 **Acceptance** — the check that would prove the outcome.
 **Read first** — where to look, as paths from the repository root.
 
-## Return
-```
+### Return
+````
 
-Four rules:
+Five rules:
 
 1. **Address.** `to:` names a stack and a role within it. Roles are the ones that stack
    already has; a handoff never invents one and never names a model, because the role
@@ -41,14 +44,14 @@ Four rules:
 2. **Inbox.** An entry with `state: requested` addressed to your stack is yours. Nothing
    else is.
 3. **Return.** The receiving lead answers in the vocabulary `returns:` names, appends it
-   under `## Return`, and sets `state: returned`. A review request is answered, not
+   under `### Return`, and sets `state: returned`. A review request is answered, not
    continued into implementation.
-4. **Stop.** After writing a request, stop. Something outside the repository moves the work
+4. **Record the revision.** `rev:` is what makes a return meaningful: a verdict is about a
+   state, and without one recorded the reader cannot tell what was judged. A sender whose
+   tree is dirty says so in the request rather than naming a revision that does not
+   describe it.
+5. **Stop.** After writing a request, stop. Something outside the repository moves the work
    to the other stack; the file does not deliver itself.
-
-`rev:` is what makes a return meaningful: a verdict is about a state, and without one
-recorded the reader cannot tell what was judged. A sender whose tree is dirty says so in
-the request rather than pretending a rev describes it.
 
 ## The question this RFC exists to settle
 
@@ -63,11 +66,18 @@ For: multi-stack work is a general problem, not one peculiar to this repository,
 portable rules are where the package model is defined. `0011` permits it — the format names
 no product, only opaque addresses and a vocabulary name.
 
-Against: no evidence. `0006` opens by warning that task systems "tend toward ceremony: a
-full set of artifacts per task, most of them empty, most of them abandoned within weeks."
-A fifth artifact pushed into every installation on the day it was invented is that warning
-being ignored. Updating the portable rules also means the three-way block parity procedure
-and a change to every adopter, to ship a format nobody has used twice.
+Against: `0012` commits this project to building the methodology before the tooling that
+would hide its weaknesses, and to being its own first user. A rule distributed to every
+adopter before it has been followed once here is that commitment inverted — the portable
+rules would be describing a practice rather than recording one.
+
+The objection is about distributing an unexercised rule, not about ceremony. `handoff.md`
+is optional, exactly as `rfc.md` and `plan.md` already are, so promoting it would not put a
+fifth file in every package or oblige any task to carry one. `0006`'s warning about a full
+set of artifacts per task is not the argument here and does not support one.
+
+The practical cost is smaller than the principle: promotion means the three-way block parity
+procedure and a change reaching every adopter, to ship a format nobody has yet used twice.
 
 ### Alternative B — project suffix
 
@@ -90,12 +100,55 @@ to look for a handoff.
 Against: a decision nobody reads at the moment of the work is not a convention. The task
 rules are where an agent finds out what a package may contain.
 
+## What would reopen Alternative A
+
+The evidence missing today is use: one exchange, run by this task against itself, with the
+Claude lead invoking the Codex stack directly rather than a person carrying the work across.
+That is enough to show the format parses and a verdict comes back. It is not enough to show
+the convention survives the situations a portable rule would have to cover.
+
+Any one of these is a reason to reconsider:
+
+- **Three tasks carry a handoff without the format changing.** Repeated use with a stable
+  shape is the difference between a convention and a draft.
+- **A second repository wants it.** A project that has adopted the layer and asks for the
+  same convention shows the need is not local, which is the one thing a suffix cannot
+  demonstrate.
+- **An exchange crosses a person rather than a subprocess.** Rule 5 assumes the asking stack
+  stops and something outside moves the work. Until that has actually happened, the rule most
+  likely to be wrong is the one least tested.
+- **Two stacks hold the same package concurrently.** The portable rules already say how
+  concurrent tasks share files by section. If handoffs need the same treatment one directory
+  down, that belongs in the portable rules rather than beside them.
+
+Any one of these is also a reason the format might need to change first. Reconsidering means
+reopening this RFC, not promoting the current text.
+
+Against promotion, and unchanged by any of the above: if after several tasks the file is
+mostly empty or mostly one stack talking to itself, the convention did not earn a suffix
+either, let alone a portable rule.
+
 ## Open questions
 
-- Whether `returns:` should be closed. Closed is mechanically checkable, but binds the
-  format to the verdicts two particular stacks happen to use now.
-- Whether a request nobody answers needs an expiry, or whether a stale entry is visible
-  enough to correct itself.
-- Whether `from:` earns its place. The return says who answered; the request's author is
-  usually evident from the branch. It is kept for now because an unanswered request with no
-  author is hard to chase.
+Three details of the entry format are undecided — whether `returns:` should be a closed
+vocabulary, whether an unanswered request needs an expiry, and whether `from:` earns its
+place. They outlive this task, so they are recorded in `OPEN-QUESTIONS.md` rather than here.
+
+## Resolution
+
+**Alternative B.** The convention is stated as this repository's project suffix, after the
+`agent-layer:end` marker in `.agents/tasks/AGENTS.md`. The portable managed rule block is
+unchanged, so all three copies of it stay byte-identical.
+
+The rules are written to name a stack and a role rather than any product, so that which
+stacks exist stays a fact about an installation while the shape of an address does not.
+That is `0011`'s split applied inside a suffix, and it is what makes promotion later a move
+rather than a rewrite.
+
+Promotion is deferred, not refused, on the grounds in *What would reopen Alternative A*
+above. The question is recorded in `OPEN-QUESTIONS.md` so it stays visible after this
+package is archived.
+
+This resolution was reviewed before adoption by `codex:plan-verifier`, which returned
+`REVISE` against the two arguments this section now rests on; see `handoff.md` entry 001.
+The reasoning above is what replaced them.

@@ -68,3 +68,33 @@ readable in the pull request, it survives both sessions, and it needs nothing ru
 Human. The RFC leaves a direction for the reviewer to choose rather than a claim to check.
 
 ## Problems
+
+Argued against portability from the wrong decision record. The RFC's case for the project
+suffix leaned on `0006`'s warning that task systems tend toward ceremony — "a full set of
+artifacts per task, most of them empty" — as though promoting `handoff.md` would put a
+fifth file in every package. It would not: the file is optional, exactly as `rfc.md` and
+`plan.md` already are, both of which are portable. The applicable record was `0012`, about
+exercising the methodology before distributing it. Caught by `codex:plan-verifier`, not by
+the author, and it had already been copied into the draft decision record before it was
+found. Quoting the sentence that supports the conclusion is how a wrong citation survives —
+the same pattern `OPEN-QUESTIONS.md` already records under *Rules get stated where they are
+relevant rather than where they are owned*.
+
+Deferred promotion without saying what would end the deferral. The RFC promised evidence
+and named none, which makes the deferral unfalsifiable — nothing could ever arrive that
+would settle it. Also caught by the reviewer. Writing the four reopening conditions was
+harder than writing the deferral, which is probably why it had been skipped.
+
+The RFC described a format the task was not using. Its example showed each entry opening
+with `---` frontmatter, copied from how `rfc.md` opens, while the real `handoff.md` used a
+fenced `yaml` block because a Markdown document has only one frontmatter block and this
+file holds many entries. The rule count disagreed too: four in the RFC, five everywhere
+else. Both went unnoticed until the files were read side by side after the review, so the
+reviewer did not catch them either — it was only asked about the placement argument.
+
+The first exchange did not cross a person, which is the rule most likely to be wrong.
+Rule 5 says the asking stack stops and something outside the repository moves the work.
+Here the Claude lead invoked Codex as a subprocess instead. The verdict is genuinely the
+other stack's, so the format and the vocabulary were exercised, but the one part of the
+convention that assumes a human in the loop was not. Recorded in `handoff.md` entry 001 and
+named as a reopening condition rather than left to look like a completed round trip.
