@@ -49,10 +49,10 @@ Five rules:
 3. **Return.** The receiving lead answers in the vocabulary `returns:` names, appends it
    under `### Return`, and sets `state: returned`. A review request is answered, not
    continued into implementation.
-4. **Commit the request, then dispatch it.** `rev:` names the commit that contains the
-   entry itself. A request read from an uncommitted tree cannot be shown afterwards to be
-   what was actually asked. Where anything else in the tree differs from `rev:` at dispatch,
-   the request says what and why.
+4. **Commit the request, then dispatch it.** `rev:` names the commit under review. The
+   entry is committed too, necessarily in a later commit, since an entry cannot name the
+   commit containing it. Where the tree at dispatch differs from `rev:` in anything but the
+   entry, the request says what and why.
 5. **Stop.** After writing a request, stop. Something outside the repository moves the work
    to the other stack; the file does not deliver itself.
 

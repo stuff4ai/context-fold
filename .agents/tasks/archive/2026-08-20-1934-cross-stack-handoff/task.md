@@ -151,3 +151,13 @@ leaving no way to fix a factual error in a record whose value is being accurate.
 carries one narrow exception: a correction is added to the entry and marked as added
 afterwards, never substituted for what it corrects. Found by applying the new rule to the act
 of writing it, which is the cheapest review available and was not done for the first version.
+
+The rule written to fix the revision defect was unsatisfiable. It said `rev:` names the commit
+containing the entry, which no entry can do: writing the hash in changes the content and so
+changes the hash. Discovered by trying to follow it — the entry was committed with a
+placeholder, the real hash substituted, and the tree then no longer matched the commit just
+made. `rev:` now names the commit under review, and the entry is committed before dispatch in a
+later commit; both guarantees hold, and the impossibility is stated in the rule so the next
+reader does not rediscover it. Two rules in a row were written confidently and were wrong, and
+neither survived its first application. Writing a rule and following it are separate acts, and
+only the second is a check.

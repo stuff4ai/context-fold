@@ -87,3 +87,49 @@ a person to switch terminals. The verdict is genuinely the other stack's — a d
 product, model and role, reaching a conclusion this task did not write for it — but the
 handoff did not cross a human. Recorded as a problem in `task.md` rather than presented as
 the convention working end to end.
+
+---
+
+## 002
+
+```yaml
+id: 002
+from: claude:lead
+to: codex:plan-verifier
+state: requested
+rev: 8b255a7
+returns: READY|REVISE
+```
+
+### Request
+
+**Objective** — Decide whether the two defects raised in review of pull request 39 are
+resolved: that the revision rule permitted an entry to name a revision not containing its own
+request, and that describing the file as "append-only" contradicted a flow which changes
+`state:` in place and fills the same entry's return.
+
+**Scope** — The handoff section of `.agents/tasks/AGENTS.md` after the `agent-layer:end`
+marker; `decisions/0036-record-cross-stack-handoff.md`; and, in
+`.agents/tasks/archive/2026-08-20-1934-cross-stack-handoff/`, the files `rfc.md`, `handoff.md`
+and the `## Outcome` and `## Problems` sections of `task.md`.
+
+**Non-goals** — Do not revisit whether the convention belongs in the portable block; that was
+settled in entry 001 and is not reopened here. Do not propose tooling. Do not edit any file.
+
+**Acceptance** — Three things, each independently checkable:
+
+1. No statement anywhere in scope claims a property the prescribed flow contradicts. The
+   earlier failure was two such statements written in one sitting without being compared.
+2. The revision rule is satisfiable as written. `rev:` above names the commit under review,
+   `8b255a7`; this entry was committed before dispatch in its child commit, so the request you
+   are reading is recoverable from the history even though no entry can name the commit that
+   contains it. Judge whether the rule now says that clearly.
+3. The exception permitting a correction to a dispatched entry is narrow enough that it
+   cannot be used to rewrite a request, and entry 001's disclosure is within it.
+
+**Read first** — the handoff section of `.agents/tasks/AGENTS.md`, then `handoff.md` entry 001
+including its disclosure, then `## Problems` in `task.md`.
+
+### Return
+
+<!-- awaiting codex:plan-verifier -->

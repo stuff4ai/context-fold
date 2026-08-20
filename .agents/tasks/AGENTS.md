@@ -379,10 +379,13 @@ corrects.
 - **Answer in the vocabulary the request names.** `returns:` says what shape the reply takes. A
   request for a review is answered and returned, not continued into the work it reviewed — the
   asking stack decides what to do with a verdict.
-- **Commit the request, then dispatch it.** `rev:` names the commit that contains the entry
-  itself. A request read from an uncommitted working tree cannot be shown afterwards to be what
-  was actually asked, and a verdict with no state attached cannot be judged at all. Where
-  anything else in the tree differs from `rev:` at dispatch, the request says what and why.
+- **Commit the request, then dispatch it.** `rev:` names the commit under review — what the
+  verdict will be about. A request read from an uncommitted working tree cannot be shown
+  afterwards to be what was actually asked, so the entry is committed too, necessarily in a
+  later commit than `rev:`: an entry cannot name the commit that contains it, because writing
+  the hash in would change it. Both guarantees hold anyway, since the entry's own commit is in
+  the history. Where the tree at dispatch differs from `rev:` in anything but the entry, the
+  request says what and why.
 - **Stop after asking.** Writing a request ends your turn. Nothing in the repository delivers
   it; something outside does.
 
