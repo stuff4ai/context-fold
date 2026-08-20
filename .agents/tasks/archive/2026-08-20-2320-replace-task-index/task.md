@@ -1,5 +1,5 @@
 ---
-status: active
+status: completed
 objective: >-
   Make each task package directly discoverable and machine-readable without a duplicated index by
   putting canonical status and objective metadata in strict frontmatter.
@@ -25,11 +25,12 @@ preserve.
 - Root project rules, methodology documentation, convention tests, and a new decision record.
 - After PR #39 resolves: `.agents/tasks/INDEX.md`, the decision table in `decisions/README.md`,
   and `OPEN-QUESTIONS.md` section `### Task lifecycle and coordination`.
+- The project suffix in `.agents/tasks/AGENTS.md`: only the handoff sentence whose index-based
+  navigation rationale became false when the index was removed.
 
 ## Out of scope
 
-- The project suffix after `agent-layer:end` in `.agents/tasks/AGENTS.md`; PR #39 owns it and this
-  task preserves it during managed-block replacement.
+- Every other part of the project suffix after `agent-layer:end` in `.agents/tasks/AGENTS.md`.
 - Before PR #39 resolves: `.agents/tasks/INDEX.md`, the decision table, and the named
   `OPEN-QUESTIONS.md` section. PR #39 owns those shared sections until integration.
 - The body and supporting files of PR #39's handoff task, apart from the eventual mechanical
@@ -51,8 +52,29 @@ preserve.
    every managed block and installed skill file has the required parity.
 6. A decision records the replacement and the v0 archive-migration exception; affected accepted
    decisions are narrowed only through their Status fields.
-7. PR #39's additions survive the final rebase unchanged except for its task's mechanical metadata
-   migration, and all checks pass on the integrated head.
+7. PR #39's additions survive integration except for its task's mechanical metadata migration and
+   the one handoff sentence whose index-based rationale became false; all checks pass on the
+   integrated head.
+
+## Outcome
+
+Decision `0037` makes strict `status`/`objective` frontmatter the only task metadata format and
+removes the duplicated task index from this installation and the distribution. Portable rules,
+the README, adoption instructions, and structural checks now discover task packages directly;
+fresh adoption creates new-format task zero and repeat updates still preserve project suffixes
+and unrelated `.agents/` content. Agent query tooling and a supported human CLI remain separate
+future work.
+
+All 42 task packages were migrated, including the eight tasks that landed with PRs #39 and #40.
+The migration oracles preserve normalized metadata for all 42, every non-metadata byte in the 35
+accepted task bodies, and all 43 supporting files in those archive packages. PR #39's handoff
+suffix remains project-owned; only its stale sentence about index navigation changed to direct
+unfinished-task discovery.
+
+The convention suite now rejects legacy or malformed task metadata and asserts that the
+repository, source skill, and installed skill carry no task index. The final integrated run passes
+546 tests, Markdown lint, skill validation, managed-block and whole-skill parity, and whitespace
+checks.
 
 ## Approval
 
@@ -90,3 +112,18 @@ replacement tests validated frontmatter but did not assert that all three index 
 absent, so the suite could become green after decision integration while still shipping the old
 file. Review caught both. The README now states only the already-true canonical-source rule, and a
 new check covers the repository index plus the source and installed skill templates.
+
+### A newly landed objective contains a paragraph break
+
+The handoff task's Objective contains two paragraphs, while the new folded scalar permits only
+non-empty physical lines. Rejecting blank lines is still useful because the decoded value has no
+paragraph structure. The integration migration removes blank separators and preserves every
+non-empty line in order, so normalizing either representation as whitespace yields the same
+objective; the rest of the task and every supporting file remain byte-identical.
+
+### Removing the index made one concurrent suffix sentence false
+
+PR #39's handoff rule says requests under `archive/` need an explicit search because the index
+lists only active work. Preserving that sentence byte-for-byte would leave project instructions
+referring to a deleted file. The rule and its rationale stand, but the sentence now contrasts
+archive requests with ordinary discovery in direct unfinished-task directories instead.

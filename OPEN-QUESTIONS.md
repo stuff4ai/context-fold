@@ -16,16 +16,33 @@ hides its weaknesses.
 ### Task lifecycle and coordination
 
 - **Ongoing task-lifecycle automation.** `ctxfold-init` performs adoption, but creating an
-  ordinary task package, moving it to the archive, and maintaining the index are still done by
-  hand, by decision rather than omission. What, if anything, should automate that ongoing
-  lifecycle — a command, further agent skills, workflows, or something else — is undecided.
-- **Index generation.** `INDEX.md` is maintained by hand and repaired by regeneration rules
-  that no program implements.
+  ordinary task package and moving it to the archive are still done by hand, by decision rather
+  than omission. What, if anything, should automate that ongoing lifecycle — a command, further
+  agent skills, workflows, or something else — is undecided.
+- **Should a cross-stack handoff be portable?** `0036` records `handoff.md` — how one agent
+  stack asks another for something and where the answer goes — as this project's suffix rather
+  than a portable rule, because the rule had not been followed once when it was written. One of
+  the four conditions named for reopening it has since been met: an exchange crossed a person
+  rather than a subprocess, and immediately found two defects three subprocess exchanges could
+  not. The other three stand — repeated use without the format changing, a second repository
+  asking for the same convention, and two stacks holding one package at once. Against them, the
+  format changed in response to every one of the four exchanges so far, which is the opposite of
+  the stability promotion would need. If instead the file ends up mostly empty or mostly one
+  stack talking to itself, it did not earn the suffix either.
+- **Three details of the handoff entry are undecided.** Whether `returns:` should be a closed
+  vocabulary — checkable, but bound to the verdicts two particular stacks happen to use now;
+  whether a request nobody answers needs an expiry, or whether a stale entry is visible enough
+  to correct itself; and whether `from:` earns its place, given that the return says who
+  answered and the branch usually says who asked. `0036` settles where the convention lives,
+  not these.
 
 ### Context selection and knowledge boundaries
 
 - **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
-  second documentation tree.
+  second documentation tree. One proposed minimum is a portable contract plus a project-specific
+  index containing only short navigational summaries and references to authoritative project
+  artifacts. Whether that earns a distinct sublayer, how its summaries avoid drift, and whether
+  deleting it truly loses only convenience remain undecided.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
   rather than by reading files.
 - **Automatic context selection.** Whether the layer should decide which context a task needs
@@ -40,16 +57,19 @@ hides its weaknesses.
 
 ### Decisions, identity, and traceability
 
-- **Metadata schemas beyond RFC state.** `0033` adds one deliberately minimal frontmatter field for
-  an RFC's `draft` or `resolved` state without introducing a general YAML schema. Traceability,
-  executable checks and event records would each need stable identity and relationships, but it is
-  still unknown whether those consumers justify broader structured metadata.
+- **Metadata schemas beyond tasks and RFC state.** `0033` and `0037` define separate exact
+  frontmatter schemas for RFC lifecycle and task status/objective rather than a general YAML
+  schema. Traceability, executable checks and event records would each need stable identity and
+  relationships, but it is still unknown whether those consumers justify broader structured
+  metadata.
 
 ### Distribution, adoption, skills, and host integration
 
 - **Further skills and workflows.** `ctxfold-init` packages one repeated procedure: adoption.
   Which other repeated procedures merit a skill, whether workflows earn a separate form, and
-  where either should be distributed remain open.
+  where either should be distributed remain open. MCP/tool capabilities may have different
+  authority, discovery and runtime semantics again; whether they ever belong beside skills or
+  workflows is deferred until use provides evidence.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
   files, performs adoption, and can explicitly replace their managed blocks while preserving an
@@ -67,7 +87,8 @@ hides its weaknesses.
 - **Automating the loop.** `0013` runs its last step by hand: a person reads accumulated
   problems and decides what recurs. `.agents/learning/` is unbuilt, and whether anything should
   perform that step is undecided — it would have to hold candidate lessons without becoming a
-  second place where rules live.
+  second place where rules live. A disposable summary-and-reference view could avoid owning
+  candidate state, but it has not shown value beyond the task archive and this live list.
 
 ## Open questions about the model
 
@@ -79,20 +100,17 @@ hides its weaknesses.
   review without promoting anything automatically. It is unknown whether a separate fold
   proposal would make that judgment inspectable or merely restate the task's Outcome and final
   diff.
-- **Should `INDEX.md` show what a task is blocked by?** `0025` puts `## Blocked by` in the task
-  file and nowhere else, so finding what is blocked means opening every active task. That is
-  affordable at three concurrent tasks and not at thirty. Adding a column changes the shipped
-  index format for every installation, including the ones that never run two tasks at once.
+- **How should agents find blocked work at scale?** `0025` puts `## Blocked by` in the task file,
+  so finding what is blocked means opening every unfinished task. That is affordable at three
+  concurrent tasks and not at thirty. A future read-only task-query skill could expose blockers,
+  but its contract has not been designed.
 - **When is a task package warranted?** The rules describe how to start a task but never say
   what is too small to need one.
 - **How does a task split when it grows mid-flight?** The slug is fixed identity once work
   starts, so a task that turns out to be two has no defined way to become two.
-- **How much does index-based navigation earn?** A cold agent found its task by searching the
-  tree, reading the index last, where it changed nothing. Well-named, self-sufficient files
-  did the work. Whether the index is worth maintaining by hand is genuinely unclear.
-- **Should other derived views follow the index's rules?** Only one derived view exists. If
-  more appear, whether ordering and regeneration are general properties or decided per view is
-  undecided.
+- **Should derived views share lifecycle rules?** The task index was removed rather than made a
+  precedent. If other derived views appear, whether ordering and regeneration are general
+  properties or decided per view is still undecided.
 
 ### Context selection and knowledge boundaries
 
@@ -127,7 +145,12 @@ hides its weaknesses.
   most durable intent, decisions, specifications and tests remain project knowledge under `0005`.
   Task context is currently temporary working state inside the agent layer, not a third source of
   truth. It is unknown whether distinguishing project, agent and task context more explicitly
-  prevents ownership mistakes or merely gives the existing boundary more names.
+  prevents ownership mistakes or merely gives the existing boundary more names. One proposed
+  model instead treats `.agents/` as a governed namespace: its entry point routes by goal, each
+  recognized sublayer has a portable contract, and context-fold may own that contract without
+  owning every project- or tool-installed file below it. Whether that is compatible with `0018`
+  and `0026`, how unknown extensions coexist, and which concerns deserve physical sublayers are
+  unresolved.
 
 ### Decisions, identity, and traceability
 
@@ -167,6 +190,11 @@ hides its weaknesses.
   tools, avoided unrelated files, recovered from failure and stopped at the right boundary.
   Context-fold has evidence for structural checks, but none yet that these agent behaviors can be
   evaluated portably without depending on a particular runtime.
+- **Does verification need its own agent sublayer?** Project tests, task acceptance and the final
+  check already have owners. A separate contract might describe portable agent evals, executable
+  gates or evidence references, while raw host execution remains external or disposable. It is
+  unknown whether any information is left for that sublayer to own, or whether a verification
+  index would only duplicate project checks and task context.
 - **Which observable execution facts should survive a run?** `0006` keeps execution history out
   of task packages, and `0014` rejects raw transcripts as a second source of truth. Recording
   context inputs, tool schemas, tool calls and results, compaction, verification events and the
@@ -204,7 +232,16 @@ hides its weaknesses.
 - **Should an adopter's installation be checkable?** This repository verifies that its installed
   managed blocks match the distribution while permitting additive suffixes. An adopter gets no
   such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not.
+  indistinguishable from one that did not. A governed set of sublayers would also have to
+  distinguish missing or malformed contracts, unknown extensions, independently owned contents
+  and intentional forks. What can be diagnosed or repaired without overwriting user or tool state,
+  and which semantic boundary violations remain review judgments, are undecided.
+- **Should skills become a governed agent sublayer?** `.agents/skills/` currently belongs to
+  whatever installed each package, and `0034` exposes it to one host without changing that
+  ownership. A portable directory contract could explain discovery, invocation and authority while
+  preserving independently owned skills. It is unknown whether one contract can cover
+  project-authored, third-party and context-fold-installed skills without adopting an installer or
+  skill format as canonical.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is
@@ -235,6 +272,15 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
+- **Should adoption assess project-layer readiness?** Context-fold can prescribe the agent
+  structure it installs but cannot assume that project intent, decisions, documentation,
+  verification or reusable agent procedures are authoritative and discoverable. One proposal is
+  to classify those five capabilities as established, partial, absent, ambiguous or not
+  applicable, reference established sources from agent context, and create separate planned tasks
+  for applicable gaps with recommendations rather than mandatory paths. Whether assessment belongs
+  in adoption, how repeat runs avoid duplicate or unwanted tasks, and what evidence justifies each
+  classification are unresolved. Operations, security, data, release and integrations are possible
+  future assessment categories, not part of the initial proposal.
 - **How should outcome and context economy be measured?** Success, human intervention, retries,
   tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
   such as context precision and context sufficiency are closer to the project's purpose, but both
@@ -300,12 +346,6 @@ Found by using them. Each is a defect with evidence, not a hypothetical.
   passed four green runs. Turning the rule on fails on archived task packages, which are history
   and should not be rewritten to satisfy a rule added afterwards, so the decision is whether the
   check exempts `archive/` — not whether to flip a flag.
-- **`INDEX.md`'s header states rules but cannot be upgraded or checked.** `0021` moved
-  `INDEX.md` out of `templates/agents/` because its rows are the installation's own, and the
-  identity check follows that boundary. Its header is not the installation's own — it restates
-  the precedence rule — so a correction to that rule reaches new adopters and no existing one,
-  and nothing detects when a shipped header and an installed one diverge. Either the header
-  carries no rules, or something has to bind it.
 - **Nothing checks a record against itself.** `0007`'s Decision ordered approval before
   archival while two of its Consequences described review after it. The contradiction survived
   acceptance, five citations by later records, and every check, because checks read structure and

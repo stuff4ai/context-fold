@@ -3,10 +3,10 @@
 ## Base state
 
 - Initial base: `d7e4bd442317d15009a1f24b372e3b846465e87d` (`main`).
-- PR #39, `feat/cross-stack-handoff`, is concurrent and owns the shared sections named in
-  `task.md`. Its final disposition is an integration dependency, not a blocker for the rest of
-  this task.
-- Final integration base: pending PR #39's merge or closure.
+- PR #39, `feat/cross-stack-handoff`, was concurrent and owned the shared sections named in
+  `task.md`. It merged as `14cfe724c52c75fc86c8e7d8c01fd8eb42b36bd7`.
+- Final integration base: `b49f6f0fdced571909f0aead2da767b52e6f9a0c` (`origin/main` after
+  PRs #39 and #40).
 
 ## References
 
