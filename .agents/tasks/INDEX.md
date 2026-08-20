@@ -6,7 +6,9 @@ whatever `task.md` says, and one that is not is unfinished whatever this table s
 
 ## Active
 
-None.
+| Task | Status | Objective |
+| --- | --- | --- |
+| [cross-stack-handoff](cross-stack-handoff/task.md) | active | Let two agent stacks coordinate through a file in the task package instead of a live channel |
 
 ## Archive
 
