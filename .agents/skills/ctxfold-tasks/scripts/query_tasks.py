@@ -4,10 +4,9 @@
 
 """Discover context-fold task packages across a repository and its registered worktrees.
 
-Reads task frontmatter directly; it is not a cache and never writes anything. The frontmatter
-contract mirrors decision 0037 (`status`/`objective`, strict LF frontmatter, folded objective) so
-that this script and the repository's own convention checks can never quietly disagree about what
-counts as a valid task package.
+Reads task frontmatter directly; it is not a cache and never writes anything. A task package's
+`task.md` carries its lifecycle metadata as strict two-key frontmatter — `status` and a folded
+`objective` — with no derived index and no other supported format.
 
 Usage: query_tasks.py [unfinished|archive|all]
 
@@ -60,11 +59,11 @@ def find_repo_root(start: Path) -> Path:
 
 
 def decode_task_md(text: str) -> tuple[str, str, str]:
-    """Strict task frontmatter plus title: mirrors decision 0037's `status`/`objective` contract.
+    """Strict task frontmatter plus title: `status`, a folded `objective`, nothing else.
 
     Returns (status, objective, title); raises ValueError on anything noncanonical. Only the
-    frontmatter-and-title prefix matters here — this is a discovery tool, not the certification
-    `tests/test_conventions.py` already owns for the repository's accepted task packages.
+    frontmatter-and-title prefix matters here — this is a discovery tool, not a certifier of
+    whatever else a task package might contain.
     """
     match = TASK_FRONTMATTER.match(text)
     if not match:

@@ -104,3 +104,16 @@ open format this project's skills are meant to follow; the script moved to
 `scripts/query_tasks.py`, and `license`/`compatibility` frontmatter fields were added to match
 the specification. Assumed the initial structure was a reasonable local convention without
 checking it against the format's own specification first.
+
+### A shipped docstring named this repository's own decision number and test file
+
+`scripts/query_tasks.py`'s module and `decode_task_md` docstrings said the frontmatter contract
+"mirrors decision 0037" and that certification was "the job `tests/test_conventions.py` already
+owns" — true of this repository, but this skill directory is what gets copied into a different
+project, which has neither that decision record nor that test file. Assumed a reference the
+skill's own home repository would recognize was harmless documentation; it is instead exactly
+the kind of repo-specific context a distributed skill must not carry — only the approaches and
+instructions built from that experience travel, not the artifacts that produced them. Fixed by
+describing the frontmatter contract directly (strict two-key `status`/`objective` frontmatter,
+folded objective) instead of pointing at this repository's own record and test suite. A fresh
+verifier confirmed no other repo-specific reference remained in the shipped skill.
