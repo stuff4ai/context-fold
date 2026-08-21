@@ -7,6 +7,8 @@ description: >
   logical task observed in more than one checkout.
   Trigger: an agent needs to find unfinished or archived context-fold tasks, including work
   in progress in another worktree, before starting or coordinating work.
+license: Apache-2.0
+compatibility: Requires Python 3.10+ (stdlib only)
 ---
 
 # Query context-fold tasks
@@ -16,11 +18,11 @@ directly, the way `.agents/tasks/AGENTS.md` describes.
 
 ## What to run
 
-`query_tasks.py`, beside this file, is the whole implementation — stdlib-only, nothing to
-install. Run it from anywhere inside the repository you want to query:
+`scripts/query_tasks.py` is the whole implementation — stdlib-only, nothing to install. Run it
+from anywhere inside the repository you want to query:
 
 ```
-python3 <path-to-this-skill>/query_tasks.py [unfinished|archive|all]
+python3 <path-to-this-skill>/scripts/query_tasks.py [unfinished|archive|all]
 ```
 
 `unfinished` is the default and matches `planned` + `active` tasks. `archive` matches

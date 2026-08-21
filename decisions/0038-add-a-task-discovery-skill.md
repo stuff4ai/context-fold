@@ -20,14 +20,23 @@ agent working at the repository root unless something looks.
 
 An agent-only skill, `ctxfold-tasks`, ships at `skills/ctxfold-tasks/` and is installed at
 `.agents/skills/ctxfold-tasks/` for this repository's own use, matching `0034`'s Claude Code
-adapter that already exposes everything under `.agents/skills/`. It bundles one stdlib-only
-Python script, `query_tasks.py`, that:
+adapter that already exposes everything under `.agents/skills/`. Its layout and frontmatter
+follow the [Agent Skills](https://agentskills.io/specification) open format: the bundled
+stdlib-only Python helper lives at `scripts/query_tasks.py` rather than beside `SKILL.md`, and
+the frontmatter declares `license: Apache-2.0` and `compatibility: Requires Python 3.10+
+(stdlib only)` alongside the required `name`/`description`.
+
+`query_tasks.py`:
 
 - Enumerates direct children of `.agents/tasks/` other than `archive/` as unfinished packages,
   and `.agents/tasks/archive/*` as archived ones, decoding `status`/`objective` with the exact
-  frontmatter contract `0037` defines. A package that fails to decode is excluded from the result
-  and reported as a `malformed_task` diagnostic naming its path and the problem, rather than
-  failing the whole query.
+  frontmatter contract `0037` defines. It reads only the frontmatter-and-title prefix of
+  `task.md`; it does not also detect the pre-`0037` legacy heading format the way
+  `tests/test_conventions.py` does, because there is no legacy parser to guard against — `0037`
+  already means no accepted task.md can have that shape, and re-detecting a format this project
+  does not support is not this discovery tool's job. A package that fails to decode is excluded
+  from the result and reported as a `malformed_task` diagnostic naming its path and the problem,
+  rather than failing the whole query.
 - Also scans every `.agents/worktrees/*` directory as a registered nested checkout, repeating
   discovery against that checkout's own `.agents/tasks/`. A worktree directory with no
   `.agents/tasks` becomes a `missing_worktree` diagnostic, not a fatal error.

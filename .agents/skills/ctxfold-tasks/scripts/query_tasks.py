@@ -16,8 +16,6 @@ the query ran, even when diagnostics are present; a non-zero exit means the quer
 all (for example, invoked outside a context-fold repository).
 """
 
-from __future__ import annotations
-
 import json
 import re
 import sys
@@ -32,7 +30,6 @@ TASK_FRONTMATTER = re.compile(
     r"---\n\n"
     r"# (?P<title>\S(?:[^\n]*\S)?)\n"
 )
-LEGACY_HEADING = re.compile(r"^## (?:Status|Objective)\s*$", re.M)
 ARCHIVE_DIR = re.compile(r"^(?P<ts>\d{4}-\d{2}-\d{2}-\d{4})-(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)$")
 
 RANK = {"planned": 0, "active": 1, "completed": 2, "cancelled": 2}
@@ -65,13 +62,10 @@ def find_repo_root(start: Path) -> Path:
 def decode_task_md(text: str) -> tuple[str, str, str]:
     """Strict task frontmatter plus title: mirrors decision 0037's `status`/`objective` contract.
 
-    Returns (status, objective, title); raises ValueError on anything noncanonical.
+    Returns (status, objective, title); raises ValueError on anything noncanonical. Only the
+    frontmatter-and-title prefix matters here — this is a discovery tool, not the certification
+    `tests/test_conventions.py` already owns for the repository's accepted task packages.
     """
-    if "\r" in text:
-        raise ValueError("task.md must use LF line endings")
-    if LEGACY_HEADING.search(text):
-        raise ValueError("task.md contains a legacy metadata heading")
-
     match = TASK_FRONTMATTER.match(text)
     if not match:
         raise ValueError("task.md does not start with exact status/objective frontmatter")

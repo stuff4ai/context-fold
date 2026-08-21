@@ -49,14 +49,18 @@ keeping the agent query interface separate from future human tooling.
 handling, the JSON envelope, malformed-package behavior), and decision
 `0038-add-a-task-discovery-skill.md` records that design durably.
 
-`skills/ctxfold-tasks/` ships `SKILL.md` and a stdlib-only `query_tasks.py`, installed
-byte-identically at `.agents/skills/ctxfold-tasks/` (reachable through the existing
-`.claude/skills` symlink, `0034`). The helper scans `.agents/tasks/` (unfinished and archived)
-plus every registered `.agents/worktrees/*` checkout, groups observations by slug using status
-precedence `planned < active < completed/cancelled`, breaks a terminal-status tie by archive
-timestamp, and never drops a disagreeing observation — a same-status content conflict is flagged
-and every source is retained. It supports `unfinished` (default), `archive`, and `all` views and
-prints `{"tasks": [...], "diagnostics": [...]}`.
+`skills/ctxfold-tasks/` follows the [Agent Skills](https://agentskills.io/specification) format:
+`SKILL.md` (with `license` and `compatibility` frontmatter alongside the required
+`name`/`description`) and a stdlib-only `scripts/query_tasks.py`, installed byte-identically at
+`.agents/skills/ctxfold-tasks/` (reachable through the existing `.claude/skills` symlink,
+`0034`). The helper scans `.agents/tasks/` (unfinished and archived) plus every registered
+`.agents/worktrees/*` checkout, groups observations by slug using status precedence
+`planned < active < completed/cancelled`, breaks a terminal-status tie by archive timestamp, and
+never drops a disagreeing observation — a same-status content conflict is flagged and every
+source is retained. It supports `unfinished` (default), `archive`, and `all` views and prints
+`{"tasks": [...], "diagnostics": [...]}`. It decodes only the frontmatter-and-title prefix of
+`task.md`; unlike `tests/test_conventions.py`, it does not separately detect the pre-`0037`
+legacy heading format, since `0037` already means no accepted task.md can have that shape.
 
 `tests/test_ctxfold_tasks.py` behaviorally tests discovery, grouping, precedence, conflicts,
 tie-breaking, diagnostics, and the CLI's JSON/exit-code contract with synthetic fixtures, and
@@ -67,7 +71,7 @@ narrowed to note that general discovery now exists while `## Blocked by` exposur
 No human-facing CLI and no mutating lifecycle operation were added; both stay separate future
 work, as scoped.
 
-The full suite (`pytest tests/`, 586 tests) and `pymarkdown --config .pymarkdown.json scan -r
+The full suite (`pytest tests/`, 587 tests) and `pymarkdown --config .pymarkdown.json scan -r
 --respect-gitignore .` pass at the finished state.
 
 ## Approval
@@ -78,9 +82,25 @@ Human.
 
 ### Importing the skill script for tests wrote `__pycache__` into the shipped skill
 
-`tests/test_ctxfold_tasks.py` loads `skills/ctxfold-tasks/query_tasks.py` via
-`importlib.util`. The first run left `skills/ctxfold-tasks/__pycache__/` on disk, which failed
-`test_skill_ships_no_stray_files` — a skill directory is what an installer copies, and Python's
-default bytecode cache is not something intended to ship. Assumed this only mattered for files an
-agent might leave behind by hand; it also happens automatically on ordinary test collection.
-Fixed by setting `sys.dont_write_bytecode = True` around the import in the test module.
+`tests/test_ctxfold_tasks.py` loads the skill's script via `importlib.util`. The first run left
+a `__pycache__/` directory on disk next to it, which failed `test_skill_ships_no_stray_files` —
+a skill directory is what an installer copies, and Python's default bytecode cache is not
+something intended to ship. Assumed this only mattered for files an agent might leave behind by
+hand; it also happens automatically on ordinary test collection. Fixed by setting
+`sys.dont_write_bytecode = True` around the import in the test module.
+
+### The first version carried unneeded legacy-format and layout choices
+
+Review feedback after the PR opened caught two things the initial version got wrong. First,
+`query_tasks.py` special-cased the pre-`0037` `## Status`/`## Objective` heading format —
+detecting and rejecting it with its own dedicated check — even though `0037` already means no
+accepted task.md in this project can have that shape; a discovery tool re-implementing detection
+for a format the project does not support was unnecessary weight, and the check was removed
+along with `from __future__ import annotations` (itself a mechanism for supporting older Python
+than the script actually needs) in favor of an honest `compatibility: Requires Python 3.10+`
+frontmatter field. Second, the skill's layout put its bundled script beside `SKILL.md` instead of
+under `scripts/`, which does not match the [Agent Skills](https://agentskills.io/specification)
+open format this project's skills are meant to follow; the script moved to
+`scripts/query_tasks.py`, and `license`/`compatibility` frontmatter fields were added to match
+the specification. Assumed the initial structure was a reasonable local convention without
+checking it against the format's own specification first.

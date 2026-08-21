@@ -4,9 +4,9 @@
 """Behavioral tests for the bundled `ctxfold-tasks` query helper.
 
 `tests/test_conventions.py` checks that this repository's task packages are well-formed; this
-file checks that `skills/ctxfold-tasks/query_tasks.py` discovers, groups, and reports on task
-packages correctly, including packages this repository does not currently have (a conflict, a
-terminal-status tie, a malformed package, a missing worktree).
+file checks that `skills/ctxfold-tasks/scripts/query_tasks.py` discovers, groups, and reports on
+task packages correctly, including packages this repository does not currently have (a conflict,
+a terminal-status tie, a malformed package, a missing worktree).
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ import pytest
 from test_conventions import task_metadata
 
 ROOT = Path(__file__).resolve().parent.parent
-SCRIPT = ROOT / "skills" / "ctxfold-tasks" / "query_tasks.py"
+SCRIPT = ROOT / "skills" / "ctxfold-tasks" / "scripts" / "query_tasks.py"
 
 _dont_write_bytecode = sys.dont_write_bytecode
 sys.dont_write_bytecode = True  # importing from skills/ must not leave __pycache__ behind there
@@ -73,7 +73,6 @@ def _write_archived_task(
         "---\r\nstatus: active\r\nobjective: >-\r\n  Work.\r\n---\r\n\r\n# Case\r\n",
         "---\nstatus: active\nobjective: >-\n  Work.\n---\n# Case\n",
         "---\nstatus: active\nobjective: >-\n  Work.\n---\n\nCase\n",
-        "---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n\n## Status\n\nactive\n",
     ],
 )
 def test_decode_task_md_matches_task_metadata_acceptance(text: str) -> None:
@@ -98,6 +97,17 @@ def test_decode_task_md_matches_task_metadata_acceptance(text: str) -> None:
 def test_decode_task_md_extracts_title() -> None:
     text = "---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# A title line\n"
     assert query_tasks.decode_task_md(text) == ("active", "Work.", "A title line")
+
+
+def test_decode_task_md_only_inspects_the_frontmatter_and_title_prefix() -> None:
+    """Unlike `task_metadata`, this is a discovery tool, not a whole-document certifier.
+
+    `tests/test_conventions.py` already rejects a legacy `## Status`/`## Objective` heading
+    anywhere in an accepted task.md; this decoder only needs the frontmatter and title it reads
+    from, so trailing content — legacy or otherwise — does not change the decoded result.
+    """
+    text = "---\nstatus: active\nobjective: >-\n  Work.\n---\n\n# Case\n\n## Status\n\nactive\n"
+    assert query_tasks.decode_task_md(text) == ("active", "Work.", "Case")
 
 
 # --- Discovery and grouping -------------------------------------------------------------
