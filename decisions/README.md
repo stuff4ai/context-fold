@@ -48,3 +48,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0035 | [Manage portable rules as replaceable blocks](0035-manage-portable-rules-as-replaceable-blocks.md) | Accepted |
 | 0036 | [Record a cross-stack handoff in the task package](0036-record-cross-stack-handoff.md) | Accepted |
 | 0037 | [Replace the task index with frontmatter](0037-replace-task-index-with-frontmatter.md) | Accepted |
+| 0038 | [Add a task discovery skill](0038-add-a-task-discovery-skill.md) | Accepted |
