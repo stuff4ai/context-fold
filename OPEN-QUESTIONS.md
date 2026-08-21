@@ -100,10 +100,11 @@ hides its weaknesses.
   review without promoting anything automatically. It is unknown whether a separate fold
   proposal would make that judgment inspectable or merely restate the task's Outcome and final
   diff.
-- **How should agents find blocked work at scale?** `0025` puts `## Blocked by` in the task file,
-  so finding what is blocked means opening every unfinished task. That is affordable at three
-  concurrent tasks and not at thirty. A future read-only task-query skill could expose blockers,
-  but its contract has not been designed.
+- **How should agents find which blocked task is waiting on what, at scale?** `0025` puts
+  `## Blocked by` in the task file. `0038`'s `ctxfold-tasks` skill now gives agents cross-worktree
+  task discovery, but it decodes only `status`/`objective`, not `## Blocked by` itself — finding
+  what a task is waiting on still means opening it. Whether that belongs in the same skill's
+  contract or a separate one is undecided.
 - **When is a task package warranted?** The rules describe how to start a task but never say
   what is too small to need one.
 - **How does a task split when it grows mid-flight?** The slug is fixed identity once work

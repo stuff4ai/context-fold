@@ -9,6 +9,10 @@
   `ctxfold-tasks` listing skill was separate from task-frontmatter work.
 - `.agents/tasks/archive/2026-08-20-2320-replace-task-index/task.md` — migration outcome that
   explicitly deferred agent query tooling and a supported human CLI.
+- `rfc.md` — the resolved proposal this task implements.
+- `decisions/0038-add-a-task-discovery-skill.md` — the durable record of the skill's contract.
+- `tests/test_ctxfold_tasks.py` — behavioral coverage of discovery, grouping, conflicts, and the
+  CLI surface, independent of `tests/test_conventions.py`'s general skill and frontmatter checks.
 
 ## Discussed direction
 
@@ -38,12 +42,10 @@
 
 ## Open questions
 
-- Which worktree registrations are in scope, and how should missing or inaccessible checkouts be
-  reported?
-- Should conflicting task bodies at the same highest status be an error, a warning with all sources,
-  or both depending on the requested view?
-- What exact JSON envelope and exit behavior should the skill expose to agents?
-- Which malformed task packages are omitted, surfaced as diagnostics, or fail the query?
+None remaining for this task. The four questions this section previously held — worktree
+registration scope, conflict handling, the JSON envelope, and malformed-package behavior — are
+answered in `rfc.md`'s Resolution and recorded durably in
+`decisions/0038-add-a-task-discovery-skill.md`.
 
 ## Not relevant
 
