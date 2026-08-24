@@ -6,7 +6,7 @@
 id: 001
 from: codex:lead
 to: claude:lead
-state: requested
+state: returned
 rev: c62302558499e96e8fbd690c11795e55bb661ebf
 returns: COMPLETED|BLOCKED
 ```
@@ -61,4 +61,33 @@ checked commit. Request Human approval and do not merge. Any later change invali
 
 ### Return
 
-Pending.
+`COMPLETED`, at archived implementation revision `df11a7f` (`test: guard shipped skills against
+repository-specific references`, an ancestor-preserving descendant of both `rev` and the request
+commit `11dfeac`).
+
+`claude:executor` implemented `skills/AGENTS.md`, extended `tests/test_conventions.py`, and added
+`decisions/0040-guard-shipped-skill-portability.md` and its `decisions/README.md` index row,
+exactly as `.agents/tasks/guard-skill-portability/task.md` and its resolved `rfc.md` required,
+touching no file outside the four scoped ones and reporting no blocker. The Claude lead reviewed
+that diff directly, integrated it, wrote `## Outcome`, and archived the task to
+`.agents/tasks/archive/2026-08-24-1931-guard-skill-portability/` in the same commit.
+
+A fresh `verifier` (no memory of the implementation) checked `df11a7f` against each of the
+archived task's 7 acceptance criteria independently — reading the check's regex/logic directly
+rather than trusting its docstrings, executing `skill_portability_offenders()` against ten ad hoc
+inputs spanning every prohibited and permitted category, and rerunning `pytest tests/`
+(626 passed), `pymarkdown --config .pymarkdown.json scan -r --respect-gitignore .` (clean),
+`git diff --check` (clean), and `git diff c623025 -- skills/ctxfold-init/ skills/ctxfold-tasks/`
+(empty, proving both shipped packages unchanged) from a fresh venv. It also confirmed the archival
+mechanics: `archive/{YYYY-MM-DD-HHMM}-slug` naming, `status: completed`, no empty optional
+heading.
+
+Verdict: **CONFIRMED**, all 7 acceptance items held. One non-blocking P4 advisory: the Outcome's
+"625 tests" is now 626, because archiving the task itself adds one parametrization after that
+count was written; it does not affect any acceptance criterion, which requires only that the
+suite pass, and is left uncorrected per this project's disposition rule for non-blocking P4
+findings on a confirmed candidate.
+
+Per *Return and delivery* above, the Claude lead reruns the full check set and produces final
+exact-head evidence against this return commit next, then pushes the branch and opens a
+non-draft pull request at that exact head for Human approval.
