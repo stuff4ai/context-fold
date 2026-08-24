@@ -1,5 +1,5 @@
 ---
-status: planned
+status: active
 objective: >-
   Decide whether to add a mechanical check that catches a shipped skill referencing this
   repository's own project-specific artifacts — and implement it if the decision is yes.
@@ -28,16 +28,16 @@ would have caught the original mistake or would catch a repeat of it.
 
 ## Scope
 
-- `tests/test_conventions.py` — whether and how to extend it to scan `skills/*/` content
-  (`SKILL.md`, any bundled scripts or reference files) for this-repository-specific references,
-  mirroring `test_portable_rules_carry_no_project_detail`'s approach.
+- `tests/test_conventions.py` — extend it to scan shipped `skills/*/` content (`SKILL.md`,
+  bundled scripts and reference files) for this-repository-specific references.
 - A precise, checkable definition of what counts as acceptable general content (the methodology's
   own name, generic layer paths any adopting project would have, such as `.agents/tasks/` or
   `.agents/worktrees/`) versus a leak (this repository's own decision numbers or `decisions/`
   paths, `tests/`, task slugs, or other artifacts that exist only because of this repository's own
   implementation).
-- Whether the rule belongs only in the check, or also as a stated authoring rule somewhere a
-  human or agent writing a new skill would read it before the check catches a mistake.
+- `skills/AGENTS.md` — state the same boundary where a human or agent writing a skill reads it
+  before the check catches a mistake.
+- A decision record for the selected portability boundary, enforcement and known limits.
 
 ## Out of scope
 
@@ -50,10 +50,34 @@ would have caught the original mistake or would catch a repeat of it.
 
 ## Acceptance
 
-1. A decision, recorded: whether a mechanical check is added, and if not, why not.
-2. If added: the check runs in the existing `pytest` suite and CI, states its false-positive and
-   false-negative risk, and both currently shipped skills pass it without content changes beyond
-   what already landed fixing the incident this task cites.
+1. A resolved RFC and decision record require both author guidance and a mechanical check for
+   repository-specific references in shipped skills.
+2. `skills/AGENTS.md` tells skill authors to carry the reusable contract or procedure rather than
+   this repository's evidence, and distinguishes permitted product/generic adopter paths from
+   prohibited source-repository references.
+3. The existing `pytest` suite scans every UTF-8-decodable regular file inside each shipped skill
+   package. It reports that non-UTF-8 or binary content is outside the lexical check and states the
+   resulting false-negative boundary and the check's false-positive risk.
+4. The check rejects bare numbered decision references, decision-record filenames and
+   `decisions/` paths, any `tests/` or `test_*.py` reference, and concrete current or archived task
+   slugs or package identities. It permits the `context-fold` name and generic adopter paths such
+   as `.agents/tasks/` and `.agents/worktrees/`.
+5. Regression cases cover every prohibited category, including the escaped `decision 0037` and
+   `tests/test_conventions.py` strings, plus the permitted categories. No allowlist or suppression
+   mechanism is added; a legitimate collision requires a later reviewed rule or check change.
+6. Both current shipped packages pass unchanged from the handoff's contract revision, proven by
+   an exact Git comparison of `skills/ctxfold-init/` and `skills/ctxfold-tasks/`.
+7. The full `pytest tests/` suite, recursive `pymarkdown` scan and `git diff --check` pass at the
+   finished revision.
+
+## Problems
+
+### Cross-stack ownership and final-head ordering were initially underspecified
+
+The first handoff plan addressed Claude's executor directly and placed its return after the final
+check. The project rule says only a lead session writes or answers a handoff, and a return commit
+changes the head being checked. The contract now addresses `claude:lead`, makes its executor
+report-only, and requires the return-only commit before the final exact-head check and PR.
 
 ## Approval
 
