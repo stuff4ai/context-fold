@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0042](0042-require-merge-ready-decision-status.md) clarifies that a branch makes a
+record a proposal while its Status describes the state that branch would merge.
 
 ## Context
 
