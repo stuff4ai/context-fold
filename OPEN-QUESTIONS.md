@@ -38,11 +38,12 @@ hides its weaknesses.
 
 ### Context selection and knowledge boundaries
 
-- **Agent-only context.** `.agents/context/` is unbuilt, so the layer cannot quietly become a
-  second documentation tree. One proposed minimum is a portable contract plus a project-specific
-  index containing only short navigational summaries and references to authoritative project
-  artifacts. Whether that earns a distinct sublayer, how its summaries avoid drift, and whether
-  deleting it truly loses only convenience remain undecided.
+- **Agent-only context.** [`0044`](decisions/0044-defer-the-context-sublayer.md) kept
+  `.agents/context/` unbuilt: the recorded friction was a citation- and ownership-discipline
+  defect, not evidence that an agent failed to locate authoritative sources. Reopen only if an
+  agent demonstrably fails, or pays a recorded cost, for want of a navigation pointer; two or more
+  tasks independently build their own ad hoc project-navigation aid; or a later task finds it
+  cannot proceed by referencing project artifacts directly.
 - **Retrieval.** Whether archived context should be reachable through search or a protocol
   rather than by reading files.
 - **Automatic context selection.** Whether the layer should decide which context a task needs
