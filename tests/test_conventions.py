@@ -54,6 +54,11 @@ TASK_FRONTMATTER = re.compile(
 MANAGED_BEGIN = b"<!-- agent-layer:begin -->\n"
 MANAGED_END = b"<!-- agent-layer:end -->\n"
 MANAGED_MARKER_PREFIX = b"<!-- agent-layer:"
+SUBLAYER_CONTRACT_FIELDS = (
+    "purpose and routing; authority and source-of-truth boundary; contract ownership; "
+    "content ownership; lifecycle and deletion behavior; customization-suffix boundary; "
+    "and treatment of unknown extensions"
+)
 
 # [text](target) — not images, not autolinks.
 LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
@@ -503,28 +508,40 @@ def installed_layer_files() -> set[Path]:
         elif path.is_dir():
             found |= {p.relative_to(agents) for p in path.rglob("AGENTS.md")}
 
-    # `skills/` contains installed packages, some of which may carry their own `AGENTS.md`.
-    # Only the direct sublayer contract is layer-owned; never recurse into package contents.
-    skills_agents = agents / "skills" / "AGENTS.md"
-    if skills_agents.is_file():
-        found.add(skills_agents.relative_to(agents))
-
-    # `worktrees/` cannot use the `tasks`-style recursive glob: it also holds live worktree
-    # checkouts (0025), each a full nested copy of this repository with its own nested
-    # `AGENTS.md` files. `rglob` would descend into whichever happen to be checked out and
-    # break the set comparison depending on what work is in progress when the suite runs.
-    worktrees_agents = agents / "worktrees" / "AGENTS.md"
-    if worktrees_agents.is_file():
-        found.add(worktrees_agents.relative_to(agents))
+    # Other recognized sublayers may hold package-owned or disposable nested `AGENTS.md` files.
+    # Derive their direct contracts from the distribution instead of adding a hand-written case
+    # for every sublayer; never recurse into their independently owned contents.
+    for template in sorted(AGENT_TEMPLATES.glob("*/AGENTS.md")):
+        installed = agents / template.relative_to(AGENT_TEMPLATES)
+        if installed.is_file():
+            found.add(installed.relative_to(agents))
 
     return found
 
 
-def test_distribution_is_complete() -> None:
-    """A rule file installed but not shipped would reach no other repository.
+@pytest.mark.parametrize(
+    "document",
+    [
+        ROOT / "README.md",
+        ROOT / ".agents" / "AGENTS.md",
+        ARCHIVE / "2026-08-24-2124-define-agent-sublayer-model" / "rfc.md",
+        DECISIONS / "0041-define-governed-agent-sublayers.md",
+    ],
+    ids=lambda path: str(path.relative_to(ROOT)),
+)
+def test_sublayer_contract_fields_do_not_drift(document: Path) -> None:
+    """0041: every normative restatement uses the decision's canonical field vocabulary."""
+    prose = " ".join(document.read_text(encoding="utf-8").split())
+    assert SUBLAYER_CONTRACT_FIELDS in prose, (
+        f"{document.relative_to(ROOT)} drifts from the recognized-sublayer contract fields"
+    )
 
-    Compares `AGENTS.md` files only. The installation also holds task packages, which it
-    produced rather than received.
+
+def test_distribution_is_complete() -> None:
+    """Every contract shipped by the distribution is active in this installation.
+
+    Compares `AGENTS.md` files only. Direct sublayer contracts are derived from the shipped
+    templates; the installation also holds task packages, which it produced rather than received.
     """
     shipped = {p.relative_to(AGENT_TEMPLATES) for p in AGENT_TEMPLATES.rglob("AGENTS.md")}
     installed = installed_layer_files()

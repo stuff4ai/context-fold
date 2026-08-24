@@ -57,10 +57,10 @@ a second, drifting source of truth.
 ## Recognized sublayers
 
 `.agents/` is routed by goal. A recognized sublayer is a direct functional area with one managed
-`AGENTS.md` contract. That contract defines the area's purpose and routing, authority and
-source-of-truth boundary, contract owner, content owner, lifecycle and deletion behavior, customization
-suffix, and treatment of unknown extensions. The contract is portable; its contents may remain
-owned by the project, a tool, or another disposable workflow.
+`AGENTS.md` contract. Every contract covers the same fields: purpose and routing; authority and
+source-of-truth boundary; contract ownership; content ownership; lifecycle and deletion behavior;
+customization-suffix boundary; and treatment of unknown extensions. The contract is portable;
+its contents may remain owned by the project, a tool, or another disposable workflow.
 
 The initial model recognizes three areas:
 

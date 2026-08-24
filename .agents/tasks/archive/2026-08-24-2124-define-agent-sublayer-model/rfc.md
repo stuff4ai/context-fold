@@ -38,8 +38,9 @@ areas earn physical directories, remain owned by their downstream tasks.
 Adopt governed agent sublayers inside the shared `.agents/` namespace without claiming ownership
 of the namespace or of every file below it. A recognized sublayer is a direct `.agents/<name>/`
 functional area with one context-fold-managed `AGENTS.md` contract. The contract must state its
-purpose and routing, authority/source-of-truth boundary, contract owner, content owner,
-lifecycle/deletion behavior, customization-suffix boundary, and treatment of unknown extensions.
+required fields: purpose and routing; authority and source-of-truth boundary; contract ownership;
+content ownership; lifecycle and deletion behavior; customization-suffix boundary; and treatment
+of unknown extensions.
 The managed block is portable; an adopting project may append a non-conflicting suffix, and the
 update procedure preserves it byte-for-byte.
 

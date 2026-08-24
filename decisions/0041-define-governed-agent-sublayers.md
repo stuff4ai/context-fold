@@ -15,21 +15,24 @@ deletion test.
 
 ## Decision
 
-Treat `.agents/` as a governed namespace with recognized sublayers, without claiming ownership of
-the namespace or of every file below it. A recognized sublayer is a direct `.agents/<name>/`
-functional area with one portable, context-fold-managed `AGENTS.md` contract. Each contract
-defines purpose and routing, the authority/source-of-truth boundary, contract owner, content
-owner, lifecycle and deletion behavior, the project-customization suffix boundary, and the
-treatment of unknown extensions.
+Governance attaches to explicit contracts, not to the `.agents/` directory as a whole. A direct
+`.agents/<name>/` functional area becomes a recognized sublayer only through a reviewed decision
+that classifies it and a portable, context-fold-managed `AGENTS.md` contract shipped by the
+distribution. Mere presence under `.agents/` does not make an area recognized or layer-owned.
 
-The initial recognized sublayers are:
+Every recognized contract covers the same fields: purpose and routing; authority and
+source-of-truth boundary; contract ownership; content ownership; lifecycle and deletion behavior;
+customization-suffix boundary; and treatment of unknown extensions. Those fields separate the
+portable contract from the contents it governs, so context-fold can own a contract without
+claiming the packages, checkouts, or project additions beside it.
 
-- `tasks/`: the core lifecycle sublayer. Its contract and task packages are layer-owned;
-  `tasks/archive/` is internal archive structure, not another sublayer.
-- `skills/`: the interoperability sublayer. Its contract is layer-owned, while each installed
-  package remains owned by its author, installer, or project.
-- `worktrees/`: the disposable-operation sublayer. Its contract is portable, while the adopting
-  project's workflow owns the disposable checkouts.
+The initial registry is:
+
+| Sublayer | Role | Contract owner | Content owner and lifecycle |
+| --- | --- | --- | --- |
+| `tasks/` | Core lifecycle | context-fold | context-fold owns task packages; `tasks/archive/` is internal structure |
+| `skills/` | Interoperability | context-fold | each author, installer, or project owns its packages |
+| `worktrees/` | Disposable operation | context-fold | the adopting project owns disposable checkouts and workflow |
 
 `context/` and `verification/` remain candidates and are not created by this decision. Any other
 direct child is an unrecognized extension: preserve it, do not classify or overwrite it, and
@@ -49,7 +52,7 @@ This record narrows the classification and distribution language in
 [0021](0021-separate-what-upgrades-from-what-diverges.md),
 [0025](0025-run-tasks-in-parallel.md), [0026](0026-map-what-is-under-the-agents-directory.md),
 [0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md),
-[0034](0034-extend-the-claude-code-adapter-to-skills.md), and
+[0034](0034-extend-the-claude-code-adapter-to-skills.md),
 [0035](0035-manage-portable-rules-as-replaceable-blocks.md), and
 [0040](0040-guard-shipped-skill-portability.md). Their project-truth boundary,
 ownership of package contents, deletion conclusions, vendor neutrality, distribution identity,

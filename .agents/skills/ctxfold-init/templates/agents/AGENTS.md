@@ -73,8 +73,9 @@ produces project knowledge, write it to where it belongs and link back.
 
 `.agents/` is a shared namespace, not a claim over every direct child. A recognized sublayer is a
 direct functional area with its own managed `AGENTS.md` contract. Read the contract nearest to the
-goal before reading its contents; it names the purpose, routing, authority boundary, contract and
-content owners, lifecycle, suffix boundary, and treatment of unknown extensions.
+goal before reading its contents. Every contract covers the same fields: purpose and routing;
+authority and source-of-truth boundary; contract ownership; content ownership; lifecycle and
+deletion behavior; customization-suffix boundary; and treatment of unknown extensions.
 
 **`tasks/`** is the recognized core lifecycle sublayer. Read `tasks/AGENTS.md` first for task
 packages, coordination, and archive rules. `tasks/archive/` is internal archive structure, not a

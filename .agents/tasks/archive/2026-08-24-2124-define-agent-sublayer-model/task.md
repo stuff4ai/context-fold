@@ -62,12 +62,14 @@ agree with that model.
 The distribution adds the minimal portable `skills/AGENTS.md` contract and installs, preflights,
 updates, and checks five managed targets. The complete shipped `ctxfold-init` package matches its
 installed copy, and every source, installed-template, and active managed block is identical while
-project suffixes remain outside the replaceable block.
+project suffixes remain outside the replaceable block. Review corrections also make direct
+sublayer discovery data-driven and mechanically keep the contract-field vocabulary aligned across
+the decision, resolved RFC, README, and portable router.
 
 At ETU Forms head `d0f902a`, a paired disposable scenario installed the five contracts, task zero,
 root pointer, and ignore rules; replaced a valid stale skills block; preserved the project suffix
 and unknown-extension hashes; created no PRD or architecture artifact; and restored the checkout to
-the same clean head with the original `.gitignore` hash. The final repository state passes all 636
+the same clean head with the original `.gitignore` hash. The final repository state passes all 640
 tests, the configured recursive Markdown scan, `git diff --check`, and parity checks.
 
 ## Problems
@@ -104,6 +106,14 @@ tests, the configured recursive Markdown scan, `git diff --check`, and parity ch
 - A final decision-corpus sweep found that `0025` never recorded `0032` reversing its old claim that
   `worktrees/AGENTS.md` was unshipped and unchecked. Its Status now records that earlier narrowing;
   `0041`'s separate recognized-sublayer narrowing remains unchanged.
+- Human review found that the root worktree rule still called the workflow outside the layer even
+  after `0041` made its portable contract layer-owned. The project rule now distinguishes the
+  layer-owned contract from project-owned checkouts and Git workflow.
+- The same review found a duplicated conjunction in proposed decision `0041`, hand-written direct
+  contract discovery in the convention test, near-verbatim RFC/decision structure, and four
+  unchecked restatements of the contract fields. The proposed decision now adds explicit
+  recognition and registry semantics, the test derives direct contracts from shipped templates,
+  and a canonical-vocabulary check guards the four normative restatements.
 
 ## Approval
 

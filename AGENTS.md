@@ -23,9 +23,9 @@ are recommended anywhere else.
 - Work on more than one task at a time in Git worktrees under `.agents/worktrees/{task-slug}`,
   which Git ignores. They are checkouts, not context. See
   [`.agents/worktrees/AGENTS.md`](.agents/worktrees/AGENTS.md), which is the one tracked file
-  there. This is this project's workflow, not part of the layer — `.agents/tasks/AGENTS.md` says
-  how concurrent tasks share files and declare what blocks them, and names no version control
-  system.
+  there. That portable contract is part of the layer; the checkouts and Git workflow are
+  project-owned. `.agents/tasks/AGENTS.md` says how concurrent tasks share files and declare what
+  blocks them, and names no version control system.
 
 ## Decisions
 
