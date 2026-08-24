@@ -267,6 +267,104 @@ def test_installed_skill_matches_the_shipped_one(shipped: Path, installed: Path)
     assert not differing, f"{shipped.name}: installed copy differs in {differing}"
 
 
+DECISION_REFERENCE = re.compile(r"\bdecision\s+\d{4}\b", re.IGNORECASE)
+DECISION_FILENAME = re.compile(r"\b\d{4}-[a-z0-9-]+\.md\b")
+TEST_FILENAME = re.compile(r"\btest_[a-z0-9_]+\.py\b")
+
+
+def skill_portability_slugs() -> set[str]:
+    """Every concrete task slug or package identity this repository's own artifacts carry.
+
+    Same construction as `test_portable_rules_carry_no_project_detail`: the archived slug is
+    the part of the archive directory name after its timestamp, and active tasks are named by
+    slug directly.
+    """
+    return {p.name.split("-", 4)[-1] for p in archived_tasks()} | {p.name for p in active_tasks()}
+
+
+def skill_portability_offenders(text: str, slugs: set[str]) -> list[str]:
+    """Repository-specific references a shipped skill file must not carry.
+
+    Lexical only: it matches shapes and substrings, not meaning, so a paraphrase of the same
+    fact would slip through. It intentionally does not flag `context-fold` or generic
+    adopter-layer paths such as `.agents/tasks/` or `.agents/worktrees/` — those describe any
+    installation, not this source repository.
+    """
+    offenders = []
+    if DECISION_REFERENCE.search(text):
+        offenders.append("a bare numbered decision reference")
+    if DECISION_FILENAME.search(text):
+        offenders.append("a decision record filename")
+    if "decisions/" in text:
+        offenders.append("a path into this repository's decisions")
+    if "tests/" in text:
+        offenders.append("a path into this repository's tests")
+    if TEST_FILENAME.search(text):
+        offenders.append("a test_*.py filename")
+    for slug in slugs:
+        if slug in text:
+            offenders.append(f"the task slug or package identity {slug!r}")
+    return offenders
+
+
+@pytest.mark.parametrize("skill", skills(), ids=lambda p: p.name)
+def test_shipped_skill_carries_no_project_detail(skill: Path) -> None:
+    """0040: a shipped skill is copied into a repository with none of this one's evidence.
+
+    Every regular file under the skill package that decodes as UTF-8 is scanned; a file that
+    raises `UnicodeDecodeError` is skipped, which is the check's documented false-negative
+    boundary — binary or otherwise non-UTF-8 content is out of scope, and a paraphrase of a
+    forbidden reference can still slip past a lexical match. The matching is broad on purpose,
+    which is also its false-positive risk: a future legitimate use of one of these shapes would
+    be flagged too, and this first version has no allowlist to silence it.
+    """
+    slugs = skill_portability_slugs()
+    offenders: list[str] = []
+    for path in sorted(p for p in skill.rglob("*") if p.is_file()):
+        try:
+            text = path.read_bytes().decode("utf-8")
+        except UnicodeDecodeError:
+            continue
+        for category in skill_portability_offenders(text, slugs):
+            offenders.append(f"{path.relative_to(skill)}: {category}")
+    assert not offenders, f"{skill.name} ships repository-specific content: {offenders}"
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("this references decision 0037 directly", "a bare numbered decision reference"),
+        ("see DECISION 0037 for background", "a bare numbered decision reference"),
+        (
+            "0037-replace-task-index-with-frontmatter.md has the detail",
+            "a decision record filename",
+        ),
+        ("read decisions/0037-replace-task-index-with-frontmatter.md", "a path into this repository's decisions"),
+        ("run tests/test_conventions.py to check", "a path into this repository's tests"),
+        ("see tests/test_conventions.py", "a test_*.py filename"),
+        ("guard-skill-portability is the task slug", "the task slug or package identity"),
+    ],
+)
+def test_skill_portability_offenders_flags_each_prohibited_category(text: str, expected: str) -> None:
+    """Regression fixtures for the exact incident: `decision 0037` and the test file it named."""
+    offenders = skill_portability_offenders(text, {"guard-skill-portability"})
+    assert any(expected in o for o in offenders), f"{text!r} did not flag {expected!r}: {offenders}"
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "context-fold is the name of the methodology",
+        "installs into .agents/tasks/ in the adopting repository",
+        "work happens in .agents/worktrees/ during development",
+    ],
+)
+def test_skill_portability_offenders_permits_product_and_generic_paths(text: str) -> None:
+    """The product name and generic adopter-layer paths are not repository evidence."""
+    offenders = skill_portability_offenders(text, {"guard-skill-portability"})
+    assert not offenders, f"{text!r} was wrongly flagged: {offenders}"
+
+
 # --- Dogfooding -----------------------------------------------------------------------
 
 

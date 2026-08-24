@@ -50,3 +50,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0037 | [Replace the task index with frontmatter](0037-replace-task-index-with-frontmatter.md) | Accepted |
 | 0038 | [Add a task discovery skill](0038-add-a-task-discovery-skill.md) | Accepted |
 | 0039 | [Confirm proactive task creation and hold unjudged findings in context.md](0039-confirm-proactive-task-creation-and-hold-unjudged-findings.md) | Accepted |
+| 0040 | [Guard shipped-skill portability](0040-guard-shipped-skill-portability.md) | Accepted |

@@ -22,6 +22,11 @@
   is a second reader of shipped skill content, not a second owner; relevant context for scoping
   this task to `skills/*/` rather than also `.agents/skills/*/` (which is meant to mirror
   `skills/*/` byte-for-byte, so a check against the shipped copy already covers it).
+- `rfc.md` — resolves the portability boundary, broad lexical enforcement and author guidance.
+- `plan.md` — defines the cross-stack implementation, verification and delivery sequence.
+- `decisions/0040-guard-shipped-skill-portability.md` — the provisional durable record the
+  implementation will add.
+- `skills/AGENTS.md` — the project-owned author guidance the implementation will add.
 
 ## Not relevant
 
@@ -29,3 +34,9 @@
   and `formalize-skills-sublayer` own that.
 - Content-quality review of skills beyond the specific portability question — whether a skill is
   well-written is not this task's concern.
+
+## Base state
+
+- The task worktree starts from fetched `origin/main` at `1d3be58c1cc3bb22c4622cd1def3baf43a0dba49`.
+- A read-only scan found neither broad forbidden references nor current task-slug overlaps in
+  `skills/ctxfold-init/` or `skills/ctxfold-tasks/`; their contents should remain unchanged.
