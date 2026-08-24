@@ -149,6 +149,12 @@ An optional heading you have nothing to put under yet is left out, not kept empt
 task may still fill one in before it is done; one still empty at archival was declared and never
 used, and a mechanical check treats it that way.
 
+A planning phase your tool runs on its own — a scratch file, an ephemeral step tracker, anything
+living outside this package — produces a draft, not a durable record. Before implementation
+begins, fold whatever is worth keeping into `rfc.md`, when it settled a direction among
+alternatives, or `plan.md`, when it settled execution steps. Nothing durable stays only in a
+place a later session, or a different tool, can't read.
+
 ## Recording problems
 
 Append to `## Problems` in `task.md` **while working**, not at the end. A few lines per entry:
