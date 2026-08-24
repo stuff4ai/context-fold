@@ -19,7 +19,7 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0006 | [Organize work as task packages](0006-task-package-model.md) | Accepted |
 | 0007 | [Archive tasks before merge](0007-archive-before-merge.md) | Accepted |
 | 0008 | [Squash merge pull requests](0008-squash-merge-pull-requests.md) | Accepted |
-| 0009 | [Order the task index newest first](0009-order-task-index-newest-first.md) | Accepted |
+| 0009 | [Order the task index newest first](0009-order-task-index-newest-first.md) | Superseded by [0037](0037-replace-task-index-with-frontmatter.md) |
 | 0010 | [Record open questions in the project layer](0010-record-open-questions-in-project-layer.md) | Accepted |
 | 0011 | [Keep the model vendor-neutral](0011-keep-the-model-vendor-neutral.md) | Accepted |
 | 0012 | [Build the methodology before the tooling](0012-build-the-methodology-before-the-tooling.md) | Accepted |
@@ -52,3 +52,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0039 | [Confirm proactive task creation and hold unjudged findings in context.md](0039-confirm-proactive-task-creation-and-hold-unjudged-findings.md) | Accepted |
 | 0040 | [Guard shipped-skill portability](0040-guard-shipped-skill-portability.md) | Accepted |
 | 0041 | [Define governed agent sublayers](0041-define-governed-agent-sublayers.md) | Accepted |
+| 0042 | [Require merge-ready decision status](0042-require-merge-ready-decision-status.md) | Accepted |

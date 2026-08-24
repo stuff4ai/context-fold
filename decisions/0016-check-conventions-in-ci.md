@@ -7,6 +7,8 @@ distribution identity checks from whole installed files to their managed rule bl
 checking and the boundary between structural and semantic verification stand.
 [0037](0037-replace-task-index-with-frontmatter.md) replaces index and heading checks with strict
 task-frontmatter and directory/status checks.
+[0042](0042-require-merge-ready-decision-status.md) extends the checks to decision-status grammar,
+merge readiness, and semantic agreement between each record and the decision index.
 
 ## Context
 

@@ -41,6 +41,15 @@ PORTABLE = [
 
 ARCHIVE_DIR = re.compile(r"^\d{4}-\d{2}-\d{2}-\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 RECORD_FILE = re.compile(r"^(\d{4})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
+SUPERSEDED_STATUS = re.compile(
+    r"^Superseded by \[(?P<number>\d{4})\]"
+    r"\((?P<filename>\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*\.md)\)$"
+)
+DECISION_INDEX_ROW = re.compile(
+    r"^\| (?P<number>\d{4}) \| \[[^]]+\]"
+    r"\((?P<filename>\d{4}-[a-z0-9]+(?:-[a-z0-9]+)*\.md)\) "
+    r"\| (?P<status>.+) \|$"
+)
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RFC_FRONTMATTER = re.compile(r"\A---\nstatus: (draft|resolved)\n---\n")
 TASK_FRONTMATTER = re.compile(
@@ -117,6 +126,48 @@ def records() -> list[Path]:
         for p in DECISIONS.glob("*.md")
         if p.name != "README.md" and not p.name.startswith(".")
     )
+
+
+def decision_status(value: str) -> tuple[str, str | None]:
+    """0042: normalize a record or index status to its semantic state and target."""
+    normalized = " ".join(value.split())
+    if normalized == "Proposed":
+        return "Proposed", None
+    if normalized == "Accepted" or normalized.startswith("Accepted. "):
+        return "Accepted", None
+
+    superseded = SUPERSEDED_STATUS.fullmatch(normalized)
+    if superseded:
+        number = superseded.group("number")
+        filename = superseded.group("filename")
+        if filename[:4] != number:
+            raise ValueError("supersession link text and filename number disagree")
+        return "Superseded", filename
+
+    raise ValueError(f"unrecognized decision status: {normalized!r}")
+
+
+def merge_ready_decision_status(value: str) -> tuple[str, str | None]:
+    """0042: reject the valid drafting state once a record is ready for review."""
+    status = decision_status(value)
+    if status[0] == "Proposed":
+        raise ValueError("decision is still Proposed")
+    return status
+
+
+def decision_index_rows() -> dict[str, str]:
+    """0042: map each indexed decision filename to its displayed status cell."""
+    rows: dict[str, str] = {}
+    for line in DECISIONS_INDEX.read_text(encoding="utf-8").splitlines():
+        match = DECISION_INDEX_ROW.fullmatch(line)
+        if not match:
+            continue
+        number = match.group("number")
+        filename = match.group("filename")
+        assert filename[:4] == number, f"index row {number} points to {filename}"
+        assert filename not in rows, f"duplicate decision-index row for {filename}"
+        rows[filename] = match.group("status")
+    return rows
 
 
 def section(text: str, heading: str) -> str | None:
@@ -892,6 +943,67 @@ def test_record_has_required_sections(record: Path) -> None:
 
 
 @pytest.mark.parametrize("record", records(), ids=lambda p: p.name)
+def test_record_status_is_merge_ready(record: Path) -> None:
+    """0042: a branch is a proposal, but every reviewed record describes post-merge state."""
+    status = section(record.read_text(encoding="utf-8"), "Status")
+    assert status is not None
+    try:
+        merge_ready_decision_status(status)
+    except ValueError as error:
+        pytest.fail(f"{record.name}: {error}")
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        ("Proposed", ("Proposed", None)),
+        ("Accepted", ("Accepted", None)),
+        ("Accepted. Later narrowing remains here.", ("Accepted", None)),
+        (
+            "Superseded by [0037](0037-replace-task-index-with-frontmatter.md)",
+            ("Superseded", "0037-replace-task-index-with-frontmatter.md"),
+        ),
+    ],
+    ids=["proposed", "accepted", "accepted-with-note", "superseded"],
+)
+def test_decision_status_accepts_recognized_shapes(
+    value: str, expected: tuple[str, str | None]
+) -> None:
+    assert decision_status(value) == expected
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "Draft",
+        "Acceptedly",
+        "Proposed. Still discussing.",
+        "Superseded by 0037",
+        "Superseded by [0037](0038-other-record.md)",
+    ],
+    ids=["unknown", "accepted-prefix", "proposed-note", "unlinked", "target-mismatch"],
+)
+def test_decision_status_rejects_malformed_shapes(value: str) -> None:
+    with pytest.raises(ValueError, match="decision status|supersession"):
+        decision_status(value)
+
+
+def test_merge_ready_decision_status_rejects_proposed() -> None:
+    with pytest.raises(ValueError, match="still Proposed"):
+        merge_ready_decision_status("Proposed")
+
+
+def test_decision_status_distinguishes_supersession_targets() -> None:
+    record = decision_status(
+        "Superseded by [0037](0037-replace-task-index-with-frontmatter.md)"
+    )
+    index = decision_status(
+        "Superseded by [0040](0040-guard-shipped-skill-portability.md)"
+    )
+    assert record != index
+
+
+@pytest.mark.parametrize("record", records(), ids=lambda p: p.name)
 def test_record_filename_is_well_formed(record: Path) -> None:
     assert RECORD_FILE.match(record.name), (
         f"{record.name} does not match NNNN-slug.md"
@@ -913,6 +1025,22 @@ def test_decision_index_lists_every_record() -> None:
     assert listed == on_disk, (
         f"unlisted: {sorted(on_disk - listed)}; listed but absent: {sorted(listed - on_disk)}"
     )
+
+
+def test_decision_index_status_matches_every_record() -> None:
+    """0042: the index is derived; state and supersession target come from each record."""
+    indexed = decision_index_rows()
+    for record in records():
+        record_value = section(record.read_text(encoding="utf-8"), "Status")
+        assert record_value is not None
+        try:
+            record_status = decision_status(record_value)
+            index_status = decision_status(indexed[record.name])
+        except (KeyError, ValueError) as error:
+            pytest.fail(f"{record.name}: {error}")
+        assert index_status == record_status, (
+            f"{record.name}: record is {record_status}, index is {index_status}"
+        )
 
 
 # --- Portability (0005, 0011) ---------------------------------------------------------

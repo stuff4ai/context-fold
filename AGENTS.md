@@ -40,6 +40,11 @@ number is provisional. Two branches can reach for the same one; whichever merges
 and the other renumbers before merge. That is ordinary, not a violation of the rule above, which
 governs records that have landed.
 
+The branch makes a record a proposal; its `Status` describes what the record will be if that
+branch merges. A new record may say `Proposed` while it is being drafted, but it and the decision
+index must show the post-merge state before task archival and review. Approval covers that exact
+state — do not plan a status edit between approval and merge.
+
 ## Agent layer
 
 Agent operating context lives in `.agents/` — how work is organized, tracked, and finished
