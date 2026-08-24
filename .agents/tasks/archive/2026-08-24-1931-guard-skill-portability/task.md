@@ -1,5 +1,5 @@
 ---
-status: active
+status: completed
 objective: >-
   Decide whether to add a mechanical check that catches a shipped skill referencing this
   repository's own project-specific artifacts — and implement it if the decision is yes.
@@ -70,6 +70,42 @@ would have caught the original mistake or would catch a repeat of it.
 7. The full `pytest tests/` suite, recursive `pymarkdown` scan and `git diff --check` pass at the
    finished revision.
 
+## Outcome
+
+`rfc.md` resolves the portability boundary, and
+`decisions/0040-guard-shipped-skill-portability.md` records it durably: every UTF-8-decodable
+regular file under each `skills/*/` package is portable distribution content, may name
+`context-fold` and generic adopter-layer paths such as `.agents/tasks/` and
+`.agents/worktrees/`, and must not name this source repository's own decision references,
+`decisions/` paths, `tests/` paths or `test_*.py` filenames, or concrete task slugs.
+
+`skills/AGENTS.md` (new) states that boundary for an author to read before the check catches a
+mistake instead — what a shipped file may and may not say, and that the check is lexical rather
+than semantic.
+
+`tests/test_conventions.py` adds `skill_portability_offenders()`, a reusable scanner over five
+forbidden shapes (a bare `decision \d{4}` reference, a decision-record filename, a `decisions/`
+path, a `tests/` path or `test_*.py` filename, and any current or archived task slug), plus:
+`test_shipped_skill_carries_no_project_detail`, parametrized over every shipped skill package,
+walking every regular file and skipping any that fails to decode as UTF-8 (the documented
+false-negative boundary); `test_skill_portability_offenders_flags_each_prohibited_category`,
+regression fixtures for every forbidden shape including the literal `decision 0037` and
+`tests/test_conventions.py` strings from the original incident; and
+`test_skill_portability_offenders_permits_product_and_generic_paths`, confirming `context-fold`,
+`.agents/tasks/` and `.agents/worktrees/` produce no offenders. No allowlist or suppression
+mechanism was added.
+
+Both `skills/ctxfold-init/` and `skills/ctxfold-tasks/` are unchanged from the handoff's named
+`rev` (`c623025`), confirmed by an exact `git diff`; neither package triggered the new check.
+
+The full `pytest tests/` suite (625 tests, up from 621) and `pymarkdown --config .pymarkdown.json
+scan -r --respect-gitignore .` pass at the finished state, and `git diff --check` reports no
+whitespace errors.
+
+## Approval
+
+Human.
+
 ## Problems
 
 ### Cross-stack ownership and final-head ordering were initially underspecified
@@ -78,7 +114,3 @@ The first handoff plan addressed Claude's executor directly and placed its retur
 check. The project rule says only a lead session writes or answers a handoff, and a return commit
 changes the head being checked. The contract now addresses `claude:lead`, makes its executor
 report-only, and requires the return-only commit before the final exact-head check and PR.
-
-## Approval
-
-Human.
