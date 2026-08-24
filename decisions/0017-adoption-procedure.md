@@ -12,6 +12,8 @@ unchanged-copy rule after adoption: repeat runs replace managed blocks and prese
 suffixes. That adoption is a described procedure rather than an installer stands.
 [0037](0037-replace-task-index-with-frontmatter.md) removes the empty index from adoption and
 changes task zero to the canonical frontmatter schema.
+[0041](0041-define-governed-agent-sublayers.md) adds the recognized `skills/AGENTS.md` contract as
+the fifth portable target; the canonical procedure and its remaining steps stand.
 
 ## Context
 

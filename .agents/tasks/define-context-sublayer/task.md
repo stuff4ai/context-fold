@@ -28,10 +28,6 @@ tree the current model deliberately avoids.
   RFC establishes them as necessary for the minimal boundary.
 - Authoring project knowledge inside `.agents/context/`.
 
-## Blocked by
-
-- `define-agent-sublayer-model` must define whether sublayers exist and what their contracts own.
-
 ## Acceptance
 
 1. A resolved RFC decides whether the context sublayer exists and distinguishes it from project

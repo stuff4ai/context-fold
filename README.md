@@ -40,18 +40,41 @@ Two layers, with a hard boundary between them.
 and its decision records. This is durable, human-owned truth.
 
 **The agent layer** holds how agents operate: navigation, task coordination, lifecycle state,
-working context. It is scaffolding, not knowledge. It lives under `.agents/`, a shared directory
-that may also contain files owned by other tools; the directory is not itself the layer.
+working context. It is scaffolding, not knowledge. Its managed contracts and task state live under
+`.agents/`, a shared namespace that may also contain independently owned files; the directory is
+not itself the layer.
 
 The boundary is enforced by a test anyone can apply:
 
 > If humans need this information too, it does not belong only in the agent layer.
 
-Remove the layer-owned managed rule blocks and tasks, then read what remains. The test
+Remove the layer-owned managed contracts and tasks, then read what remains. The test
 fails if knowledge was lost, not if a pointer to the layer dangles — removing the layer is an
 ordinary change, and what pointed at it is updated alongside. Project suffixes and files under
-`.agents/` that belong to other tools are outside the test. A layer that fails has quietly become
+`.agents/` that belong to other owners are outside the test. A layer that fails has quietly become
 a second, drifting source of truth.
+
+## Recognized sublayers
+
+`.agents/` is routed by goal. A recognized sublayer is a direct functional area with one managed
+`AGENTS.md` contract. Every contract covers the same fields: purpose and routing; authority and
+source-of-truth boundary; contract ownership; content ownership; lifecycle and deletion behavior;
+customization-suffix boundary; and treatment of unknown extensions. The contract is portable;
+its contents may remain owned by the project, a tool, or another disposable workflow.
+
+The initial model recognizes three areas:
+
+| Area | Role | Content ownership |
+| --- | --- | --- |
+| `tasks/` | Core task lifecycle and coordination | context-fold owns the contract and task packages |
+| `skills/` | Reusable procedure interoperability | each author, installer, or project owns its packages |
+| `worktrees/` | Disposable parallel-operation checkouts | the adopting project owns the workflow and checkouts |
+
+`context/` and `verification/` remain candidates and are not created by this model. Any other
+direct child is an unrecognized extension: preserve it and follow its own contract when addressed.
+`tasks/archive/` is internal task structure, not a separate sublayer. Read the nearest applicable
+`AGENTS.md` before using a recognized area; project truth remains in project-owned artifacts and
+is referenced rather than duplicated under `.agents/`.
 
 ## Tasks
 

@@ -51,3 +51,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0038 | [Add a task discovery skill](0038-add-a-task-discovery-skill.md) | Accepted |
 | 0039 | [Confirm proactive task creation and hold unjudged findings in context.md](0039-confirm-proactive-task-creation-and-hold-unjudged-findings.md) | Accepted |
 | 0040 | [Guard shipped-skill portability](0040-guard-shipped-skill-portability.md) | Accepted |
+| 0041 | [Define governed agent sublayers](0041-define-governed-agent-sublayers.md) | Proposed |

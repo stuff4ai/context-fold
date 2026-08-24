@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0041](0041-define-governed-agent-sublayers.md) extends the managed contract set with
+the recognized skills sublayer; block replacement and suffix preservation remain unchanged.
 
 ## Context
 

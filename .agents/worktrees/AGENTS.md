@@ -48,7 +48,8 @@ flag, remove the worktree, then delete the branch: `gh pr merge <N> --squash`, `
 remove .agents/worktrees/{task-slug}`, `git branch -D {branch}`, `git push origin --delete
 {branch}`.
 
-This is a workflow, not part of the agent layer. The portable rules say how concurrent tasks
-share files and declare what blocks them, and name no version control system: see
+This recognized contract is part of the agent layer; the checkouts and project-specific workflow
+are not. The portable rules say how concurrent tasks share files and declare what blocks them, and
+name no version control system: see
 `.agents/tasks/AGENTS.md`.
 <!-- agent-layer:end -->

@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. [0041](0041-define-governed-agent-sublayers.md) adds a fifth managed rule file and makes
+the installed `.agents/skills/AGENTS.md` a recognized sublayer contract; the project-owned
+`skills/AGENTS.md` authoring guidance and shipped-package portability check remain distinct.
 
 ## Context
 
