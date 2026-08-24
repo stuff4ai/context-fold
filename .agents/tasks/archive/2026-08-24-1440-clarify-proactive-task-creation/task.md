@@ -1,5 +1,5 @@
 ---
-status: active
+status: completed
 objective: >-
   Decide whether the finding-triage rule already authorizes an agent to open a planned task
   proactively, mid-task, without being asked first — and if not, say so explicitly without
@@ -66,6 +66,30 @@ second thing this task needs to settle.
    existing checks, and a decision record captures what changed and why.
 4. If the resolution is "the rule already covers this, no text changes needed," the RFC and this
    task's Outcome say so plainly rather than manufacturing a change to justify the task.
+
+## Outcome
+
+`rfc.md` resolves both items. Item 1: `0022`'s triage rule already authorized opening a `planned`
+task, or adding to a project artifact, without being asked first — only the resulting change's
+review and approval need a human. `.agents/tasks/AGENTS.md` now says this explicitly, next to the
+two triage questions. Item 2: the trigger does not widen. "Calls for investigation, a decision, or
+a change" already reaches as far as any idea worth keeping should reach; there is no idea worth
+keeping that fails to clear it. What was actually missing was a place for the moment before
+judgment, not a wider trigger — so `context.md` gains an optional Ideas section, for a finding
+noticed in passing but not yet weighed against the triage rule, that expires at archival like any
+other unfilled optional heading.
+
+The clarifying sentence and the new Ideas section are in the portable managed block of
+`.agents/tasks/AGENTS.md`, and byte-identical in `skills/ctxfold-init/templates/agents/tasks/
+AGENTS.md` and its mirrored copy at `.agents/skills/ctxfold-init/templates/agents/tasks/
+AGENTS.md`; the active file's project-specific suffix ("Handing work to another agent stack") is
+untouched. `tests/test_conventions.py`'s `CONTEXT_OPTIONAL_HEADINGS` includes `Ideas`, so an empty
+one at archival is caught the same way an empty `Open questions` already is.
+`decisions/0039-confirm-proactive-task-creation-and-hold-unjudged-findings.md` records the
+decision and is indexed in `decisions/README.md`.
+
+The full suite (`pytest tests/`, 605 tests) and `pymarkdown --config .pymarkdown.json scan -r
+--respect-gitignore .` pass at the finished state.
 
 ## Approval
 

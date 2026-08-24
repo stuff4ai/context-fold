@@ -1,5 +1,5 @@
 ---
-status: draft
+status: resolved
 ---
 
 # RFC — clarify proactive task creation
@@ -71,3 +71,25 @@ Two separable changes; only the first currently has a clear direction.
 - Does "proactive" mean an agent should open such a task without narrating the decision to the
   user first, or only that it needs no advance permission? `0022`'s own text already separates
   authoring from approval; this task's Scope keeps that separation rather than reopening it.
+
+## Resolution
+
+Item 1 is confirmed as written: `0022`'s triage rule already authorizes opening a `planned` task,
+or adding to a project artifact, the moment a finding meets one of its two questions — no advance
+permission needed, only the resulting change's own review and approval. `.agents/tasks/AGENTS.md`
+now says this explicitly, next to the two questions, so the next agent does not hesitate the way
+this one did.
+
+Item 2 does not widen the trigger. The first open question above answers itself: an idea not yet
+worth investigating is not yet worth anything operational, and one that is worth investigating
+already clears `0022`'s bar as written. There is no idea worth keeping that the existing trigger
+fails to reach.
+
+What the trigger did lack was a place for the moment *before* judgment — a raw idea noticed in
+passing, not yet weighed against the triage rule. The third alternative above answers that:
+`context.md` gains an optional Ideas section, holding a finding until it is judged rather than
+forcing that judgment on the spot. It expires at archival like any other optional heading — acted
+on under the triage rule, or dropped — so it never becomes a second durable-knowledge channel
+alongside the one `0022` already closed off.
+
+Recorded as `decisions/0039-confirm-proactive-task-creation-and-hold-unjudged-findings.md`.

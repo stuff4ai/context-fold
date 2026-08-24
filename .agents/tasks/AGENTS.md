@@ -92,8 +92,8 @@ by someone who was not present for the work.
 **`context.md`** — the curated context map.
 
 References to the project artifacts that matter and why, plus task-local facts. Prefer a
-reference over a copy; a copy drifts. Optional sections: Assumptions, Open questions, Context
-conflicts, Base state, Not relevant.
+reference over a copy; a copy drifts. Optional sections: Assumptions, Open questions, Ideas,
+Context conflicts, Base state, Not relevant.
 
 Write references as paths from the repository root, in code spans, not as relative links. The
 package moves when it is archived — one directory deeper — so a relative link either breaks or,
@@ -110,6 +110,13 @@ If the project has no place for such questions, say so and ask for one. Leaving 
 it: this package is archived when the task ends, and once the change is accepted it is history
 rather than current state. A `planned` task can hold the question while a destination is
 established, but it is not the destination — see the triage rule below.
+
+Ideas holds a finding noticed while doing this task's own work but not yet judged against the
+triage rule below — not a question this task must answer, and not yet known to be worth a
+`planned` task of its own. Judging it on the spot, under whatever pressure produced the task at
+hand, is not more reliable than noting it and judging it later. Before archival, revisit each one
+and either act on what the triage rule calls for or drop it. One still there at archival was
+noted and never judged, the same defect an unfilled optional heading always is.
 
 **`rfc.md`** — proposal discussion. Optional.
 
@@ -167,6 +174,14 @@ change. Do not carry the finding to whatever comes next in your head either.
 
 A finding with no writable owning task — because its task was accepted, or because no task owns
 it — is triaged by two questions. They are independent, and both can be yes.
+
+Acting on either answer needs no permission beyond the finding itself. Opening a `planned` task
+or adding to a project artifact is authorized the moment a finding meets its question, the same
+way starting any other task is. Only the resulting change's own review and approval require a
+human — see *Who approves* below, which already separates authoring from acceptance.
+
+Not yet clear which, if either? `context.md`'s Ideas section holds the finding until it is —
+see above.
 
 **Would removing the layer lose durable project knowledge — something that must stay true or
 visible even if no follow-up work is ever done?** Then it belongs in the project's own artifacts:
