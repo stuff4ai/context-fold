@@ -30,11 +30,12 @@ ARCHIVE = TASKS / "archive"
 DECISIONS = ROOT / "decisions"
 DECISIONS_INDEX = DECISIONS / "README.md"
 
-# Files carrying the portable managed blocks in this installation (0005, 0011, 0035).
+# Files carrying the portable managed blocks in this installation (0005, 0011, 0035, 0041).
 PORTABLE = [
     ROOT / ".agents" / "AGENTS.md",
     TASKS / "AGENTS.md",
     ARCHIVE / "AGENTS.md",
+    ROOT / ".agents" / "skills" / "AGENTS.md",
     ROOT / ".agents" / "worktrees" / "AGENTS.md",
 ]
 
@@ -502,6 +503,12 @@ def installed_layer_files() -> set[Path]:
         elif path.is_dir():
             found |= {p.relative_to(agents) for p in path.rglob("AGENTS.md")}
 
+    # `skills/` contains installed packages, some of which may carry their own `AGENTS.md`.
+    # Only the direct sublayer contract is layer-owned; never recurse into package contents.
+    skills_agents = agents / "skills" / "AGENTS.md"
+    if skills_agents.is_file():
+        found.add(skills_agents.relative_to(agents))
+
     # `worktrees/` cannot use the `tasks`-style recursive glob: it also holds live worktree
     # checkouts (0025), each a full nested copy of this repository with its own nested
     # `AGENTS.md` files. `rglob` would descend into whichever happen to be checked out and
@@ -896,7 +903,7 @@ def test_decision_index_lists_every_record() -> None:
 
 @pytest.mark.parametrize("rules", PORTABLE, ids=lambda p: str(p.relative_to(ROOT)))
 def test_portable_rules_carry_no_project_detail(rules: Path) -> None:
-    """0005, 0011, 0018, 0035: managed blocks carry no project detail.
+    """0005, 0011, 0018, 0035, 0041: managed blocks carry no project detail.
 
     A record number, a path to this repository's documents, or one of its task slugs
     would be wrong in any other repository — and would read correctly here, which is

@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0041](0041-define-governed-agent-sublayers.md) recognizes the skills contract as an
+interoperability sublayer; the adapter remains a projection and package ownership is unchanged.
 
 ## Context
 

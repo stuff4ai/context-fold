@@ -69,7 +69,8 @@ hides its weaknesses.
   Which other repeated procedures merit a skill, whether workflows earn a separate form, and
   where either should be distributed remain open. MCP/tool capabilities may have different
   authority, discovery and runtime semantics again; whether they ever belong beside skills or
-  workflows is deferred until use provides evidence.
+  workflows is deferred until use provides evidence. The recognized `skills/` contract does not
+  settle those detailed semantics.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
   files, performs adoption, and can explicitly replace their managed blocks while preserving an
@@ -140,18 +141,11 @@ hides its weaknesses.
   wrong but is deliberate. Keeping all history available defeats context selection, while keeping
   it only in an archive makes a relevant failed approach easy to repeat. The criterion that turns
   historical evidence into current guidance is not defined.
-- **Do the two ownership layers need a more detailed responsibility map?** Intent, decisions,
-  specification, context, execution, verification, learning and adapters name useful concerns,
-  while a harness cuts across several of them. They do not necessarily form new storage layers:
-  most durable intent, decisions, specifications and tests remain project knowledge under `0005`.
-  Task context is currently temporary working state inside the agent layer, not a third source of
-  truth. It is unknown whether distinguishing project, agent and task context more explicitly
-  prevents ownership mistakes or merely gives the existing boundary more names. One proposed
-  model instead treats `.agents/` as a governed namespace: its entry point routes by goal, each
-  recognized sublayer has a portable contract, and context-fold may own that contract without
-  owning every project- or tool-installed file below it. Whether that is compatible with `0018`
-  and `0026`, how unknown extensions coexist, and which concerns deserve physical sublayers are
-  unresolved.
+- **How should the recognized sublayer contracts evolve?** [0041](decisions/0041-define-governed-agent-sublayers.md)
+  establishes goal-oriented routing, contract ownership, package ownership,
+  suffix preservation, and unknown-extension coexistence for `tasks/`, `skills/`, and
+  `worktrees/`. The detailed skills semantics remain open, and `context/` and `verification/`
+  still need evidence before they earn physical contracts.
 
 ### Decisions, identity, and traceability
 
@@ -233,16 +227,13 @@ hides its weaknesses.
 - **Should an adopter's installation be checkable?** This repository verifies that its installed
   managed blocks match the distribution while permitting additive suffixes. An adopter gets no
   such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not. A governed set of sublayers would also have to
-  distinguish missing or malformed contracts, unknown extensions, independently owned contents
-  and intentional forks. What can be diagnosed or repaired without overwriting user or tool state,
-  and which semantic boundary violations remain review judgments, are undecided.
-- **Should skills become a governed agent sublayer?** `.agents/skills/` currently belongs to
-  whatever installed each package, and `0034` exposes it to one host without changing that
-  ownership. A portable directory contract could explain discovery, invocation and authority while
-  preserving independently owned skills. It is unknown whether one contract can cover
-  project-authored, third-party and context-fold-installed skills without adopting an installer or
-  skill format as canonical.
+  indistinguishable from one that did not. The recognized contracts identify managed targets,
+  unknown extensions, independently owned contents and intentional forks. What can be diagnosed
+  or repaired without overwriting user or tool state, and which semantic boundary violations
+  remain review judgments, are undecided.
+- **How should the recognized skills sublayer be formalized?** `.agents/skills/` has a portable
+  routing and ownership contract while `0034`'s host projection remains an adapter. Authority,
+  provenance, format, lifecycle, and package discovery semantics are left to the skills task.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is

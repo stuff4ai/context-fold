@@ -11,7 +11,9 @@ layer merely by being shipped.
 [0035](0035-manage-portable-rules-as-replaceable-blocks.md) narrows that whole-file identity to
 the managed rule block; the map and ownership distinctions stand.
 [0037](0037-replace-task-index-with-frontmatter.md) removes the task index from the installation
-and distribution map.
+and distribution map. [0041](0041-define-governed-agent-sublayers.md) replaces the "not called
+three layers" classification with recognized direct sublayer contracts, while preserving the
+different ownership of tasks, skill packages, and worktree checkouts.
 
 ## Context
 

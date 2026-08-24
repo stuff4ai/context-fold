@@ -1,8 +1,8 @@
 ---
 status: planned
 objective: >-
-  Decide whether `.agents/skills/` should have a portable sublayer contract while preserving the
-  ownership and contents of skills installed by projects and tools.
+  Define authority, provenance, discovery and host projection for the recognized skills sublayer
+  while preserving independently owned packages.
 ---
 
 # Formalize the skills sublayer
@@ -10,15 +10,16 @@ objective: >-
 ## Why
 
 This repository already installs `ctxfold-init` under `.agents/skills/`, and host adapters can
-expose that directory. The current agent-layer map deliberately says skills are not the layer's.
-A sublayer contract could explain discovery, authority and coexistence without making
-context-fold the owner of every installed procedure.
+expose that directory. The parent agent-sublayer model now recognizes `skills/` as an
+interoperability sublayer while keeping each installed procedure independently owned. This task
+defines the detailed semantics that the minimal portable contract intentionally leaves open.
 
 ## Scope
 
 - `OPEN-QUESTIONS.md` — the skills-sublayer question under distribution, adoption, skills and host
   integration.
-- The boundary between portable skills-layer instructions and independently owned skill packages.
+- Skill authority, provenance, discovery, host projection, and coexistence within the recognized
+  skills sublayer.
 - Portable files, templates, adoption guidance, adapters and checks only after RFC resolution.
 
 ## Out of scope
@@ -27,15 +28,10 @@ context-fold the owner of every installed procedure.
 - Standardizing a skill format beyond what the selected contract demonstrably requires.
 - Rewriting or relocating installed skill packages.
 
-## Blocked by
-
-- `define-agent-sublayer-model` must define whether context-fold can govern a contract without
-  owning a sublayer's contents.
-
 ## Acceptance
 
-1. A resolved RFC decides whether skills are a recognized sublayer and defines ownership of its
-   contract and contents.
+1. A resolved RFC refines the recognized skills sublayer's authority, provenance, discovery,
+   projection, and package-ownership semantics without re-deciding whether it is recognized.
 2. Existing project and tool-installed skills remain intact and usable through supported host
    projections.
 3. The resolution states what authority a skill has, how it relates to task scope, and whether

@@ -10,6 +10,9 @@ between what upgrades and what diverges stands for what remains.
 identity to managed blocks while preserving the separation from installation-owned state.
 [0037](0037-replace-task-index-with-frontmatter.md) removes the copied-once task index; the
 upgrade-versus-installation boundary stands for what remains.
+[0041](0041-define-governed-agent-sublayers.md) adds the recognized skills contract as a fifth
+managed file while preserving the split between replaceable contracts and independently owned
+contents.
 
 ## Context
 

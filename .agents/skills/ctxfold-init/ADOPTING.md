@@ -37,7 +37,7 @@ nothing is installed, and following them as written destroys work: they can over
 suffixes, add the pointer a second time, and open an adoption task for an adoption that already
 happened.
 
-Do this instead, in two phases. First preflight all four portable targets before changing any of
+Do this instead, in two phases. First preflight all five portable targets before changing any of
 them:
 
 1. A missing target is ready to receive its template. Keep the existing offer gate for a missing
@@ -72,11 +72,16 @@ structure inside it.
 templates/agents/AGENTS.md               →  .agents/AGENTS.md
 templates/agents/tasks/AGENTS.md         →  .agents/tasks/AGENTS.md
 templates/agents/tasks/archive/AGENTS.md →  .agents/tasks/archive/AGENTS.md
+templates/agents/skills/AGENTS.md        →  .agents/skills/AGENTS.md
 templates/agents/worktrees/AGENTS.md     →  .agents/worktrees/AGENTS.md
 ```
 
 Everything in `templates/agents/` — worktree conventions included — is a managed block that stays
 byte-identical to its installed counterpart. An installed suffix may differ by design.
+
+The five targets above are the layer contracts. The `skills/AGENTS.md` target is direct: do not
+recurse into installed skill packages and classify their nested `AGENTS.md` files as layer
+contracts.
 
 **Copy the files. Do not retype them.** On a fresh adoption, use a file copy — `cp`, or whatever
 your tools call it — and confirm every installed file is byte-for-byte identical to its template.

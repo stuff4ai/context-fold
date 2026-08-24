@@ -28,10 +28,6 @@ separate directory earns its maintenance cost.
 - Choosing one test framework, eval runtime or command schema for adopters.
 - Implementing replay, telemetry or a runtime harness before the RFC establishes a portable need.
 
-## Blocked by
-
-- `define-agent-sublayer-model` must define what a functional sublayer owns and when one is warranted.
-
 ## Acceptance
 
 1. Investigation distinguishes product verification, task acceptance and agent-system evaluation.

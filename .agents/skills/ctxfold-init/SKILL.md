@@ -45,10 +45,11 @@ template before going further. If they differ, the copy failed; do it again rath
 the installation until it matches.
 
 On a repeat run, do not copy whole files over an installation that has managed blocks. Follow
-`ADOPTING.md`'s two-phase update literally: classify all portable targets before writing any,
+`ADOPTING.md`'s two-phase update literally: classify all five portable targets before writing any,
 abort all of them if one marker structure is ambiguous, then replace only valid managed blocks
 and restore every recorded suffix byte. An unmarked target still belongs to the legacy whole-file
-contract and is replaced wholesale.
+contract and is replaced wholesale. The `skills/AGENTS.md` target is checked directly; nested
+`AGENTS.md` files inside installed skill packages are package contents, not layer contracts.
 
 After updating, compare each installed managed block byte-for-byte against its template and
 compare every preserved suffix against the bytes recorded during preflight. A correct block with

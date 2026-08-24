@@ -31,7 +31,6 @@ migrating the project or prescribing one filesystem layout.
 
 ## Blocked by
 
-- `define-agent-sublayer-model` must establish the governed namespace and project/agent boundary.
 - `define-context-sublayer` must decide where project-specific summaries and references live.
 
 ## Acceptance

@@ -13,6 +13,17 @@
 - `OPEN-QUESTIONS.md` asks whether the two ownership layers need a more detailed responsibility
   map.
 
+## External evidence
+
+- `/home/alexengrig/etu/gitlab/it/etu-forms/monorepo/.agents/worktrees/add-context-fold` is a
+  disposable adopter fixture. At the start of this task it was clean at `d0f902a`, with no root
+  `AGENTS.md` or `.agents/`. Its project truth is distributed across root, backend and frontend
+  READMEs, system ADRs under `docs/adr/`, a backend ADR, code and tests; it has no dedicated PRD or
+  system-architecture document.
+- The fixture is evidence for installation and update behavior, not a durable dependency. No
+  experimental fixture change is committed, and the paired scenario must restore its exact clean
+  baseline after the repeat run.
+
 ## Open questions
 
 - Can context-fold govern a sublayer contract without claiming the tool- or project-owned contents?

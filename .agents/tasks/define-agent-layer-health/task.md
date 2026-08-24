@@ -27,10 +27,6 @@ cannot diverge.
 - Deleting unknown directories or replacing installed skill contents.
 - Version discovery and upgrades except where required to distinguish structural drift.
 
-## Blocked by
-
-- `define-agent-sublayer-model` must define the set and ownership of contracts being checked.
-
 ## Acceptance
 
 1. A resolved RFC defines which structural states are healthy, damaged, unknown or intentionally

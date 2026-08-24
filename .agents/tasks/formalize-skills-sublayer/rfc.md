@@ -6,25 +6,24 @@ status: draft
 
 ## Problem
 
-`.agents/skills/` is useful to agents but currently answers only to whatever put each skill there.
-An entry-point router cannot describe skills as a sublayer unless it can say which rules are
-portable, which contents are independently owned, and what reading or invoking a skill means.
+`.agents/skills/` is useful to agents and is now a recognized interoperability sublayer. Its
+minimal portable contract routes agents to independently owned packages but deliberately does not
+settle authority, provenance, projection, format, or lifecycle semantics.
 
 ## Current proposal
 
-Give the directory a managed `AGENTS.md` contract while preserving every installed skill package.
-The contract describes skills as reusable procedures rather than project truth, requires agents to
-respect the current task and user authority, and states that a skill's own instructions apply when
-the skill is selected. Context-fold owns the layer contract; installers or projects own packages.
+Refine the recognized directory contract while preserving every installed skill package. Define
+how reusable procedures relate to project truth, current task and user authority, installation
+provenance, and host projections, without moving the package ownership boundary.
 
 Keep workflows and MCP/tools outside the v0 contract. They remain future candidates until their
 different semantics are demonstrated in use.
 
 ## Alternatives
 
-- Keep `.agents/skills/` outside the governed model and let each host or installer define it.
-- Let context-fold own and distribute every skill under the directory.
-- Treat skills, workflows and tools as one capability sublayer immediately.
+- Leave the minimal contract without authority or provenance semantics.
+- Let the contract claim ownership of every skill package.
+- Expand the recognized skills sublayer to workflows and tools without evidence.
 
 ## Open questions
 

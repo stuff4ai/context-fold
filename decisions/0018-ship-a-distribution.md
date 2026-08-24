@@ -7,7 +7,9 @@ Accepted. The contents of `templates/agents/` are narrowed by
 [0029](0029-drop-the-task-template.md). [0035](0035-manage-portable-rules-as-replaceable-blocks.md)
 narrows installed-rule identity from whole files to managed blocks; the separation itself stands.
 [0037](0037-replace-task-index-with-frontmatter.md) removes the task-index template from the
-distribution; the remaining distribution stands.
+distribution; [0041](0041-define-governed-agent-sublayers.md) recognizes selected managed
+sublayer contracts without making `.agents/` itself the distribution; the remaining distribution
+stands.
 
 ## Context
 

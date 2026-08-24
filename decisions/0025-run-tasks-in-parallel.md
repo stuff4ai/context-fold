@@ -5,8 +5,13 @@
 Accepted. That worktrees are "this project's workflow, not part of the layer" is narrowed
 by [0026](0026-map-what-is-under-the-agents-directory.md): the convention now ships as a
 copied-once template, which is not the same as joining the layer. The rest stands.
+[0032](0032-fold-worktrees-agents-md-into-the-byte-identical-set.md) makes
+`worktrees/AGENTS.md` a shipped, checked managed contract rather than the unbound project file
+described below.
 [0037](0037-replace-task-index-with-frontmatter.md) removes the index conflict example and its
-blocker-visibility claim; section ownership and concurrent-task rules stand.
+blocker-visibility claim; [0041](0041-define-governed-agent-sublayers.md) recognizes the
+worktrees contract as a disposable-operation sublayer while leaving the checkouts project-owned;
+section ownership and concurrent-task rules stand.
 
 ## Context
 
