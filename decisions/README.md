@@ -54,3 +54,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0041 | [Define governed agent sublayers](0041-define-governed-agent-sublayers.md) | Accepted |
 | 0042 | [Require merge-ready decision status](0042-require-merge-ready-decision-status.md) | Accepted |
 | 0043 | [Fold tool-native planning into the task package](0043-fold-tool-native-planning-into-the-task-package.md) | Accepted |
+| 0044 | [Defer the context sublayer](0044-defer-the-context-sublayer.md) | Accepted |

@@ -29,10 +29,6 @@ migrating the project or prescribing one filesystem layout.
 - Prescribing one project directory layout or one template as mandatory.
 - Assessing operations, security, data, release, integrations, workflows or MCP/tools in v0.
 
-## Blocked by
-
-- `define-context-sublayer` must decide where project-specific summaries and references live.
-
 ## Acceptance
 
 1. A resolved RFC decides whether initialization performs project assessment and defines the v0
