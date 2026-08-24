@@ -720,6 +720,7 @@ TASK_OPTIONAL_HEADINGS = ("Blocked by", "Approval")
 CONTEXT_OPTIONAL_HEADINGS = (
     "Assumptions",
     "Open questions",
+    "Ideas",
     "Context conflicts",
     "Base state",
     "Not relevant",
