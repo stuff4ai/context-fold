@@ -1,5 +1,5 @@
 ---
-status: active
+status: completed
 objective: >-
   Ensure a coding agent's own tool-native planning output — a plan-mode
   scratch file, an ephemeral step tracker, or similar — is folded into the
@@ -69,3 +69,25 @@ reads `AGENTS.md` natively), gets it automatically.
   before anything else touched it; no commit was made from the main checkout. Worth remembering
   when working from a worktree: an absolute path handed to a non-shell tool does not follow the
   shell's `cd`.
+- A prior manual `diff` used to sanity-check `.agents/tasks/AGENTS.md`'s preserved suffix
+  compared mismatched slices (one side had a leading blank line stripped, the other didn't) and
+  reported "SUFFIX DRIFTED" for a suffix that was in fact byte-identical. Re-ran the comparison
+  directly against the pre-edit capture (marker line included on both sides) and confirmed no
+  drift. A parity check is only as trustworthy as the slices it compares.
+
+## Outcome
+
+Added one vendor-neutral paragraph to `rfc.md`/`plan.md`'s description in
+`skills/ctxfold-init/templates/agents/tasks/AGENTS.md`: a tool's own planning phase produces a
+draft, to be folded into `rfc.md` or `plan.md` before implementation begins. Reinstalled
+`.agents/skills/ctxfold-init/` and regenerated `.agents/tasks/AGENTS.md`'s managed block from it,
+verified byte-for-byte against the template with the existing project-owned suffix preserved
+unchanged, and verified the other four portable managed blocks were unaffected. Recorded the
+convention as `decisions/0043-fold-tool-native-planning-into-the-task-package.md` (`Accepted`,
+matching its `decisions/README.md` index row, per `decisions/0042`'s merge-ready requirement).
+`tests/test_conventions.py` (705 tests) and the repo's `pymarkdown` lint both pass. `README.md`'s
+task-file summary was checked and needs no change.
+
+Durable artifacts: `skills/ctxfold-init/templates/agents/tasks/AGENTS.md`,
+`.agents/tasks/AGENTS.md` (and its skill-installed copy), and
+`decisions/0043-fold-tool-native-planning-into-the-task-package.md` plus its index row.
