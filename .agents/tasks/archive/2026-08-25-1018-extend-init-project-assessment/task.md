@@ -86,7 +86,7 @@ task zero's own `context.md` prose, the same boundary
 `decisions/0044-defer-the-context-sublayer.md` set.
 
 `decisions/0045-defer-project-assessment.md` is rewritten in place as
-`decisions/0045-adopt-project-assessment.md` (this branch was unmerged, so the record was still a
+`decisions/0046-adopt-project-assessment.md` (this branch was unmerged, so the record was still a
 proposal, not history) recording the reversal and its evidence, re-indexed in
 `decisions/README.md`. `OPEN-QUESTIONS.md`'s project-assessment item is narrowed to what v0 leaves
 open: vendor-neutral skills assessment outside languages context-fold has been adopted into, and
@@ -110,7 +110,7 @@ Acceptance:
    `templates/` needed no changes: generated tasks are ordinary task packages, not a new
    templated artifact.
 
-Durable artifacts produced: `decisions/0045-adopt-project-assessment.md` (indexed in
+Durable artifacts produced: `decisions/0046-adopt-project-assessment.md` (indexed in
 `decisions/README.md`), the narrowed item in `OPEN-QUESTIONS.md`, and the assessment step in
 `skills/ctxfold-init/ADOPTING.md` and `SKILL.md` (installed and verified byte-identical under
 `.agents/skills/ctxfold-init/`).
