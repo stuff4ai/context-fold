@@ -19,11 +19,10 @@ other entry point. A fresh adoption today gets step 5 exactly once, at task zero
 subsequent repeat run gets none, regardless of whether step 5 existed at the time of the
 original task zero.
 
-## Open questions
+## Resolved
 
-- Should a catch-up pass run automatically on the next repeat adoption after upgrading
-  `ctxfold-init`, or only on explicit request?
-- If automatic, what's the gate — zero `assess-project-*` tasks anywhere (any status), a marker
-  that step 5 has run at all, something else?
-- Does this need new state (e.g., recording in task zero's own package that step 5 ran, and at
-  what version) or can it stay evidence-only like step 5 itself?
+Automatic, gated on three signals rather than one: an `assess-project-*` package, a
+`project-capability-catchup` package, or task zero's own "Project-capability assessment" section
+— any one existing means step 5 has already run. No new persistent state: the gate reuses
+evidence the layer already produces. See `decisions/0049-wire-step-5-into-repeat-adoption.md` and
+this task's Outcome.

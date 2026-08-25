@@ -59,3 +59,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0046 | [Adopt project assessment](0046-adopt-project-assessment.md) | Accepted |
 | 0047 | [Defer the verification sublayer](0047-defer-the-verification-sublayer.md) | Accepted |
 | 0048 | [Formalize the skills sublayer](0048-formalize-the-skills-sublayer.md) | Accepted |
+| 0049 | [Wire step 5 into repeat adoption](0049-wire-step-5-into-repeat-adoption.md) | Accepted |

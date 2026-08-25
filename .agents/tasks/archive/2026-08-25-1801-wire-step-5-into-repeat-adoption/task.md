@@ -1,5 +1,5 @@
 ---
-status: planned
+status: completed
 objective: >-
   Decide how a repository that adopted context-fold before step 5 existed — or that wants its
   project-capability assessment redone — can get it without a full reset.
@@ -48,6 +48,42 @@ merged and no longer writable.
    Consequences agree with each other and with the implemented behavior.
 3. A repository that already ran step 5 and legitimately has no gaps does not get a spurious
    assessment pass on every subsequent repeat adoption.
+
+## Problems
+
+- Considered recording the catch-up pass by appending to task zero's own archived `task.md` or
+  `context.md`, since that's where step 5's evidence already lives when it runs on schedule.
+  `.agents/tasks/AGENTS.md` forbids editing an archived-and-accepted task's content as rewriting
+  history. Resolved by giving the catch-up pass its own task package,
+  `project-capability-catchup`, instead of touching task zero's — which also gives the
+  three-signal detection gate a name to check for that doesn't depend on task zero's age or
+  content.
+
+## Outcome
+
+Resolved: repeat adoption performs a one-time catch-up assessment, gated on three signals
+(`assess-project-*` packages, a `project-capability-catchup` package, or task zero's own
+"Project-capability assessment" section) so it never runs more than once per repository and never
+duplicates a check that already happened, with or without gaps found.
+
+`skills/ctxfold-init/ADOPTING.md`'s "If the layer is already there" section and `SKILL.md`'s
+judgment-call guidance now describe the catch-up pass and its gate; both stay byte-identical
+between `skills/ctxfold-init/` and the installed `.agents/skills/ctxfold-init/` copy.
+
+`decisions/0049-wire-step-5-into-repeat-adoption.md` records the decision; `0046`'s Status now
+points to it rather than the Consequences claim being left silently wrong.
+
+Acceptance:
+
+1. Satisfied — `0049` states the catch-up pass runs and names its three-signal gate.
+2. Satisfied — `ADOPTING.md` and `0046`'s Status agree; `0046`'s own Context/Decision/Consequences
+   prose is left untouched, per the immutability rule for accepted records.
+3. Satisfied — any one of the three signals existing is sufficient to skip, so a repository that
+   already checked and found nothing does not get rechecked.
+
+Durable artifacts produced: `decisions/0049-wire-step-5-into-repeat-adoption.md` (indexed in
+`decisions/README.md`), `0046`'s Status update, and the `ADOPTING.md`/`SKILL.md` changes
+(installed and verified byte-identical under `.agents/skills/ctxfold-init/`).
 
 ## Approval
 

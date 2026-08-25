@@ -88,6 +88,13 @@ generic base state. Check existing task packages, including archived ones, befor
 `assess-project-{capability}` — a repeat run that recreates a gap a human already declined is
 ceremony, not assessment.
 
+**Catch-up assessment on a repeat run.** Before deciding step 5 has never run, check all three
+signals `ADOPTING.md` names — `assess-project-*` packages, a `project-capability-catchup`
+package, and task zero's own `context.md` — not just the first one you happen to find. A
+repository whose task zero predates step 5 will have none of them; one that already ran step 5
+and found zero gaps will have only the third. Both mean "already checked" once any signal is
+present; running the catch-up anyway would duplicate work a human never asked for.
+
 ## Log friction while it happens
 
 Anything that made the adoption awkward goes under `## Problems` in task zero as you hit it: a

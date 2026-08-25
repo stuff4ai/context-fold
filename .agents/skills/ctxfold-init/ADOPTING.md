@@ -60,8 +60,22 @@ and every recorded suffix has the same bytes as before. Leave task packages alon
 
 Leave the root `AGENTS.md` alone if it already points at the layer, and do not open task zero.
 
-If nothing changed, say so. A repository already holding the current rules is the expected
-result, not a failure.
+**Catch-up assessment.** If step 5 has never run for this repository, run it once now, after the
+preflight above, against the repository as it stands today — do not reopen task zero to do it.
+Step 5 has run if any of these already exist anywhere under `.agents/tasks/`, including
+`archive/`: an `assess-project-{capability}` task package; a `project-capability-catchup`
+package (below); or task zero's own package with a "Project-capability assessment" section in
+its `context.md`. If none of those exist, classify the five capabilities against the repository's
+current state and open the same `planned` tasks step 5 would have opened, then record the pass
+itself as its own completed task package,
+`.agents/tasks/archive/{YYYY-MM-DD-HHMM}-project-capability-catchup/`, with `task.md`'s Why
+noting this ran retroactively during a repeat adoption and `context.md` carrying the
+classification. A repository that finds no gaps needs this durable "this was checked" record just
+as much as one that does — otherwise the next repeat adoption cannot tell "checked, nothing
+found" from "never checked."
+
+If nothing changed beyond that, say so. A repository already holding the current rules and a
+completed assessment is the expected result, not a failure.
 
 ## 1. Install the layer
 
