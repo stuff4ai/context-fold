@@ -57,3 +57,4 @@ New records use [`.adr-template.md`](.adr-template.md).
 | 0044 | [Defer the context sublayer](0044-defer-the-context-sublayer.md) | Accepted |
 | 0045 | [Name agent-layer structural health](0045-name-agent-layer-structural-health.md) | Accepted |
 | 0046 | [Adopt project assessment](0046-adopt-project-assessment.md) | Accepted |
+| 0047 | [Defer the verification sublayer](0047-defer-the-verification-sublayer.md) | Accepted |
