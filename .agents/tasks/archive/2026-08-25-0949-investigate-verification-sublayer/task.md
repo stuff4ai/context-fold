@@ -59,7 +59,7 @@ context, tool contract, and observable actions taken under it.
 
 Durable outcomes folded into the project layer:
 
-- `decisions/0045-defer-the-verification-sublayer.md` — new decision record, added to
+- `decisions/0047-defer-the-verification-sublayer.md` — new decision record, added to
   `decisions/README.md`'s index as Accepted.
 - `OPEN-QUESTIONS.md` — the "Does verification need its own agent sublayer?" item under
   "Open questions about the model" was replaced with a resolved-with-reopening-conditions entry

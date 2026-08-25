@@ -169,10 +169,72 @@ Acceptance:
 already has, where its durable knowledge lives, and what else already writes to `.agents/`.
 
 Then work the task: finish the structure, satisfy the acceptance, and log every friction under
-`## Problems` while it happens. Then finish it — Outcome, fold, archive, final check —
-and stop there to ask for approval. Approval authorizes the merge, and what it is given for is
-the finished state rather than a promise to file the paperwork later. The rules for all of that
-are in `.agents/tasks/AGENTS.md`, which you now have.
+`## Problems` while it happens.
+
+Before finishing it, do step 5 below — its findings belong in this same task's base state, not a
+task opened afterward. Then finish task zero — Outcome, fold, archive, final check — and stop
+there to ask for approval. Approval authorizes the merge, and what it is given for is the
+finished state rather than a promise to file the paperwork later. The rules for all of that are
+in `.agents/tasks/AGENTS.md`, which you now have.
+
+## 5. Assess project-layer capabilities
+
+Task zero's base-state discovery already looked at the repository once. This step asks it a
+second, narrower question: for each of five capabilities, does the repository have an
+authoritative, discoverable source, or not? Installing agent operating rules does not by itself
+make a project's intent, decisions, documentation, verification, or reusable procedures
+discoverable — this step checks whether they already are, without assuming an adopting
+repository has any of them in place.
+
+The five capabilities, and the question each one asks:
+
+1. **Intent and requirements** — is there a document, anywhere, that states what the project is
+   for and what it needs to do? A README's project description can satisfy this if it actually
+   states intent; a README that only explains installation or usage does not.
+2. **Decisions and rationale** — is there a place decisions and their reasoning are recorded, and
+   is it singular or does it say which source governs when more than one exists?
+3. **Documentation and knowledge** — is there a discoverable home for durable project knowledge
+   beyond decisions — how things work, what a newcomer needs?
+4. **Tests and verification** — is there a way to check the project behaves as intended, if the
+   project has executable behavior to check at all?
+5. **Agent skills** — is there any documented, reusable procedure an agent could follow for
+   recurring work, in whatever format or location the project already uses, if any?
+
+Classify each capability using only what task zero's base-state discovery already found — do not
+open a new investigation:
+
+- **Established** — an authoritative source exists and task zero's `context.md` already names it.
+- **Partial** — something exists but is incomplete, split across locations with no stated
+  precedence, or not clearly authoritative.
+- **Absent** — nothing plays this role in the repository at all.
+- **Ambiguous** — the evidence conflicts, or task zero's discovery could not tell which of the
+  above applies.
+- **Not applicable** — the project has no use for the capability (for example, no test suite
+  because the repository holds no executable code).
+
+Established and not-applicable capabilities need nothing further; task zero's base state already
+names or accounts for them.
+
+For each capability classified partial, absent, or ambiguous, first check whether a task package
+named `assess-project-{capability}` already exists anywhere — `planned`, `active`, or under
+`archive/` regardless of terminal status. If one does, do not create another: a human already
+made or deferred that decision for this repository, and rediscovering it on every adoption run
+turns guidance into ceremony. Note its path in task zero's base state instead.
+
+Otherwise, create `.agents/tasks/assess-project-{capability}/task.md` and `context.md`, `planned`,
+following the same shape task zero itself uses: `task.md`'s Why states the capability and cites
+this step; Scope names the one capability being assessed; Out of scope repeats the boundary
+below; Acceptance asks the human to choose the project's structure, improve what exists, or
+decide the capability is not warranted, and to fold that decision into the project's own
+artifacts before the task is archived. `context.md`'s Base state carries the specific evidence
+task zero found — what exists, what is missing, where it conflicts — and may offer non-binding
+recommendations naming paths or conventions as examples. The recommendation offers; it does not
+choose. Do not create the document yourself.
+
+This step assesses only the five capabilities above. Operations, security, data, release,
+integrations, workflows, and MCP or tool configuration are out of scope for it — the same
+boundary `task.md`'s Out of scope names for this task's own work, applied to what adoption does
+in every repository.
 
 ## What this does not give you
 

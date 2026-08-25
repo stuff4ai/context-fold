@@ -59,7 +59,7 @@ hides its weaknesses.
 ### Verification, evidence, and observable execution
 
 - **Does verification need its own agent sublayer?**
-  [`0045`](decisions/0045-defer-the-verification-sublayer.md) kept `.agents/verification/`
+  [`0047`](decisions/0047-defer-the-verification-sublayer.md) kept `.agents/verification/`
   unbuilt, in either the full-contract or lighter reference-map form: no task package records an
   agent-system evaluation that was needed and could not be performed, and none has built its own
   ad hoc evaluation harness inside the agent layer. Product verification and task acceptance
@@ -97,6 +97,13 @@ hides its weaknesses.
 
 - **Behavior at scale.** Every rule here was written against a repository with a handful of
   tasks. What breaks at hundreds of archived tasks is unknown.
+- **Project assessment beyond v0.** [`0046`](decisions/0046-adopt-project-assessment.md) gave
+  `ctxfold-init` a bounded v0 assessment step for five capabilities — intent, decisions,
+  documentation, verification, and skills — evidenced by a second real adoption surfacing
+  checklist-shaped gaps. Whether the skills capability can be assessed in a vendor-neutral way
+  outside languages context-fold has been adopted into, and what future evidence would justify
+  adding operations, security, data, release, or integrations as further capabilities, remain
+  open.
 
 ### Learning and the improvement loop
 
@@ -234,13 +241,17 @@ hides its weaknesses.
   non-conflicting project instructions after a managed rule block, and `ctxfold-init` preserves
   them during an explicit update. Conflicting overrides, finer-grained customizable blocks, and
   maintained forks remain undefined.
-- **Should an adopter's installation be checkable?** This repository verifies that its installed
-  managed blocks match the distribution while permitting additive suffixes. An adopter gets no
-  such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not. The recognized contracts identify managed targets,
-  unknown extensions, independently owned contents and intentional forks. What can be diagnosed
-  or repaired without overwriting user or tool state, and which semantic boundary violations
-  remain review judgments, are undecided.
+- **Should an adopter's installation be checkable?**
+  [`0045`](decisions/0045-name-agent-layer-structural-health.md) names four structural states —
+  absent, legacy, managed, malformed — for any recognized-sublayer contract target, matching what
+  `0035` and `ADOPTING.md`'s preflight already implement, and settles that a well-formed managed
+  block is healthy regardless of content: distinguishing stale content from merely different
+  content needs provenance this project has not built. It declines to add a portable checker for
+  adopters and declines to build an intentional-fork opt-out signal, naming reopening bars for
+  each instead. Reopen the portable-checker question only if the provenance/versioning question
+  below is settled with something an adopter's own installation could compare itself against.
+  Reopen the fork-safety question only if a real fork is destroyed by a repeat-adoption run, or an
+  adopter asks for a supported way to leave managed identity before that happens.
 - **How should the recognized skills sublayer be formalized?** `.agents/skills/` has a portable
   routing and ownership contract while `0034`'s host projection remains an adapter. Authority,
   provenance, format, lifecycle, and package discovery semantics are left to the skills task.
@@ -274,15 +285,6 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
-- **Should adoption assess project-layer readiness?** Context-fold can prescribe the agent
-  structure it installs but cannot assume that project intent, decisions, documentation,
-  verification or reusable agent procedures are authoritative and discoverable. One proposal is
-  to classify those five capabilities as established, partial, absent, ambiguous or not
-  applicable, reference established sources from agent context, and create separate planned tasks
-  for applicable gaps with recommendations rather than mandatory paths. Whether assessment belongs
-  in adoption, how repeat runs avoid duplicate or unwanted tasks, and what evidence justifies each
-  classification are unresolved. Operations, security, data, release and integrations are possible
-  future assessment categories, not part of the initial proposal.
 - **How should outcome and context economy be measured?** Success, human intervention, retries,
   tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
   such as context precision and context sufficiency are closer to the project's purpose, but both
