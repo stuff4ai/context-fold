@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. [0049](0049-wire-step-5-into-repeat-adoption.md) wires the re-adoption behavior this
+record's Consequences described into `ADOPTING.md`, which this record did not itself do.
 
 ## Context
 
