@@ -67,10 +67,10 @@ migrating the project or prescribing one filesystem layout.
 
 The RFC reopened on new evidence and resolved to build v0. `etu-forms/monorepo` — a second real,
 external, non-trivial adoption — met reopening condition #2 in the decision record this task
-maintains: its task-zero base-state discovery found two checklist-shaped gaps (no product-intent
-document anywhere, decisions split across two ADR directories with no stated precedence) before
-any assessment mechanism existed to prompt looking for them, and its adopter explicitly asked for
-the capability this RFC proposes.
+maintains: its task-zero base-state discovery found a checklist-shaped gap (no product-intent
+document anywhere in the repository, the same gap shape context-fold's own adoption also has)
+before any assessment mechanism existed to prompt looking for it, and its adopter explicitly
+asked for the capability this RFC proposes.
 
 `ctxfold-init` gains a v0 project-assessment step, added to `skills/ctxfold-init/ADOPTING.md` as
 step 5 (run at the end of task zero, before it is finished) and to `SKILL.md` (the judgment calls

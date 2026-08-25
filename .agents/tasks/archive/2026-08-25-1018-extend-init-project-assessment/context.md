@@ -29,10 +29,12 @@
 
 `etu-forms/monorepo` (external, evidence-only — this task does not touch that repository):
 Java/Spring backend, Vite/TypeScript frontend, monorepo, GitLab CI, its own ADR convention split
-across `docs/adr` and `backend/docs/adr` with no stated precedence between them, no product-intent
-or requirements document anywhere, no root `AGENTS.md` before its own in-progress adoption. Task
+across `docs/adr` and `backend/docs/adr` — an ADR there (`docs/adr/4-split-adr.md`) does state
+the governing precedence (system-wide decisions at the root, part-local decisions beside that
+part's code), so this specific capability was not itself a gap — no product-intent or
+requirements document anywhere, no root `AGENTS.md` before its own in-progress adoption. Task
 zero (bare layer install) is done there; nothing past it has run yet, so this task has no evidence
-about how a generated task is actually received or acted on — only that the two gaps above were
+about how a generated task is actually received or acted on — only that the intent gap above was
 concretely found by ordinary base-state discovery, unprompted by any assessment mechanism.
 
 ## Open questions

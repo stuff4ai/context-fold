@@ -128,17 +128,20 @@ because adoption did not flag its absence," and it named reopening condition #2 
 `decisions/0045-defer-project-assessment.md` for exactly this case: "a second real adoption
 surfaces a specific, recurring gap a generic checklist could plausibly have caught." That
 condition is now met: `etu-forms/monorepo` is a second real, external, non-trivial adoption, its
-task-zero discovery already surfaced two checklist-shaped gaps (no product-intent document
-anywhere, and decisions split across two ADR directories with no stated precedence), and its
-adopter explicitly asked for the capability this RFC proposes rather than the request being
-invented on this project's behalf.
+task-zero discovery already surfaced a checklist-shaped gap (no product-intent document anywhere
+in the repository — its decisions capability, by contrast, classified established: an ADR there,
+`docs/adr/4-split-adr.md`, does state which of its two ADR locations governs), and its adopter
+explicitly asked for the capability this RFC proposes rather than the request being invented on
+this project's behalf. This is the same gap shape context-fold's own adoption has — no document
+distinct from `README.md` states intent as a requirements document would — so it is a recurring
+gap across both known adoptions, not a single hypothetical case.
 
 The prior Resolution is still right about what it declined to do: invent answers to the open
 design questions before any adopter existed to check them against. What is different now is that
 answers exist to check — the Current proposal's evidence-threshold, non-duplication, and ceremony
 answers above are each drawn directly from what task zero's own discovery already produces or
-from the two gaps this specific adoption surfaced, not from further speculation about a
-hypothetical adopter. `decisions/0005-agents-layer-boundary.md` and
+from the gap this specific adoption surfaced, not from further speculation about a hypothetical
+adopter. `decisions/0005-agents-layer-boundary.md` and
 `decisions/0044-defer-the-context-sublayer.md`'s shared bar — a capability should appear once it
 demonstrably exists — is satisfied by classification and task generation reusing task zero's
 existing discovery rather than adding a new discovery mechanism (no context map, no new

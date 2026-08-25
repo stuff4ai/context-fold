@@ -28,13 +28,15 @@ The second of those conditions has now been met. `etu-forms/monorepo` — an ext
 repository (Java/Spring backend, Vite/TypeScript frontend, monorepo, its own ADR convention split
 across two directories, GitLab CI, no prior agent layer) — is adopting context-fold. Its task
 zero's base-state discovery, done before any assessment mechanism existed to prompt it, already
-found two checklist-shaped gaps: no product-intent or requirements document anywhere in the
-repository, and decisions recorded as ADRs split across `docs/adr` and `backend/docs/adr` with no
-stated precedence between them. The adopter explicitly asked that adoption produce planned tasks
-for gaps like these, rather than the capability being proposed on their behalf. Context-fold's own
-adoption shares the first shape of that gap — no document distinct from `README.md` states intent
-as a requirements document would — which is what makes the finding a recurring pattern across the
-two known adoptions rather than a single hypothetical case.
+found a checklist-shaped gap: no product-intent or requirements document anywhere in the
+repository. (Its decisions capability classified established rather than gapped: an ADR there,
+`docs/adr/4-split-adr.md`, does state which of its two ADR locations governs — system-wide
+decisions at the root, part-local decisions beside that part's code.) The adopter explicitly
+asked that adoption produce planned tasks for gaps like this one, rather than the capability
+being proposed on their behalf. Context-fold's own adoption shares that exact gap shape — no
+document distinct from `README.md` states intent as a requirements document would — which is
+what makes the finding a recurring pattern across the two known adoptions rather than a single
+hypothetical case.
 
 ## Decision
 
