@@ -79,6 +79,15 @@ conventions it already follows, where its durable knowledge lives, and what else
 to `.agents/`. This is the one part of the adoption that cannot be copied, and a generic answer
 here makes the task package worthless to whoever reads it next.
 
+**Project-capability assessment.** Step 5 classifies each of the five listed capabilities from
+what the base-state description above already found — it is not a second investigation. Whether a
+README's project description counts as an intent document, whether two decision locations count
+as partial or ambiguous, and what a non-binding recommendation should actually suggest are
+judgments only a reader of this repository can make; a generic answer here is as worthless as a
+generic base state. Check existing task packages, including archived ones, before creating
+`assess-project-{capability}` — a repeat run that recreates a gap a human already declined is
+ceremony, not assessment.
+
 ## Log friction while it happens
 
 Anything that made the adoption awkward goes under `## Problems` in task zero as you hit it: a

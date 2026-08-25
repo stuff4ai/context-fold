@@ -83,14 +83,13 @@ hides its weaknesses.
 
 - **Behavior at scale.** Every rule here was written against a repository with a handful of
   tasks. What breaks at hundreds of archived tasks is unknown.
-- **Project assessment.** [`0045`](decisions/0045-defer-project-assessment.md) declined to give
-  `ctxfold-init` a capability catalog, evidence classification, or generated-task mechanism for
-  project-layer readiness: context-fold has been adopted exactly once, on itself, and no adopter
-  has failed a task or paid a recorded cost for want of adoption flagging a missing capability.
-  Reopen only if an adopter or task demonstrably fails, or pays a recorded cost, for want of that
-  flag; a second real adoption surfaces a specific, recurring gap a generic checklist could
-  plausibly have caught; or a later task finds it cannot proceed by referencing project artifacts
-  directly.
+- **Project assessment beyond v0.** [`0045`](decisions/0045-adopt-project-assessment.md) gave
+  `ctxfold-init` a bounded v0 assessment step for five capabilities — intent, decisions,
+  documentation, verification, and skills — evidenced by a second real adoption surfacing
+  checklist-shaped gaps. Whether the skills capability can be assessed in a vendor-neutral way
+  outside languages context-fold has been adopted into, and what future evidence would justify
+  adding operations, security, data, release, or integrations as further capabilities, remain
+  open.
 
 ### Learning and the improvement loop
 
