@@ -84,14 +84,21 @@ hides its weaknesses.
   Which other repeated procedures merit a skill, whether workflows earn a separate form, and
   where either should be distributed remain open. MCP/tool capabilities may have different
   authority, discovery and runtime semantics again; whether they ever belong beside skills or
-  workflows is deferred until use provides evidence. The recognized `skills/` contract does not
-  settle those detailed semantics.
+  workflows is deferred until use provides evidence.
+  [`0048`](decisions/0048-formalize-the-skills-sublayer.md) settles a package's authority ceiling,
+  discovery, host projection, and coexistence for the `skills/` contract itself; it does not
+  extend to workflows or MCP/tools.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
 - **Versioning, provenance, discovery, and upgrades.** `ctxfold-init` distributes the portable
   files, performs adoption, and can explicitly replace their managed blocks while preserving an
   installation's additive suffix. An installation still records neither its source nor a version
   and cannot discover that upstream rules changed. What identity it needs and how it discovers
   changes remain undecided.
+  [`0048`](decisions/0048-formalize-the-skills-sublayer.md) declines to require this of a skill
+  package specifically, absent evidence; reopen that part for a package installed here if it is
+  found stale, mismatched, or of ambiguous origin with no way to tell, or if a second,
+  independently maintained package needs to declare compatibility with a specific host or
+  contract version.
 
 ### Product boundary, behavior at scale, and measurement
 
@@ -252,9 +259,6 @@ hides its weaknesses.
   below is settled with something an adopter's own installation could compare itself against.
   Reopen the fork-safety question only if a real fork is destroyed by a repeat-adoption run, or an
   adopter asks for a supported way to leave managed identity before that happens.
-- **How should the recognized skills sublayer be formalized?** `.agents/skills/` has a portable
-  routing and ownership contract while `0034`'s host projection remains an adapter. Authority,
-  provenance, format, lifecycle, and package discovery semantics are left to the skills task.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is

@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted
+Accepted. [0048](0048-formalize-the-skills-sublayer.md) settles the detailed skills-sublayer
+semantics this record routed to a later decision; the registry, contract-field shape, and
+package-ownership model stand.
 
 ## Context
 
