@@ -83,6 +83,14 @@ hides its weaknesses.
 
 - **Behavior at scale.** Every rule here was written against a repository with a handful of
   tasks. What breaks at hundreds of archived tasks is unknown.
+- **Project assessment.** [`0045`](decisions/0045-defer-project-assessment.md) declined to give
+  `ctxfold-init` a capability catalog, evidence classification, or generated-task mechanism for
+  project-layer readiness: context-fold has been adopted exactly once, on itself, and no adopter
+  has failed a task or paid a recorded cost for want of adoption flagging a missing capability.
+  Reopen only if an adopter or task demonstrably fails, or pays a recorded cost, for want of that
+  flag; a second real adoption surfaces a specific, recurring gap a generic checklist could
+  plausibly have caught; or a later task finds it cannot proceed by referencing project artifacts
+  directly.
 
 ### Learning and the improvement loop
 
@@ -265,15 +273,6 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
-- **Should adoption assess project-layer readiness?** Context-fold can prescribe the agent
-  structure it installs but cannot assume that project intent, decisions, documentation,
-  verification or reusable agent procedures are authoritative and discoverable. One proposal is
-  to classify those five capabilities as established, partial, absent, ambiguous or not
-  applicable, reference established sources from agent context, and create separate planned tasks
-  for applicable gaps with recommendations rather than mandatory paths. Whether assessment belongs
-  in adoption, how repeat runs avoid duplicate or unwanted tasks, and what evidence justifies each
-  classification are unresolved. Operations, security, data, release and integrations are possible
-  future assessment categories, not part of the initial proposal.
 - **How should outcome and context economy be measured?** Success, human intervention, retries,
   tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
   such as context precision and context sufficiency are closer to the project's purpose, but both
