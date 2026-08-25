@@ -65,7 +65,7 @@ conditions instead, mirroring `0044`'s treatment of the context sublayer.
 
 Durable artifacts produced:
 
-- `decisions/0045-formalize-the-skills-sublayer.md`, recording the resolution.
+- `decisions/0048-formalize-the-skills-sublayer.md`, recording the resolution.
 - `decisions/README.md` — index row for `0045`.
 - `decisions/0041-define-governed-agent-sublayers.md` — `Status` narrowed to point at `0045` for
   the detailed skills semantics it routed here.

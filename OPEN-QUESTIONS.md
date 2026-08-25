@@ -56,6 +56,20 @@ hides its weaknesses.
   source and reason for every item; and what would demonstrate that it was both sufficient and
   no larger than necessary.
 
+### Verification, evidence, and observable execution
+
+- **Does verification need its own agent sublayer?**
+  [`0047`](decisions/0047-defer-the-verification-sublayer.md) kept `.agents/verification/`
+  unbuilt, in either the full-contract or lighter reference-map form: no task package records an
+  agent-system evaluation that was needed and could not be performed, and none has built its own
+  ad hoc evaluation harness inside the agent layer. Product verification and task acceptance
+  already have working owners. Reopen only if an agent-system property — context selection,
+  authority-boundary respect, permitted tool use, recovery, or stopping behavior — demonstrably
+  fails, or is shown to have failed undetected, for want of an evaluation this sublayer would have
+  supplied; two or more tasks independently build their own ad hoc agent-evaluation harness; or a
+  portable, host-independent way to state an agent-eval contract is demonstrated without fixing a
+  runtime, model, or tool schema.
+
 ### Decisions, identity, and traceability
 
 - **Metadata schemas beyond tasks and RFC state.** `0033` and `0037` define separate exact
@@ -71,7 +85,7 @@ hides its weaknesses.
   where either should be distributed remain open. MCP/tool capabilities may have different
   authority, discovery and runtime semantics again; whether they ever belong beside skills or
   workflows is deferred until use provides evidence.
-  [`0045`](decisions/0045-formalize-the-skills-sublayer.md) settles a package's authority ceiling,
+  [`0048`](decisions/0048-formalize-the-skills-sublayer.md) settles a package's authority ceiling,
   discovery, host projection, and coexistence for the `skills/` contract itself; it does not
   extend to workflows or MCP/tools.
 - **External tracker synchronization.** Whether tasks should correspond to issues elsewhere.
@@ -80,7 +94,7 @@ hides its weaknesses.
   installation's additive suffix. An installation still records neither its source nor a version
   and cannot discover that upstream rules changed. What identity it needs and how it discovers
   changes remain undecided.
-  [`0045`](decisions/0045-formalize-the-skills-sublayer.md) declines to require this of a skill
+  [`0048`](decisions/0048-formalize-the-skills-sublayer.md) declines to require this of a skill
   package specifically, absent evidence; reopen that part for a package installed here if it is
   found stale, mismatched, or of ambiguous origin with no way to tell, or if a second,
   independently maintained package needs to declare compatibility with a specific host or
@@ -90,6 +104,13 @@ hides its weaknesses.
 
 - **Behavior at scale.** Every rule here was written against a repository with a handful of
   tasks. What breaks at hundreds of archived tasks is unknown.
+- **Project assessment beyond v0.** [`0046`](decisions/0046-adopt-project-assessment.md) gave
+  `ctxfold-init` a bounded v0 assessment step for five capabilities — intent, decisions,
+  documentation, verification, and skills — evidenced by a second real adoption surfacing
+  checklist-shaped gaps. Whether the skills capability can be assessed in a vendor-neutral way
+  outside languages context-fold has been adopted into, and what future evidence would justify
+  adding operations, security, data, release, or integrations as further capabilities, remain
+  open.
 
 ### Learning and the improvement loop
 
@@ -193,11 +214,6 @@ hides its weaknesses.
   tools, avoided unrelated files, recovered from failure and stopped at the right boundary.
   Context-fold has evidence for structural checks, but none yet that these agent behaviors can be
   evaluated portably without depending on a particular runtime.
-- **Does verification need its own agent sublayer?** Project tests, task acceptance and the final
-  check already have owners. A separate contract might describe portable agent evals, executable
-  gates or evidence references, while raw host execution remains external or disposable. It is
-  unknown whether any information is left for that sublayer to own, or whether a verification
-  index would only duplicate project checks and task context.
 - **Which observable execution facts should survive a run?** `0006` keeps execution history out
   of task packages, and `0014` rejects raw transcripts as a second source of truth. Recording
   context inputs, tool schemas, tool calls and results, compaction, verification events and the
@@ -232,13 +248,17 @@ hides its weaknesses.
   non-conflicting project instructions after a managed rule block, and `ctxfold-init` preserves
   them during an explicit update. Conflicting overrides, finer-grained customizable blocks, and
   maintained forks remain undefined.
-- **Should an adopter's installation be checkable?** This repository verifies that its installed
-  managed blocks match the distribution while permitting additive suffixes. An adopter gets no
-  such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not. The recognized contracts identify managed targets,
-  unknown extensions, independently owned contents and intentional forks. What can be diagnosed
-  or repaired without overwriting user or tool state, and which semantic boundary violations
-  remain review judgments, are undecided.
+- **Should an adopter's installation be checkable?**
+  [`0045`](decisions/0045-name-agent-layer-structural-health.md) names four structural states —
+  absent, legacy, managed, malformed — for any recognized-sublayer contract target, matching what
+  `0035` and `ADOPTING.md`'s preflight already implement, and settles that a well-formed managed
+  block is healthy regardless of content: distinguishing stale content from merely different
+  content needs provenance this project has not built. It declines to add a portable checker for
+  adopters and declines to build an intentional-fork opt-out signal, naming reopening bars for
+  each instead. Reopen the portable-checker question only if the provenance/versioning question
+  below is settled with something an adopter's own installation could compare itself against.
+  Reopen the fork-safety question only if a real fork is destroyed by a repeat-adoption run, or an
+  adopter asks for a supported way to leave managed identity before that happens.
 - **What distinguishes a workflow from a skill?** `ctxfold-init` demonstrates a reusable
   capability applied to adoption; no workflow has been built. Whether a workflow should instead
   describe how work moves through stages, and whether that distinction survives real use, is
@@ -269,15 +289,6 @@ hides its weaknesses.
   actors, journeys, goals, non-goals, success criteria and constraints that must remain true could
   prevent locally correct work that misses its purpose. Requiring a PRD or policy shape would
   instead make context-fold prescribe a project's documentation layout for the first time.
-- **Should adoption assess project-layer readiness?** Context-fold can prescribe the agent
-  structure it installs but cannot assume that project intent, decisions, documentation,
-  verification or reusable agent procedures are authoritative and discoverable. One proposal is
-  to classify those five capabilities as established, partial, absent, ambiguous or not
-  applicable, reference established sources from agent context, and create separate planned tasks
-  for applicable gaps with recommendations rather than mandatory paths. Whether assessment belongs
-  in adoption, how repeat runs avoid duplicate or unwanted tasks, and what evidence justifies each
-  classification are unresolved. Operations, security, data, release and integrations are possible
-  future assessment categories, not part of the initial proposal.
 - **How should outcome and context economy be measured?** Success, human intervention, retries,
   tool calls, elapsed time, cost and context volume are observable in some hosts. Proposed notions
   such as context precision and context sufficiency are closer to the project's purpose, but both
