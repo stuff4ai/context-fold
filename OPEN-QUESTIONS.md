@@ -225,13 +225,17 @@ hides its weaknesses.
   non-conflicting project instructions after a managed rule block, and `ctxfold-init` preserves
   them during an explicit update. Conflicting overrides, finer-grained customizable blocks, and
   maintained forks remain undefined.
-- **Should an adopter's installation be checkable?** This repository verifies that its installed
-  managed blocks match the distribution while permitting additive suffixes. An adopter gets no
-  such check — the instruction not to edit a block is a request, and a block that drifts is
-  indistinguishable from one that did not. The recognized contracts identify managed targets,
-  unknown extensions, independently owned contents and intentional forks. What can be diagnosed
-  or repaired without overwriting user or tool state, and which semantic boundary violations
-  remain review judgments, are undecided.
+- **Should an adopter's installation be checkable?**
+  [`0045`](decisions/0045-name-agent-layer-structural-health.md) names four structural states —
+  absent, legacy, managed, malformed — for any recognized-sublayer contract target, matching what
+  `0035` and `ADOPTING.md`'s preflight already implement, and settles that a well-formed managed
+  block is healthy regardless of content: distinguishing stale content from merely different
+  content needs provenance this project has not built. It declines to add a portable checker for
+  adopters and declines to build an intentional-fork opt-out signal, naming reopening bars for
+  each instead. Reopen the portable-checker question only if the provenance/versioning question
+  below is settled with something an adopter's own installation could compare itself against.
+  Reopen the fork-safety question only if a real fork is destroyed by a repeat-adoption run, or an
+  adopter asks for a supported way to leave managed identity before that happens.
 - **How should the recognized skills sublayer be formalized?** `.agents/skills/` has a portable
   routing and ownership contract while `0034`'s host projection remains an adapter. Authority,
   provenance, format, lifecycle, and package discovery semantics are left to the skills task.
