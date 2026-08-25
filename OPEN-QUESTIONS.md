@@ -56,6 +56,20 @@ hides its weaknesses.
   source and reason for every item; and what would demonstrate that it was both sufficient and
   no larger than necessary.
 
+### Verification, evidence, and observable execution
+
+- **Does verification need its own agent sublayer?**
+  [`0045`](decisions/0045-defer-the-verification-sublayer.md) kept `.agents/verification/`
+  unbuilt, in either the full-contract or lighter reference-map form: no task package records an
+  agent-system evaluation that was needed and could not be performed, and none has built its own
+  ad hoc evaluation harness inside the agent layer. Product verification and task acceptance
+  already have working owners. Reopen only if an agent-system property — context selection,
+  authority-boundary respect, permitted tool use, recovery, or stopping behavior — demonstrably
+  fails, or is shown to have failed undetected, for want of an evaluation this sublayer would have
+  supplied; two or more tasks independently build their own ad hoc agent-evaluation harness; or a
+  portable, host-independent way to state an agent-eval contract is demonstrated without fixing a
+  runtime, model, or tool schema.
+
 ### Decisions, identity, and traceability
 
 - **Metadata schemas beyond tasks and RFC state.** `0033` and `0037` define separate exact
@@ -186,11 +200,6 @@ hides its weaknesses.
   tools, avoided unrelated files, recovered from failure and stopped at the right boundary.
   Context-fold has evidence for structural checks, but none yet that these agent behaviors can be
   evaluated portably without depending on a particular runtime.
-- **Does verification need its own agent sublayer?** Project tests, task acceptance and the final
-  check already have owners. A separate contract might describe portable agent evals, executable
-  gates or evidence references, while raw host execution remains external or disposable. It is
-  unknown whether any information is left for that sublayer to own, or whether a verification
-  index would only duplicate project checks and task context.
 - **Which observable execution facts should survive a run?** `0006` keeps execution history out
   of task packages, and `0014` rejects raw transcripts as a second source of truth. Recording
   context inputs, tool schemas, tool calls and results, compaction, verification events and the
